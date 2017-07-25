@@ -1,0 +1,48 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["prettier", "prettier/react"],
+  "plugins": ["react", "react-native", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "rules": {
+    "react-native/no-unused-styles": 2,
+    "react-native/split-platform-components": 2,
+    "react-native/no-inline-styles": 2,
+    "react-native/no-color-literals": 2,
+
+     // keep it simple
+    "semi": ["error", "never"],
+
+    // indentation
+    "indent": [ 2, 2 ],
+    "newline-per-chained-call": [ "error", { "ignoreChainWithDepth": 3 }],
+
+    // spacing
+    "space-in-parens": [ 2, "always" ],
+    "template-curly-spacing": [ 2, "always" ],
+    "array-bracket-spacing": [ 2, "always" ],
+    "object-curly-spacing": [ 2, "always" ],
+    "computed-property-spacing": [ 2, "always" ],
+    "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
+
+    // strings
+    "quotes": [ 2, "single", "avoid-escape" ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "singleQuote": true,
+    //     "semi": false,
+    //     "bracketSpacing": true,
+    //     "jsxBracketSameLine": true
+    //   }
+    // ]
+  }
+}
