@@ -3,29 +3,20 @@ import { Text, View, Dimensions, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
 
-class NoItemComponent extends Component {
-  constructor( props ) {
-    super( props )
-  }
-  render() {
-    return (
-      <View style={styles.alignContainers}>
-        <View style={styles.containerStyle}>
-          <Icon
-            name={this.props.iconName}
-            size={64}
-            color={Colors.tabIconDefault}
-          />
-          <Text style={styles.infoHeadingStyle}>
-            {this.props.infoHeading}
-          </Text>
-          <Text style={styles.infoParagraphStyle}>
-            {this.props.infoParagraph}
-          </Text>
-        </View>
+const NoItemComponent = ( { iconName, infoHeading, infoParagraph } ) => {
+  return (
+    <View style={styles.alignContainers}>
+      <View style={styles.containerStyle}>
+        <Icon name={iconName} size={64} color={Colors.tabIconDefault} />
+        <Text style={styles.infoHeadingStyle}>
+          {infoHeading}
+        </Text>
+        <Text style={styles.infoParagraphStyle}>
+          {infoParagraph}
+        </Text>
       </View>
-    )
-  }
+    </View>
+  )
 }
 
 const styles = StyleSheet.create( {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, View, Text, AsyncStorage } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import Colors from '../../constants/Colors'
-import { List, ListItem, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import { getSettings } from './selectors'
-import Search from '@components/SearchContainer'
+import { Colors } from 'constants'
+
+import { ScrollView, StyleSheet, View, Text, AsyncStorage } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
+import { List, ListItem, Icon } from 'react-native-elements'
+import { Search } from '@components'
 
 class SettingsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {

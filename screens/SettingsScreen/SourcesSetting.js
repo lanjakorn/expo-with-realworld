@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import { Colors } from 'constants'
+
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import Colors from 'constants/Colors'
 import { Button, Icon } from 'react-native-elements'
-import Search from '@components/SearchContainer'
-import NoItemComponent from '@components/NoItemComponent'
+import { NoItemComponent, Search } from '@components'
 
 class SourcesSetting extends Component {
   static navigationOptions = ( { navigation } ) => {

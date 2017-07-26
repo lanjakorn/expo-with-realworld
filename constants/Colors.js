@@ -1,4 +1,3 @@
-// const tintColor = '#2f95dc';
 const tintColor = 'rgba(213, 23, 57, 1)'
 const darkTintColor = 'rgba(157, 19, 50, 1)'
 

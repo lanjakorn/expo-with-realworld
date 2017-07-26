@@ -8,9 +8,8 @@ import {
 } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
-import Alerts from '../constants/Alerts'
-import Colors from '../constants/Colors'
-import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync'
+import { Alerts, Colors } from 'constants/Alerts'
+import { registerForPushNotificationsAsync } from 'api'
 
 export default class RootNavigation extends React.Component {
   componentDidMount() {

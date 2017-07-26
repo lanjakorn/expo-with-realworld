@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import { Colors } from 'constants'
+
 import { ScrollView, View, StyleSheet, Text, Image } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button, Icon } from 'react-native-elements'
-import Colors from 'constants/Colors'
-
-import Search from '@components/SearchContainer'
+import { Search } from '@components'
 import SearchList from './SearchListContainer'
 
 class SearchScreen extends Component {

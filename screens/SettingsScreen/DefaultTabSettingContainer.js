@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Colors, DefaultTab } from 'constants'
 import * as actions from './actions'
 import * as searchScreenActions from '../SearchScreen/actions'
 import { getDefaultTabOfSettings } from './selectors'
@@ -15,14 +16,9 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import Card from '@components/Card'
-import CardSection from '@components/CardSection'
-import Search from '@components/SearchContainer'
+import { Card, CardSection, Search } from '@components'
 
-import Colors from 'constants/Colors'
-import DefaultTab from 'constants/DefaultTab'
-
-var { height, width } = Dimensions.get( 'window' )
+const { height, width } = Dimensions.get( 'window' )
 
 class DefaultTabSetting extends Component {
   static navigationOptions = ( { navigation } ) => {

@@ -3,23 +3,20 @@ import { Text, StyleSheet } from 'react-native'
 import Colors from 'constants/Colors'
 import { SearchBar } from 'react-native-elements'
 
-class CustomSearchBar extends Component {
+const CustomSearchBar = ( { onFocus } ) => {
   onSearch = () => {}
-
-  render() {
-    return (
-      <SearchBar
-        lightTheme
-        textAlign="center"
-        containerStyle={styles.searchBar}
-        inputStyle={styles.insideSearchBar}
-        onChangeText={this.onSearch}
-        placeholder="Search"
-        placeholderTextColor="#fff"
-        onFocus={this.props.onFocus}
-      />
-    )
-  }
+  return (
+    <SearchBar
+      lightTheme
+      textAlign="center"
+      containerStyle={styles.searchBar}
+      inputStyle={styles.insideSearchBar}
+      onChangeText={this.onSearch}
+      placeholder="Search"
+      placeholderTextColor="#fff"
+      onFocus={onFocus}
+    />
+  )
 }
 
 const styles = StyleSheet.create( {

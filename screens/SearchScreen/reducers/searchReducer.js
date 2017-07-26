@@ -1,8 +1,4 @@
-import {
-  SET_SEARCH_HISTORY,
-  SEARCHING,
-  CHANGE_SEARCH_TEXT,
-} from '../types'
+import { SET_SEARCH_HISTORY, SEARCHING, CHANGE_SEARCH_TEXT } from '../types'
 
 export const INITIAL_STATE = {
   search_history_items: [],

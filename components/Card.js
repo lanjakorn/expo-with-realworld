@@ -1,25 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-class Card extends Component {
-  constructor( props ) {
-    super( props )
-  }
-  render() {
-    return (
-      <View
-        style={[
-          styles.containerStyle,
-          {
-            marginBottom: this.props.marginBottomProp,
-            backgroundColor: this.props.backgroundColorProp,
-          },
-        ]}
-      >
-        {this.props.children}
-      </View>
-    )
-  }
+const Card = ( { marginBottomProp, backgroundColorProp, children } ) => {
+  return (
+    <View
+      style={[
+        styles.containerStyle,
+        {
+          marginBottom: marginBottomProp,
+          backgroundColor: backgroundColorProp,
+        },
+      ]}
+    >
+      {children}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create( {

@@ -13,8 +13,6 @@ import {
   SET_SAVE_RECENT,
 } from './types'
 
-import { INITIAL_STATE } from './reducers/settingsReducer'
-
 const getDefaultTab = () => action( GET_DEFAULT_TAB )
 const setDefaultTab = tab => action( SET_DEFAULT_TAB, { tab } )
 const changeDefaultTab = tab => action( CHANGE_DEFAULT_TAB, { tab } )

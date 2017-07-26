@@ -15,7 +15,7 @@ import SearchScreen from './screens/SearchScreen'
 import StoriesScreen from './screens/StoriesScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import { getDefaultTab } from './screens/SettingsScreen'
-import cacheAssetsAsync from 'utilities/cacheAssetsAsync'
+import { cacheAssetsAsync } from 'utilities'
 import store from 'store'
 
 import { connect } from 'react-redux'
@@ -43,6 +43,7 @@ const MainNavigator = StackNavigator( {
         history: {
           screen: SearchScreen,
           navigationOptions: {
+            title: 'History',
             tabBarLabel: 'History',
             tabBarIcon: ( { tintColor, focused } ) =>
               <Icon

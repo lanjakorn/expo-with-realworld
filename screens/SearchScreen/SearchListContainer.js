@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as actions from './actions'
+import { getSearchHistories as getSearch } from './selectors'
+import { Colors } from 'constants'
+
 import {
   Text,
   View,
@@ -12,13 +16,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
-
-import Card from '@components/Card'
-import CardSection from '@components/CardSection'
-import Colors from 'constants/Colors'
-
-import * as actions from './actions'
-import { getSearchHistories as getSearch } from './selectors'
+import { Card, CardSection } from '@components'
 
 var { height, width } = Dimensions.get( 'window' )
 
