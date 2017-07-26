@@ -5,7 +5,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button } from 'react-native-elements'
@@ -13,7 +13,7 @@ import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 import StoriesList from './StoriesList'
 
-import SearchComponent from '@components/SearchComponent'
+import Search from '@components/SearchContainer'
 
 class StoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -28,10 +28,10 @@ class StoriesScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <SearchComponent navigation={navigation} />
+            <Search navigation={navigation} />
           </View>
         </View>
-      )
+      ),
     }
   }
 
@@ -44,13 +44,13 @@ const styles = StyleSheet.create( {
   cardInfoStyle: {
     flexDirection: 'row',
     marginRight: 5,
-    padding: 5
+    padding: 5,
   },
   cardStyle: {
     marginLeft: 17,
     marginRight: 17,
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
   },
   storyImageStyle: {
     marginLeft: -15,
@@ -59,18 +59,18 @@ const styles = StyleSheet.create( {
     marginBottom: 20,
     height: 150,
     right: 1,
-    top: 1
+    top: 1,
   },
   sourceIconStyle: {
     width: 40,
-    height: 40
+    height: 40,
   },
   infoTextStyle: {
     marginLeft: 10,
     marginRight: 25,
     paddingRight: 15,
-    alignContent: 'center'
-  }
+    alignContent: 'center',
+  },
 } )
 
 export default StoriesScreen

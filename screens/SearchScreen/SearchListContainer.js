@@ -9,7 +9,7 @@ import {
   ScrollView,
   Linking,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 
@@ -18,23 +18,22 @@ import CardSection from '@components/CardSection'
 import Colors from 'constants/Colors'
 
 import * as actions from './actions'
-import { getSearchHistories } from './selectors'
+import { getSearchHistories as getSearch } from './selectors'
 
 var { height, width } = Dimensions.get( 'window' )
 
-class SearchList extends Component {
+class SearchListContainer extends Component {
   constructor( props ) {
     super( props )
   }
 
   async componentWillMount() {
-    //await this.props.getSearchHistory()
-    await this.props.loadSearchScreen()
+    await this.props.getSearchHistory()
   }
 
   onPressSearchHistoryItem = query => {
     this.props.navigation.navigate( 'search' )
-    this.props.Searching( ( isSearching = true ) )
+    this.props.searching( true )
     this.props.changeSearchText( query )
   }
 
@@ -69,19 +68,19 @@ const styles = StyleSheet.create( {
     marginTop: 10,
     marginBottom: 10,
     marginRight: 20,
-    marginLeft: 20
+    marginLeft: 20,
   },
   searchListItemTextStyle: {
     paddingTop: 5,
     fontSize: 16,
     marginLeft: 15,
     marginRight: 15,
-    width: Dimensions.get( 'window' ).width * 0.7 - 25
-  }
+    width: Dimensions.get( 'window' ).width * 0.7 - 25,
+  },
 } )
 
 const mapStateToProps = state => ( {
-  search_history_items: getSearchHistories( state )
+  search_history_items: getSearch( state ),
 } )
 
-export default connect( mapStateToProps, actions )( SearchList )
+export default connect( mapStateToProps, actions )( SearchListContainer )

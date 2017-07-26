@@ -1,6 +1,6 @@
 // const tintColor = '#2f95dc';
-const tintColor = 'rgba(222, 88, 51, 1)'
-const darkTintColor = 'rgba(189, 74, 43, 1)'
+const tintColor = 'rgba(213, 23, 57, 1)'
+const darkTintColor = 'rgba(157, 19, 50, 1)'
 
 export default {
   tintColor,
@@ -14,5 +14,5 @@ export default {
   warningBackground: '#EAEB5E',
   warningText: '#666804',
   noticeBackground: tintColor,
-  noticeText: '#fff'
+  noticeText: '#fff',
 }

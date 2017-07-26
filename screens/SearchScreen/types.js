@@ -1,11 +1,13 @@
-const LOAD_SEARCH_SCREEN = 'LOAD_SEARCH_SCREEN'
-const LOAD_SEARCH_HISTORY_ITEMS = 'load_search_history_items'
-const SEARCHING = 'searching'
 const CHANGE_SEARCH_TEXT = 'change_search_text'
+const GET_SEARCH_HISTORY = 'get_search_history'
+const SEARCHED = 'searched'
+const SEARCHING = 'searching'
+const SET_SEARCH_HISTORY = 'set_search_history'
 
 export {
-  LOAD_SEARCH_SCREEN,
-  LOAD_SEARCH_HISTORY_ITEMS,
+  CHANGE_SEARCH_TEXT,
+  GET_SEARCH_HISTORY,
+  SEARCHED,
   SEARCHING,
-  CHANGE_SEARCH_TEXT
+  SET_SEARCH_HISTORY,
 }

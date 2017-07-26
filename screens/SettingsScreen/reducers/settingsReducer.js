@@ -2,14 +2,14 @@ import {
   AUTOCOMPLETE_SETTING,
   QUACK_ON_REFRESH_SETTING,
   SAVE_RECENT_SETTING,
-  CHANGE_DEFAULT_TAB
+  CHANGE_DEFAULT_TAB,
 } from '../types'
 
 export const INITIAL_STATE = {
   autocomplete: false,
   quack_on_refresh: false,
   save_recent: false,
-  default_tab: 'Stories (Default)'
+  default_tab: 'Stories (Default)',
 }
 
 export default ( state = INITIAL_STATE, action ) => {

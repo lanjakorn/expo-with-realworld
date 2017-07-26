@@ -6,7 +6,7 @@ import { List, ListItem, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import { getSettings } from './selectors'
-import SearchComponent from '@components/SearchComponent'
+import Search from '@components/SearchContainer'
 
 class SettingsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -21,10 +21,10 @@ class SettingsScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <SearchComponent navigation={navigation} />
+            <Search navigation={navigation} />
           </View>
         </View>
-      )
+      ),
     }
   }
 
@@ -162,26 +162,26 @@ class InfoText extends Component {
 
 const styles = StyleSheet.create( {
   container: {
-    flex: 1
+    flex: 1,
   },
   reduceHeight: {
-    height: 5
+    height: 5,
   },
   infoTextStyle: {
     fontSize: 14,
     paddingTop: 20,
     marginLeft: 20,
     color: 'black',
-    opacity: 0.7
+    opacity: 0.7,
   },
   settigsGreyBackground: {
     backgroundColor: 'rgba(247, 247, 247, 1)',
-    paddingTop: 20
-  }
+    paddingTop: 20,
+  },
 } )
 
 const mapStateToProps = state => ( {
-  ...getSettings( state )
+  ...getSettings( state ),
 } )
 
 export default connect( mapStateToProps, actions )( SettingsScreen )

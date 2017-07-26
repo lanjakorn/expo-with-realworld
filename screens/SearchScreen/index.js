@@ -4,8 +4,8 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button, Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
 
-import SearchComponent from '@components/SearchComponent'
-import SearchList from './SearchList'
+import Search from '@components/SearchContainer'
+import SearchList from './SearchListContainer'
 
 class SearchScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -20,10 +20,10 @@ class SearchScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <SearchComponent navigation={navigation} navOnCancel={'search'} />
+            <Search navigation={navigation} navOnCancel={'search'} />
           </View>
         </View>
-      )
+      ),
     }
   }
 
@@ -39,8 +39,8 @@ class SearchScreen extends Component {
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    paddingTop: 15
-  }
+    paddingTop: 15,
+  },
 } )
 
 export default SearchScreen

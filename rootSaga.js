@@ -1,6 +1,9 @@
-import { fork } from 'redux-saga/effects'
-import { watchLoadSearchScreen } from '@screens/SearchScreen/sagas'
+import { all, fork } from 'redux-saga/effects'
+import { sagas as searchScreenSagas } from '@screens/SearchScreen/exports'
 
 export default function* rootSaga() {
-  yield [ fork( watchLoadSearchScreen ) ]
+  yield all( [
+    fork( searchScreenSagas.watchLoadSearchHistoryFormStorage ),
+    fork( searchScreenSagas.watchSearched ),
+  ] )
 }

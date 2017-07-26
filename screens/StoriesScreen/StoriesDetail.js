@@ -5,7 +5,7 @@ import {
   Image,
   Linking,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import Card from '@components/Card'
@@ -16,7 +16,7 @@ import {
   MenuOptions,
   MenuOption,
   MenuTrigger,
-  MenuContext
+  MenuContext,
 } from 'react-native-popup-menu'
 
 class StoriesDetail extends Component {
@@ -104,38 +104,38 @@ const optionsStyles = {
     backgroundColor: 'white',
     padding: 5,
     marginLeft: -175,
-    marginTop: 25
+    marginTop: 25,
   },
   optionWrapper: {
     backgroundColor: 'white',
-    margin: 2
-  }
+    margin: 2,
+  },
 }
 
 const styles = StyleSheet.create( {
   headerContentStyle: {
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   headerTextStyle: {
     fontSize: 14,
     marginRight: 25,
     paddingRight: 25,
-    alignContent: 'center'
+    alignContent: 'center',
   },
   thumbnailStyle: {
     height: 40,
-    width: 40
+    width: 40,
   },
   thumbnailContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10
+    padding: 10,
   },
   imageStyle: {
     height: 150,
     flex: 1,
-    width: null
+    width: null,
   },
   storyOverlay: {
     flex: 1,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create( {
     right: 0,
     top: 0,
     justifyContent: 'space-around',
-    flexDirection: 'row'
+    flexDirection: 'row',
     // opacity: 0.5,
     // backgroundColor: 'black',
   },
@@ -155,20 +155,20 @@ const styles = StyleSheet.create( {
     marginRight: 10,
     borderRadius: 5,
     padding: 3,
-    alignContent: 'center'
+    alignContent: 'center',
   },
   storyTypeTextStyle: {
     color: 'white',
     fontSize: 13,
-    paddingTop: 3
+    paddingTop: 3,
   },
   storyTypeMenuStyle: {
     backgroundColor: 'rgba(0, 0, 0, .6)',
     opacity: 1,
     marginRight: 10,
     borderRadius: 5,
-    padding: 3
-  }
+    padding: 3,
+  },
 } )
 
 export default StoriesDetail

@@ -8,23 +8,20 @@ import { Provider } from 'react-redux'
 import firebase from 'firebase'
 import { FontAwesome } from '@expo/vector-icons'
 
-import configFirebase from 'config/firebase'
+import config from 'config'
 import Colors from 'constants/Colors'
 
 import SearchScreen from './screens/SearchScreen'
 import StoriesScreen from './screens/StoriesScreen'
-// import FavouritesScreen from './screens/FavouritesScreen'
-// import HistoryScreen from './screens/HistoryScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import { getDefaultTab } from './screens/SettingsScreen'
-// import Router from './navigation/Router';
 import cacheAssetsAsync from 'utilities/cacheAssetsAsync'
 import store from 'store'
 
 import { connect } from 'react-redux'
-// import * as actions from './actions';
 
-firebase.initializeApp( configFirebase )
+firebase.initializeApp( config )
+
 const MainNavigator = StackNavigator( {
   Root: {
     screen: TabNavigator(
@@ -40,22 +37,22 @@ const MainNavigator = StackNavigator( {
                 name={'favorite'}
                 size={24}
                 color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-              />
-          }
+              />,
+          },
         },
-        // history: {
-        //   screen: SearchScreen,
-        //   navigationOptions: {
-        //     tabBarLabel: 'History',
-        //     tabBarIcon: ( { tintColor, focused } ) =>
-        //       <Icon
-        //         name={'watch-later'}
-        //         size={24}
-        //         color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        //       />
-        //   }
-        // },
-        settings: { screen: SettingsScreen.SettingsScreen }
+        history: {
+          screen: SearchScreen,
+          navigationOptions: {
+            tabBarLabel: 'History',
+            tabBarIcon: ( { tintColor, focused } ) =>
+              <Icon
+                name={'watch-later'}
+                size={24}
+                color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+              />,
+          },
+        },
+        settings: { screen: SettingsScreen.SettingsScreen },
       },
       {
         tabBarOptions: {
@@ -63,44 +60,44 @@ const MainNavigator = StackNavigator( {
           showLabel: false,
           showIcon: true,
           indicatorStyle: {
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
           },
           iconStyle: {
             width: 24,
-            height: 24
+            height: 24,
           },
           style: {
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           },
           tabBarIcon: ( { tintColor } ) => {
             Colors.darkTintColor
-          }
+          },
         },
         lazy: true,
         tabBarPosition: 'bottom',
-        initialRouteName: 'stories'
+        initialRouteName: 'stories',
       }
-    )
+    ),
   },
   defaultTabSetting: {
-    screen: SettingsScreen.DefaultTabSetting
+    screen: SettingsScreen.DefaultTabSetting,
   },
   readabilitySetting: {
-    screen: SettingsScreen.ReadabilitySetting
+    screen: SettingsScreen.ReadabilitySetting,
   },
   regionSetting: {
-    screen: SettingsScreen.RegionSetting
+    screen: SettingsScreen.RegionSetting,
   },
   sourcesSetting: {
-    screen: SettingsScreen.SourcesSetting
-  }
+    screen: SettingsScreen.SourcesSetting,
+  },
 } )
 
 class AppContainer extends React.Component {
   constructor( props ) {
     super( props )
     this.state = {
-      appIsReady: false
+      appIsReady: false,
     }
   }
 
@@ -114,8 +111,8 @@ class AppContainer extends React.Component {
         images: [ require( './assets/images/expo-wordmark.png' ) ],
         fonts: [
           FontAwesome.font,
-          { 'space-mono': require( './assets/fonts/SpaceMono-Regular.ttf' ) }
-        ]
+          { 'space-mono': require( './assets/fonts/SpaceMono-Regular.ttf' ) },
+        ],
       } )
     } catch ( e ) {
       console.warn(
@@ -146,20 +143,20 @@ class AppContainer extends React.Component {
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   statusBarUnderlay: {
     height: 24,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)'
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   statusHeight: {
-    marginTop: 0
-  }
+    marginTop: 0,
+  },
 } )
 
 const mapStateToProps = state => {
   return {
-    default_tab: state.settings.default_tab
+    default_tab: state.settings.default_tab,
   }
 }
 

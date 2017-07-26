@@ -12,8 +12,8 @@ class Card extends Component {
           styles.containerStyle,
           {
             marginBottom: this.props.marginBottomProp,
-            backgroundColor: this.props.backgroundColorProp
-          }
+            backgroundColor: this.props.backgroundColorProp,
+          },
         ]}
       >
         {this.props.children}
@@ -33,13 +33,12 @@ const styles = StyleSheet.create( {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    // marginTop: 10
     marginTop: -1,
-    marginBottom: 10
+    marginBottom: 10,
   },
   textStyle: {
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 } )
 
 export default Card

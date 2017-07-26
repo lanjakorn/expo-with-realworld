@@ -33,27 +33,27 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     width: Dimensions.get( 'window' ).width,
-    height: Dimensions.get( 'window' ).height - 150
+    height: Dimensions.get( 'window' ).height - 150,
   },
   containerStyle: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   infoHeadingStyle: {
     fontSize: 24,
     textAlign: 'center',
-    marginTop: 5
+    marginTop: 5,
   },
   infoParagraphStyle: {
     textAlign: 'center',
     padding: 10,
     fontSize: 16,
     color: '#888',
-    width: Dimensions.get( 'window' ).width / 1.75
+    width: Dimensions.get( 'window' ).width / 1.75,
   },
   textStyle: {
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 } )
 
 export default NoItemComponent

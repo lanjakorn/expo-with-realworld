@@ -6,5 +6,5 @@ console.tron = Reactotron
 Reactotron.configure()
   .useReactNative()
   .connect()
-  .use(reactotronRedux())
-  .use(sagaPlugin())
+  .use( reactotronRedux() )
+  .use( sagaPlugin() )

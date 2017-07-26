@@ -1,4 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from './actions'
+import * as searchScreenActions from '../SearchScreen/actions'
+import { getDefaultTabOfSettings } from './selectors'
+
+import { Button, Icon } from 'react-native-elements'
 import {
   AsyncStorage,
   ScrollView,
@@ -6,21 +12,15 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import Card from '@components/Card'
 import CardSection from '@components/CardSection'
+import Search from '@components/SearchContainer'
+
 import Colors from 'constants/Colors'
-import { Button, Icon } from 'react-native-elements'
-import SearchComponent from '@components/SearchComponent'
-
 import DefaultTab from 'constants/DefaultTab'
-
-import { connect } from 'react-redux'
-import * as actions from './actions'
-import { getDefaultTabOfSettings } from './selectors'
-import * as searchScreenActions from '../SearchScreen/actions'
 
 var { height, width } = Dimensions.get( 'window' )
 
@@ -39,10 +39,10 @@ class DefaultTabSetting extends Component {
                 navigation.goBack( null )
               }}
             />
-            <SearchComponent navigation={navigation} />
+            <Search navigation={navigation} />
           </View>
         </View>
-      )
+      ),
     }
   }
 
@@ -51,7 +51,6 @@ class DefaultTabSetting extends Component {
   }
 
   async componentWillMount() {
-    // AsyncStorage.clear()
     await this.props.getSearchHistory()
     await this.props.getDefaultTab()
   }
@@ -59,7 +58,7 @@ class DefaultTabSetting extends Component {
   onPressSearchHistoryItem = query => {
     this.props.navigation.navigate( 'search' )
     this.props.changeSearchText( query )
-    this.props.Searching( ( isSearching = true ) )
+    this.props.searching( true )
   }
 
   showDefaultCheckedIcon = idx => {
@@ -109,24 +108,24 @@ const styles = StyleSheet.create( {
     marginTop: 10,
     marginBottom: 10,
     marginRight: 20,
-    marginLeft: 20
+    marginLeft: 20,
   },
   searchListItemTextStyle: {
     paddingTop: 5,
     fontSize: 16,
     marginLeft: 15,
     marginRight: 15,
-    width: Dimensions.get( 'window' ).width * 0.7 - 25
-  }
+    width: Dimensions.get( 'window' ).width * 0.7 - 25,
+  },
 } )
 
 const mapStateToProps = state => ( {
-  default_tab: getDefaultTabOfSettings( state )
+  default_tab: getDefaultTabOfSettings( state ),
 } )
 
 const combineAction = () => ( {
   ...actions,
-  ...searchScreenActions
+  ...searchScreenActions,
 } )
 
 export default connect( mapStateToProps, combineAction() )( DefaultTabSetting )

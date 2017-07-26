@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import Colors from 'constants/Colors'
+
 import {
   Text,
   TextInput,
@@ -8,22 +11,17 @@ import {
   Dimensions,
   StyleSheet,
   Keyboard,
-  Platform
+  Platform,
 } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import Colors from 'constants/Colors'
 import { Button, Icon } from 'react-native-elements'
-
-import { connect } from 'react-redux'
-// import * as actions from '../actions'
 import * as settingsactions from '@screens/SettingsScreen/actions'
 import * as searchScreenActions from '@screens/SearchScreen/actions'
 
-class SearchComponent extends Component {
+class SearchContainer extends Component {
   constructor( props ) {
     super( props )
     this.state = {
-      isTouchableDisabled: false
+      isTouchableDisabled: false,
     }
   }
 
@@ -32,7 +30,7 @@ class SearchComponent extends Component {
   }
 
   onSearchActive = () => {
-    this.props.Searching( ( isSearching = true ) )
+    this.props.searching( true )
     this.props.navigation.navigate( 'search' )
     this.setState( { isTouchableDisabled: true } )
   }
@@ -44,10 +42,10 @@ class SearchComponent extends Component {
   }
 
   pressCancelButton = () => {
-    this.props.Searching( ( isSearching = false ) )
+    this.props.searching( false )
     Keyboard.dismiss()
     this.props.navigation.goBack( null )
-    this.props.changeSearchText( ( search = '' ) )
+    this.props.changeSearchText( '' )
     this.setState( { isTouchableDisabled: false } )
   }
 
@@ -65,7 +63,7 @@ class SearchComponent extends Component {
   }
 
   onPriorityIconPress = () => {
-    this.props.changeSearchText( ( search = this.props.search_text + '!' ) )
+    this.props.changeSearchText( this.props.search_text + '!' )
   }
 
   renderSearchIcon = () => {
@@ -89,8 +87,8 @@ class SearchComponent extends Component {
   }
 
   onSubmitEditingSearch = () => {
-    this.props.storeSearchQuery( ( searchQuery = this.props.search_text ) )
-    this.props.changeSearchText( ( search = '' ) )
+    this.props.searched( ( searchQuery = this.props.search_text ) )
+    this.props.changeSearchText( '' )
     this.props.navigation.navigate( 'stories' )
     this.pressCancelButton()
   }
@@ -111,7 +109,7 @@ class SearchComponent extends Component {
             <View
               style={[
                 styles.insideTouchableView,
-                this.props.is_searching && styles.altTouchableView
+                this.props.is_searching && styles.altTouchableView,
               ]}
             >
               {this.renderSearchIcon()}
@@ -143,23 +141,23 @@ const styles = StyleSheet.create( {
     flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: Colors.tintColor
+    backgroundColor: Colors.tintColor,
   },
   touchableSearch: {
     backgroundColor: Colors.darkTintColor,
     borderRadius: 4,
     padding: 7,
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   insideTouchableView: {
     width: Dimensions.get( 'window' ).width - 25,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   altTouchableView: {
-    width: Dimensions.get( 'window' ).width * 0.65 - 25
+    width: Dimensions.get( 'window' ).width * 0.65 - 25,
   },
   customSearchTextInputStyle: {
     height: 24,
@@ -167,20 +165,20 @@ const styles = StyleSheet.create( {
     width: 150,
     fontSize: 14,
     marginLeft: 7,
-    color: 'white'
-  }
+    color: 'white',
+  },
 } )
 
 const combineAction = () => ( {
   ...settingsactions,
-  ...searchScreenActions
+  ...searchScreenActions,
 } )
 
 const mapStateToProps = state => {
   return {
     is_searching: state.search.is_searching,
-    search_text: state.search.search_text
+    search_text: state.search.search_text,
   }
 }
 
-export default connect( mapStateToProps, combineAction() )( SearchComponent )
+export default connect( mapStateToProps, combineAction() )( SearchContainer )

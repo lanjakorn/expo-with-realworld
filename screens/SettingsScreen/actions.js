@@ -4,7 +4,7 @@ import {
   AUTOCOMPLETE_SETTING,
   QUACK_ON_REFRESH_SETTING,
   SAVE_RECENT_SETTING,
-  CHANGE_DEFAULT_TAB
+  CHANGE_DEFAULT_TAB,
 } from './types'
 
 import { INITIAL_STATE } from './reducers/settingsReducer'
@@ -15,7 +15,7 @@ export const getDefaultTab = () => async dispatch => {
   if ( defaulttab_value !== null ) {
     dispatch( {
       type: CHANGE_DEFAULT_TAB,
-      payload: defaulttab_value
+      payload: defaulttab_value,
     } )
   } else {
     await AsyncStorage.setItem(
@@ -24,7 +24,7 @@ export const getDefaultTab = () => async dispatch => {
     )
     dispatch( {
       type: CHANGE_DEFAULT_TAB,
-      payload: INITIAL_STATE.default_tab
+      payload: INITIAL_STATE.default_tab,
     } )
   }
 }
@@ -33,7 +33,7 @@ export const changeDefaultTab = ( tab = 1 ) => async dispatch => {
   await AsyncStorage.setItem( 'defaulttab_value', JSON.stringify( tab ) )
   dispatch( {
     type: CHANGE_DEFAULT_TAB,
-    payload: tab
+    payload: tab,
   } )
 }
 
@@ -45,20 +45,20 @@ export const changeAutocompleteSetting = ( toLoad = false ) => async dispatch =>
     if ( toLoad === true ) {
       dispatch( {
         type: AUTOCOMPLETE_SETTING,
-        payload: autocomplete_value
+        payload: autocomplete_value,
       } )
     } else {
       if ( autocomplete_value === true ) {
         await AsyncStorage.setItem( 'autocomplete_value', JSON.stringify( false ) )
         dispatch( {
           type: AUTOCOMPLETE_SETTING,
-          payload: false
+          payload: false,
         } )
       } else {
         await AsyncStorage.setItem( 'autocomplete_value', JSON.stringify( true ) )
         dispatch( {
           type: AUTOCOMPLETE_SETTING,
-          payload: true
+          payload: true,
         } )
       }
     }
@@ -69,7 +69,7 @@ export const changeAutocompleteSetting = ( toLoad = false ) => async dispatch =>
     )
     dispatch( {
       type: AUTOCOMPLETE_SETTING,
-      payload: INITIAL_STATE.autocomplete
+      payload: INITIAL_STATE.autocomplete,
     } )
   }
 }
@@ -86,7 +86,7 @@ export const changeQuackOnRefreshSetting = (
     if ( toLoad === true ) {
       dispatch( {
         type: QUACK_ON_REFRESH_SETTING,
-        payload: quack_on_refresh_value
+        payload: quack_on_refresh_value,
       } )
     } else {
       if ( quack_on_refresh_value === true ) {
@@ -96,7 +96,7 @@ export const changeQuackOnRefreshSetting = (
         )
         dispatch( {
           type: QUACK_ON_REFRESH_SETTING,
-          payload: false
+          payload: false,
         } )
       } else {
         await AsyncStorage.setItem(
@@ -105,7 +105,7 @@ export const changeQuackOnRefreshSetting = (
         )
         dispatch( {
           type: QUACK_ON_REFRESH_SETTING,
-          payload: true
+          payload: true,
         } )
       }
     }
@@ -116,7 +116,7 @@ export const changeQuackOnRefreshSetting = (
     )
     dispatch( {
       type: QUACK_ON_REFRESH_SETTING,
-      payload: INITIAL_STATE.quack_on_refresh
+      payload: INITIAL_STATE.quack_on_refresh,
     } )
   }
 }
@@ -129,20 +129,20 @@ export const changeSaveRecentSetting = ( toLoad = false ) => async dispatch => {
     if ( toLoad === true ) {
       dispatch( {
         type: SAVE_RECENT_SETTING,
-        payload: save_recent_value
+        payload: save_recent_value,
       } )
     } else {
       if ( save_recent_value === true ) {
         await AsyncStorage.setItem( 'save_recent_value', JSON.stringify( false ) )
         dispatch( {
           type: SAVE_RECENT_SETTING,
-          payload: false
+          payload: false,
         } )
       } else {
         await AsyncStorage.setItem( 'save_recent_value', JSON.stringify( true ) )
         dispatch( {
           type: SAVE_RECENT_SETTING,
-          payload: true
+          payload: true,
         } )
       }
     }
@@ -153,7 +153,7 @@ export const changeSaveRecentSetting = ( toLoad = false ) => async dispatch => {
     )
     dispatch( {
       type: SAVE_RECENT_SETTING,
-      payload: INITIAL_STATE.save_recent
+      payload: INITIAL_STATE.save_recent,
     } )
   }
 }

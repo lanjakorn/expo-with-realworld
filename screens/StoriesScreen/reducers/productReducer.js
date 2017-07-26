@@ -2,11 +2,11 @@ import {
   AUTOCOMPLETE_SETTING,
   QUACK_ON_REFRESH_SETTING,
   SAVE_RECENT_SETTING,
-  CHANGE_DEFAULT_TAB
+  CHANGE_DEFAULT_TAB,
 } from '../types'
 
 export const INITIAL_STATE = () => ( {
-  products: []
+  products: [],
 } )
 
 export default ( state = INITIAL_STATE, action ) => {

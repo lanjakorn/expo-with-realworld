@@ -4,7 +4,7 @@ import { Notifications } from 'expo'
 import {
   StackNavigation,
   TabNavigation,
-  TabNavigationItem
+  TabNavigationItem,
 } from '@expo/ex-navigation'
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -104,9 +104,9 @@ export default class RootNavigation extends React.Component {
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   selectedTab: {
-    color: Colors.tabIconSelected
-  }
+    color: Colors.tabIconSelected,
+  },
 } )

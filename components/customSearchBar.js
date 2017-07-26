@@ -25,12 +25,12 @@ class CustomSearchBar extends Component {
 const styles = StyleSheet.create( {
   searchBar: {
     backgroundColor: Colors.tintColor,
-    borderColor: Colors.tintColor
+    borderColor: Colors.tintColor,
   },
   insideSearchBar: {
     backgroundColor: Colors.darkTintColor,
-    fontSize: 12
-  }
+    fontSize: 12,
+  },
 } )
 
 export default CustomSearchBar

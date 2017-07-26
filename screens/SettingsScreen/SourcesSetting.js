@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import Colors from 'constants/Colors'
 import { Button, Icon } from 'react-native-elements'
-import SearchComponent from '@components/SearchComponent'
+import Search from '@components/SearchContainer'
 import NoItemComponent from '@components/NoItemComponent'
 
 class SourcesSetting extends Component {
@@ -21,10 +21,10 @@ class SourcesSetting extends Component {
                 navigation.goBack( null )
               }}
             />
-            <SearchComponent navigation={navigation} />
+            <Search navigation={navigation} />
           </View>
         </View>
-      )
+      ),
     }
   }
 
@@ -42,8 +42,8 @@ class SourcesSetting extends Component {
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    paddingTop: 15
-  }
+    paddingTop: 15,
+  },
 } )
 
 export default SourcesSetting

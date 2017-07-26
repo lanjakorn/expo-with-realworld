@@ -13,5 +13,5 @@ export default createRouter( () => ( {
   history: () => HistoryScreen,
   search: () => SearchScreen,
   favourites: () => FavouritesScreen,
-  rootNavigation: () => RootNavigation
+  rootNavigation: () => RootNavigation,
 } ) )

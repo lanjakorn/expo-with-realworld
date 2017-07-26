@@ -1,5 +1,3 @@
-import * as factories from './factories'
+import * as storage from './storage'
 
-export default {
-  factories
-}
+export { storage }

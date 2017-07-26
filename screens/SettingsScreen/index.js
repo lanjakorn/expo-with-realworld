@@ -9,5 +9,5 @@ export default {
   DefaultTabSetting,
   ReadabilitySetting,
   RegionSetting,
-  SourcesSetting
+  SourcesSetting,
 }

@@ -5,12 +5,12 @@ import {
   Dimensions,
   View,
   ScrollView,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import StoriesDetail from './StoriesDetail'
 import axios from 'axios'
 import Colors from '../../constants/Colors'
-import storyData from '../../constants/data'
+import storyData from '../../mocks/products'
 import { FontAwesome } from '@expo/vector-icons'
 
 class StoriesList extends Component {
@@ -58,11 +58,11 @@ const styles = StyleSheet.create( {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 2,
-    position: 'relative'
+    position: 'relative',
   },
   textStyle: {
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 } )
 
 export default StoriesList

@@ -13,10 +13,10 @@
     }
   },
   "rules": {
-    "react-native/no-unused-styles": 2,
+    "react-native/no-unused-styles": 0,
     "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles": 2,
-    "react-native/no-color-literals": 2,
+    "react-native/no-inline-styles": 0,
+    "react-native/no-color-literals": 0,
 
      // keep it simple
     "semi": ["error", "never"],
@@ -35,6 +35,9 @@
 
     // strings
     "quotes": [ 2, "single", "avoid-escape" ],
+
+    // comma
+    "comma-dangle": ["error", "always-multiline"]
     // "prettier/prettier": [
     //   "error",
     //   {
