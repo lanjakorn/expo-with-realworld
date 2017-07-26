@@ -74,7 +74,7 @@ class DefaultTabSetting extends Component {
   }
 
   selectDefaultTab = idx => {
-    this.props.changeDefaultTab( ( tab = idx ) )
+    this.props.changeDefaultTab( idx )
     this.props.navigation.goBack( null )
   }
 

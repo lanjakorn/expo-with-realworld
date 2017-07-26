@@ -29,22 +29,17 @@ class SettingsScreen extends Component {
   }
 
   async componentDidMount() {
-    await this.props.changeAutocompleteSetting( true )
-    await this.props.changeQuackOnRefreshSetting( true )
-    await this.props.changeSaveRecentSetting( true )
     await this.props.getDefaultTab()
-  }
-
-  onChangeQuackOnRefresh = () => {
-    this.props.changeQuackOnRefreshSetting()
+    await this.props.getAutoComplete()
+    await this.props.getSaveRecent()
   }
 
   onChangeAutoComplete = () => {
-    this.props.changeAutocompleteSetting()
+    this.props.changeAutoComplete( !this.props.autocomplete )
   }
 
   onChangeSaveRecents = () => {
-    this.props.changeSaveRecentSetting()
+    this.props.changeSaveRecent( !this.props.save_recent )
   }
 
   onDefaultStorySetting = () => {
@@ -90,15 +85,6 @@ class SettingsScreen extends Component {
             title="Readability"
             titleStyle={{ fontSize: 18 }}
             onPress={this.onReadabilitySetting}
-          />
-          <ListItem
-            title="Quack on Refresh"
-            switchButton={true}
-            titleStyle={{ fontSize: 18 }}
-            hideChevron
-            switchOnTintColor={Colors.tintColor}
-            switched={this.props.quack_on_refresh}
-            onSwitch={this.onChangeQuackOnRefresh}
           />
         </List>
         <InfoText text="Search" />

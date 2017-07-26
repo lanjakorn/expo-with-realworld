@@ -1,3 +1,4 @@
+import { action } from 'utilities'
 import {
   CHANGE_SEARCH_TEXT,
   GET_SEARCH_HISTORY,
@@ -5,8 +6,6 @@ import {
   SEARCHING,
   SET_SEARCH_HISTORY,
 } from './types'
-
-const action = ( type, payload = {} ) => ( { type, ...payload } )
 
 const changeSearchText = text => action( CHANGE_SEARCH_TEXT, { text } )
 const getSearchHistory = () => action( GET_SEARCH_HISTORY )

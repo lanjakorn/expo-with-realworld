@@ -16,9 +16,7 @@
   "eslintConfig": {
     "extends": "expo"
   },
-  "keywords": [
-    "expo"
-  ],
+  "keywords": ["expo"],
   "engines": {
     "node": ">=7.10.0",
     "npm": ">=4.2.0"
@@ -41,8 +39,7 @@
     "redux-api-middleware": "^1.0.3",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.5",
-    "redux-thunk": "^2.2.0"
+    "redux-saga": "^0.15.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

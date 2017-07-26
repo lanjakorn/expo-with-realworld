@@ -6,7 +6,7 @@ import { storage } from 'services'
 
 const { setSearchHistory } = actions
 
-function* watchLoadSearchHistoryFormStorage() {
+function* watchGetSearchHistoryFormStorage() {
   while ( yield take( GET_SEARCH_HISTORY ) ) {
     const search_history_items = yield call(
       storage.loadAsyncStorage,
@@ -40,16 +40,14 @@ function* watchSearched() {
       'search_history_items'
     )
 
-    if (
-      search_history_items !== null &&
-      text !== '' &&
-      !search_history_items.includes( text )
-    ) {
-      yield call( storage.saveAsyncStorage, 'search_history_items', [
-        ...search_history_items,
-        text,
-      ] )
-      yield put( setSearchHistory( [ ...search_history_items, text ] ) )
+    if ( search_history_items !== null ) {
+      if ( text !== '' && !search_history_items.includes( text ) ) {
+        yield call( storage.saveAsyncStorage, 'search_history_items', [
+          ...search_history_items,
+          text,
+        ] )
+        yield put( setSearchHistory( [ ...search_history_items, text ] ) )
+      }
     } else {
       yield call(
         storage.saveAsyncStorage,
@@ -61,4 +59,4 @@ function* watchSearched() {
   }
 }
 
-export { watchLoadSearchHistoryFormStorage, watchSearched }
+export { watchGetSearchHistoryFormStorage, watchSearched }

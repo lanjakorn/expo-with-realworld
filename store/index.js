@@ -6,7 +6,6 @@ import { createSagaMonitor } from 'redux-saga-devtools'
 import { createStore, compose, applyMiddleware } from 'redux'
 import createSagaMiddleware, { END } from 'redux-saga'
 
-import thunk from 'redux-thunk'
 import reducers from 'rootReducer'
 import sagas from 'rootSaga'
 
@@ -16,7 +15,7 @@ const sagaMiddleware = createSagaMiddleware( { sagaMonitor } )
 const store = Reactotron.createStore(
   reducers,
   {},
-  composeWithDevTools( applyMiddleware( thunk, sagaMiddleware ) )
+  composeWithDevTools( applyMiddleware( sagaMiddleware ) )
 )
 
 sagaMiddleware.run( sagas )
