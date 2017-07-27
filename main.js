@@ -1,98 +1,18 @@
 import './ReactotronConfig'
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import { Icon } from 'react-native-elements'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import firebase from 'firebase'
-import { FontAwesome } from '@expo/vector-icons'
-
 import config from 'config'
-import Colors from 'constants/Colors'
-
-import SearchScreen from './screens/SearchScreen'
-import StoriesScreen from './screens/StoriesScreen'
-import SettingsScreen from './screens/SettingsScreen'
-import { getDefaultTab } from './screens/SettingsScreen'
 import { cacheAssetsAsync } from 'utilities'
 import store from 'store'
 
-import { connect } from 'react-redux'
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
+import { MainNavigator } from 'navigation'
+import { getDefaultTab } from './screens/SettingsScreen'
 
 firebase.initializeApp( config )
-
-const MainNavigator = StackNavigator( {
-  Root: {
-    screen: TabNavigator(
-      {
-        search: { screen: SearchScreen },
-        stories: { screen: StoriesScreen },
-        favourites: {
-          screen: SearchScreen,
-          navigationOptions: {
-            tabBarLabel: 'Favourites',
-            tabBarIcon: ( { tintColor, focused } ) =>
-              <Icon
-                name={'favorite'}
-                size={24}
-                color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-              />,
-          },
-        },
-        history: {
-          screen: SearchScreen,
-          navigationOptions: {
-            title: 'History',
-            tabBarLabel: 'History',
-            tabBarIcon: ( { tintColor, focused } ) =>
-              <Icon
-                name={'watch-later'}
-                size={24}
-                color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-              />,
-          },
-        },
-        settings: { screen: SettingsScreen.SettingsScreen },
-      },
-      {
-        tabBarOptions: {
-          activeTintColor: Colors.tintColor,
-          showLabel: false,
-          showIcon: true,
-          indicatorStyle: {
-            backgroundColor: 'transparent',
-          },
-          iconStyle: {
-            width: 24,
-            height: 24,
-          },
-          style: {
-            backgroundColor: 'white',
-          },
-          tabBarIcon: ( { tintColor } ) => {
-            Colors.darkTintColor
-          },
-        },
-        lazy: true,
-        tabBarPosition: 'bottom',
-        initialRouteName: 'stories',
-      }
-    ),
-  },
-  defaultTabSetting: {
-    screen: SettingsScreen.DefaultTabSetting,
-  },
-  readabilitySetting: {
-    screen: SettingsScreen.ReadabilitySetting,
-  },
-  regionSetting: {
-    screen: SettingsScreen.RegionSetting,
-  },
-  sourcesSetting: {
-    screen: SettingsScreen.SourcesSetting,
-  },
-} )
 
 class AppContainer extends React.Component {
   constructor( props ) {
@@ -109,9 +29,13 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync( {
-        images: [ require( './assets/images/expo-wordmark.png' ) ],
+        images: [
+          require( './assets/images/expo-wordmark.png' ),
+          require( './assets/images/vertical-menu-item.png' ),
+        ],
         fonts: [
           FontAwesome.font,
+          MaterialIcons.font,
           { 'space-mono': require( './assets/fonts/SpaceMono-Regular.ttf' ) },
         ],
       } )
@@ -132,7 +56,7 @@ class AppContainer extends React.Component {
         <View style={{ flex: 1 }}>
           <StatusBar barStyle="light-content" />
           <Provider store={store}>
-            <MainAppNavigator screenProps={'sdf'} />
+            <MainAppNavigator screenProps={'expo-with-realworld'} />
           </Provider>
         </View>
       )

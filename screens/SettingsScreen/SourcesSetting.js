@@ -7,26 +7,21 @@ import { Button, Icon } from 'react-native-elements'
 import { NoItemComponent, Search } from '@components'
 
 class SourcesSetting extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40, flexDirection: 'row' }}>
-            <FontAwesome
-              name={'cog'}
-              size={24}
-              style={{ paddingTop: 5, paddingLeft: 3 }}
-              color={'white'}
-              onPress={() => {
-                navigation.goBack( null )
-              }}
-            />
-            <Search navigation={navigation} />
-          </View>
-        </View>
-      ),
-    }
-  }
+  static navigationOptions = ( { navigation } ) => ( {
+    title: 'sources',
+    // headerTintColor: Colors.tintColor,
+    headerRight: (
+      <Button
+        raised={true}
+        backgroundColor="transparent"
+        color="#174BFC"
+        title="info"
+        onPress={() => {
+          navigation.goBack( null )
+        }}
+      />
+    ),
+  } )
 
   render() {
     return (

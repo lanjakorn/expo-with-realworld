@@ -1,9 +1,12 @@
-const tintColor = 'rgba(213, 23, 57, 1)'
-const darkTintColor = 'rgba(157, 19, 50, 1)'
+const tintColor = '#CE1D45'
+const darkTintColor = '#fff'
 
 export default {
   tintColor,
   darkTintColor,
+  text: 'black',
+  searchText: 'black',
+  placeHolderText: '#858688',
   tabIconDefault: '#888',
   iconGrey: '#C0C0C0',
   tabIconSelected: tintColor,

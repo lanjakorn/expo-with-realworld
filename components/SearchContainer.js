@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
 import Colors from 'constants/Colors'
 
@@ -53,6 +54,11 @@ class SearchContainer extends Component {
     if ( this.props.is_searching ) {
       return (
         <Button
+          buttonStyle={styles.buttonCancel}
+          containerViewStyle={{
+            marginLeft: 12,
+            marginRight: 12,
+          }}
           title="Cancel"
           fontSize={14}
           backgroundColor={Colors.tintColor}
@@ -67,21 +73,9 @@ class SearchContainer extends Component {
   }
 
   renderSearchIcon = () => {
-    if ( this.props.is_searching ) {
-      return (
-        <View style={{ backgroundColor: 'white' }}>
-          <Icon
-            name={'priority-high'}
-            size={16}
-            color={Colors.darkTintColor}
-            onPress={this.onPriorityIconPress}
-          />
-        </View>
-      )
-    }
     return (
       <View style={{ backgroundColor: Colors.darkTintColor }}>
-        <Icon name={'search'} size={16} color="white" />
+        <Icon name={'search'} size={16} color={Colors.placeHolderText} />
       </View>
     )
   }
@@ -116,7 +110,7 @@ class SearchContainer extends Component {
               <TextInput
                 ref="search_textinput_component"
                 autoCorrect={false}
-                placeholderTextColor="white"
+                placeholderTextColor={Colors.placeHolderText}
                 value={this.props.search_text}
                 onChangeText={text => this.onSearchTextChange( text )}
                 onSubmitEditing={this.onSubmitEditingSearch}
@@ -137,11 +131,14 @@ class SearchContainer extends Component {
 
 const styles = StyleSheet.create( {
   SearchContainer: {
-    padding: 5,
-    flex: 1,
     alignItems: 'center',
-    flexDirection: 'row',
     backgroundColor: Colors.tintColor,
+    flex: 1,
+    flexDirection: 'row',
+    paddingBottom: 5,
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingTop: 5,
   },
   touchableSearch: {
     backgroundColor: Colors.darkTintColor,
@@ -151,21 +148,25 @@ const styles = StyleSheet.create( {
     justifyContent: 'space-around',
   },
   insideTouchableView: {
-    width: Dimensions.get( 'window' ).width - 25,
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
+    width: Dimensions.get( 'window' ).width - 40,
   },
   altTouchableView: {
-    width: Dimensions.get( 'window' ).width * 0.65 - 25,
+    width: Dimensions.get( 'window' ).width * 0.8 - 20,
+    justifyContent: 'flex-start',
   },
   customSearchTextInputStyle: {
     height: 24,
-    alignSelf: 'stretch',
-    width: 150,
+    alignSelf: 'center',
+    width: 50,
     fontSize: 14,
     marginLeft: 7,
-    color: 'white',
+    color: Colors.searchText,
+  },
+  buttonCancel: {
+    padding: 0,
   },
 } )
 
