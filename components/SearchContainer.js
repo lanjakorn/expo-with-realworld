@@ -83,7 +83,7 @@ class SearchContainer extends Component {
   onSubmitEditingSearch = () => {
     this.props.searched( ( searchQuery = this.props.search_text ) )
     this.props.changeSearchText( '' )
-    this.props.navigation.navigate( 'stories' )
+    this.props.navigation.navigate( 'products' )
     this.pressCancelButton()
   }
 

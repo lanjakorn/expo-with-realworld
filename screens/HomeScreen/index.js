@@ -10,7 +10,7 @@ import SearchList from './SearchListContainer'
 class HomeScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      tabBarLabel: 'Search',
+      tabBarLabel: 'Home',
       tabBarIcon: ( { tintColor, focused } ) =>
         <Icon
           name={'search'}
@@ -20,7 +20,7 @@ class HomeScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'search'} />
+            <Search navigation={navigation} navOnCancel={'home'} />
           </View>
         </View>
       ),

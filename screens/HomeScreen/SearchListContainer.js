@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from './actions'
-import { getSearchHistories as getSearch } from './selectors'
 import { Colors } from 'constants'
 import verticalMenu from '../../mocks/verticalMenu.json'
 
@@ -26,9 +24,9 @@ class SearchListContainer extends Component {
     super( props )
   }
 
-  async componentWillMount() {
-    await this.props.getSearchHistory()
-  }
+  // async componentWillMount() {
+  //   await this.props.getSearchHistory()
+  // }
 
   onPressSearchHistoryItem = query => {
     this.props.navigation.navigate( 'search' )
@@ -44,11 +42,7 @@ class SearchListContainer extends Component {
             key={e}
             //onPress={() => this.onPressSearchHistoryItem( query )}
           >
-            <Card
-              marginBottomProp={0}
-              backgroundColorProp={'white'}
-              //image={require( '../../assets/images/expo-wordmark.png' )}
-            >
+            <Card marginBottomProp={0} backgroundColorProp={'white'}>
               <View style={styles.searchListItemStyle}>
                 <Image
                   key={`image-${ e }`}
@@ -99,7 +93,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  search_history_items: getSearch( state ),
+  //search_history_items: getSearch( state ),
 } )
 
-export default connect( mapStateToProps, actions )( SearchListContainer )
+export default connect( mapStateToProps )( SearchListContainer )

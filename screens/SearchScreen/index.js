@@ -20,7 +20,7 @@ class SearchScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'search'} />
+            <Search navigation={navigation} navOnCancel={'home'} />
           </View>
         </View>
       ),

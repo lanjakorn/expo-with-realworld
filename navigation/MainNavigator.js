@@ -37,7 +37,7 @@ const MainNavigator = StackNavigator( {
           },
         },
         products: {
-          screen: SearchScreen,
+          screen: StoriesScreen,
           navigationOptions: {
             tabBarLabel: 'Products',
             tabBarIcon: ( { tintColor, focused } ) =>
@@ -49,7 +49,7 @@ const MainNavigator = StackNavigator( {
               />,
           },
         },
-        services: {
+        search: {
           screen: SearchScreen,
           navigationOptions: {
             tabBarLabel: 'Services',
