@@ -1,4 +1,4 @@
-import { take, call, put } from 'redux-saga/effects'
+import { take, call, put, fork } from 'redux-saga/effects'
 import * as actions from './actions'
 import {
   CHANGE_AUTOCOMPLETE,
@@ -99,11 +99,11 @@ function* watchChangeSaveRecent() {
   }
 }
 
-export {
-  watchChangeAutoComplete,
-  watchChangeDefaultTab,
-  watchChangeSaveRecent,
-  watchGetAutoComplete,
-  watchGetDefaultTab,
-  watchGetSaveRecent,
-}
+export default ( sagas = [
+  fork( watchChangeAutoComplete ),
+  fork( watchChangeDefaultTab ),
+  fork( watchChangeSaveRecent ),
+  fork( watchGetAutoComplete ),
+  fork( watchGetDefaultTab ),
+  fork( watchGetSaveRecent ),
+] )

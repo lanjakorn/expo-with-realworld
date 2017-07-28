@@ -4,7 +4,7 @@ import { Colors } from 'constants'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { Button, Icon } from 'react-native-elements'
-import { NoItemComponent, Search } from 'components'
+import { NoItemComponent, Search } from '@components'
 
 class RegionSetting extends Component {
   static navigationOptions = ( { navigation } ) => {

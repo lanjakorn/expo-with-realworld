@@ -1,12 +1,13 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import Colors from 'constants/Colors'
 
 import { Icon } from 'react-native-elements'
-import HomeScreen from '../screens/HomeScreen'
-import SearchScreen from '../screens/SearchScreen'
-import StoriesScreen from '../screens/StoriesScreen'
-import SettingsScreen from '../screens/SettingsScreen'
+import HomeScreen from '@screens/HomeScreen'
+import SearchScreen from '@screens/SearchScreen'
+import StoriesScreen from '@screens/StoriesScreen'
+import SettingsScreen from '@screens/SettingsScreen'
 
 const MainNavigator = StackNavigator( {
   Root: {
@@ -72,7 +73,7 @@ const MainNavigator = StackNavigator( {
                 size={35}
                 color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
                 type={'ionicon'}
-                iconStyle={{ paddingTop: 8 }}
+                iconStyle={{ paddingTop: 4 }}
               />,
           },
         },
@@ -80,7 +81,7 @@ const MainNavigator = StackNavigator( {
       {
         tabBarOptions: {
           activeTintColor: Colors.tintColor,
-          showLabel: true,
+          showLabel: false,
           showIcon: true,
           indicatorStyle: {
             backgroundColor: 'transparent',

@@ -1,4 +1,4 @@
-import { take, call, put } from 'redux-saga/effects'
+import { take, call, put, fork } from 'redux-saga/effects'
 import * as actions from './actions'
 import { GET_SEARCH_HISTORY, SEARCHED } from './types'
 import { INITIAL_STATE } from './reducers/searchReducer'
@@ -59,4 +59,7 @@ function* watchSearched() {
   }
 }
 
-export { watchGetSearchHistoryFormStorage, watchSearched }
+export default ( sagas = [
+  fork( watchGetSearchHistoryFormStorage ),
+  fork( watchSearched ),
+] )
