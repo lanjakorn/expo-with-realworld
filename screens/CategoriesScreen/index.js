@@ -11,11 +11,11 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button } from 'react-native-elements'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
-import StoriesList from './StoriesList'
+import CategoriesList from './CategoriesList'
 
 import Search from '@components/SearchContainer'
 
-class StoriesScreen extends Component {
+class CategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       tabBarLabel: 'Stories',
@@ -36,7 +36,7 @@ class StoriesScreen extends Component {
   }
 
   render() {
-    return <StoriesList />
+    return <CategoriesList />
   }
 }
 
@@ -73,4 +73,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default StoriesScreen
+export default CategoriesScreen

@@ -19,7 +19,7 @@ import {
   MenuContext,
 } from 'react-native-popup-menu'
 
-class StoriesDetail extends Component {
+class CategoriesDetail extends Component {
   constructor( props ) {
     super( props )
     this.state = { opened: false }
@@ -171,4 +171,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default StoriesDetail
+export default CategoriesDetail

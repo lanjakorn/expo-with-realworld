@@ -1,20 +1,18 @@
-// import './ReactotronConfig' // dev evn
+import './ReactotronConfig' // dev evn
 import 'es6-symbol/implement'
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
-import firebase from 'firebase'
 import config from 'config'
+import firebase from 'firebase'
 import { cacheAssetsAsync } from 'utilities'
-// import store from 'store' // dev evn
-import store from 'store/configureStore.prod'
+import store from 'store' // dev evn
+// import store from 'store/configureStore.prod'
 
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { MainNavigator } from 'navigation'
 import { getDefaultTab } from '@screens/SettingsScreen'
-
-firebase.initializeApp( config )
 
 class AppContainer extends React.Component {
   constructor( props ) {
@@ -24,8 +22,9 @@ class AppContainer extends React.Component {
     }
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     this._loadAssetsAsync()
+    //await firebase.initializeApp( config.firebase )
   }
 
   async _loadAssetsAsync() {

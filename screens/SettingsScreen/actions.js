@@ -1,5 +1,4 @@
 import { action } from 'utilities'
-import { AsyncStorage } from 'react-native'
 
 import {
   CHANGE_AUTOCOMPLETE,

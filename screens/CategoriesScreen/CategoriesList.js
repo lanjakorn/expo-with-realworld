@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from './actions'
+
 import {
   Text,
   TextInput,
@@ -7,25 +10,26 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native'
-import StoriesDetail from './StoriesDetail'
-import axios from 'axios'
+import CategoriesDetail from './CategoriesDetail'
 import Colors from '../../constants/Colors'
 import storyData from '../../mocks/products'
 import { FontAwesome } from '@expo/vector-icons'
 
-class StoriesList extends Component {
+class CategoriesList extends Component {
   constructor( props ) {
     super( props )
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     //axios.get("http://api.duckduckgo.com/?q=googl&format=json")
     //	.then(response => this.setState({ stories: response.data}));
+    console.log( 'this.props.', this.props )
+    await this.props.initCategoriesScreen()
   }
 
   getStoryData( story ) {
     return (
-      <StoriesDetail
+      <CategoriesDetail
         key={story.title}
         StoryImage={story.urlToImage}
         StoryAbstractURL={story.url}
@@ -65,4 +69,9 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default StoriesList
+const mapStateToProps = state => ( {
+  ...state,
+} )
+
+// export default StoriesList
+export default connect( mapStateToProps, actions )( CategoriesList )
