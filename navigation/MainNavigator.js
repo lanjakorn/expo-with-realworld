@@ -6,7 +6,7 @@ import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 import HomeScreen from '@screens/HomeScreen'
 import SearchScreen from '@screens/SearchScreen'
-import StoriesScreen from '@screens/StoriesScreen'
+import CategoriesScreen from '@screens/CategoriesScreen'
 import SettingsScreen from '@screens/SettingsScreen'
 
 const MainNavigator = StackNavigator( {
@@ -26,7 +26,7 @@ const MainNavigator = StackNavigator( {
           },
         },
         house: {
-          screen: StoriesScreen,
+          screen: CategoriesScreen,
           navigationOptions: {
             tabBarLabel: 'Ricoh House',
             tabBarIcon: ( { tintColor, focused } ) =>
@@ -38,7 +38,7 @@ const MainNavigator = StackNavigator( {
           },
         },
         products: {
-          screen: StoriesScreen,
+          screen: CategoriesScreen,
           navigationOptions: {
             tabBarLabel: 'Products',
             tabBarIcon: ( { tintColor, focused } ) =>
@@ -95,10 +95,16 @@ const MainNavigator = StackNavigator( {
           },
           style: {
             backgroundColor: 'white',
+            justifyContent: 'center',
           },
           tabBarIcon: ( { tintColor } ) => {
             Colors.darkTintColor
           },
+          // tabStyle: {
+          //   backgroundColor: 'red',
+          //   padding: 10,
+          //   width: 300,
+          // },
         },
         lazy: true,
         tabBarPosition: 'bottom',
