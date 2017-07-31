@@ -16,9 +16,7 @@
   "eslintConfig": {
     "extends": "expo"
   },
-  "keywords": [
-    "expo"
-  ],
+  "keywords": ["expo"],
   "engines": {
     "node": ">=7.10.0",
     "npm": ">=4.2.0"
@@ -30,6 +28,7 @@
     "es6-symbol": "^3.1.1",
     "expo": "17.0.0",
     "firebase": "^4.1.3",
+    "immutable": "^3.8.1",
     "prettier": "^1.5.3",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
