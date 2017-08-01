@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects'
-import { sagas as searchScreenSagas } from '@screens/SearchScreen/exports'
-import { sagas as settingsScreenSagas } from '@screens/SettingsScreen/exports'
-import { sagas as categoriesScreen } from '@screens/CategoriesScreen/exports'
+import { sagas as searchSagas } from 'modules/Search'
+import { sagas as settingsSagas } from 'modules/Settings'
+import { sagas as categoriesSagas } from 'modules/Categories'
 
 export default function* rootSagas() {
-  yield all( [ ...searchScreenSagas, ...settingsScreenSagas, ...categoriesScreen ] )
+  yield all( [ ...searchSagas, ...settingsSagas, ...categoriesSagas ] )
 }

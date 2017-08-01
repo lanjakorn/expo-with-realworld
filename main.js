@@ -1,12 +1,11 @@
-import './ReactotronConfig' // dev evn
-import 'es6-symbol/implement'
+import './ReactotronConfig' // build android must comment
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
 import config from 'config'
 import firebase from 'firebase'
 import { cacheAssetsAsync } from 'utilities'
-import store from 'store' // dev evn
+import store from 'store' // build android must comment and turn off comment below
 // import store from 'store/configureStore.prod'
 
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Colors } from 'constants'
-import verticalMenu from '../../mocks/verticalMenu.json'
+import verticalMenu from 'mocks/verticalMenu.json'
 
 import {
   Text,

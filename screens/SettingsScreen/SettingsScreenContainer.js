@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from './actions'
-import { getSettings } from './selectors'
+import { actions, selectors } from 'modules/Settings'
 import { Colors } from 'constants'
 
 import { ScrollView, StyleSheet, View, Text, AsyncStorage } from 'react-native'
@@ -168,7 +167,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  ...getSettings( state ),
+  ...selectors.getSettings( state ),
 } )
 
 export default connect( mapStateToProps, actions )( SettingsScreen )

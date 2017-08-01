@@ -5,7 +5,7 @@ import { ScrollView, View, StyleSheet, Text, Image } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button, Icon } from 'react-native-elements'
 import { Search } from '@components'
-import SearchList from './SearchListContainer'
+import HomeList from './HomeListContainer'
 
 class HomeScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -30,7 +30,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <View>
-        <SearchList navigation={this.props.navigation} />
+        <HomeList navigation={this.props.navigation} />
       </View>
     )
   }

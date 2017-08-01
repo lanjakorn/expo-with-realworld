@@ -12,7 +12,6 @@ import { Card, Button } from 'react-native-elements'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 import CategoriesList from './CategoriesList'
-
 import Search from '@components/SearchContainer'
 
 class CategoriesScreen extends Component {

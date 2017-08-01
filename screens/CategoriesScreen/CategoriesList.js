@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from './actions'
+import { actions as CategoriesAction } from 'modules/Categories'
 
 import {
   Text,
@@ -11,8 +11,8 @@ import {
   StyleSheet,
 } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
-import Colors from '../../constants/Colors'
-import storyData from '../../mocks/products'
+import { Colors } from 'constants'
+import storyData from 'mocks/products.json'
 import { FontAwesome } from '@expo/vector-icons'
 
 class CategoriesList extends Component {
@@ -74,4 +74,4 @@ const mapStateToProps = state => ( {
 } )
 
 // export default StoriesList
-export default connect( mapStateToProps, actions )( CategoriesList )
+export default connect( mapStateToProps, CategoriesAction )( CategoriesList )

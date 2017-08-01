@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Colors, DefaultTab } from 'constants'
-import * as actions from './actions'
-import * as searchScreenActions from '../SearchScreen/actions'
-import { getDefaultTabOfSettings } from './selectors'
+import { actions as settingsActions, selectors } from 'modules/Settings'
+import { actions as searchActions } from 'modules/Search'
 
 import { Button, Icon } from 'react-native-elements'
 import {
@@ -116,12 +115,12 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  default_tab: getDefaultTabOfSettings( state ),
+  default_tab: selectors.getDefaultTabOfSettings( state ),
 } )
 
 const combineAction = () => ( {
-  ...actions,
-  ...searchScreenActions,
+  ...settingsActions,
+  ...searchActions,
 } )
 
 export default connect( mapStateToProps, combineAction() )( DefaultTabSetting )

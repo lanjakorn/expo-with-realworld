@@ -45,8 +45,6 @@ export class FirebaseList {
 
     ref.once( 'value', snap => {
       initialized = true
-      console.log( snap )
-      console.log( { ...list, ...snap.val() } )
       emit( this._actions.onLoad( { ...list, ...snap.val() } ) )
     } )
 

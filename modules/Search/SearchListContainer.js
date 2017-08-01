@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { actions, selectors } from 'modules/Search'
+import * as actions from './actions'
+import { getSearchHistories as getSearch } from './selectors'
 import { Colors } from 'constants'
 
 import {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  search_history_items: selectors.getSearchHistories( state ),
+  search_history_items: getSearch( state ),
 } )
 
 export default connect( mapStateToProps, actions )( SearchListContainer )

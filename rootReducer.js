@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { reducers as searchReducers } from '@screens/SearchScreen/exports'
-import { reducers as settingsReducer } from '@screens/SettingsScreen/exports'
+import { reducers as searchReducers } from 'modules/Search'
+import { reducers as settingsReducer } from 'modules/Settings'
 
 const rootReducer = combineReducers( {
   ...searchReducers,

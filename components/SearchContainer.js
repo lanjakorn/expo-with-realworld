@@ -15,8 +15,8 @@ import {
   Platform,
 } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
-import * as settingsactions from '@screens/SettingsScreen/actions'
-import * as searchScreenActions from '@screens/SearchScreen/actions'
+import { actions as settingsActions } from 'modules/Settings'
+import { actions as searchScreenActions } from 'modules/Search'
 
 class SearchContainer extends Component {
   constructor( props ) {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create( {
 } )
 
 const combineAction = () => ( {
-  ...settingsactions,
+  ...settingsActions,
   ...searchScreenActions,
 } )
 
