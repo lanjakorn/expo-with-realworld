@@ -23,7 +23,6 @@ class CategoriesList extends Component {
   async componentWillMount() {
     //axios.get("http://api.duckduckgo.com/?q=googl&format=json")
     //	.then(response => this.setState({ stories: response.data}));
-    console.log( 'this.props.', this.props )
     await this.props.initCategoriesScreen()
   }
 

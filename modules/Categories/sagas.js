@@ -2,6 +2,8 @@ import firebase from 'firebase'
 import { eventChannel } from 'redux-saga'
 import { take, takeEvery, call, cancel, put, fork } from 'redux-saga/effects'
 import { GET_CATEGORIES, INIT_CATEGORIES_SCREEN } from './types'
+import { setCategories } from './actions'
+import { normalizedCategories } from './normalizr'
 import { subscribeEvent } from './subscribeEvent'
 
 function subscribe() {
@@ -27,7 +29,9 @@ function* write( context, method, onError, ...params ) {
 function* watchGetCategories() {
   while ( true ) {
     const { categories } = yield take( GET_CATEGORIES )
-    console.log( 'categories,categories', categories )
+    console.log( 'categories: ', categories )
+    const normalized = yield call( normalizedCategories, categories )
+    yield put( setCategories( normalized ) )
   }
 }
 

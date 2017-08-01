@@ -1,3 +1,3 @@
-import product from './productReducer'
+import categories from './categoriesReducer'
 
-export { product }
+export { categories }
