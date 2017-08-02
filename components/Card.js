@@ -1,14 +1,16 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-const Card = ( { marginBottomProp, backgroundColorProp, children } ) => {
+const Card = ( { margin, backgroundColor, children } ) => {
   return (
     <View
       style={[
         styles.containerStyle,
         {
-          marginBottom: marginBottomProp,
-          backgroundColor: backgroundColorProp,
+          backgroundColor: backgroundColor,
+          marginBottom: margin,
+          marginLeft: margin,
+          marginRight: margin,
         },
       ]}
     >
@@ -19,17 +21,17 @@ const Card = ( { marginBottomProp, backgroundColorProp, children } ) => {
 
 const styles = StyleSheet.create( {
   containerStyle: {
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: '#ddd',
     borderBottomWidth: 0,
+    borderColor: '#ddd',
+    borderRadius: 2,
+    borderWidth: 1,
+    elevation: 1,
+    marginBottom: 10,
+    marginTop: -1,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 1,
-    marginTop: -1,
-    marginBottom: 10,
   },
   textStyle: {
     fontSize: 20,

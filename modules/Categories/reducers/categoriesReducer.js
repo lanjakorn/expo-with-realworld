@@ -1,6 +1,13 @@
 import { SET_CATEGORIES } from '../types'
 
-export const INITIAL_STATE = {}
+export const INITIAL_STATE = {
+  categoriesById: {},
+  categoryIds: [],
+  childCatogoriesById: {},
+  childCatogoriesIds: [],
+  subChildCatogoriesById: {},
+  subChildCatogoriesIds: [],
+}
 
 export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {

@@ -1,13 +1,25 @@
+import * as image from 'mocks/image'
+
+const hasSubCategories = ( subCategories, oldCategories, key ) => {
+  return subCategories
+    ? {
+      ...oldCategories,
+      ...subCategories[ key ],
+    }
+    : { ...oldCategories }
+}
+
 const normalizedCategories = ( data = {} ) =>
   Object.keys( data ).reduce(
     ( p, c ) => {
       const childCategorie = normalizedChildCategories( data[ c ] )
-      console.log( childCategorie )
       return {
         ...p,
         categoriesById: {
           ...p.categoriesById,
-          [ c ]: data[ c ].mainCategories,
+          [ c ]: {
+            ...image.categories( { name: data[ c ].mainCategories } ),
+          },
         },
         categoryIds: [ ...p.categoryIds, c ],
         childCatogoriesById: {
@@ -44,11 +56,8 @@ const normalizedChildCategories = ( data = {} ) => {
     data.childCatogories &&
     data.childCatogories.reduce(
       ( p, c ) => {
-        console.log( c.subChild )
-        const subChildCategories = c.subChild
-          ? normalizedSubChildCategories( data[ c ] )
-          : { ...p.subChildCatogoriesById, ...p.subChildCatogoriesIds }
-        console.log( subChildCategories )
+        const subChildCategories = c.subChild && normalizedSubChildCategories( c )
+
         return {
           ...p,
           childCatogoriesById: {
@@ -58,18 +67,16 @@ const normalizedChildCategories = ( data = {} ) => {
             },
           },
           childCatogoriesIds: [ ...p.childCatogoriesIds, c.mainCategories ],
-          //   subChildCatogoriesById: c.subChild
-          //     ? {
-          //       ...p.subChildCatogoriesById,
-          //       ...subChildCategories.subChildCatogoriesById,
-          //     }
-          //     : { ...p.subChildCatogoriesById },
-          //   subChildCatogoriesIds: c.subChild
-          //     ? [
-          //       ...p.subChildCatogoriesIds,
-          //       ...subChildCategories.subChildCatogoriesIds,
-          //     ]
-          //     : [ ...p.subChildCatogoriesIds ],
+          subChildCatogoriesById: hasSubCategories(
+            c.subChild,
+            p.subChildCatogoriesById,
+            'subChildCatogoriesById'
+          ),
+          subChildCatogoriesIds: hasSubCategories(
+            c.subChild,
+            p.subChildCatogoriesIds,
+            'subChildCatogoriesIds'
+          ),
         }
       },
       {
@@ -83,7 +90,6 @@ const normalizedChildCategories = ( data = {} ) => {
 }
 
 const normalizedSubChildCategories = ( data = {} ) => {
-  console.log( data )
   return data.subChild.reduce(
     ( p, c ) => ( {
       ...p,

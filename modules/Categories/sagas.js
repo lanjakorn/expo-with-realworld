@@ -29,7 +29,6 @@ function* write( context, method, onError, ...params ) {
 function* watchGetCategories() {
   while ( true ) {
     const { categories } = yield take( GET_CATEGORIES )
-    console.log( 'categories: ', categories )
     const normalized = yield call( normalizedCategories, categories )
     yield put( setCategories( normalized ) )
   }

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { actions as CategoriesAction } from 'modules/Categories'
+import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
 import {
-  Text,
-  TextInput,
   Dimensions,
-  View,
   ScrollView,
   StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
 import { Colors } from 'constants'
@@ -21,47 +22,48 @@ class CategoriesList extends Component {
   }
 
   async componentWillMount() {
-    //axios.get("http://api.duckduckgo.com/?q=googl&format=json")
-    //	.then(response => this.setState({ stories: response.data}));
     await this.props.initCategoriesScreen()
   }
 
-  getStoryData( story ) {
-    return (
-      <CategoriesDetail
-        key={story.title}
-        StoryImage={story.urlToImage}
-        StoryAbstractURL={story.url}
-        StoryHeading={story.title}
-      />
-    )
-  }
-
   renderStories() {
-    return storyData.map( this.getStoryData )
+    return this.props.categories.map( e =>
+      <TouchableOpacity key={e.name}>
+        <CategoriesDetail
+          key={e.name}
+          StoryImage={e.image}
+          StoryHeading={e.name}
+        />
+      </TouchableOpacity>
+    )
   }
 
   render() {
     return (
       <ScrollView>
-        {this.renderStories()}
+        <View style={styles.container}>
+          {this.renderStories()}
+        </View>
       </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create( {
+  container: {
+    marginTop: 10,
+  },
   viewStyle: {
-    backgroundColor: '#eeeeee',
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#eeeeee',
+    elevation: 2,
     height: 60,
+    justifyContent: 'center',
+    marginTop: 10,
     paddingTop: 15,
+    position: 'relative',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
-    elevation: 2,
-    position: 'relative',
   },
   textStyle: {
     fontSize: 20,
@@ -69,8 +71,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  ...state,
+  categories: selectors.categoriesNameSelector( state ),
 } )
 
-// export default StoriesList
 export default connect( mapStateToProps, CategoriesAction )( CategoriesList )

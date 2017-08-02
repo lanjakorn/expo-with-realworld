@@ -81,7 +81,7 @@ class DefaultTabSetting extends Component {
             key={idx}
             onPress={() => this.selectDefaultTab( tabRouteName )}
           >
-            <Card marginBottomProp={0} backgroundColorProp={'white'}>
+            <Card margin={0} backgroundColor={'white'}>
               <View style={styles.searchListItemStyle}>
                 <Text style={styles.searchListItemTextStyle} numberOfLines={1}>
                   {tabRouteName}

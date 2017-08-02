@@ -42,7 +42,7 @@ class SearchListContainer extends Component {
             key={j}
             onPress={() => this.onPressSearchHistoryItem( query )}
           >
-            <Card marginBottomProp={0} backgroundColorProp={'white'}>
+            <Card margin={0} backgroundColor={'white'}>
               <View style={styles.searchListItemStyle}>
                 <Icon name="watch-later" color={Colors.iconGrey} />
                 <Text style={styles.searchListItemTextStyle} numberOfLines={1}>

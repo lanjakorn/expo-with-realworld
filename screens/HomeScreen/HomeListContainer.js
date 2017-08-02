@@ -42,7 +42,7 @@ class SearchListContainer extends Component {
             key={e}
             //onPress={() => this.onPressSearchHistoryItem( query )}
           >
-            <Card marginBottomProp={0} backgroundColorProp={'white'}>
+            <Card margin={0} backgroundColor={'white'}>
               <View style={styles.searchListItemStyle}>
                 <Image
                   key={`image-${ e }`}
