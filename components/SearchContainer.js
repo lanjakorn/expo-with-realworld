@@ -31,6 +31,7 @@ class SearchContainer extends Component {
   }
 
   onSearchActive = () => {
+    console.log( 'onSearchActive' )
     this.props.searching( true )
     this.props.navigation.navigate( 'search' )
     this.setState( { isTouchableDisabled: true } )
@@ -62,7 +63,7 @@ class SearchContainer extends Component {
           title="Cancel"
           fontSize={14}
           backgroundColor={Colors.tintColor}
-          onPress={this.pressCancelButton.bind( this )}
+          onPress={() => this.pressCancelButton()}
         />
       )
     }
@@ -97,7 +98,7 @@ class SearchContainer extends Component {
         <TouchableOpacity
           style={{ elevation: 4 }}
           disabled={this.state.isTouchableDisabled}
-          onPress={this.onSearchActive.bind( this )}
+          onPress={this.onSearchActive}
         >
           <View ref="touchable_search" style={styles.touchableSearch}>
             <View
@@ -115,7 +116,7 @@ class SearchContainer extends Component {
                 onChangeText={text => this.onSearchTextChange( text )}
                 onSubmitEditing={this.onSubmitEditingSearch}
                 keyboardType={'web-search'}
-                onFocus={this.onSearchActive.bind( this )}
+                //onFocus={this.onSearchActive}
                 placeholder="Search"
                 underlineColorAndroid={Colors.darkTintColor}
                 style={[ styles.customSearchTextInputStyle ]}

@@ -10,13 +10,13 @@ import HomeList from './HomeListContainer'
 class HomeScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      tabBarLabel: 'Home',
-      tabBarIcon: ( { tintColor, focused } ) =>
-        <Icon
-          name={'search'}
-          size={24}
-          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
+      // tabBarLabel: 'Home',
+      // tabBarIcon: ( { tintColor, focused } ) =>
+      //   <Icon
+      //     name={'search'}
+      //     size={24}
+      //     color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      //   />,
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>

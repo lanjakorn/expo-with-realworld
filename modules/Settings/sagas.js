@@ -94,7 +94,6 @@ function* watchChangeSaveRecent() {
   while ( true ) {
     const { recent } = yield take( CHANGE_SAVE_RECENT )
     yield call( storage.saveAsyncStorage, 'save_recent_value', recent )
-    console.log( recent )
     yield put( setSaveRecent( recent ) )
   }
 }

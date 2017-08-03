@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { NavigationActions } from 'react-navigation'
-
 import { connect } from 'react-redux'
-import { actions as CategoriesAction, selectors } from 'modules/Categories'
+import { actions as productsAction, selectors } from 'modules/Products'
 
 import {
   Dimensions,
@@ -13,34 +11,26 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import CategoriesDetail from './CategoriesDetail'
+import ProductsDetail from './ProductsDetail'
 import { Colors } from 'constants'
-import storyData from 'mocks/products.json'
 import { FontAwesome } from '@expo/vector-icons'
+import { objects } from 'utilities'
 
-class CategoriesList extends Component {
+class ProductsList extends Component {
   constructor( props ) {
     super( props )
   }
 
   async componentWillMount() {
-    await this.props.initCategoriesScreen()
-  }
-
-  onPressSelectChildCategory = childCategory => {
-    this.props.setCurrentCategories( childCategory, 0 )
-    this.props.navigation.navigate( 'childCategories', childCategory )
+    await this.props.initProductsScreen()
   }
 
   renderStories() {
-    return this.props.categories.map( e =>
-      <TouchableOpacity
-        key={e.name}
-        onPress={() => this.onPressSelectChildCategory( e.name )}
-      >
-        <CategoriesDetail
+    return this.props.products.map( e =>
+      <TouchableOpacity key={e.name}>
+        <ProductsDetail
           key={e.name}
-          StoryImage={e.image}
+          StoryImage={objects.getFirstByKey( { item: e.urls, key: 'imgs' } )}
           StoryHeading={e.name}
         />
       </TouchableOpacity>
@@ -81,7 +71,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  categories: selectors.categoriesNameSelector( state ),
+  products: selectors.productsNameSelector( state ),
 } )
 
-export default connect( mapStateToProps, CategoriesAction )( CategoriesList )
+export default connect( mapStateToProps, productsAction )( ProductsList )

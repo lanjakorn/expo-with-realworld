@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { NavigationActions } from 'react-navigation'
-
 import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
@@ -15,7 +13,6 @@ import {
 } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
 import { Colors } from 'constants'
-import storyData from 'mocks/products.json'
 import { FontAwesome } from '@expo/vector-icons'
 
 class CategoriesList extends Component {
@@ -23,20 +20,17 @@ class CategoriesList extends Component {
     super( props )
   }
 
-  async componentWillMount() {
-    await this.props.initCategoriesScreen()
-  }
-
-  onPressSelectChildCategory = childCategory => {
-    this.props.setCurrentCategories( childCategory, 0 )
-    this.props.navigation.navigate( 'childCategories', childCategory )
+  onPressSelectProduct = subChildCategory => {
+    console.log( 'subChildCategory', subChildCategory )
+    this.props.setCurrentCategories( subChildCategory, 2 )
+    this.props.navigation.navigate( 'products', subChildCategory )
   }
 
   renderStories() {
     return this.props.categories.map( e =>
       <TouchableOpacity
         key={e.name}
-        onPress={() => this.onPressSelectChildCategory( e.name )}
+        onPress={() => this.onPressSelectProduct( e.name )}
       >
         <CategoriesDetail
           key={e.name}
@@ -81,7 +75,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  categories: selectors.categoriesNameSelector( state ),
+  categories: selectors.subChildCategoriesNameSelector( state ),
 } )
 
 export default connect( mapStateToProps, CategoriesAction )( CategoriesList )

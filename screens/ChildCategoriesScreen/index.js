@@ -17,19 +17,39 @@ import Search from '@components/SearchContainer'
 class CategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      tabBarLabel: 'Stories',
-      tabBarIcon: ( { tintColor, focused } ) =>
+      // header: (
+      //   <View style={{ backgroundColor: Colors.tintColor }}>
+      //     <View
+      //       style={{
+      //         marginLeft: 10,
+      //         marginTop: 24,
+      //         height: 40,
+      //         flexDirection: 'row',
+      //       }}
+      //     >
+      //       <FontAwesome
+      //         name={'cog'}
+      //         size={24}
+      //         style={{ paddingTop: 5, paddingLeft: 3 }}
+      //         color={'white'}
+      //         onPress={() => {
+      //           navigation.goBack( null )
+      //         }}
+      //       />
+      //     </View>
+      //   </View>
+      // ),
+      title: 'Products',
+
+      headerRight: (
         <FontAwesome
-          name={'newspaper-o'}
+          name={'cog'}
           size={24}
-          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'house'} />
-          </View>
-        </View>
+          style={{ color: Colors.tintColor, marginRight: 10 }}
+          onPress={() => {
+            navigation.goBack( null )
+          }}
+        />
       ),
     }
   }

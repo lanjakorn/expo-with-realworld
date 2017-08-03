@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga'
 import { take, takeEvery, call, cancel, put, fork } from 'redux-saga/effects'
 import { GET_CATEGORIES, INIT_CATEGORIES_SCREEN } from './types'
 import { setCategories } from './actions'
-import { normalizedCategories } from './normalizr'
+import { normalizedCategories } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
 
 function subscribe() {

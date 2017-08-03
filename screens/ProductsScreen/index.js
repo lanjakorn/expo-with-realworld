@@ -11,31 +11,28 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Card, Button } from 'react-native-elements'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
-import CategoriesList from './CategoriesList'
+import ProductsList from './ProductsList'
 import Search from '@components/SearchContainer'
 
-class CategoriesScreen extends Component {
+class ProductsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      tabBarLabel: 'Stories',
-      tabBarIcon: ( { tintColor, focused } ) =>
+      title: 'Products',
+      headerRight: (
         <FontAwesome
-          name={'newspaper-o'}
+          name={'cog'}
           size={24}
-          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'house'} />
-          </View>
-        </View>
+          style={{ color: Colors.tintColor, marginRight: 10 }}
+          onPress={() => {
+            navigation.goBack( null )
+          }}
+        />
       ),
     }
   }
 
   render() {
-    return <CategoriesList navigation={this.props.navigation} />
+    return <ProductsList navigation={this.props.navigation} />
   }
 }
 
@@ -72,4 +69,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default CategoriesScreen
+export default ProductsScreen

@@ -4,14 +4,10 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import Colors from 'constants/Colors'
 
 import { Icon } from 'react-native-elements'
-
 import HomeScreen from '@screens/HomeScreen'
 import SearchScreen from '@screens/SearchScreen'
 import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
-import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
-import ProductsScreen from '@screens/ProductsScreen'
-
 import SettingsScreen from '@screens/SettingsScreen'
 
 const HomeTab = StackNavigator( {
@@ -19,24 +15,9 @@ const HomeTab = StackNavigator( {
     screen: HomeScreen,
     path: '/',
   },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
 } )
 
-const HouseTab = StackNavigator( {
-  productc: {
-    screen: SettingsScreen.SourcesSetting,
-    path: '/',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
-
-const ProductsTab = StackNavigator( {
+const CategoriesTab = StackNavigator( {
   categories: {
     screen: CategoriesScreen,
     path: '/',
@@ -45,28 +26,23 @@ const ProductsTab = StackNavigator( {
     screen: ChildCategoriesScreen,
     path: '/childcategories/name',
   },
-  subChildCategories: {
-    screen: SubChildCategoriesScreen,
-    path: '/subchildcategories/name',
+} )
+
+const ProductsTab = StackNavigator( {
+  productc: {
+    screen: CategoriesScreen,
+    path: '/',
   },
-  products: {
-    screen: ProductsScreen,
-    path: '/product/:categories',
-  },
+} )
+
+const SearchTab = StackNavigator( {
   search: {
     screen: SearchScreen,
     path: '/',
   },
 } )
 
-const ServicesTab = StackNavigator( {
-  services: {
-    screen: SettingsScreen.SourcesSetting,
-    path: '/',
-  },
-} )
-
-const MoresTab = StackNavigator( {
+const SettingsTab = StackNavigator( {
   settings: {
     screen: SettingsScreen.SettingsScreen,
     path: '/',
@@ -82,10 +58,6 @@ const MoresTab = StackNavigator( {
   },
   sourcesSetting: {
     screen: SettingsScreen.SourcesSetting,
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
   },
 } )
 
@@ -104,7 +76,8 @@ const TabNav = TabNavigator(
       },
     },
     house: {
-      screen: HouseTab,
+      screen: CategoriesTab,
+      path: '/',
       navigationOptions: {
         tabBarLabel: 'Ricoh House',
         tabBarIcon: ( { tintColor, focused } ) =>
@@ -128,8 +101,8 @@ const TabNav = TabNavigator(
           />,
       },
     },
-    services: {
-      screen: ServicesTab,
+    search: {
+      screen: SearchTab,
       navigationOptions: {
         tabBarLabel: 'Services',
         tabBarIcon: ( { tintColor, focused } ) =>
@@ -141,8 +114,8 @@ const TabNav = TabNavigator(
           />,
       },
     },
-    mores: {
-      screen: MoresTab,
+    more: {
+      screen: SettingsTab,
       navigationOptions: {
         tabBarLabel: 'More',
         tabBarIcon: ( { tintColor, focused } ) =>
@@ -180,9 +153,40 @@ const TabNav = TabNavigator(
       },
     },
     lazy: true,
-    animationEnabled: false,
+    animationEnabled: true,
     tabBarPosition: 'bottom',
     initialRouteName: 'home',
+  }
+)
+
+const MainNav = StackNavigator(
+  {
+    main: {
+      screen: TabNav,
+    },
+    defaultTabSetting: {
+      screen: SettingsScreen.DefaultTabSetting,
+    },
+    readabilitySetting: {
+      screen: SettingsScreen.ReadabilitySetting,
+    },
+    regionSetting: {
+      screen: SettingsScreen.RegionSetting,
+    },
+    sourcesSetting: {
+      screen: SettingsScreen.SourcesSetting,
+    },
+  },
+  {
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#008CCA',
+      },
+      lazy: true,
+      tabBarVisible: false,
+    },
+    headerMode: 'screen',
   }
 )
 

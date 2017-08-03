@@ -29,9 +29,9 @@ class SearchListContainer extends Component {
   }
 
   onPressSearchHistoryItem = query => {
-    this.props.navigation.navigate( 'search' )
-    this.props.searching( true )
-    this.props.changeSearchText( query )
+    // this.props.navigation.navigate( 'search' )
+    // this.props.searching( true )
+    // this.props.changeSearchText( query )
   }
 
   render() {

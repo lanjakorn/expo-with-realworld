@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { NavigationActions } from 'react-navigation'
-
 import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
@@ -23,13 +21,24 @@ class CategoriesList extends Component {
     super( props )
   }
 
-  async componentWillMount() {
-    await this.props.initCategoriesScreen()
+  componentWillReceiveProps( nextProps ) {
+    console.log( this.props.navigation )
+    console.log( 'currentCategories', nextProps.currentCategories )
+    if ( nextProps.currentCategories.length === 2 ) {
+      if ( nextProps.subChildcategories.length !== 0 ) {
+        this.props.navigation.navigate(
+          'subChildCategories',
+          nextProps.currentCategories
+        )
+      } else {
+        this.props.navigation.navigate( 'products' )
+      }
+    }
   }
 
   onPressSelectChildCategory = childCategory => {
-    this.props.setCurrentCategories( childCategory, 0 )
-    this.props.navigation.navigate( 'childCategories', childCategory )
+    console.log( 'childCategory', childCategory )
+    this.props.setCurrentCategories( childCategory, 1 )
   }
 
   renderStories() {
@@ -81,7 +90,9 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  categories: selectors.categoriesNameSelector( state ),
+  currentCategories: selectors.currentCategorieSelector( state ),
+  categories: selectors.childCategoriesNameSelector( state ),
+  subChildcategories: selectors.subChildCategoriesNameSelector( state ),
 } )
 
 export default connect( mapStateToProps, CategoriesAction )( CategoriesList )

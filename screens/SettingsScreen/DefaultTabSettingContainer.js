@@ -51,7 +51,7 @@ class DefaultTabSetting extends Component {
   }
 
   onPressSearchHistoryItem = query => {
-    this.props.navigation.navigate( 'search' )
+    //this.props.navigation.navigate( 'search' )
     this.props.changeSearchText( query )
     this.props.searching( true )
   }

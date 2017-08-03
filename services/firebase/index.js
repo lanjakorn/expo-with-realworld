@@ -1,2 +1,3 @@
 export { firebaseApp, firebaseAuth, firebaseDb } from './firebase'
-export { FirebaseList } from './firebase-list'
+export { FirebaseList } from './firebaseList'
+export { FirebaseListCustom } from './firebaseListCustom'
