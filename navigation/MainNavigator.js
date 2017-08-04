@@ -11,6 +11,7 @@ import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
 import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 import ProductsScreen from '@screens/ProductsScreen'
+import ProductDetailScreen from '@screens/ProductDetailScreen'
 
 import SettingsScreen from '@screens/SettingsScreen'
 
@@ -52,6 +53,10 @@ const ProductsTab = StackNavigator( {
   products: {
     screen: ProductsScreen,
     path: '/product/:categories',
+  },
+  productDetail: {
+    screen: ProductDetailScreen,
+    path: '/productdetail/:name',
   },
   search: {
     screen: SearchScreen,
