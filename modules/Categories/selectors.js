@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const currentCategorieSelector = state => state.categories.categories
+const currentCategoriesSelector = state => state.categories.categories
 
 const categoriesByIdSelector = state => state.categories.categoriesById
 const categoryIdsSelector = state => state.categories.categoryIds
@@ -21,12 +21,12 @@ const categoriesNameSelector = createSelector( categoriesByIdSelector, items => 
 } )
 
 const currentCategorieQuerySelector = createSelector(
-  currentCategorieSelector,
+  currentCategoriesSelector,
   curr => curr.join( '>' )
 )
 
 const childCategoriesNameSelector = createSelector(
-  currentCategorieSelector,
+  currentCategoriesSelector,
   childCategoriesByIdSelector,
   ( curr, items ) => {
     return Object.keys( items ).reduce( ( p, c ) => {
@@ -36,7 +36,7 @@ const childCategoriesNameSelector = createSelector(
 )
 
 const subChildCategoriesNameSelector = createSelector(
-  currentCategorieSelector,
+  currentCategoriesSelector,
   subChildCategoriesByIdSelector,
   ( curr, items ) => {
     return Object.keys( items ).reduce( ( p, c ) => {
@@ -50,8 +50,8 @@ export {
   categoryIdsSelector,
   childCategoriesNameSelector,
   childCatogoryIdsSelector,
-  currentCategorieQuerySelector,
+  currentCategoriesSelector,
   subChildCategoriesNameSelector,
   subChildCatogoryIdsSelector,
-  currentCategorieSelector,
+  currentCategorieQuerySelector,
 }

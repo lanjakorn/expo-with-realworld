@@ -1,9 +1,26 @@
 import firebase from 'firebase'
 import { eventChannel } from 'redux-saga'
-import { take, takeEvery, call, cancel, put, fork } from 'redux-saga/effects'
-import { GET_CATEGORIES, INIT_CATEGORIES_SCREEN } from './types'
-import { setCategories } from './actions'
+import {
+  all,
+  take,
+  takeEvery,
+  call,
+  cancel,
+  put,
+  fork,
+  select,
+} from 'redux-saga/effects'
+import {
+  GET_CATEGORIES,
+  INIT_CATEGORIES_SCREEN,
+  SELECT_CHILD_CATEGORY,
+} from './types'
+import { setCategories, setCurrentCategories } from './actions'
 import { normalizedCategories } from './normalize'
+import {
+  currentCategoriesSelector,
+  subChildCategoriesNameSelector,
+} from './selectors'
 import { subscribeEvent } from './subscribeEvent'
 
 function subscribe() {
@@ -34,6 +51,23 @@ function* watchGetCategories() {
   }
 }
 
+function* watchSelectChildCategory() {
+  while ( true ) {
+    const { childCategory, navigation } = yield take( SELECT_CHILD_CATEGORY )
+    yield put( setCurrentCategories( childCategory, 1 ) )
+    const [ currentCategories, subChildCategories ] = yield all( [
+      select( currentCategoriesSelector ),
+      select( subChildCategoriesNameSelector ),
+    ] )
+
+    if ( subChildCategories.length === 0 ) {
+      navigation.navigate( 'products' )
+    } else {
+      navigation.navigate( 'subChildCategories', currentCategories[ 1 ] )
+    }
+  }
+}
+
 function* watchInitCategoriesScreen() {
   while ( yield take( INIT_CATEGORIES_SCREEN ) ) {
     subscribeEvent.path = 'categories'
@@ -44,4 +78,5 @@ function* watchInitCategoriesScreen() {
 export default ( sagas = [
   fork( watchGetCategories ),
   fork( watchInitCategoriesScreen ),
+  fork( watchSelectChildCategory ),
 ] )
