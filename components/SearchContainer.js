@@ -14,7 +14,7 @@ import {
   Keyboard,
   Platform,
 } from 'react-native'
-import { Button, Icon } from 'react-native-elements'
+import { Button, Icon, SearchBar } from 'react-native-elements'
 import { actions as settingsActions } from 'modules/Settings'
 import { actions as searchScreenActions } from 'modules/Search'
 
@@ -32,14 +32,23 @@ class SearchContainer extends Component {
 
   onSearchActive = () => {
     console.log( 'onSearchActive' )
+    console.log( this.props.navigation )
     this.props.searching( true )
     this.props.navigation.navigate( 'search' )
     this.setState( { isTouchableDisabled: true } )
   }
 
+  // componentDidMount() {
+  //   console.log( 'onSearchActive' )
+  //   this.props.searching( true )
+  //   this.setState( { isTouchableDisabled: true } )
+  //   this.refs.search_textinput_component.focus()
+  // }
+
   componentDidUpdate() {
     if ( this.props.is_searching ) {
-      this.refs.search_textinput_component.focus()
+      console.log( this.props.is_searching )
+      // this.refs.search_textinput_component.focus()
     }
   }
 
@@ -108,6 +117,7 @@ class SearchContainer extends Component {
               ]}
             >
               {this.renderSearchIcon()}
+
               <TextInput
                 ref="search_textinput_component"
                 autoCorrect={false}
@@ -116,7 +126,7 @@ class SearchContainer extends Component {
                 onChangeText={text => this.onSearchTextChange( text )}
                 onSubmitEditing={this.onSubmitEditingSearch}
                 keyboardType={'web-search'}
-                //onFocus={this.onSearchActive}
+                onFocus={this.onSearchActive}
                 placeholder="Search"
                 underlineColorAndroid={Colors.darkTintColor}
                 style={[ styles.customSearchTextInputStyle ]}
