@@ -12,22 +12,12 @@ import { Card, Button } from 'react-native-elements'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 import ProductsList from './ProductsList'
-import Search from '@components/SearchContainer'
+import { HeaderNavigation, Search } from '@components'
 
 class ProductsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      title: 'Products',
-      headerRight: (
-        <FontAwesome
-          name={'cog'}
-          size={24}
-          style={{ color: Colors.tintColor, marginRight: 10 }}
-          onPress={() => {
-            navigation.goBack( null )
-          }}
-        />
-      ),
+      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
     }
   }
 

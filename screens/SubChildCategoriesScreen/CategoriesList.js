@@ -21,7 +21,6 @@ class CategoriesList extends Component {
   }
 
   onPressSelectProduct = subChildCategory => {
-    console.log( 'subChildCategory', subChildCategory )
     this.props.setCurrentCategories( subChildCategory, 2 )
     this.props.navigation.navigate( 'products', subChildCategory )
   }

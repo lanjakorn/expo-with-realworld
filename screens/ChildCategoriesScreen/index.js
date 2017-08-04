@@ -12,45 +12,12 @@ import { Card, Button } from 'react-native-elements'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 import CategoriesList from './CategoriesList'
-import Search from '@components/SearchContainer'
+import { HeaderNavigation, Search } from '@components'
 
 class CategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      // header: (
-      //   <View style={{ backgroundColor: Colors.tintColor }}>
-      //     <View
-      //       style={{
-      //         marginLeft: 10,
-      //         marginTop: 24,
-      //         height: 40,
-      //         flexDirection: 'row',
-      //       }}
-      //     >
-      //       <FontAwesome
-      //         name={'cog'}
-      //         size={24}
-      //         style={{ paddingTop: 5, paddingLeft: 3 }}
-      //         color={'white'}
-      //         onPress={() => {
-      //           navigation.goBack( null )
-      //         }}
-      //       />
-      //     </View>
-      //   </View>
-      // ),
-      title: 'Products',
-
-      headerRight: (
-        <FontAwesome
-          name={'cog'}
-          size={24}
-          style={{ color: Colors.tintColor, marginRight: 10 }}
-          onPress={() => {
-            navigation.goBack( null )
-          }}
-        />
-      ),
+      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
     }
   }
 

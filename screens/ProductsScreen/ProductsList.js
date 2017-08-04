@@ -25,9 +25,18 @@ class ProductsList extends Component {
     await this.props.initProductsScreen()
   }
 
+  onPressSelectProduct = id => {
+    console.log( id )
+    this.props.setCurrentProduct( id )
+    this.props.navigation.navigate( 'productDetail', id )
+  }
+
   renderStories() {
     return this.props.products.map( e =>
-      <TouchableOpacity key={e.name}>
+      <TouchableOpacity
+        key={e.name}
+        onPress={() => this.onPressSelectProduct( e.id )}
+      >
         <ProductsDetail
           key={e.name}
           StoryImage={objects.getFirstByKey( { item: e.urls, key: 'imgs' } )}

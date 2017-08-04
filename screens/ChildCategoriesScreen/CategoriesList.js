@@ -21,24 +21,8 @@ class CategoriesList extends Component {
     super( props )
   }
 
-  componentWillReceiveProps( nextProps ) {
-    console.log( this.props.navigation )
-    console.log( 'currentCategories', nextProps.currentCategories )
-    if ( nextProps.currentCategories.length === 2 ) {
-      if ( nextProps.subChildcategories.length !== 0 ) {
-        this.props.navigation.navigate(
-          'subChildCategories',
-          nextProps.currentCategories
-        )
-      } else {
-        this.props.navigation.navigate( 'products' )
-      }
-    }
-  }
-
   onPressSelectChildCategory = childCategory => {
-    console.log( 'childCategory', childCategory )
-    this.props.setCurrentCategories( childCategory, 1 )
+    this.props.selectChildCategory( childCategory, this.props.navigation )
   }
 
   renderStories() {
@@ -90,7 +74,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  currentCategories: selectors.currentCategorieSelector( state ),
+  currentCategories: selectors.currentCategoriesSelector( state ),
   categories: selectors.childCategoriesNameSelector( state ),
   subChildcategories: selectors.subChildCategoriesNameSelector( state ),
 } )
