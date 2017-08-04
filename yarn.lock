@@ -1534,6 +1534,10 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
+comma-number@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/comma-number/-/comma-number-2.0.0.tgz#24dfa83ce958d68a9d21af48e20e52dc072704bd"
+
 commander@^2.9.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
