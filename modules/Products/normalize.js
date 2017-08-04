@@ -9,6 +9,7 @@ const normalizedProducts = ( data = {} ) =>
           ...p.productsById,
           [ c ]: {
             ...image.products( data[ c ] ),
+            id: c,
           },
         },
         productIds: [ ...p.productIds, c ],

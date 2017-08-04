@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect'
 
+const currentProductSelector = state => state.products.productId
+
 const productsByIdSelector = state => state.products.productsById
 const productIdsSelector = state => state.categories.productIds
 
@@ -9,4 +11,17 @@ const productsNameSelector = createSelector( productsByIdSelector, items => {
   }, [] )
 } )
 
-export { productsByIdSelector, productIdsSelector, productsNameSelector }
+const productSelector = createSelector(
+  currentProductSelector,
+  productsByIdSelector,
+  ( currentProduct, items ) => {
+    return items[ currentProduct ]
+  }
+)
+
+export {
+  productsByIdSelector,
+  productIdsSelector,
+  productsNameSelector,
+  productSelector,
+}
