@@ -1,4 +1,4 @@
-import * as image from 'mocks/image'
+import * as image from 'mocks/category'
 import { category } from 'utilities'
 
 const normalizedCategories = ( data = {} ) =>

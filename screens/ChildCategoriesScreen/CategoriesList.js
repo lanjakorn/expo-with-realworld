@@ -13,7 +13,6 @@ import {
 } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
 import { Colors } from 'constants'
-import storyData from 'mocks/products.json'
 import { FontAwesome } from '@expo/vector-icons'
 
 class CategoriesList extends Component {

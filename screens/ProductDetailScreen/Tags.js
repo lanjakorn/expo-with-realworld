@@ -38,7 +38,6 @@ const RatingView = ( { rating, reviewCount, style } ) => {
         color="#FFD700"
         style={styles.icon}
       />
-
       <Text style={styles.text}>{`(${ commaNumber( reviewCount ) })`}</Text>
     </View>
   )

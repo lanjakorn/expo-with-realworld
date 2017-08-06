@@ -1,4 +1,4 @@
-import * as image from 'mocks/image'
+import * as image from 'mocks/product'
 
 const normalizedProducts = ( data = {} ) =>
   Object.keys( data ).reduce(
