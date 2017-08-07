@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { Colors } from 'constants'
 import {
@@ -8,13 +8,13 @@ import {
   ScrollView,
   Dimensions,
   PixelRatio,
+  WebView,
 } from 'react-native'
 import { Button } from 'react-native-elements'
-import PropTypes from 'prop-types'
 import { object } from 'utilities'
 
+import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
-import YouTube from 'react-native-youtube'
 
 const { width } = Dimensions.get( 'window' )
 const calHeight = {
@@ -42,7 +42,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#92BBD9',
+    // backgroundColor: '#92BBD9',
   },
   text: {
     color: '#fff',
@@ -58,48 +58,67 @@ const styles = {
   },
 }
 
-const Slider = ( { urls } ) => {
-  console.log( 'urls: ', urls )
-  const tranformImage = url => {
+class Slider extends Component {
+  constructor( props ) {
+    super( props )
+    this.state = {
+      SwipLoaded: false,
+    }
+  }
+
+  componentDidMount() {
+    setTimeout( () => {
+      this.setState( {
+        SwipLoaded: true,
+      } )
+    }, 100 )
+  }
+  // const Slider = ( { urls } ) => {
+  tranformImage = url => {
     const videoId = url.split( 'v=' )[ 1 ]
     return `http://img.youtube.com/vi/${ videoId }/hqdefault.jpg`
   }
 
-  return (
-    <Swiper height={calHeight.height} horizontal loop={false}>
-      <View style={styles.slide1}>
-        <Image
-          source={{
-            uri: object.getFirstByKey( { item: urls, key: 'imgs' } ),
-          }}
-          style={{ width: width, height: calHeight.height }}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.slide3}>
-        <Image
-          source={{
-            uri: tranformImage( 'https://www.youtube.com/watch?v=Qy8j0XJShQM' ),
-          }}
-          style={{ width: width, height: calHeight.height }}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.slide3}>
-        <YouTube
-          videoId="KVZ-P-ZI6W4" // The YouTube video ID
-          play={true} // control playback of video with true/false
-          fullscreen={true} // control whether the video should play in fullscreen or inline
-          loop={true} // control whether the video should loop when ended
-          //   onReady={e => this.setState( { isReady: true } )}
-          //   onChangeState={e => this.setState( { status: e.state } )}
-          //   onChangeQuality={e => this.setState( { quality: e.quality } )}
-          //   onError={e => this.setState( { error: e.error } )}
-          style={{ alignSelf: 'stretch', height: 300 }}
-        />
-      </View>
-    </Swiper>
-  )
+  render() {
+    {
+      return this.state.SwipLoaded
+        ? <Swiper
+          height={calHeight.height}
+          horizontal
+          showsButtons
+          loop={false}
+        >
+          <View style={styles.slide1}>
+            <Image
+              source={{
+                uri: object.getFirstByKey( {
+                  item: this.props.urls,
+                  key: 'imgs',
+                } ),
+              }}
+              style={{ width: width, height: calHeight.height }}
+              resizeMode="cover"
+            />
+          </View>
+          <View style={styles.slide3}>
+            <WebView
+              source={{
+                uri:
+                    'https://www.youtube.com/embed/Qy8j0XJShQM?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0',
+              }}
+              style={{
+                height: 240,
+                width: width,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'black',
+              }}
+            />
+          </View>
+        </Swiper>
+        : <View />
+    }
+  }
 }
 
 export default Slider

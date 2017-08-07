@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { actions as productAction, selectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
-
 import { Colors } from 'constants'
 import {
   Image,

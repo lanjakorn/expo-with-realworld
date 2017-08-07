@@ -16,6 +16,7 @@ import {
 } from 'react-native'
 import { Button, Icon, Tile } from 'react-native-elements'
 import { Card, CardSection } from '@components'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 var { height, width } = Dimensions.get( 'window' )
 
@@ -35,24 +36,31 @@ class SearchListContainer extends Component {
   render() {
     return (
       <ScrollView>
-        {verticalMenu.map( e =>
-          <TouchableOpacity key={e} onPress={() => this.onPressMenuSelect( e )}>
-            <Card margin={0} backgroundColor={'white'}>
-              <View style={styles.searchListItemStyle}>
-                <Image
-                  key={`image-${ e }`}
-                  style={styles.backgroundImage}
-                  resizeMode="cover"
-                  source={require( '../../assets/images/vertical-menu-item.png' )}
-                >
-                  <Text style={styles.text} numberOfLines={1}>
-                    {e}
-                  </Text>
-                </Image>
-              </View>
-            </Card>
-          </TouchableOpacity>
-        )}
+        {!this.props.isFetching
+          ? verticalMenu.map( e =>
+            <TouchableOpacity
+              key={e}
+              onPress={() => this.onPressMenuSelect( e )}
+            >
+              <Card margin={0} backgroundColor={'white'}>
+                <View style={styles.searchListItemStyle}>
+                  <Image
+                    key={`image-${ e }`}
+                    style={styles.backgroundImage}
+                    resizeMode="cover"
+                    source={require( '../../assets/images/vertical-menu-item.png' )}
+                  >
+                    <Text style={styles.text} numberOfLines={1}>
+                      {e}
+                    </Text>
+                  </Image>
+                </View>
+              </Card>
+            </TouchableOpacity>
+          )
+          : <View style={{ flex: 1 }}>
+            <Spinner visible={true} />
+          </View>}
       </ScrollView>
     )
   }
@@ -89,6 +97,7 @@ const styles = StyleSheet.create( {
 
 const mapStateToProps = state => ( {
   //search_history_items: getSearch( state ),
+  isFetching: state.categories.isFetching,
 } )
 
 export default connect( mapStateToProps )( SearchListContainer )

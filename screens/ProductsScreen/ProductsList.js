@@ -16,6 +16,8 @@ import { Colors } from 'constants'
 import { FontAwesome } from '@expo/vector-icons'
 import { object } from 'utilities'
 
+import Spinner from 'react-native-loading-spinner-overlay'
+
 class ProductsList extends Component {
   constructor( props ) {
     super( props )
@@ -48,9 +50,13 @@ class ProductsList extends Component {
   render() {
     return (
       <ScrollView>
-        <View style={styles.container}>
-          {this.renderStories()}
-        </View>
+        {!this.props.isFetching
+          ? <View style={styles.container}>
+            {this.renderStories()}
+          </View>
+          : <View style={{ flex: 1 }}>
+            <Spinner visible={true} />
+          </View>}
       </ScrollView>
     )
   }
@@ -80,6 +86,7 @@ const styles = StyleSheet.create( {
 
 const mapStateToProps = state => ( {
   products: selectors.productsNameSelector( state ),
+  isFetching: state.products.isFetching,
 } )
 
 export default connect( mapStateToProps, productsAction )( ProductsList )
