@@ -1,5 +1,5 @@
 import { take, put, call } from 'redux-saga/effects'
-
+import range from 'lodash/range'
 /**
    * @param {[object]}      entity         |
                                              {
@@ -21,4 +21,8 @@ function* fetchEntity( entity, apiFn ) {
   }
 }
 
-export { fetchEntity }
+const generate = ( max = 10, item ) => {
+  return range( max ).reduce( ( p, c, k ) => ( { ...p, [ `mock${ k }` ]: item } ), {} )
+}
+
+export { fetchEntity, generate }
