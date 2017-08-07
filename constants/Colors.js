@@ -5,6 +5,8 @@ export default {
   tintColor,
   darkTintColor,
   text: 'black',
+  textDescription: '#606464',
+  backgroundSection: '#E6EBEB',
   searchText: 'black',
   placeHolderText: '#858688',
   tabIconDefault: '#888',
