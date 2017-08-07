@@ -4780,6 +4780,10 @@ react-native-elements@^0.12.2:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-loading-spinner-overlay@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.5.1.tgz#5484fc8511dd85038bd595746e8a6207aa72c6c1"
+
 "react-native-maps@https://github.com/expo/react-native-maps/archive/v0.14.0.tar.gz":
   version "0.14.0"
   resolved "https://github.com/expo/react-native-maps/archive/v0.14.0.tar.gz#993c90136e9370c693b423960fcb679b1c25cad8"
