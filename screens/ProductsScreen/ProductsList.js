@@ -14,7 +14,7 @@ import {
 import ProductsDetail from './ProductsDetail'
 import { Colors } from 'constants'
 import { FontAwesome } from '@expo/vector-icons'
-import { objects } from 'utilities'
+import { object } from 'utilities'
 
 class ProductsList extends Component {
   constructor( props ) {
@@ -26,20 +26,19 @@ class ProductsList extends Component {
   }
 
   onPressSelectProduct = id => {
-    console.log( id )
     this.props.setCurrentProduct( id )
     this.props.navigation.navigate( 'productDetail', id )
   }
 
   renderStories() {
-    return this.props.products.map( e =>
+    return this.props.products.map( ( e, k ) =>
       <TouchableOpacity
-        key={e.name}
+        key={`product-touch-${ e.name }-${ k }`}
         onPress={() => this.onPressSelectProduct( e.id )}
       >
         <ProductsDetail
-          key={e.name}
-          StoryImage={objects.getFirstByKey( { item: e.urls, key: 'imgs' } )}
+          key={`product-${ e.name }-${ k }`}
+          StoryImage={object.getFirstByKey( { item: e.urls, key: 'imgs' } )}
           StoryHeading={e.name}
         />
       </TouchableOpacity>

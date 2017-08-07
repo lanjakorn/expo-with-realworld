@@ -115,7 +115,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  default_tab: selectors.getDefaultTabOfSettings( state ),
+  default_tab: selectors.getDefaultTabSelector( state ),
 } )
 
 const combineAction = () => ( {

@@ -28,20 +28,15 @@ class SearchListContainer extends Component {
   //   await this.props.getSearchHistory()
   // }
 
-  // onPressSearchHistoryItem = query => {
-  //   this.props.navigation.navigate( 'search' )
-  //   this.props.searching( true )
-  //   this.props.changeSearchText( query )
-  // }
+  onPressMenuSelect = link => {
+    return link === 'Products' && this.props.navigation.navigate( 'products' )
+  }
 
   render() {
     return (
       <ScrollView>
         {verticalMenu.map( e =>
-          <TouchableOpacity
-            key={e}
-            //onPress={() => this.onPressSearchHistoryItem( query )}
-          >
+          <TouchableOpacity key={e} onPress={() => this.onPressMenuSelect( e )}>
             <Card margin={0} backgroundColor={'white'}>
               <View style={styles.searchListItemStyle}>
                 <Image

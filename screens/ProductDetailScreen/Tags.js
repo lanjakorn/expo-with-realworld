@@ -1,7 +1,8 @@
 import React from 'react'
-import { Platform, View, Text } from 'react-native'
+import { Platform, View, Text, PixelRatio } from 'react-native'
 import PropTypes from 'prop-types'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Badge } from 'react-native-elements'
+import { Colors } from 'constants'
 
 const commaNumber = require( 'comma-number' )
 
@@ -14,11 +15,13 @@ if ( Platform.OS === 'android' ) {
 
 const styles = {
   wrapper: {
-    flexDirection: 'row',
     alignItems: 'center',
   },
   icon: {
-    marginRight: 2,
+    marginRight: 8,
+    minWidth: 50,
+    borderRadius: 90 / PixelRatio.get(),
+    marginTop: 8,
   },
   text: {
     marginLeft: 4,
@@ -28,18 +31,18 @@ const styles = {
   },
 }
 
-const RatingView = ( { rating, reviewCount, style } ) => {
+const RatingView = ( { name, style } ) => {
   const { wrapper } = styles
   return (
-    <View style={[ wrapper, style ]}>
-      <Icon
-        name={filledIconName}
-        size={18}
-        color="#FFD700"
-        style={styles.icon}
-      />
-      <Text style={styles.text}>{`(${ commaNumber( reviewCount ) })`}</Text>
-    </View>
+    <Badge
+      value={name.toUpperCase()}
+      textStyle={{ color: 'white', fontSize: 12 }}
+      containerStyle={{
+        backgroundColor: Colors.tintColor,
+        ...styles.icon,
+        ...style,
+      }}
+    />
   )
 }
 

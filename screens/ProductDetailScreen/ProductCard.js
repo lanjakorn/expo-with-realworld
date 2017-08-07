@@ -1,42 +1,55 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { actions as productAction, selectors } from 'modules/Products'
+import { selectors as settingsSelectors } from 'modules/Settings'
 
-import { Image, View, Text } from 'react-native'
+import { Colors } from 'constants'
+import {
+  Image,
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  PixelRatio,
+} from 'react-native'
+import { Button } from 'react-native-elements'
 import PropTypes from 'prop-types'
-import { objects } from 'utilities'
 
 import Tags from './Tags'
+import Pros from './Pros'
 import PriceText from './PriceText'
 import ProductName from './ProductName'
+import ProductDescription from './ProductDescription'
+import Slider from './Slider'
 
 const styles = {
   wrapper: {
-    marginTop: 10,
-    flexDirection: 'row',
+    backgroundColor: '#fff',
+    // marginTop: 10,
+    flexDirection: 'column',
     //height: 170,
-    shadowColor: '#ccc',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
+    // shadowColor: '#ccc',
+    // shadowOffset: { width: 0, height: 0 },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 2,
     // elevation: 5,
-    padding: 5,
-    paddingRight: 10,
+    padding: 20,
+    // paddingRight: 10,
   },
   thumbnailView: {
-    width: 120,
-    marginRight: 10,
-    position: 'relative',
+    margin: 15,
+
+    // marginRight: 10,
+    // position: 'relative',
+    marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
   thumbnail: {
-    width: 100,
-    height: 90,
+    width: 200,
+    height: 160,
   },
-  detailsView: {
-    flex: 1,
-  },
+  detailsView: {},
 
   shipping: {
     position: 'absolute',
@@ -49,48 +62,155 @@ const styles = {
     paddingBottom: 5,
     borderRadius: 12,
   },
+  title: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  price: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 25,
+    marginBottom: 25,
+    paddingTop: 30,
+    paddingBottom: 30,
+    backgroundColor: Colors.backgroundSection,
+  },
+  tags: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  pros: {
+    marginTop: 25,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  more: {
+    marginTop: 25,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
   shippingText: {
     fontSize: 13,
     color: '#C0C0C0',
   },
   rating: {
-    marginTop: 10,
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   priceText: {
     marginTop: 5,
   },
 }
 
+const renderTags = ( { product: { tags } } ) => {
+  return (
+    <View style={styles.tags}>
+      {tags.map( ( e, k ) =>
+        <Tags key={`tags-${ k }`} name={e} style={styles.rating} />
+      )}
+    </View>
+  )
+}
+
+const renderPros = ( { product: { pros }, words } ) => {
+  return (
+    <View style={styles.pros}>
+      <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
+        {words.productPros}
+      </Text>
+      <View>
+        {pros.map( ( e, k ) => <Pros key={`pros-${ k }`} name={e} /> )}
+      </View>
+    </View>
+  )
+}
+
 const ProductCard = props => {
-  const { name, offer, reviewScore, reviewCount, navigation, product } = props
+  const {
+    navigation,
+    words,
+    product: { name, urls, title, description, offer, tags, pros },
+  } = props
+
+  const onPressContactUs = () => {
+    navigation.navigate( 'contactUs' )
+  }
+
   return (
     <View style={styles.wrapper}>
-      <View style={styles.thumbnailView}>
-        <Image
-          source={{
-            uri: objects.getFirstByKey( { item: product.urls, key: 'imgs' } ),
+      <View style={styles.title}>
+        <ProductName name={name} />
+        <Button
+          backgroundColor={Colors.tintColor}
+          fontSize={12.5}
+          buttonStyle={{
+            paddingTop: 4,
+            paddingBottom: 4,
           }}
-          style={styles.thumbnail}
+          containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
+          borderRadius={5}
+          title="Contact Us"
+          onPress={onPressContactUs}
         />
       </View>
+      <View style={styles.thumbnailView}>
+        <Slider urls={urls} />
+      </View>
       <View style={styles.detailsView}>
-        <ProductName name={product.name} />
-        <ProductName name={product.title} />
-        <ProductName name={product.description} />
-        {product.pros.map( ( e, k ) =>
-          <Text key={`pros-${ k }`}>
-            {`- ${ e }`}
-          </Text>
-        )}
-        <Tags
-          rating={reviewScore}
-          reviewCount={reviewCount}
-          style={styles.rating}
-        />
+        <ProductDescription name={description} />
+      </View>
+      <View style={styles.price}>
         <PriceText
+          words={words}
           price={offer.price}
           salePrice={offer.salePrice}
           style={styles.priceText}
+        />
+      </View>
+      {renderTags( props )}
+      {renderPros( props )}
+      <View style={styles.more}>
+        <Button
+          backgroundColor={'#fff'}
+          fontSize={12.5}
+          buttonStyle={{
+            paddingTop: 4,
+            paddingBottom: 4,
+            borderWidth: 1,
+            borderRadius: 50,
+            borderColor: Colors.tintColor,
+          }}
+          containerViewStyle={{
+            marginLeft: 0,
+            marginRight: 6,
+          }}
+          color={Colors.tintColor}
+          borderRadius={5}
+          title="Contact"
+          onPress={onPressContactUs}
+        />
+        <Button
+          backgroundColor={'#fff'}
+          fontSize={12.5}
+          buttonStyle={{
+            paddingTop: 4,
+            paddingBottom: 4,
+            borderWidth: 1,
+            borderRadius: 50,
+            borderColor: Colors.tintColor,
+          }}
+          containerViewStyle={{
+            marginLeft: 0,
+            marginRight: 0,
+          }}
+          color={Colors.tintColor}
+          borderRadius={5}
+          title="Share"
+          onPress={onPressContactUs}
         />
       </View>
     </View>
@@ -111,6 +231,7 @@ ProductCard.defaultProps = {
 
 const mapStateToProps = state => ( {
   product: selectors.productSelector( state ),
+  words: settingsSelectors.getWordsByLangSelector( state ),
 } )
 
 export default connect( mapStateToProps, productAction )( ProductCard )

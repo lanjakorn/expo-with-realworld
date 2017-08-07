@@ -167,7 +167,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
-  ...selectors.getSettings( state ),
+  ...selectors.getSettingsSelector( state ),
 } )
 
 export default connect( mapStateToProps, actions )( SettingsScreen )

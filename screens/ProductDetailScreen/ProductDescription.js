@@ -5,17 +5,17 @@ import PropTypes from 'prop-types'
 const styles = StyleSheet.create( {
   wrapper: {
     fontWeight: '600',
-    fontSize: 18,
+    fontSize: 13,
   },
 } )
 
-const ProductName = ( { name, style } ) =>
-  <Text style={[ styles.wrapper, style ]}>
+const ProductDescription = ( { name } ) =>
+  <Text style={styles.wrapper}>
     {name}
   </Text>
 
-ProductName.propTypes = {
+ProductDescription.propTypes = {
   name: PropTypes.string,
 }
 
-export default ProductName
+export default ProductDescription
