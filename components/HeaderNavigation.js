@@ -47,7 +47,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
             size={28}
             type={'ionicon'}
             onPress={() => {
-              navigation.navigate( 'search' )
+              //navigation.navigate( 'search' )
             }}
           />
         </View>
