@@ -9,8 +9,14 @@ import {
   fork,
   select,
 } from 'redux-saga/effects'
-import { GET_PRODUCTS, INIT_PRODUCTS_SCREEN } from './types'
-import { setProducts } from './actions'
+import {
+  GET_PRODUCTS,
+  INIT_PRODUCTS_SCREEN,
+  PRODUCTS_REQUEST,
+  PRODUCTS_SUCCESS,
+  PRODUCTS_FAILURE,
+} from './types'
+import { setProducts, products as productsAction } from './actions'
 import { selectors } from 'modules/Categories'
 import { normalizedProducts } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
@@ -46,17 +52,19 @@ function* watchGetProducts() {
     //   normalized.productsById[ Object.keys( normalized.productsById )[ 0 ] ]
     // )
 
-    yield put( setProducts( normalized ) )
+    yield put( productsAction.success( normalized ) )
   }
 }
 
 function* watchInitProductsScreen() {
   while ( yield take( INIT_PRODUCTS_SCREEN ) ) {
     const query = yield select( selectors.currentCategorieQuerySelector )
+    yield put( productsAction.request() )
 
     subscribeEvent.path = 'products'
     subscribeEvent.orderBy = 'categories'
     subscribeEvent.query = query
+
     yield fork( read )
   }
 }

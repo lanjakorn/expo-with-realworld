@@ -1,6 +1,6 @@
 import { Record } from 'immutable'
 import { FirebaseList } from 'services/firebase'
-import { getCategories } from './actions'
+import { getCategories, categories } from './actions'
 
 const Task = new Record( {
   completed: false,
@@ -10,7 +10,8 @@ const Task = new Record( {
 
 export const subscribeEvent = new FirebaseList(
   {
-    onLoad: getCategories,
+    onSuccess: getCategories,
+    onFailure: categories.failure,
   },
   Task
 )

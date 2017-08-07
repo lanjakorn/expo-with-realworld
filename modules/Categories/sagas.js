@@ -15,7 +15,11 @@ import {
   INIT_CATEGORIES_SCREEN,
   SELECT_CHILD_CATEGORY,
 } from './types'
-import { setCategories, setCurrentCategories } from './actions'
+import {
+  setCategories,
+  setCurrentCategories,
+  categories as categoriesAction,
+} from './actions'
 import { normalizedCategories } from './normalize'
 import {
   currentCategoriesSelector,
@@ -47,7 +51,7 @@ function* watchGetCategories() {
   while ( true ) {
     const { categories } = yield take( GET_CATEGORIES )
     const normalized = yield call( normalizedCategories, categories )
-    yield put( setCategories( normalized ) )
+    yield put( categoriesAction.success( normalized ) )
   }
 }
 
@@ -70,6 +74,8 @@ function* watchSelectChildCategory() {
 
 function* watchInitCategoriesScreen() {
   while ( yield take( INIT_CATEGORIES_SCREEN ) ) {
+    yield put( categoriesAction.request() )
+
     subscribeEvent.path = 'categories'
     yield fork( read )
   }

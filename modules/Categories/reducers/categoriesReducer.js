@@ -1,4 +1,10 @@
-import { SET_CATEGORIES, SET_CURRENT_CATEGORIES } from '../types'
+import {
+  SET_CATEGORIES,
+  SET_CURRENT_CATEGORIES,
+  CATEGORIES_REQUEST,
+  CATEGORIES_SUCCESS,
+  CATEGORIES_FAILURE,
+} from '../types'
 
 export const INITIAL_STATE = {
   categoriesById: {},
@@ -8,12 +14,20 @@ export const INITIAL_STATE = {
   subChildCatogoriesById: {},
   subChildCatogoryIds: [],
   categories: [],
+  isFetching: false,
+  errorMessage: '',
 }
 
 export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
   case SET_CATEGORIES:
     return { ...state, ...action.categories }
+  case CATEGORIES_REQUEST:
+    return { ...state, isFetching: true }
+  case CATEGORIES_SUCCESS:
+    return { ...state, ...action.categories, isFetching: false }
+  case CATEGORIES_FAILURE:
+    return { ...state, isFetching: false, errorMessage: action.error }
   case SET_CURRENT_CATEGORIES:
     return {
       ...state,
