@@ -6,26 +6,38 @@ const products = data => {
     title:
       'Much more than a new range. It’s a whole new way to connect your business.',
     pros: [
-      'Intuitive touch and swipe Smart Operation Panel',
+      'Intuitive touch and swipe Smart Operation Panel Intuitive',
       'New Intel Processor increases productivity',
       'Human Detection Sensor',
       'Offers a range of great finishing options',
       'Professional output with banner print capability',
     ],
     tags: [
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_new_0.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_copy.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_print.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_scan_0.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_fax.gif',
+      'new',
+      'copy',
+      'print',
+      'scan',
+      'fax',
 
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_A3.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_func_A4.gif',
+      'A3',
+      'A4',
 
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_spec_lan.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_spec_usb_0.gif',
-      'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/icon_spec_wifi.gif',
+      'lan',
+      'usb',
+      'wifi',
     ],
+    offer: {
+      price: {
+        currency: '$',
+        value: 120,
+      },
+      salePrice: {
+        currency: '$',
+        value: 120,
+      },
+    },
+    reviewScore: 12,
+    reviewCount: 3,
     urls: {
       imgs: [
         'http://www.ricoh.co.th/sites/www.ricoh.co.th/files/SPC240DN_OK.jpg',
