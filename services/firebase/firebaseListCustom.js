@@ -65,7 +65,7 @@ export class FirebaseListCustom {
       .endAt( `${ this.query }\uf8ff` )
       .once( 'value', snap => {
         initialized = true
-        emit( this._actions.onLoad( { ...list, ...snap.val() } ) )
+        emit( this._actions.onSuccess( { ...list, ...snap.val() } ) )
       } )
 
     return () => ref.off()

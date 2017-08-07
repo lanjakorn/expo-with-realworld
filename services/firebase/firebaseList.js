@@ -45,7 +45,7 @@ export class FirebaseList {
 
     ref.once( 'value', snap => {
       initialized = true
-      emit( this._actions.onLoad( { ...list, ...snap.val() } ) )
+      emit( this._actions.onSuccess( { ...list, ...snap.val() } ) )
     } )
 
     // ref.on( 'child_added', snapshot => {
