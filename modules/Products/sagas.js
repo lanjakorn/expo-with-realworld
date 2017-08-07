@@ -14,6 +14,7 @@ import { setProducts } from './actions'
 import { selectors } from 'modules/Categories'
 import { normalizedProducts } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
+import { factories } from 'utilities'
 
 function subscribe() {
   return eventChannel( emit => subscribeEvent.subscribe( emit ) )
@@ -39,6 +40,12 @@ function* watchGetProducts() {
   while ( true ) {
     const { products } = yield take( GET_PRODUCTS )
     const normalized = yield call( normalizedProducts, products )
+    // const bulkProducts = yield call(
+    //   factories.generate,
+    //   300,
+    //   normalized.productsById[ Object.keys( normalized.productsById )[ 0 ] ]
+    // )
+
     yield put( setProducts( normalized ) )
   }
 }

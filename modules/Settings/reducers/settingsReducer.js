@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
   autocomplete: false,
   save_recent: false,
   default_tab: 'Stories (Default)',
+  lang: 'th',
 }
 
 export default ( state = INITIAL_STATE, action ) => {

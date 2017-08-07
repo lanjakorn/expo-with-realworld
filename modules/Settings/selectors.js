@@ -1,4 +1,13 @@
-const getSettings = state => state.settings
-const getDefaultTabOfSettings = state => getSettings( state ).default_tab
+import { createSelector } from 'reselect'
+import { Langs } from 'constants'
 
-export { getSettings, getDefaultTabOfSettings }
+const getSettingsSelector = state => state.settings
+const getLangSelector = state => state.settings.lang
+const getDefaultTabSelector = state => getSettings( state ).default_tab
+
+const getWordsByLangSelector = createSelector(
+  getLangSelector,
+  lang => Langs[ lang ]
+)
+
+export { getSettingsSelector, getDefaultTabSelector, getWordsByLangSelector }
