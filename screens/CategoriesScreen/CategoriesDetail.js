@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
-import {
-  Text,
-  View,
-  Image,
-  Linking,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import Card from '@components/Card'
 import CardSection from '@components/CardSection'
 
-const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
+const CategoriesDetail = ( { categoryHeading, categoryImage } ) => {
   return (
     <Card margin={10}>
       <CardSection>
         <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
+          <Image
+            style={styles.thumbnailStyle}
+            source={{ uri: categoryImage }}
+          />
         </View>
         <View style={styles.headerContentStyle}>
           <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {StoryHeading}
+            {categoryHeading}
           </Text>
         </View>
       </CardSection>

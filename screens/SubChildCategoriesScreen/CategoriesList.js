@@ -2,18 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
-import { Colors } from 'constants'
-import { FontAwesome } from '@expo/vector-icons'
 
 class CategoriesList extends Component {
   constructor( props ) {
@@ -54,22 +44,6 @@ class CategoriesList extends Component {
 const styles = StyleSheet.create( {
   container: {
     marginTop: 10,
-  },
-  viewStyle: {
-    alignItems: 'center',
-    backgroundColor: '#eeeeee',
-    elevation: 2,
-    height: 60,
-    justifyContent: 'center',
-    marginTop: 10,
-    paddingTop: 15,
-    position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-  },
-  textStyle: {
-    fontSize: 20,
   },
 } )
 

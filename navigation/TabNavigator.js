@@ -4,10 +4,11 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import Colors from 'constants/Colors'
 
 import { Icon } from 'react-native-elements'
-import HomeScreen from '@screens/HomeScreen'
-import SearchScreen from '@screens/SearchScreen'
+
 import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
+import HomeScreen from '@screens/HomeScreen'
+import SearchScreen from '@screens/SearchScreen'
 import SettingsScreen from '@screens/SettingsScreen'
 
 const HomeTab = StackNavigator( {

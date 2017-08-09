@@ -1,6 +1,6 @@
-import { firebaseDb } from './firebase'
+import { firebaseDb } from 'services/firebase'
 
-export class FirebaseList {
+export default class FirebaseList {
   constructor( actions, modelClass ) {
     this._actions = actions
     this._modelClass = modelClass
@@ -47,22 +47,6 @@ export class FirebaseList {
       initialized = true
       emit( this._actions.onSuccess( { ...list, ...snap.val() } ) )
     } )
-
-    // ref.on( 'child_added', snapshot => {
-    //   if ( initialized ) {
-    //     emit( this._actions.onAdd( this.unwrapSnapshot( snapshot ) ) )
-    //   } else {
-    //     list.push( this.unwrapSnapshot( snapshot ) )
-    //   }
-    // } )
-
-    // ref.on( 'child_changed', snapshot => {
-    //   emit( this._actions.onChange( this.unwrapSnapshot( snapshot ) ) )
-    // } )
-
-    // ref.on( 'child_removed', snapshot => {
-    //   emit( this._actions.onRemove( this.unwrapSnapshot( snapshot ) ) )
-    // } )
 
     return () => ref.off()
   }

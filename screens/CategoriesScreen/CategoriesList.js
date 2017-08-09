@@ -31,7 +31,7 @@ class CategoriesList extends Component {
     this.props.navigation.navigate( 'childCategories', childCategory )
   }
 
-  renderStories() {
+  renderCategories() {
     return this.props.categories.map( e =>
       <TouchableOpacity
         key={e.name}
@@ -39,8 +39,8 @@ class CategoriesList extends Component {
       >
         <CategoriesDetail
           key={e.name}
-          StoryImage={e.image}
-          StoryHeading={e.name}
+          categoryImage={e.image}
+          categoryHeading={e.name}
         />
       </TouchableOpacity>
     )
@@ -50,7 +50,7 @@ class CategoriesList extends Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.renderStories()}
+          {this.renderCategories()}
         </View>
       </ScrollView>
     )
@@ -60,22 +60,6 @@ class CategoriesList extends Component {
 const styles = StyleSheet.create( {
   container: {
     marginTop: 10,
-  },
-  viewStyle: {
-    alignItems: 'center',
-    backgroundColor: '#eeeeee',
-    elevation: 2,
-    height: 60,
-    justifyContent: 'center',
-    marginTop: 10,
-    paddingTop: 15,
-    position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-  },
-  textStyle: {
-    fontSize: 20,
   },
 } )
 

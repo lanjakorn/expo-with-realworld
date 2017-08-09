@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
-import {
-  Text,
-  View,
-  Image,
-  Dimensions,
-  Linking,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
-import Card from '@components/Card'
-import CardSection from '@components/CardSection'
+import { Card, CardSection } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 
@@ -37,19 +28,17 @@ const styles = StyleSheet.create( {
     justifyContent: 'space-around',
   },
   headerTextStyle: {
+    alignContent: 'center',
     fontSize: 16,
     width: width * 0.85 - 100,
-    // marginRight: 25,
-    // paddingRight: 25,
-    alignContent: 'center',
   },
   thumbnailStyle: {
     height: 100,
     width: 100,
   },
   thumbnailContainerStyle: {
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
   },
 } )

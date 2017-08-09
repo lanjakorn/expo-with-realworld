@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
-const Card = ( { margin, backgroundColor, children } ) => {
+const Card = ( { backgroundColor, children, margin } ) => {
   return (
     <View
       style={[

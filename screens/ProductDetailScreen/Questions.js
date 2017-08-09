@@ -30,31 +30,35 @@ const SECTIONS = [
 
 const styles = {
   header: {
-    padding: 15,
-
+    alignItems: 'center',
     backgroundColor: 'transparent',
-    minWidth: 12,
     borderBottomWidth: 1,
     borderColor: '#ddd',
     borderRadius: 2,
-    //borderWidth: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    minWidth: 12,
+    padding: 15,
   },
   content: {
-    padding: 15,
-
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 2,
+    flexDirection: 'row',
+    padding: 15,
   },
   headerText: {
     fontSize: 14,
   },
+  contentText: {
+    color: Colors.textDescription,
+    fontSize: 13,
+  },
 }
 
 class AccordionView extends Component {
-  _renderHeader( section, index, isActive ) {
+  renderHeader( section, index, isActive ) {
     return (
       <View style={styles.header}>
         <View
@@ -79,8 +83,8 @@ class AccordionView extends Component {
             color={'white'}
             iconStyle={{
               color: Colors.iconGrey,
-              width: 25,
               textAlign: 'left',
+              width: 25,
             }}
             name={isActive ? 'ios-arrow-up' : 'ios-arrow-down'}
             size={32}
@@ -91,11 +95,11 @@ class AccordionView extends Component {
     )
   }
 
-  _renderContent( section ) {
+  renderContent( section ) {
     return (
       <View style={styles.content}>
         <View>
-          <Text>
+          <Text style={styles.contentText}>
             {section.content}
           </Text>
         </View>
@@ -108,8 +112,8 @@ class AccordionView extends Component {
       <Accordion
         underlayColor="transparent"
         sections={SECTIONS}
-        renderHeader={this._renderHeader}
-        renderContent={this._renderContent}
+        renderHeader={this.renderHeader}
+        renderContent={this.renderContent}
       />
     )
   }

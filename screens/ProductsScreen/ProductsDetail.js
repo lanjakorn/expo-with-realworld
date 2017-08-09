@@ -1,29 +1,19 @@
 import React, { Component } from 'react'
-import {
-  Text,
-  View,
-  Image,
-  Dimensions,
-  Linking,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
-import { Button, Icon } from 'react-native-elements'
-import Card from '@components/Card'
-import CardSection from '@components/CardSection'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Card, CardSection } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 
-const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
+const ProductsDetail = ( { productImage, productHeading } ) => {
   return (
     <Card margin={10}>
       <CardSection>
         <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
+          <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />
         </View>
         <View style={styles.headerContentStyle}>
           <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {StoryHeading}
+            {productHeading}
           </Text>
         </View>
       </CardSection>
@@ -52,4 +42,4 @@ const styles = StyleSheet.create( {
   },
 } )
 
-export default CategoriesDetail
+export default ProductsDetail

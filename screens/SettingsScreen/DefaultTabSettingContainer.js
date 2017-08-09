@@ -4,18 +4,17 @@ import { Colors, DefaultTab } from 'constants'
 import { actions as settingsActions, selectors } from 'modules/Settings'
 import { actions as searchActions } from 'modules/Search'
 
-import { Button, Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 import {
-  AsyncStorage,
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
-  View,
-  Dimensions,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import { Card, CardSection, Search } from '@components'
+import { Card, Search } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 

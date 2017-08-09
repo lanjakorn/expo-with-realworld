@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Colors } from 'constants'
 import verticalMenu from 'mocks/verticalMenu.json'
 
 import {
-  Text,
-  View,
-  AsyncStorage,
   Dimensions,
   Image,
   ScrollView,
-  Linking,
   StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native'
-import { Button, Icon, Tile } from 'react-native-elements'
-import { Card, CardSection } from '@components'
+import { Card } from '@components'
 import Spinner from 'react-native-loading-spinner-overlay'
 
 var { height, width } = Dimensions.get( 'window' )
@@ -68,35 +64,30 @@ class SearchListContainer extends Component {
 
 const styles = StyleSheet.create( {
   searchListItemStyle: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
-
-    marginTop: 0,
     marginBottom: 0,
-    marginRight: 0,
     marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
   },
   backgroundImage: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
+    height: height * 0.2 - 22,
     justifyContent: 'center',
     resizeMode: 'cover',
-    height: height * 0.2 - 22,
   },
   text: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    textAlign: 'center',
-    color: 'white',
     backgroundColor: 'rgba(0,0,0,0)',
+    color: 'white',
     fontSize: 22,
+    textAlign: 'center',
   },
 } )
 
 const mapStateToProps = state => ( {
-  //search_history_items: getSearch( state ),
   isFetching: state.categories.isFetching,
 } )
 

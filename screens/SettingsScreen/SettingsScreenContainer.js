@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { actions, selectors } from 'modules/Settings'
 import { Colors } from 'constants'
 
-import { ScrollView, StyleSheet, View, Text, AsyncStorage } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import { AsyncStorage, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { List, ListItem, Icon } from 'react-native-elements'
 import { Search } from '@components'
 
@@ -147,12 +146,6 @@ class InfoText extends Component {
 }
 
 const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-  },
-  reduceHeight: {
-    height: 5,
-  },
   infoTextStyle: {
     fontSize: 14,
     paddingTop: 20,

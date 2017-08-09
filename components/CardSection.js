@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 const CardSection = ( { children } ) => {
   return (
@@ -12,9 +12,9 @@ const CardSection = ( { children } ) => {
 const styles = StyleSheet.create( {
   containerStyle: {
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
     borderColor: '#ddd',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     position: 'relative',
   },
 } )

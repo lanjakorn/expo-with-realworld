@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { Colors } from 'constants'
 
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import { Button, Icon } from 'react-native-elements'
-import { NoItemComponent, Search } from '@components'
+import { StyleSheet } from 'react-native'
+import { Button } from 'react-native-elements'
+import { NoItemComponent } from '@components'
 
 class SourcesSetting extends Component {
   static navigationOptions = ( { navigation } ) => ( {
     title: 'sources',
-    // headerTintColor: Colors.tintColor,
     headerRight: (
       <Button
         raised={true}
@@ -34,11 +32,6 @@ class SourcesSetting extends Component {
   }
 }
 
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    paddingTop: 15,
-  },
-} )
+const styles = StyleSheet.create( {} )
 
 export default SourcesSetting

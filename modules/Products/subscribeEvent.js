@@ -1,5 +1,5 @@
 import { Record } from 'immutable'
-import { FirebaseListCustom } from 'services/firebase'
+import FirebaseList from './firebaseList'
 import { getProducts, products } from './actions'
 
 const Task = new Record( {
@@ -8,7 +8,7 @@ const Task = new Record( {
   title: null,
 } )
 
-export const subscribeEvent = new FirebaseListCustom(
+export const subscribeEvent = new FirebaseList(
   {
     onSuccess: getProducts,
     onFailure: products.failure,

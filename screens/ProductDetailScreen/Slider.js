@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
-
 import { Colors } from 'constants'
-import {
-  Image,
-  View,
-  Text,
-  ScrollView,
-  Dimensions,
-  PixelRatio,
-  WebView,
-} from 'react-native'
-import { Button } from 'react-native-elements'
 import { object } from 'utilities'
 
 import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
+import { Dimensions, Image, PixelRatio, View, WebView } from 'react-native'
+import { Button } from 'react-native-elements'
+
+import Spinner from 'react-native-loading-spinner-overlay'
 
 const { width } = Dimensions.get( 'window' )
 const calHeight = {
@@ -24,25 +17,20 @@ const calHeight = {
 }
 
 const styles = {
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
+  wrapper: {},
+  pagination: {
+    bottom: -30,
+  },
+  slideImage: {
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
-  },
-
-  slide2: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
   },
-
-  slide3: {
+  slideVideo: {
+    alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: '#92BBD9',
   },
   text: {
     color: '#fff',
@@ -50,11 +38,11 @@ const styles = {
     fontWeight: 'bold',
   },
   player: {
+    alignSelf: 'stretch',
+    marginVertical: 10,
     height: PixelRatio.roundToNearestPixel(
       Dimensions.get( 'window' ).width / ( 16 / 9 )
     ),
-    alignSelf: 'stretch',
-    marginVertical: 10,
   },
 }
 
@@ -73,7 +61,7 @@ class Slider extends Component {
       } )
     }, 100 )
   }
-  // const Slider = ( { urls } ) => {
+
   tranformImage = url => {
     const videoId = url.split( 'v=' )[ 1 ]
     return `http://img.youtube.com/vi/${ videoId }/hqdefault.jpg`
@@ -83,35 +71,43 @@ class Slider extends Component {
     {
       return this.state.SwipLoaded
         ? <Swiper
+          activeDotColor={Colors.tintColor}
           height={calHeight.height}
-          horizontal
-          showsButtons
-          loop={false}
+          // loadMinimal={true}
+          // loadMinimalLoader={
+          //   <View style={{ flex: 1 }}>
+          //     <Spinner visible={true} />
+          //   </View>
+          // }
+          paginationStyle={styles.pagination}
         >
-          <View style={styles.slide1}>
+          <View style={styles.slideImage}>
             <Image
+              resizeMode="cover"
               source={{
                 uri: object.getFirstByKey( {
                   item: this.props.urls,
                   key: 'imgs',
                 } ),
               }}
-              style={{ width: width, height: calHeight.height }}
-              resizeMode="cover"
+              style={{
+                height: calHeight.height,
+                width: width,
+              }}
             />
           </View>
-          <View style={styles.slide3}>
+          <View style={styles.slideVideo}>
             <WebView
               source={{
                 uri:
-                    'https://www.youtube.com/embed/Qy8j0XJShQM?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0',
+                    'https://www.youtube.com/embed/g0BFA01A56I?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0',
               }}
               style={{
-                height: 240,
-                width: width,
-                justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: 'black',
+                height: 240,
+                justifyContent: 'center',
+                width: width,
               }}
             />
           </View>

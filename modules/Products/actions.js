@@ -2,11 +2,11 @@ import { action } from 'utilities'
 import {
   GET_PRODUCTS,
   INIT_PRODUCTS_SCREEN,
-  SET_PRODUCTS,
-  SET_CURRENT_PRODUCT,
+  PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
-  PRODUCTS_FAILURE,
+  SET_CURRENT_PRODUCT,
+  SET_PRODUCTS,
 } from './types'
 
 const getProducts = products => action( GET_PRODUCTS, { products } )
@@ -23,7 +23,7 @@ const products = {
 export {
   getProducts,
   initProductsScreen,
-  setProducts,
-  setCurrentProduct,
   products,
+  setCurrentProduct,
+  setProducts,
 }

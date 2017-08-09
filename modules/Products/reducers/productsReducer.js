@@ -1,9 +1,9 @@
 import {
-  SET_PRODUCTS,
-  SET_CURRENT_PRODUCT,
+  PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
-  PRODUCTS_FAILURE,
+  SET_CURRENT_PRODUCT,
+  SET_PRODUCTS,
 } from '../types'
 import { types } from 'modules/Categories'
 

@@ -1,20 +1,12 @@
 import firebase from 'firebase'
 import { eventChannel } from 'redux-saga'
-import {
-  take,
-  takeEvery,
-  call,
-  cancel,
-  put,
-  fork,
-  select,
-} from 'redux-saga/effects'
+import { call, fork, put, select, take } from 'redux-saga/effects'
 import {
   GET_PRODUCTS,
   INIT_PRODUCTS_SCREEN,
+  PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
-  PRODUCTS_FAILURE,
 } from './types'
 import { setProducts, products as productsAction } from './actions'
 import { selectors } from 'modules/Categories'

@@ -1,18 +1,18 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 const styles = {
-  wrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   price: {
+    color: Colors.tintColor,
     fontSize: 16,
     fontWeight: '600',
-    color: Colors.tintColor,
     marginRight: 10,
+  },
+  wrapper: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 }
 

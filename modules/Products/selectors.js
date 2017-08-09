@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect'
 
 const currentProductSelector = state => state.products.productId
-
 const productsByIdSelector = state => state.products.productsById
 const productIdsSelector = state => state.categories.productIds
 
@@ -20,8 +19,8 @@ const productSelector = createSelector(
 )
 
 export {
-  productsByIdSelector,
   productIdsSelector,
-  productsNameSelector,
+  productsByIdSelector,
   productSelector,
+  productsNameSelector,
 }

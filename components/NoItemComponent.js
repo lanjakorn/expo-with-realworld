@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
 
@@ -21,10 +21,10 @@ const NoItemComponent = ( { iconName, infoHeading, infoParagraph } ) => {
 
 const styles = StyleSheet.create( {
   alignContainers: {
-    justifyContent: 'center',
     alignItems: 'center',
-    width: Dimensions.get( 'window' ).width,
     height: Dimensions.get( 'window' ).height - 150,
+    justifyContent: 'center',
+    width: Dimensions.get( 'window' ).width,
   },
   containerStyle: {
     alignItems: 'center',
@@ -32,18 +32,15 @@ const styles = StyleSheet.create( {
   },
   infoHeadingStyle: {
     fontSize: 24,
-    textAlign: 'center',
     marginTop: 5,
+    textAlign: 'center',
   },
   infoParagraphStyle: {
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 16,
     color: '#888',
+    fontSize: 16,
+    padding: 10,
+    textAlign: 'center',
     width: Dimensions.get( 'window' ).width / 1.75,
-  },
-  textStyle: {
-    fontSize: 20,
   },
 } )
 

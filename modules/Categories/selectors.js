@@ -50,8 +50,8 @@ export {
   categoryIdsSelector,
   childCategoriesNameSelector,
   childCatogoryIdsSelector,
+  currentCategorieQuerySelector,
   currentCategoriesSelector,
   subChildCategoriesNameSelector,
   subChildCatogoryIdsSelector,
-  currentCategorieQuerySelector,
 }

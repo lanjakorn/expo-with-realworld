@@ -1,13 +1,13 @@
 import React from 'react'
-import { Platform, View, Text, PixelRatio } from 'react-native'
+import { PixelRatio, Platform, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Badge } from 'react-native-elements'
 import { Colors } from 'constants'
 
 const commaNumber = require( 'comma-number' )
 
-let filledIconName = 'ios-star'
-let emptyIconName = 'ios-star-outline'
+const filledIconName = 'ios-star'
+const emptyIconName = 'ios-star-outline'
 if ( Platform.OS === 'android' ) {
   filledIconName = 'md-star'
   emptyIconName = 'md-star-outline'
@@ -18,20 +18,20 @@ const styles = {
     alignItems: 'center',
   },
   icon: {
-    marginRight: 8,
-    minWidth: 50,
     borderRadius: 90 / PixelRatio.get(),
+    marginRight: 8,
     marginTop: 8,
+    minWidth: 50,
   },
   text: {
-    marginLeft: 4,
     color: '#ccc',
-    fontWeight: '600',
     fontSize: 12,
+    fontWeight: '600',
+    marginLeft: 4,
   },
 }
 
-const RatingView = ( { name, style } ) => {
+const Tag = ( { name, style } ) => {
   const { wrapper } = styles
   return (
     <Badge
@@ -46,10 +46,10 @@ const RatingView = ( { name, style } ) => {
   )
 }
 
-RatingView.propTypes = {
+Tag.propTypes = {
   rating: PropTypes.number,
   reviewCount: PropTypes.number,
   style: PropTypes.object,
 }
 
-export default RatingView
+export default Tag

@@ -1,15 +1,5 @@
-import firebase from 'firebase'
 import { eventChannel } from 'redux-saga'
-import {
-  all,
-  take,
-  takeEvery,
-  call,
-  cancel,
-  put,
-  fork,
-  select,
-} from 'redux-saga/effects'
+import { all, call, fork, put, select, take } from 'redux-saga/effects'
 import {
   GET_CATEGORIES,
   INIT_CATEGORIES_SCREEN,
@@ -20,6 +10,7 @@ import {
   setCurrentCategories,
   categories as categoriesAction,
 } from './actions'
+
 import { normalizedCategories } from './normalize'
 import {
   currentCategoriesSelector,

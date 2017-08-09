@@ -1,6 +1,6 @@
 import { Record } from 'immutable'
-import { FirebaseList } from 'services/firebase'
-import { getCategories, categories } from './actions'
+import FirebaseList from './firebaseList'
+import { categories, getCategories } from './actions'
 
 const Task = new Record( {
   completed: false,

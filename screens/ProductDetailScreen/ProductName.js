@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create( {
   wrapper: {
-    fontWeight: '600',
     fontSize: 18,
+    fontWeight: '600',
   },
 } )
 

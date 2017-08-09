@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Platform, StyleSheet, ScrollView } from 'react-native'
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { MapView } from 'expo'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
@@ -8,8 +8,8 @@ class ContactUsScreen extends Component {
   state = {
     region: {
       latitude: 13.801961,
-      longitude: 100.5751,
       latitudeDelta: 0.004,
+      longitude: 100.5751,
       longitudeDelta: 0.004,
     },
     coordinate: {
@@ -17,7 +17,6 @@ class ContactUsScreen extends Component {
       longitude: 100.5751,
     },
     titleMarker: 'SellSuki',
-    //images: require( '../../assets/images/map-pin.png' ),
     infoItems: [
       {
         icon: { type: 'material', name: 'location-on' },
@@ -41,12 +40,12 @@ class ContactUsScreen extends Component {
 
   renderInfo() {
     const {
-      infoContainer,
-      infoItemsBox,
-      infoItemBox,
       iconContainer,
+      infoContainer,
       infoContentBox,
       infoContentTitle,
+      infoItemBox,
+      infoItemsBox,
     } = styles
     return (
       <ScrollView>
@@ -84,11 +83,7 @@ class ContactUsScreen extends Component {
       <View style={screenContainer}>
         <View style={mapContaininer}>
           <MapView style={mapView} region={region}>
-            <MapView.Marker
-              title={titleMarker}
-              coordinate={coordinate}
-              // image={images}
-            />
+            <MapView.Marker title={titleMarker} coordinate={coordinate} />
           </MapView>
           {this.renderInfo()}
         </View>
@@ -122,12 +117,12 @@ const styles = StyleSheet.create( {
     paddingBottom: 25,
   },
   iconContainer: {
-    marginRight: 15,
-    marginLeft: 5,
-    padding: 8,
-    borderWidth: 2,
-    borderRadius: 50,
     borderColor: '#888',
+    borderRadius: 50,
+    borderWidth: 2,
+    marginLeft: 5,
+    marginRight: 15,
+    padding: 8,
   },
   infoContentBox: {
     flex: 1,

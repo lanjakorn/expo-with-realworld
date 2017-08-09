@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
 
@@ -19,8 +12,8 @@ const HeaderNavigation = ( { navigation, title } ) => {
             color={'white'}
             iconStyle={{
               backgroundColor: Colors.tintColor,
-              width: 25,
               textAlign: 'left',
+              width: 25,
             }}
             name={'ios-arrow-back'}
             size={32}
@@ -40,8 +33,8 @@ const HeaderNavigation = ( { navigation, title } ) => {
             color={'white'}
             iconStyle={{
               backgroundColor: Colors.tintColor,
-              width: 25,
               textAlign: 'right',
+              width: 25,
             }}
             name={'ios-search'}
             size={28}
@@ -58,19 +51,19 @@ const HeaderNavigation = ( { navigation, title } ) => {
 
 const styles = StyleSheet.create( {
   container: {
+    flexDirection: 'row',
+    height: 40,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 24,
-    height: 40,
-    flexDirection: 'row',
   },
   leftSection: {
+    alignItems: 'center',
     alignItems: 'center',
     backgroundColor: Colors.tintColor,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   centerSection: {
     alignItems: 'center',
@@ -87,9 +80,9 @@ const styles = StyleSheet.create( {
     justifyContent: 'flex-end',
   },
   title: {
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white',
   },
 } )
 

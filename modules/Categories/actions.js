@@ -1,13 +1,13 @@
 import { action } from 'utilities'
 import {
-  GET_CATEGORIES,
-  INIT_CATEGORIES_SCREEN,
-  SET_CATEGORIES,
-  SET_CURRENT_CATEGORIES,
-  SELECT_CHILD_CATEGORY,
+  CATEGORIES_FAILURE,
   CATEGORIES_REQUEST,
   CATEGORIES_SUCCESS,
-  CATEGORIES_FAILURE,
+  GET_CATEGORIES,
+  INIT_CATEGORIES_SCREEN,
+  SELECT_CHILD_CATEGORY,
+  SET_CATEGORIES,
+  SET_CURRENT_CATEGORIES,
 } from './types'
 
 const getCategories = categories => action( GET_CATEGORIES, { categories } )
@@ -25,10 +25,10 @@ const categories = {
 }
 
 export {
+  categories,
   getCategories,
   initCategoriesScreen,
+  selectChildCategory,
   setCategories,
   setCurrentCategories,
-  selectChildCategory,
-  categories,
 }

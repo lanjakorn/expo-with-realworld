@@ -3,19 +3,12 @@ import { connect } from 'react-redux'
 import { actions as productAction, selectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
 import { Colors } from 'constants'
-import {
-  Image,
-  View,
-  Text,
-  ScrollView,
-  Dimensions,
-  PixelRatio,
-} from 'react-native'
+import { Image, View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 import PropTypes from 'prop-types'
 
-import Tags from './Tags'
-import Pros from './Pros'
+import Tag from './Tag'
+import Pro from './Pro'
 import PriceText from './PriceText'
 import ProductName from './ProductName'
 import ProductDescription from './ProductDescription'
@@ -26,112 +19,96 @@ import Faq from './Faq'
 const styles = {
   wrapper: {
     backgroundColor: '#fff',
-    // marginTop: 10,
     flexDirection: 'column',
-    //height: 170,
-    // shadowColor: '#ccc',
-    // shadowOffset: { width: 0, height: 0 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // elevation: 5,
-    //padding: 20,
-    paddingTop: 20,
     paddingBottom: 20,
+    paddingTop: 20,
   },
   thumbnailView: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    margin: 15,
-
-    // marginRight: 10,
-    // position: 'relative',
-    marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  thumbnail: {
-    width: 200,
-    height: 160,
-  },
-  detailsView: {
+    margin: 15,
+    marginTop: 30,
     paddingLeft: 20,
     paddingRight: 20,
   },
-
+  thumbnail: {
+    height: 160,
+    width: 200,
+  },
+  detailsView: {
+    marginTop: 35,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
   shipping: {
-    position: 'absolute',
-    bottom: 10,
-    borderWidth: 2,
     borderColor: '#DCDCDC',
+    borderRadius: 12,
+    borderWidth: 2,
+    bottom: 10,
+    paddingBottom: 5,
     paddingLeft: 12,
     paddingRight: 12,
     paddingTop: 5,
-    paddingBottom: 5,
-    borderRadius: 12,
+    position: 'absolute',
   },
   title: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   price: {
+    backgroundColor: Colors.backgroundSection,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: 25,
     marginBottom: 25,
-    paddingTop: 30,
+    marginTop: 25,
     paddingBottom: 30,
-    backgroundColor: Colors.backgroundSection,
+    paddingTop: 30,
   },
   tags: {
-    paddingLeft: 20,
-    paddingRight: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   pros: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    marginTop: 25,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
-  },
-  more: {
+    marginTop: 25,
     paddingLeft: 20,
     paddingRight: 20,
-    marginTop: 25,
+  },
+  more: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginTop: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   faq: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    //justifyContent: 'center',
+    backgroundColor: Colors.backgroundSection,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    justifyContent: 'space-between',
     marginTop: 25,
+    paddingBottom: 30,
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 30,
-    paddingBottom: 30,
-    backgroundColor: Colors.backgroundSection,
   },
   questions: {
-    // marginTop: 25,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   shippingText: {
-    fontSize: 13,
     color: '#C0C0C0',
-  },
-  rating: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    fontSize: 13,
   },
   priceText: {
     marginTop: 5,
@@ -142,7 +119,7 @@ const renderTags = ( { product: { tags } } ) => {
   return (
     <View style={styles.tags}>
       {tags.map( ( e, k ) =>
-        <Tags key={`tags-${ k }`} name={e} style={styles.rating} />
+        <Tag key={`tags-${ k }`} name={e} style={styles.rating} />
       )}
     </View>
   )
@@ -155,7 +132,7 @@ const renderPros = ( { product: { pros }, words } ) => {
         {words.productPros}
       </Text>
       <View>
-        {pros.map( ( e, k ) => <Pros key={`pros-${ k }`} name={e} /> )}
+        {pros.map( ( e, k ) => <Pro key={`pros-${ k }`} name={e} /> )}
       </View>
     </View>
   )
@@ -178,15 +155,18 @@ const ProductCard = props => {
         <ProductName name={name} />
         <Button
           backgroundColor={Colors.tintColor}
-          fontSize={12.5}
-          buttonStyle={{
-            paddingTop: 4,
-            paddingBottom: 4,
-          }}
-          containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
           borderRadius={5}
-          title="Contact Us"
+          fontSize={12.5}
           onPress={onPressContactUs}
+          title="Contact Us"
+          buttonStyle={{
+            paddingBottom: 4,
+            paddingTop: 4,
+          }}
+          containerViewStyle={{
+            marginLeft: 0,
+            marginRight: 0,
+          }}
         />
       </View>
       <View style={styles.thumbnailView}>
@@ -197,10 +177,10 @@ const ProductCard = props => {
       </View>
       <View style={styles.price}>
         <PriceText
-          words={words}
           price={offer.price}
           salePrice={offer.salePrice}
           style={styles.priceText}
+          words={words}
         />
       </View>
       {renderTags( props )}
@@ -208,41 +188,41 @@ const ProductCard = props => {
       <View style={styles.more}>
         <Button
           backgroundColor={'#fff'}
+          borderRadius={5}
+          color={Colors.tintColor}
           fontSize={12.5}
+          onPress={onPressContactUs}
+          title="Contact"
           buttonStyle={{
-            paddingTop: 4,
-            paddingBottom: 4,
-            borderWidth: 1,
-            borderRadius: 50,
             borderColor: Colors.tintColor,
+            borderRadius: 50,
+            borderWidth: 1,
+            paddingBottom: 4,
+            paddingTop: 4,
           }}
           containerViewStyle={{
             marginLeft: 0,
             marginRight: 6,
           }}
-          color={Colors.tintColor}
-          borderRadius={5}
-          title="Contact"
-          onPress={onPressContactUs}
         />
         <Button
+          color={Colors.tintColor}
           backgroundColor={'#fff'}
+          borderRadius={5}
           fontSize={12.5}
+          onPress={onPressContactUs}
+          title="Share"
           buttonStyle={{
-            paddingTop: 4,
-            paddingBottom: 4,
-            borderWidth: 1,
-            borderRadius: 50,
             borderColor: Colors.tintColor,
+            borderRadius: 50,
+            borderWidth: 1,
+            paddingBottom: 4,
+            paddingTop: 4,
           }}
           containerViewStyle={{
             marginLeft: 0,
             marginRight: 0,
           }}
-          color={Colors.tintColor}
-          borderRadius={5}
-          title="Share"
-          onPress={onPressContactUs}
         />
       </View>
       <View style={styles.faq}>
@@ -253,15 +233,15 @@ const ProductCard = props => {
         </Text>
         <Button
           backgroundColor={Colors.tintColor}
+          borderRadius={5}
           fontSize={12.5}
+          onPress={onPressContactUs}
+          title="Ask"
           buttonStyle={{
-            paddingTop: 4,
             paddingBottom: 4,
+            paddingTop: 4,
           }}
           containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
-          borderRadius={5}
-          title="Ask"
-          onPress={onPressContactUs}
         />
       </View>
       <View style={styles.questions}>
@@ -272,11 +252,11 @@ const ProductCard = props => {
 }
 
 ProductCard.propTypes = {
+  image: PropTypes.string,
   name: PropTypes.string,
   offer: PropTypes.object,
-  reviewScore: PropTypes.number,
   reviewCount: PropTypes.number,
-  image: PropTypes.string,
+  reviewScore: PropTypes.number,
 }
 
 ProductCard.defaultProps = {

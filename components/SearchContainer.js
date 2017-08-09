@@ -4,15 +4,13 @@ import { connect } from 'react-redux'
 import Colors from 'constants/Colors'
 
 import {
-  Text,
+  Dimensions,
+  Keyboard,
+  LayoutAnimation,
+  StyleSheet,
   TextInput,
   TouchableOpacity,
-  LayoutAnimation,
   View,
-  Dimensions,
-  StyleSheet,
-  Keyboard,
-  Platform,
 } from 'react-native'
 import { Button, Icon, SearchBar } from 'react-native-elements'
 import { actions as settingsActions } from 'modules/Settings'
@@ -31,8 +29,6 @@ class SearchContainer extends Component {
   }
 
   onSearchActive = () => {
-    console.log( 'onSearchActive' )
-    console.log( this.props.navigation )
     this.props.searching( true )
     this.props.navigation.navigate( 'search' )
     this.setState( { isTouchableDisabled: true } )

@@ -1,6 +1,6 @@
-import { firebaseDb } from './firebase'
+import { firebaseDb } from 'services/firebase'
 
-export class FirebaseListCustom {
+export default class FirebaseList {
   constructor( actions, modelClass ) {
     this._actions = actions
     this._modelClass = modelClass

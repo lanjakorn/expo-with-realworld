@@ -4,20 +4,17 @@ import { actions, selectors } from 'modules/Search'
 import { Colors } from 'constants'
 
 import {
-  Text,
-  View,
-  AsyncStorage,
   Dimensions,
-  Image,
   ScrollView,
-  Linking,
   StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native'
-import { Button, Icon } from 'react-native-elements'
-import { Card, CardSection } from '@components'
+import { Icon } from 'react-native-elements'
+import { Card } from '@components'
 
-var { height, width } = Dimensions.get( 'window' )
+const { height, width } = Dimensions.get( 'window' )
 
 class SearchListContainer extends Component {
   constructor( props ) {

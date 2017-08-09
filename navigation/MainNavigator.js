@@ -5,16 +5,15 @@ import Colors from 'constants/Colors'
 
 import { Icon } from 'react-native-elements'
 
-import HomeScreen from '@screens/HomeScreen'
-import SearchScreen from '@screens/SearchScreen'
 import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
-import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
-import ProductsScreen from '@screens/ProductsScreen'
-import ProductDetailScreen from '@screens/ProductDetailScreen'
 import ContactUsScreen from '@screens/ContactUsScreen'
-
+import HomeScreen from '@screens/HomeScreen'
+import ProductDetailScreen from '@screens/ProductDetailScreen'
+import ProductsScreen from '@screens/ProductsScreen'
+import SearchScreen from '@screens/SearchScreen'
 import SettingsScreen from '@screens/SettingsScreen'
+import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 
 const HomeTab = StackNavigator( {
   home: {

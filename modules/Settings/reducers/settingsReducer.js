@@ -1,4 +1,4 @@
-import { SET_AUTOCOMPLETE, SET_SAVE_RECENT, SET_DEFAULT_TAB } from '../types'
+import { SET_AUTOCOMPLETE, SET_DEFAULT_TAB, SET_SAVE_RECENT } from '../types'
 
 export const INITIAL_STATE = {
   autocomplete: false,

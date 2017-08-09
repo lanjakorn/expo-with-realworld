@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actions as productsAction, selectors } from 'modules/Products'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
 import ProductsDetail from './ProductsDetail'
 import { Colors } from 'constants'
-import { FontAwesome } from '@expo/vector-icons'
 import { object } from 'utilities'
 
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -32,7 +23,7 @@ class ProductsList extends Component {
     this.props.navigation.navigate( 'productDetail', id )
   }
 
-  renderStories() {
+  renderProducts() {
     return this.props.products.map( ( e, k ) =>
       <TouchableOpacity
         key={`product-touch-${ e.name }-${ k }`}
@@ -40,8 +31,8 @@ class ProductsList extends Component {
       >
         <ProductsDetail
           key={`product-${ e.name }-${ k }`}
-          StoryImage={object.getFirstByKey( { item: e.urls, key: 'imgs' } )}
-          StoryHeading={e.name}
+          productImage={object.getFirstByKey( { item: e.urls, key: 'imgs' } )}
+          productHeading={e.name}
         />
       </TouchableOpacity>
     )
@@ -52,7 +43,7 @@ class ProductsList extends Component {
       <ScrollView>
         {!this.props.isFetching
           ? <View style={styles.container}>
-            {this.renderStories()}
+            {this.renderProducts()}
           </View>
           : <View style={{ flex: 1 }}>
             <Spinner visible={true} />
@@ -66,27 +57,11 @@ const styles = StyleSheet.create( {
   container: {
     marginTop: 10,
   },
-  viewStyle: {
-    alignItems: 'center',
-    backgroundColor: '#eeeeee',
-    elevation: 2,
-    height: 60,
-    justifyContent: 'center',
-    marginTop: 10,
-    paddingTop: 15,
-    position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-  },
-  textStyle: {
-    fontSize: 20,
-  },
 } )
 
 const mapStateToProps = state => ( {
-  products: selectors.productsNameSelector( state ),
   isFetching: state.products.isFetching,
+  products: selectors.productsNameSelector( state ),
 } )
 
 export default connect( mapStateToProps, productsAction )( ProductsList )

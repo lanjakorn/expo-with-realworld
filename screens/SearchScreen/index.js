@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Colors } from 'constants'
 
-import { ScrollView, View, StyleSheet, Text, Image } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import { Card, Button, Icon } from 'react-native-elements'
+import { View, StyleSheet } from 'react-native'
+import { Icon } from 'react-native-elements'
 import { Search } from '@components'
 import SearchList from './SearchListContainer'
 
@@ -36,11 +35,6 @@ class SearchScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    paddingTop: 15,
-  },
-} )
+const styles = StyleSheet.create( {} )
 
 export default SearchScreen
