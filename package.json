@@ -16,7 +16,9 @@
   "eslintConfig": {
     "extends": "expo"
   },
-  "keywords": ["expo"],
+  "keywords": [
+    "expo"
+  ],
   "engines": {
     "node": ">=7.10.0",
     "npm": ">=4.2.0"
@@ -35,6 +37,7 @@
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
+    "react-native-collapsible": "^0.9.0",
     "react-native-elements": "^0.12.2",
     "react-native-loading-spinner-overlay": "^0.5.1",
     "react-native-popup-menu": "^0.7.5",

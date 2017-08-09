@@ -20,6 +20,8 @@ import PriceText from './PriceText'
 import ProductName from './ProductName'
 import ProductDescription from './ProductDescription'
 import Slider from './Slider'
+import Questions from './Questions'
+import Faq from './Faq'
 
 const styles = {
   wrapper: {
@@ -32,10 +34,13 @@ const styles = {
     // shadowOpacity: 0.8,
     // shadowRadius: 2,
     // elevation: 5,
-    padding: 20,
-    // paddingRight: 10,
+    //padding: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   thumbnailView: {
+    paddingLeft: 20,
+    paddingRight: 20,
     margin: 15,
 
     // marginRight: 10,
@@ -48,7 +53,10 @@ const styles = {
     width: 200,
     height: 160,
   },
-  detailsView: {},
+  detailsView: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
 
   shipping: {
     position: 'absolute',
@@ -62,6 +70,8 @@ const styles = {
     borderRadius: 12,
   },
   title: {
+    paddingLeft: 20,
+    paddingRight: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -77,20 +87,43 @@ const styles = {
     backgroundColor: Colors.backgroundSection,
   },
   tags: {
+    paddingLeft: 20,
+    paddingRight: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
   },
   pros: {
+    paddingLeft: 20,
+    paddingRight: 20,
     marginTop: 25,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
   },
   more: {
+    paddingLeft: 20,
+    paddingRight: 20,
     marginTop: 25,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+  faq: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    //justifyContent: 'center',
+    marginTop: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 30,
+    paddingBottom: 30,
+    backgroundColor: Colors.backgroundSection,
+  },
+  questions: {
+    // marginTop: 25,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   shippingText: {
     fontSize: 13,
@@ -211,6 +244,28 @@ const ProductCard = props => {
           title="Share"
           onPress={onPressContactUs}
         />
+      </View>
+      <View style={styles.faq}>
+        <Text
+          style={{ color: Colors.tintColor, fontSize: 16, fontWeight: '400' }}
+        >
+          {'FAQ'}
+        </Text>
+        <Button
+          backgroundColor={Colors.tintColor}
+          fontSize={12.5}
+          buttonStyle={{
+            paddingTop: 4,
+            paddingBottom: 4,
+          }}
+          containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
+          borderRadius={5}
+          title="Ask"
+          onPress={onPressContactUs}
+        />
+      </View>
+      <View style={styles.questions}>
+        <Questions />
       </View>
     </View>
   )

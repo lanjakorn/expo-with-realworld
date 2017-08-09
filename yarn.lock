@@ -4600,7 +4600,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4740,6 +4740,12 @@ react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
 
+react-native-collapsible@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-0.9.0.tgz#207849faa15493820d19fa6a5e58f7c7b6c1b910"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-debugger-open@^0.3.12:
   version "0.3.12"
   resolved "https://registry.yarnpkg.com/react-native-debugger-open/-/react-native-debugger-open-0.3.12.tgz#0a95aa410c4be24a8788fceb5b049b0d56e2d3bf"
@@ -4848,12 +4854,6 @@ react-native-vector-icons@^4.2.0:
     lodash "^4.0.0"
     prop-types "^15.5.8"
     yargs "^6.3.0"
-
-react-native-youtube@^1.0.0-beta.2:
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/react-native-youtube/-/react-native-youtube-1.0.0-beta.2.tgz#10672a11f9d6cfdf19947ff41dc7435c30a13048"
-  dependencies:
-    prop-types "^15.5.0"
 
 "react-native@https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz":
   version "0.44.0"
