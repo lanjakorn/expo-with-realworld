@@ -4,37 +4,12 @@ import { View, Text } from 'react-native'
 import { Colors } from 'constants'
 import { Icon } from 'react-native-elements'
 
-const SECTIONS = [
-  {
-    title:
-      'Et perspiciatis dolor perferendis laboriosam enim Et perspiciatis dolor perferendis laboriosam enim.',
-    content:
-      'Quam omnis sapiente autem sit quia quod consequatur. Est quo est. At in sunt placeat repudiandae sint aperiam ut rerum est. Quidem quia necessitatibus provident omnis commodi rerum omnis voluptatem. Veniam in ut non quo qui minima. Magnam qui aut incidunt. Debitis molestias esse. Dolore laudantium qui. Hic rem consequatur molestiae. Corrupti officia explicabo eligendi eum. Et dolorem ut natus laborum deleniti est. Id ut neque fugit et qui qui minus. Neque vel et ex beatae aut libero rerum deserunt omnis. Odio fugit numquam quod voluptates asperiores aut quasi rerum.',
-  },
-  {
-    title: 'Et perspiciatis dolor perferendis laboriosam enim.',
-    content:
-      'Quam omnis sapiente autem sit quia quod consequatur. Est quo est. At in sunt placeat repudiandae sint aperiam ut rerum est. Quidem quia necessitatibus provident omnis commodi rerum omnis voluptatem. Veniam in ut non quo qui minima. Magnam qui aut incidunt. Debitis molestias esse. Dolore laudantium qui. Hic rem consequatur molestiae. Corrupti officia explicabo eligendi eum. Et dolorem ut natus laborum deleniti est. Id ut neque fugit et qui qui minus. Neque vel et ex beatae aut libero rerum deserunt omnis. Odio fugit numquam quod voluptates asperiores aut quasi rerum.',
-  },
-  {
-    title: 'Et perspiciatis dolor perferendis laboriosam enim.',
-    content:
-      'Quam omnis sapiente autem sit quia quod consequatur. Est quo est. At in sunt placeat repudiandae sint aperiam ut rerum est. Quidem quia necessitatibus provident omnis commodi rerum omnis voluptatem. Veniam in ut non quo qui minima. Magnam qui aut incidunt. Debitis molestias esse. Dolore laudantium qui. Hic rem consequatur molestiae. Corrupti officia explicabo eligendi eum. Et dolorem ut natus laborum deleniti est. Id ut neque fugit et qui qui minus. Neque vel et ex beatae aut libero rerum deserunt omnis. Odio fugit numquam quod voluptates asperiores aut quasi rerum.',
-  },
-  {
-    title: 'Et perspiciatis dolor perferendis laboriosam enim.',
-    content:
-      'Quam omnis sapiente autem sit quia quod consequatur. Est quo est. At in sunt placeat repudiandae sint aperiam ut rerum est. Quidem quia necessitatibus provident omnis commodi rerum omnis voluptatem. Veniam in ut non quo qui minima. Magnam qui aut incidunt. Debitis molestias esse. Dolore laudantium qui. Hic rem consequatur molestiae. Corrupti officia explicabo eligendi eum. Et dolorem ut natus laborum deleniti est. Id ut neque fugit et qui qui minus. Neque vel et ex beatae aut libero rerum deserunt omnis. Odio fugit numquam quod voluptates asperiores aut quasi rerum.',
-  },
-]
-
 const styles = {
   header: {
     alignItems: 'center',
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderColor: '#ddd',
-    borderRadius: 2,
     flexDirection: 'row',
     minWidth: 12,
     padding: 15,
@@ -44,7 +19,6 @@ const styles = {
     backgroundColor: 'transparent',
     borderBottomWidth: 1,
     borderColor: '#ddd',
-    borderRadius: 2,
     flexDirection: 'row',
     padding: 15,
   },
@@ -57,8 +31,8 @@ const styles = {
   },
 }
 
-class AccordionView extends Component {
-  renderHeader( section, index, isActive ) {
+const AccordionView = ( { questions } ) => {
+  const renderHeader = ( section, index, isActive ) => {
     return (
       <View style={styles.header}>
         <View
@@ -95,7 +69,7 @@ class AccordionView extends Component {
     )
   }
 
-  renderContent( section ) {
+  const renderContent = section => {
     return (
       <View style={styles.content}>
         <View>
@@ -107,16 +81,14 @@ class AccordionView extends Component {
     )
   }
 
-  render() {
-    return (
-      <Accordion
-        underlayColor="transparent"
-        sections={SECTIONS}
-        renderHeader={this.renderHeader}
-        renderContent={this.renderContent}
-      />
-    )
-  }
+  return (
+    <Accordion
+      underlayColor="transparent"
+      sections={questions}
+      renderHeader={renderHeader}
+      renderContent={renderContent}
+    />
+  )
 }
 
 export default AccordionView

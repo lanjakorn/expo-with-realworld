@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native'
 import ProductCard from './ProductCard'
 import { HeaderNavigation } from '@components'
 
-class CategoriesScreen extends Component {
+class HouseCategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       header: <HeaderNavigation navigation={navigation} title={'Products'} />,
@@ -19,4 +19,4 @@ class CategoriesScreen extends Component {
   }
 }
 
-export default CategoriesScreen
+export default HouseCategoriesScreen

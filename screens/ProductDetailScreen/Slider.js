@@ -4,10 +4,15 @@ import { object } from 'utilities'
 
 import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
-import { Dimensions, Image, PixelRatio, View, WebView } from 'react-native'
+import {
+  Dimensions,
+  Image,
+  PixelRatio,
+  Platform,
+  View,
+  WebView,
+} from 'react-native'
 import { Button } from 'react-native-elements'
-
-import Spinner from 'react-native-loading-spinner-overlay'
 
 const { width } = Dimensions.get( 'window' )
 const calHeight = {
@@ -19,7 +24,7 @@ const calHeight = {
 const styles = {
   wrapper: {},
   pagination: {
-    bottom: -30,
+    bottom: Platform.OS === 'android' ? 0 : -30,
   },
   slideImage: {
     alignItems: 'center',
@@ -73,13 +78,8 @@ class Slider extends Component {
         ? <Swiper
           activeDotColor={Colors.tintColor}
           height={calHeight.height}
-          // loadMinimal={true}
-          // loadMinimalLoader={
-          //   <View style={{ flex: 1 }}>
-          //     <Spinner visible={true} />
-          //   </View>
-          // }
           paginationStyle={styles.pagination}
+          loop={false}
         >
           <View style={styles.slideImage}>
             <Image
