@@ -1,12 +1,12 @@
-// import './ReactotronConfig' // build android must comment
+import './ReactotronConfig' // build android must comment
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
 import config from 'config'
 import firebase from 'firebase'
 import { cacheAssetsAsync } from 'utilities'
-// import store from 'store' // build android must comment and turn off comment below
-import store from 'store/configureStore.prod'
+import store from 'store' // build android must comment and turn off comment below
+// import store from 'store/configureStore.prod'
 
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
@@ -23,7 +23,6 @@ class AppContainer extends React.Component {
 
   async componentWillMount() {
     this._loadAssetsAsync()
-    //await firebase.initializeApp( config.firebase )
   }
 
   async _loadAssetsAsync() {
@@ -31,11 +30,13 @@ class AppContainer extends React.Component {
       await cacheAssetsAsync( {
         images: [
           require( './assets/images/expo-wordmark.png' ),
+          require( './assets/images/business-item-1.png' ),
+          require( './assets/images/business-item-2.png' ),
           require( './assets/images/vertical-menu-item.png' ),
+          require( './assets/images/house-menu-item.png' ),
         ],
         fonts: [
           FontAwesome.font,
-          // MaterialIcons.font,
           { 'space-mono': require( './assets/fonts/SpaceMono-Regular.ttf' ) },
         ],
       } )
