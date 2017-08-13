@@ -1,0 +1,137 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { object } from 'utilities'
+import {
+  actions as houseCategoriesActions,
+  selectors as houseCategoriesSelectors,
+} from 'modules/HouseCategories'
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import { Card } from '@components'
+import Spinner from 'react-native-loading-spinner-overlay'
+import FitImage from 'react-native-fit-image'
+
+var { height, width } = Dimensions.get( 'window' )
+
+class HouseListContainer extends Component {
+  constructor( props ) {
+    super( props )
+  }
+
+  async componentWillMount() {
+    await this.props.initHouseCategoriesScreen()
+  }
+
+  onPressHouseCategoriesSelect = category => {
+    this.props.setCurrentHouseCategories( category )
+    this.props.navigation.navigate( 'houseCategories' )
+  }
+
+  render() {
+    const { houseCategories, isFetchingHouseCategories } = this.props
+
+    return (
+      <ScrollView>
+        <View>
+          {!this.props.isFetchingHouseCategories
+            ? Object.keys( houseCategories ).map( e =>
+              <TouchableOpacity
+                key={houseCategories[ e ].title}
+                onPress={() => this.onPressHouseCategoriesSelect( e )}
+              >
+                <Card margin={10} backgroundColor={'white'}>
+                  <View style={styles.searchListItemStyle}>
+                    <Image
+                      key={`image-${ houseCategories[ e ].title }`}
+                      style={styles.backgroundImage}
+                      source={{
+                        uri: object.getFirstByKey( {
+                          item: houseCategories[ e ].urls,
+                          key: 'imgs',
+                        } ),
+                      }}
+                    >
+                      <View
+                        stlye={{
+                          flex: 1,
+                          flexDirection: 'row',
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        <Text style={styles.text} numberOfLines={1}>
+                          {houseCategories[ e ].title}
+                        </Text>
+                      </View>
+                      <View
+                        stlye={{
+                          flexDirection: 'row',
+                          flexWrap: 'wrap',
+                          flex: 1,
+                        }}
+                      >
+                        <Text style={styles.textDescription}>
+                          {houseCategories[ e ].description}
+                        </Text>
+                      </View>
+                    </Image>
+                  </View>
+                </Card>
+              </TouchableOpacity>
+            )
+            : <View style={{ flex: 1 }}>
+              <Spinner visible={true} />
+            </View>}
+        </View>
+      </ScrollView>
+    )
+  }
+}
+
+const styles = StyleSheet.create( {
+  searchListItemStyle: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+  },
+  backgroundImage: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    resizeMode: 'cover',
+    height: height * 0.2 - 20,
+    width: width * 1 - 15,
+  },
+  text: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textDescription: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'black',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+} )
+
+const mapStateToProps = state => ( {
+  houseCategories: houseCategoriesSelectors.houseCategoriesByIdSelector( state ),
+  isFetchingHouseCategories: houseCategoriesSelectors.isFetchingSelector( state ),
+} )
+
+export default connect( mapStateToProps, houseCategoriesActions )(
+  HouseListContainer
+)
