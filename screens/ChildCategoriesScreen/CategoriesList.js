@@ -64,8 +64,6 @@ const styles = StyleSheet.create( {
 
 const mapStateToProps = state => ( {
   categories: selectors.childCategoriesNameSelector( state ),
-  currentCategories: selectors.currentCategoriesSelector( state ),
-  subChildcategories: selectors.subChildCategoriesNameSelector( state ),
 } )
 
 export default connect( mapStateToProps, CategoriesAction )( CategoriesList )

@@ -1,15 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { actions as productAction, selectors } from 'modules/Products'
+import {
+  actions as faqsActions,
+  selectors as faqsSelectors,
+} from 'modules/Faqs'
+import {
+  actions as productsActions,
+  selectors as productsSelectors,
+} from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
 import { Colors } from 'constants'
 import { Image, View, Text } from 'react-native'
+import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
   HeaderTitle,
-  HeaderSection,
+  HeaderButtonSection,
   TextDescriptionCard,
 } from '@components'
 
@@ -45,9 +53,11 @@ const renderPros = ( { product: { pros }, words } ) => {
 
 const ProductCard = props => {
   const {
+    faqs,
+    isFetchingFaqs,
     navigation,
     words,
-    product: { name, urls, title, description, offer, tags, pros, faqs },
+    product: { name, urls, title, description, offer, tags, pros },
   } = props
 
   const onPressContactUs = () => {
@@ -87,14 +97,16 @@ const ProductCard = props => {
         />
         <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
       </View>
-      <HeaderSection
+      <HeaderButtonSection
         buttonOnPress={onPressContactUs}
         buttontitle={'Faq'}
         containerstyle={styles.faq}
         textTitle={'FAQ'}
       />
       <View style={styles.questions}>
-        <Questions questions={faqs} />
+        {isFetchingFaqs
+          ? <Spinner visible={true} />
+          : <Questions questions={faqs} />}
       </View>
     </View>
   )
@@ -112,9 +124,16 @@ ProductCard.defaultProps = {
   reviewCount: 0,
 }
 
+const combineAction = () => ( {
+  ...faqsActions,
+  ...productsActions,
+} )
+
 const mapStateToProps = state => ( {
-  product: selectors.productSelector( state ),
+  faqs: faqsSelectors.faqsByIdSelector( state ),
+  isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),
+  product: productsSelectors.productSelector( state ),
   words: settingsSelectors.getWordsByLangSelector( state ),
 } )
 
-export default connect( mapStateToProps, productAction )( ProductCard )
+export default connect( mapStateToProps, combineAction() )( ProductCard )

@@ -44,7 +44,7 @@ class SearchListContainer extends Component {
                     key={`image-${ e }`}
                     style={styles.backgroundImage}
                     resizeMode="cover"
-                    source={require( '../../assets/images/vertical-menu-item.png' )}
+                    source={require( '../../assets/images/house-menu-item.png' )}
                   >
                     <Text style={styles.text} numberOfLines={1}>
                       {e}
@@ -76,6 +76,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     flexDirection: 'row',
     height: height * 0.2 - 22,
+    width: width * 1,
     justifyContent: 'center',
     resizeMode: 'cover',
   },

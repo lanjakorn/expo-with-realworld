@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { actions as faqsAction } from 'modules/Faqs'
 import { actions as productsAction, selectors } from 'modules/Products'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
@@ -20,6 +21,7 @@ class ProductsList extends Component {
 
   onPressSelectProduct = id => {
     this.props.setCurrentProduct( id )
+    this.props.initFaqsScreen()
     this.props.navigation.navigate( 'productDetail', id )
   }
 
@@ -59,9 +61,14 @@ const styles = StyleSheet.create( {
   },
 } )
 
+const combineAction = () => ( {
+  ...faqsAction,
+  ...productsAction,
+} )
+
 const mapStateToProps = state => ( {
   isFetching: state.products.isFetching,
   products: selectors.productsNameSelector( state ),
 } )
 
-export default connect( mapStateToProps, productsAction )( ProductsList )
+export default connect( mapStateToProps, combineAction() )( ProductsList )

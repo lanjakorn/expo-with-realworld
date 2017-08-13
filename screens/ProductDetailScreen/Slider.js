@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Colors } from 'constants'
-import { object } from 'utilities'
+import { object, string } from 'utilities'
 
 import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
@@ -67,9 +67,15 @@ class Slider extends Component {
     }, 100 )
   }
 
-  tranformImage = url => {
-    const videoId = url.split( 'v=' )[ 1 ]
-    return `http://img.youtube.com/vi/${ videoId }/hqdefault.jpg`
+  embedVideoLink() {
+    const video = object.getFirstByKey( {
+      item: this.props.urls,
+      key: 'videos',
+    } )
+
+    return `https://www.youtube.com/embed/${ string.getYoutubeId(
+      video
+    ) }?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0`
   }
 
   render() {
@@ -99,8 +105,7 @@ class Slider extends Component {
           <View style={styles.slideVideo}>
             <WebView
               source={{
-                uri:
-                    'https://www.youtube.com/embed/g0BFA01A56I?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0',
+                uri: this.embedVideoLink(),
               }}
               style={{
                 alignItems: 'center',

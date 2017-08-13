@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import values from 'lodash/values'
 import Accordion from 'react-native-collapsible/Accordion'
 import { View, Text } from 'react-native'
 import { Colors } from 'constants'
@@ -43,7 +44,7 @@ const AccordionView = ( { questions } ) => {
           }}
         >
           <Text style={styles.headerText}>
-            {section.title}
+            {section.question}
           </Text>
         </View>
         <View
@@ -74,7 +75,7 @@ const AccordionView = ( { questions } ) => {
       <View style={styles.content}>
         <View>
           <Text style={styles.contentText}>
-            {section.content}
+            {section.answer}
           </Text>
         </View>
       </View>
@@ -84,7 +85,7 @@ const AccordionView = ( { questions } ) => {
   return (
     <Accordion
       underlayColor="transparent"
-      sections={questions}
+      sections={values( questions )}
       renderHeader={renderHeader}
       renderContent={renderContent}
     />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
-  wrapper: {
+  container: {
     flex: 1,
     flexDirection: 'row',
   },
@@ -23,9 +23,9 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Pros = ( { name } ) => {
+const Pro = ( { name } ) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.container}>
       <View style={styles.prefix}>
         <Text
           style={{
@@ -45,4 +45,4 @@ const Pros = ( { name } ) => {
   )
 }
 
-export default Pros
+export default Pro
