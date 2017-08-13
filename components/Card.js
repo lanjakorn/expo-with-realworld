@@ -21,10 +21,9 @@ const Card = ( { backgroundColor, children, margin } ) => {
 
 const styles = StyleSheet.create( {
   containerStyle: {
-    borderBottomWidth: 0,
+    // borderBottomWidth: 0,
     borderColor: '#ddd',
-    borderRadius: 2,
-    borderWidth: 1,
+    // borderWidth: 1,
     elevation: 1,
     marginBottom: 10,
     marginTop: -1,
