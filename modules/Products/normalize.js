@@ -1,4 +1,4 @@
-import * as image from 'mocks/product'
+import * as mocks from 'mocks/products'
 import { factories } from 'utilities'
 
 const normalizedProducts = ( data = {} ) =>
@@ -9,7 +9,7 @@ const normalizedProducts = ( data = {} ) =>
         productsById: {
           ...p.productsById,
           [ c ]: {
-            ...image.products( data[ c ] ),
+            ...mocks.products( data[ c ] ),
             id: c,
           },
         },

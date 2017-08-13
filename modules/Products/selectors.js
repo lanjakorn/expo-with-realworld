@@ -18,9 +18,12 @@ const productSelector = createSelector(
   }
 )
 
+const productFaqsSelector = createSelector( productSelector, item => item.faqs )
+
 export {
   productIdsSelector,
   productsByIdSelector,
   productSelector,
   productsNameSelector,
+  productFaqsSelector,
 }
