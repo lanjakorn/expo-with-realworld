@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
-import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {

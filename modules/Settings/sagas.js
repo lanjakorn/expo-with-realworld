@@ -98,11 +98,11 @@ function* watchChangeSaveRecent() {
   }
 }
 
-export default ( sagas = [
+export default [
   fork( watchChangeAutoComplete ),
   fork( watchChangeDefaultTab ),
   fork( watchChangeSaveRecent ),
   fork( watchGetAutoComplete ),
   fork( watchGetDefaultTab ),
   fork( watchGetSaveRecent ),
-] )
+]

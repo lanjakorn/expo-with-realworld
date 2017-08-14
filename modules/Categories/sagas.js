@@ -5,11 +5,7 @@ import {
   INIT_CATEGORIES_SCREEN,
   SELECT_CHILD_CATEGORY,
 } from './types'
-import {
-  setCategories,
-  setCurrentCategories,
-  categories as categoriesAction,
-} from './actions'
+import { setCurrentCategories, categories as categoriesAction } from './actions'
 
 import { normalizedCategories } from './normalize'
 import {
@@ -27,14 +23,6 @@ function* read() {
   while ( true ) {
     const action = yield take( channel )
     yield put( action )
-  }
-}
-
-function* write( context, method, onError, ...params ) {
-  try {
-    yield call( [ context, method ], ...params )
-  } catch ( error ) {
-    yield put( onError( error ) )
   }
 }
 
@@ -72,8 +60,8 @@ function* watchInitCategoriesScreen() {
   }
 }
 
-export default ( sagas = [
+export default [
   fork( watchGetCategories ),
   fork( watchInitCategoriesScreen ),
   fork( watchSelectChildCategory ),
-] )
+]

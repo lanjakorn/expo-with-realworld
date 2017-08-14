@@ -5,6 +5,28 @@ import { actions as CategoriesAction, selectors } from 'modules/Categories'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
 
+const styles = StyleSheet.create( {
+  container: {
+    marginTop: 10,
+  },
+  viewStyle: {
+    alignItems: 'center',
+    backgroundColor: '#eeeeee',
+    elevation: 2,
+    height: 60,
+    justifyContent: 'center',
+    marginTop: 10,
+    paddingTop: 15,
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+  },
+  textStyle: {
+    fontSize: 20,
+  },
+} )
+
 class CategoriesList extends Component {
   constructor( props ) {
     super( props )
@@ -39,28 +61,6 @@ class CategoriesList extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  container: {
-    marginTop: 10,
-  },
-  viewStyle: {
-    alignItems: 'center',
-    backgroundColor: '#eeeeee',
-    elevation: 2,
-    height: 60,
-    justifyContent: 'center',
-    marginTop: 10,
-    paddingTop: 15,
-    position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-  },
-  textStyle: {
-    fontSize: 20,
-  },
-} )
 
 const mapStateToProps = state => ( {
   categories: selectors.childCategoriesNameSelector( state ),

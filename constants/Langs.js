@@ -1,4 +1,4 @@
-export default ( langs = {
+export default {
   en: {
     productPros: 'Advantages',
     price: 'price',
@@ -9,4 +9,4 @@ export default ( langs = {
     price: 'ราคา',
     baht: 'บาท',
   },
-} )
+}

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Colors } from 'constants'
 
-import { StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
 import { NoItemComponent } from '@components'
 
@@ -31,7 +29,5 @@ class SourcesSetting extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {} )
 
 export default SourcesSetting

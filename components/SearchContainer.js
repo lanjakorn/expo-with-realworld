@@ -12,9 +12,50 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Button, Icon, SearchBar } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import { actions as settingsActions } from 'modules/Settings'
 import { actions as searchScreenActions } from 'modules/Search'
+
+const styles = StyleSheet.create( {
+  SearchContainer: {
+    alignItems: 'center',
+    backgroundColor: Colors.tintColor,
+    flex: 1,
+    flexDirection: 'row',
+    paddingBottom: 5,
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingTop: 5,
+  },
+  touchableSearch: {
+    backgroundColor: Colors.darkTintColor,
+    borderRadius: 4,
+    padding: 7,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  insideTouchableView: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: Dimensions.get( 'window' ).width - 40,
+  },
+  altTouchableView: {
+    width: Dimensions.get( 'window' ).width * 0.8 - 20,
+    justifyContent: 'flex-start',
+  },
+  customSearchTextInputStyle: {
+    height: 24,
+    alignSelf: 'center',
+    width: 50,
+    fontSize: 14,
+    marginLeft: 7,
+    color: Colors.searchText,
+  },
+  buttonCancel: {
+    padding: 0,
+  },
+} )
 
 class SearchContainer extends Component {
   constructor( props ) {
@@ -87,7 +128,8 @@ class SearchContainer extends Component {
   }
 
   onSubmitEditingSearch = () => {
-    this.props.searched( ( searchQuery = this.props.search_text ) )
+    //this.props.searched( ( searchQuery = this.props.search_text ) )
+    this.props.searched( this.props.search_text )
     this.props.changeSearchText( '' )
     this.props.navigation.navigate( 'products' )
     this.pressCancelButton()
@@ -135,47 +177,6 @@ class SearchContainer extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  SearchContainer: {
-    alignItems: 'center',
-    backgroundColor: Colors.tintColor,
-    flex: 1,
-    flexDirection: 'row',
-    paddingBottom: 5,
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingTop: 5,
-  },
-  touchableSearch: {
-    backgroundColor: Colors.darkTintColor,
-    borderRadius: 4,
-    padding: 7,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  insideTouchableView: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: Dimensions.get( 'window' ).width - 40,
-  },
-  altTouchableView: {
-    width: Dimensions.get( 'window' ).width * 0.8 - 20,
-    justifyContent: 'flex-start',
-  },
-  customSearchTextInputStyle: {
-    height: 24,
-    alignSelf: 'center',
-    width: 50,
-    fontSize: 14,
-    marginLeft: 7,
-    color: Colors.searchText,
-  },
-  buttonCancel: {
-    padding: 0,
-  },
-} )
 
 const combineAction = () => ( {
   ...settingsActions,

@@ -7,10 +7,16 @@ import {
 import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
-import { Colors } from 'constants'
-import { Image, View, Tex, TouchableOpacity } from 'react-native'
+import { object } from 'utilities'
+import { View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
-import { HeaderTitle, HeaderSection, TextDescriptionCard } from '@components'
+import {
+  CardContent,
+  CardContentImage,
+  HeaderTitle,
+  HeaderSection,
+  TextDescriptionCard,
+} from '@components'
 
 import Slider from './Slider'
 import styles from './HouseCategoriesCardStyle'
@@ -33,8 +39,34 @@ class HouseCategoriesCard extends Component {
   //   this.props.navigation.navigate( 'contactUs' )
   // }
 
+  renderSulotions = () => {
+    const { houseCategories: { sulotions } } = this.props
+    return Object.keys( sulotions ).map( e =>
+      <CardContent
+        description={sulotions[ e ].description}
+        key={e}
+        title={sulotions[ e ].title}
+      />
+    )
+  }
+
+  renderCaseStudies = () => {
+    const { houseCategories: { caseStudies, urls } } = this.props
+    return Object.keys( caseStudies ).map( e =>
+      <CardContentImage
+        description={caseStudies[ e ].description}
+        key={e}
+        title={caseStudies[ e ].title}
+        url={object.getFirstByKey( {
+          item: urls,
+          key: 'imgs',
+        } )}
+      />
+    )
+  }
+
   render() {
-    const { words, houseCategories: { title, description, urls } } = this.props
+    const { houseCategories: { description, title, urls } } = this.props
 
     return true
       ? <View style={styles.container}>
@@ -55,10 +87,12 @@ class HouseCategoriesCard extends Component {
           containerstyle={styles.solution}
           textTitle={'Solution'}
         />
+        {this.renderSulotions()}
         <HeaderSection
           containerstyle={styles.caseStudy}
           textTitle={'Case Study'}
         />
+        {this.renderCaseStudies()}
       </View>
       : <View style={{ flex: 1 }}>
         <Spinner visible={true} />
@@ -80,7 +114,6 @@ HouseCategoriesCard.defaultProps = {
 
 const mapStateToProps = state => ( {
   houseCategories: categoriesSelectors.houseCategoryelector( state ),
-  words: settingsSelectors.getWordsByLangSelector( state ),
 } )
 
 export default connect( mapStateToProps, houseCategoriesActions )(

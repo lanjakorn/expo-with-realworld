@@ -4,7 +4,6 @@ export default {
   container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
-    paddingBottom: 20,
     paddingTop: 20,
   },
   thumbnailView: {
@@ -45,7 +44,6 @@ export default {
     flexDirection: 'row',
     justifyContent: 'center',
     justifyContent: 'space-between',
-    marginTop: 25,
     paddingBottom: 30,
     paddingLeft: 20,
     paddingRight: 20,

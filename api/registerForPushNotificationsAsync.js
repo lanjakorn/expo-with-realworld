@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 
 // Example server, implemented in Rails: https://git.io/vKHKv

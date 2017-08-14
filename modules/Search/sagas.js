@@ -59,7 +59,4 @@ function* watchSearched() {
   }
 }
 
-export default ( sagas = [
-  fork( watchGetSearchHistoryFormStorage ),
-  fork( watchSearched ),
-] )
+export default [ fork( watchGetSearchHistoryFormStorage ), fork( watchSearched ) ]

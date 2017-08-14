@@ -11,8 +11,7 @@ import {
 import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
-import { Colors } from 'constants'
-import { Image, View, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
@@ -57,7 +56,7 @@ const ProductCard = props => {
     isFetchingFaqs,
     navigation,
     words,
-    product: { name, urls, title, description, offer, tags, pros },
+    product: { name, urls, description, offer },
   } = props
 
   const onPressContactUs = () => {

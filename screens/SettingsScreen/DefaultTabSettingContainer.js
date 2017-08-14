@@ -16,7 +16,25 @@ import {
 import { FontAwesome } from '@expo/vector-icons'
 import { Card, Search } from '@components'
 
-const { height, width } = Dimensions.get( 'window' )
+const { height } = Dimensions.get( 'window' )
+
+const styles = StyleSheet.create( {
+  searchListItemStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+  searchListItemTextStyle: {
+    paddingTop: 5,
+    fontSize: 16,
+    marginLeft: 15,
+    marginRight: 15,
+    width: Dimensions.get( 'window' ).width * 0.7 - 25,
+  },
+} )
 
 class DefaultTabSetting extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -94,24 +112,6 @@ class DefaultTabSetting extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  searchListItemStyle: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginTop: 10,
-    marginBottom: 10,
-    marginRight: 20,
-    marginLeft: 20,
-  },
-  searchListItemTextStyle: {
-    paddingTop: 5,
-    fontSize: 16,
-    marginLeft: 15,
-    marginRight: 15,
-    width: Dimensions.get( 'window' ).width * 0.7 - 25,
-  },
-} )
 
 const mapStateToProps = state => ( {
   default_tab: selectors.getDefaultTabSelector( state ),

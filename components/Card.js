@@ -1,24 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-const Card = ( { backgroundColor, children, margin } ) => {
-  return (
-    <View
-      style={[
-        styles.containerStyle,
-        {
-          backgroundColor: backgroundColor,
-          marginBottom: margin,
-          marginLeft: margin,
-          marginRight: margin,
-        },
-      ]}
-    >
-      {children}
-    </View>
-  )
-}
-
 const styles = StyleSheet.create( {
   containerStyle: {
     // borderBottomWidth: 0,
@@ -36,5 +18,23 @@ const styles = StyleSheet.create( {
     fontSize: 20,
   },
 } )
+
+const Card = ( { backgroundColor, children, margin } ) => {
+  return (
+    <View
+      style={[
+        styles.containerStyle,
+        {
+          backgroundColor: backgroundColor,
+          marginBottom: margin,
+          marginLeft: margin,
+          marginRight: margin,
+        },
+      ]}
+    >
+      {children}
+    </View>
+  )
+}
 
 export default Card

@@ -7,6 +7,20 @@ import { AsyncStorage, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { List, ListItem, Icon } from 'react-native-elements'
 import { Search } from '@components'
 
+const styles = StyleSheet.create( {
+  infoTextStyle: {
+    fontSize: 14,
+    paddingTop: 20,
+    marginLeft: 20,
+    color: 'black',
+    opacity: 0.7,
+  },
+  settigsGreyBackground: {
+    backgroundColor: 'rgba(247, 247, 247, 1)',
+    paddingTop: 20,
+  },
+} )
+
 class SettingsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
@@ -144,20 +158,6 @@ class InfoText extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  infoTextStyle: {
-    fontSize: 14,
-    paddingTop: 20,
-    marginLeft: 20,
-    color: 'black',
-    opacity: 0.7,
-  },
-  settigsGreyBackground: {
-    backgroundColor: 'rgba(247, 247, 247, 1)',
-    paddingTop: 20,
-  },
-} )
 
 const mapStateToProps = state => ( {
   ...selectors.getSettingsSelector( state ),

@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Colors } from 'constants'
 
-import { ScrollView, View, StyleSheet, Text, Image } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import { Card, Button, Icon } from 'react-native-elements'
-import { Search, CustomSearchBar } from '@components'
+import { View, StyleSheet } from 'react-native'
+import { Search } from '@components'
 import HomeList from './HomeListContainer'
+
+const styles = StyleSheet.create( {
+  container: {
+    flex: 1,
+    paddingTop: 15,
+  },
+} )
 
 class HomeScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
@@ -28,12 +33,5 @@ class HomeScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    paddingTop: 15,
-  },
-} )
 
 export default HomeScreen

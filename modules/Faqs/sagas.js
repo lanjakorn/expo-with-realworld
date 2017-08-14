@@ -1,10 +1,9 @@
 import { eventChannel } from 'redux-saga'
 import { call, fork, put, select, take } from 'redux-saga/effects'
 import { GET_FAQS, INIT_FAQS_SCREEN } from './types'
-import { setFaqs, setCurrentFaqs, faqs as faqsAction } from './actions'
+import { faqs as faqsAction } from './actions'
 import { selectors as productsSelectors } from 'modules/Products'
 import { normalizedFaqs } from './normalize'
-import { currentFaqsSelector } from './selectors'
 import { subscribeEvent } from './subscribeEvent'
 
 function subscribe() {
@@ -16,14 +15,6 @@ function* read() {
   while ( true ) {
     const action = yield take( channel )
     yield put( action )
-  }
-}
-
-function* write( context, method, onError, ...params ) {
-  try {
-    yield call( [ context, method ], ...params )
-  } catch ( error ) {
-    yield put( onError( error ) )
   }
 }
 
@@ -46,4 +37,4 @@ function* watchInitFaqsScreen() {
   }
 }
 
-export default ( sagas = [ fork( watchGetFaqs ), fork( watchInitFaqsScreen ) ] )
+export default [ fork( watchGetFaqs ), fork( watchInitFaqsScreen ) ]

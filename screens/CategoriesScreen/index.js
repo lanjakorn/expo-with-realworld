@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import { Button, Card } from 'react-native-elements'
 import Colors from 'constants/Colors'
-import { Icon } from 'react-native-elements'
 import CategoriesList from './CategoriesList'
 import Search from '@components/SearchContainer'
 
@@ -11,7 +9,7 @@ class CategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       tabBarLabel: 'Categories',
-      tabBarIcon: ( { tintColor, focused } ) =>
+      tabBarIcon: ( { focused } ) =>
         <FontAwesome
           name={'newspaper-o'}
           size={24}

@@ -1,26 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
-import { Button, Icon } from 'react-native-elements'
 import { Card, CardSection } from '@components'
 
-const { height, width } = Dimensions.get( 'window' )
-
-const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
-  return (
-    <Card margin={10}>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {StoryHeading}
-          </Text>
-        </View>
-      </CardSection>
-    </Card>
-  )
-}
+const { width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   headerContentStyle: {
@@ -42,5 +24,22 @@ const styles = StyleSheet.create( {
     padding: 10,
   },
 } )
+
+const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
+  return (
+    <Card margin={10}>
+      <CardSection>
+        <View style={styles.thumbnailContainerStyle}>
+          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
+        </View>
+        <View style={styles.headerContentStyle}>
+          <Text style={styles.headerTextStyle} numberOfLines={2}>
+            {StoryHeading}
+          </Text>
+        </View>
+      </CardSection>
+    </Card>
+  )
+}
 
 export default CategoriesDetail

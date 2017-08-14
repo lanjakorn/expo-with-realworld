@@ -21,4 +21,4 @@ const faqs = {
   failure: error => action( FAQS_FAILURE, { error } ),
 }
 
-export { faqs, getFaqs, initFaqsScreen, setFaqs }
+export { faqs, getFaqs, initFaqsScreen, setCurrentFaqs, setFaqs }

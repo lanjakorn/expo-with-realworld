@@ -16,9 +16,45 @@ import {
 } from 'react-native'
 import { Card } from '@components'
 import Spinner from 'react-native-loading-spinner-overlay'
-import FitImage from 'react-native-fit-image'
 
-var { height, width } = Dimensions.get( 'window' )
+const { height, width } = Dimensions.get( 'window' )
+
+const styles = StyleSheet.create( {
+  searchListItemStyle: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+  },
+  backgroundImage: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    resizeMode: 'cover',
+    height: height * 0.2 - 20,
+    width: width * 1 - 15,
+  },
+  text: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textDescription: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'black',
+    fontSize: 14,
+    marginBottom: 5,
+    marginLeft: 12,
+    marginRight: 12,
+    marginTop: 5,
+    textAlign: 'center',
+  },
+} )
 
 class HouseListContainer extends Component {
   constructor( props ) {
@@ -93,39 +129,6 @@ class HouseListContainer extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  searchListItemStyle: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-  },
-  backgroundImage: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    resizeMode: 'cover',
-    height: height * 0.2 - 20,
-    width: width * 1 - 15,
-  },
-  text: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  textDescription: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    color: 'black',
-    fontSize: 14,
-    textAlign: 'center',
-  },
-} )
 
 const mapStateToProps = state => ( {
   houseCategories: houseCategoriesSelectors.houseCategoriesByIdSelector( state ),

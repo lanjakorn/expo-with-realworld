@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Colors } from 'constants'
 
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { NoItemComponent, Search } from '@components'
 
@@ -37,7 +37,5 @@ class RegionSetting extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {} )
 
 export default RegionSetting

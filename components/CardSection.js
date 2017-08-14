@@ -1,13 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
-
-const CardSection = ( { children } ) => {
-  return (
-    <View style={styles.containerStyle}>
-      {children}
-    </View>
-  )
-}
 
 const styles = StyleSheet.create( {
   containerStyle: {
@@ -18,5 +10,13 @@ const styles = StyleSheet.create( {
     position: 'relative',
   },
 } )
+
+const CardSection = ( { children } ) => {
+  return (
+    <View style={styles.containerStyle}>
+      {children}
+    </View>
+  )
+}
 
 export default CardSection

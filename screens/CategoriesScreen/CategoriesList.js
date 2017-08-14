@@ -1,21 +1,9 @@
 import React, { Component } from 'react'
-import { NavigationActions } from 'react-navigation'
-
 import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import CategoriesDetail from './CategoriesDetail'
-import { Colors } from 'constants'
-import { FontAwesome } from '@expo/vector-icons'
 
 class CategoriesList extends Component {
   constructor( props ) {

@@ -1,46 +1,24 @@
 import * as mocks from 'mocks/categories'
 import { categories } from 'utilities'
 
-const normalizedCategories = ( data = {} ) =>
-  Object.keys( data ).reduce(
-    ( p, c ) => {
-      const childCategorie = normalizedChildCategories( data[ c ] )
-      return {
-        ...p,
-        categoriesById: {
-          ...p.categoriesById,
-          [ c ]: {
-            ...mocks.categories( { name: data[ c ].mainCategories } ),
-          },
+const normalizedSubChildCategories = ( data = {} ) => {
+  return data.subChild.reduce(
+    ( p, c ) => ( {
+      ...p,
+      subChildCatogoriesById: {
+        ...p.subChildCatogoriesById,
+        [ c.mainCategories ]: {
+          ...mocks.subChildCategories( {
+            name: c.mainCategories,
+            childCategory: data.mainCategories,
+          } ),
         },
-        categoryIds: [ ...p.categoryIds, c ],
-        childCatogoriesById: {
-          ...p.childCatogoriesById,
-          ...childCategorie.childCatogoriesById,
-        },
-        childCatogoriesIds: [
-          ...p.childCatogoriesIds,
-          ...childCategorie.childCatogoriesIds,
-        ],
-        subChildCatogoriesById: {
-          ...p.subChildCatogoriesById,
-          ...childCategorie.subChildCatogoriesById,
-        },
-        subChildCatogoriesIds: [
-          ...p.subChildCatogoriesIds,
-          ...childCategorie.subChildCatogoriesIds,
-        ],
-      }
-    },
-    {
-      categoriesById: {},
-      categoryIds: [],
-      childCatogoriesById: {},
-      childCatogoriesIds: [],
-      subChildCatogoriesById: {},
-      subChildCatogoriesIds: [],
-    }
+      },
+      subChildCatogoriesIds: [ ...p.subChildCatogoriesIds, c.mainCategories ],
+    } ),
+    { subChildCatogoriesById: {}, subChildCatogoriesIds: [] }
   )
+}
 
 const normalizedChildCategories = ( data = {} ) => {
   return (
@@ -86,23 +64,45 @@ const normalizedChildCategories = ( data = {} ) => {
   )
 }
 
-const normalizedSubChildCategories = ( data = {} ) => {
-  return data.subChild.reduce(
-    ( p, c ) => ( {
-      ...p,
-      subChildCatogoriesById: {
-        ...p.subChildCatogoriesById,
-        [ c.mainCategories ]: {
-          ...mocks.subChildCategories( {
-            name: c.mainCategories,
-            childCategory: data.mainCategories,
-          } ),
+const normalizedCategories = ( data = {} ) =>
+  Object.keys( data ).reduce(
+    ( p, c ) => {
+      const childCategorie = normalizedChildCategories( data[ c ] )
+      return {
+        ...p,
+        categoriesById: {
+          ...p.categoriesById,
+          [ c ]: {
+            ...mocks.categories( { name: data[ c ].mainCategories } ),
+          },
         },
-      },
-      subChildCatogoriesIds: [ ...p.subChildCatogoriesIds, c.mainCategories ],
-    } ),
-    { subChildCatogoriesById: {}, subChildCatogoriesIds: [] }
+        categoryIds: [ ...p.categoryIds, c ],
+        childCatogoriesById: {
+          ...p.childCatogoriesById,
+          ...childCategorie.childCatogoriesById,
+        },
+        childCatogoriesIds: [
+          ...p.childCatogoriesIds,
+          ...childCategorie.childCatogoriesIds,
+        ],
+        subChildCatogoriesById: {
+          ...p.subChildCatogoriesById,
+          ...childCategorie.subChildCatogoriesById,
+        },
+        subChildCatogoriesIds: [
+          ...p.subChildCatogoriesIds,
+          ...childCategorie.subChildCatogoriesIds,
+        ],
+      }
+    },
+    {
+      categoriesById: {},
+      categoryIds: [],
+      childCatogoriesById: {},
+      childCatogoriesIds: [],
+      subChildCatogoriesById: {},
+      subChildCatogoriesIds: [],
+    }
   )
-}
 
 export { normalizedCategories }

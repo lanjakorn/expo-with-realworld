@@ -1,8 +1,48 @@
 import React, { Component } from 'react'
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { MapView } from 'expo'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
+
+const styles = StyleSheet.create( {
+  screenContainer: {
+    flex: 1,
+  },
+  mapContaininer: {
+    flex: 1,
+  },
+  mapView: {
+    flex: 1,
+  },
+  infoContainer: {
+    flex: 1.5,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    paddingTop: 30,
+    paddingLeft: 10,
+    paddingRight: 20,
+  },
+  infoItemsBox: { flex: 1 },
+  infoItemBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingBottom: 25,
+  },
+  iconContainer: {
+    borderColor: '#888',
+    borderRadius: 50,
+    borderWidth: 2,
+    marginLeft: 5,
+    marginRight: 15,
+    padding: 8,
+  },
+  infoContentBox: {
+    flex: 1,
+  },
+  infoContentTitle: {
+    fontWeight: 'bold',
+  },
+} )
 
 class ContactUsScreen extends Component {
   state = {
@@ -91,45 +131,5 @@ class ContactUsScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  screenContainer: {
-    flex: 1,
-  },
-  mapContaininer: {
-    flex: 1,
-  },
-  mapView: {
-    flex: 1,
-  },
-  infoContainer: {
-    flex: 1.5,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    paddingTop: 30,
-    paddingLeft: 10,
-    paddingRight: 20,
-  },
-  infoItemsBox: { flex: 1 },
-  infoItemBox: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    paddingBottom: 25,
-  },
-  iconContainer: {
-    borderColor: '#888',
-    borderRadius: 50,
-    borderWidth: 2,
-    marginLeft: 5,
-    marginRight: 15,
-    padding: 8,
-  },
-  infoContentBox: {
-    flex: 1,
-  },
-  infoContentTitle: {
-    fontWeight: 'bold',
-  },
-} )
 
 export default ContactUsScreen

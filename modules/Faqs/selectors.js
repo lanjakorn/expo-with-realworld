@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+// import { createSelector } from 'reselect'
 
 const currentFaqSelector = state => state.faqs.faqs
 const faqsByIdSelector = state => state.faqs.faqsById

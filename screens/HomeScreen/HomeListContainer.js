@@ -16,6 +16,32 @@ import Spinner from 'react-native-loading-spinner-overlay'
 
 var { height, width } = Dimensions.get( 'window' )
 
+const styles = StyleSheet.create( {
+  searchListItemStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+  },
+  backgroundImage: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: height * 0.2 - 20,
+    width: width * 1,
+    justifyContent: 'center',
+    resizeMode: 'cover',
+  },
+  text: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
+  },
+} )
+
 class SearchListContainer extends Component {
   constructor( props ) {
     super( props )
@@ -61,32 +87,6 @@ class SearchListContainer extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  searchListItemStyle: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-  },
-  backgroundImage: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: height * 0.2 - 22,
-    width: width * 1,
-    justifyContent: 'center',
-    resizeMode: 'cover',
-  },
-  text: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    color: 'white',
-    fontSize: 22,
-    textAlign: 'center',
-  },
-} )
 
 const mapStateToProps = state => ( {
   isFetching: state.categories.isFetching,

@@ -25,7 +25,7 @@ export default ( state = INITIAL_STATE, action ) => {
   case FAQS_FAILURE:
     return { ...state, isFetching: false, errorMessage: action.error }
   case SET_CURRENT_FAQS:
-    return {
+    return {   
       ...state,
       faq: action.faqs,
     }

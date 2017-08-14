@@ -4,7 +4,6 @@ export default {
   wrapper: {
     backgroundColor: '#fff',
     flexDirection: 'column',
-    paddingBottom: 20,
     paddingTop: 20,
   },
   thumbnailView: {

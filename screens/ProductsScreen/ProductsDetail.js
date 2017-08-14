@@ -1,25 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import { Card, CardSection } from '@components'
 
-const { height, width } = Dimensions.get( 'window' )
-
-const ProductsDetail = ( { productImage, productHeading } ) => {
-  return (
-    <Card margin={10}>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {productHeading}
-          </Text>
-        </View>
-      </CardSection>
-    </Card>
-  )
-}
+const { width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   headerContentStyle: {
@@ -41,5 +24,22 @@ const styles = StyleSheet.create( {
     padding: 10,
   },
 } )
+
+const ProductsDetail = ( { productImage, productHeading } ) => {
+  return (
+    <Card margin={10}>
+      <CardSection>
+        <View style={styles.thumbnailContainerStyle}>
+          <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />
+        </View>
+        <View style={styles.headerContentStyle}>
+          <Text style={styles.headerTextStyle} numberOfLines={2}>
+            {productHeading}
+          </Text>
+        </View>
+      </CardSection>
+    </Card>
+  )
+}
 
 export default ProductsDetail

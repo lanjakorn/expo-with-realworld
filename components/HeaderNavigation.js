@@ -1,7 +1,44 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
+
+const styles = StyleSheet.create( {
+  container: {
+    flexDirection: 'row',
+    height: 40,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 24,
+  },
+  leftSection: {
+    alignItems: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.tintColor,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  centerSection: {
+    alignItems: 'center',
+    backgroundColor: Colors.tintColor,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  rightSection: {
+    alignItems: 'center',
+    backgroundColor: Colors.tintColor,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  title: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+} )
 
 const HeaderNavigation = ( { navigation, title } ) => {
   return (
@@ -48,42 +85,5 @@ const HeaderNavigation = ( { navigation, title } ) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create( {
-  container: {
-    flexDirection: 'row',
-    height: 40,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 24,
-  },
-  leftSection: {
-    alignItems: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.tintColor,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  centerSection: {
-    alignItems: 'center',
-    backgroundColor: Colors.tintColor,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  rightSection: {
-    alignItems: 'center',
-    backgroundColor: Colors.tintColor,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  title: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-} )
 
 export default HeaderNavigation

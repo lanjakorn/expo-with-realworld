@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Colors } from 'constants'
 import { object, string } from 'utilities'
 
-import PropTypes from 'prop-types'
 import Swiper from 'react-native-swiper'
 import {
   Dimensions,
@@ -12,7 +11,6 @@ import {
   View,
   WebView,
 } from 'react-native'
-import { Button } from 'react-native-elements'
 
 const { width } = Dimensions.get( 'window' )
 const calHeight = {

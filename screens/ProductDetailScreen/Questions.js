@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import values from 'lodash/values'
 import Accordion from 'react-native-collapsible/Accordion'
 import { View, Text } from 'react-native'
@@ -13,7 +13,7 @@ const styles = {
     borderColor: '#ddd',
     flexDirection: 'row',
     minWidth: 12,
-    padding: 15,
+    padding: 20,
   },
   content: {
     alignItems: 'center',
@@ -21,7 +21,7 @@ const styles = {
     borderBottomWidth: 1,
     borderColor: '#ddd',
     flexDirection: 'row',
-    padding: 15,
+    padding: 20,
   },
   headerText: {
     fontSize: 14,

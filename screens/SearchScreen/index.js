@@ -10,7 +10,7 @@ class SearchScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       tabBarLabel: 'Search',
-      tabBarIcon: ( { tintColor, focused } ) =>
+      tabBarIcon: ( { focused } ) =>
         <Icon
           name={'search'}
           size={24}

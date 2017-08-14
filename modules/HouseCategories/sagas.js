@@ -1,17 +1,9 @@
 import { eventChannel } from 'redux-saga'
-import { all, call, fork, put, select, take } from 'redux-saga/effects'
+import { call, fork, put, take } from 'redux-saga/effects'
 import { GET_HOUSE_CATEGORIES, INIT_HOUSE_CATEGORIES_SCREEN } from './types'
-import {
-  setHouseCategories,
-  setCurrentHouseCategories,
-  houseCategories as houseCategoriesAction,
-} from './actions'
+import { houseCategories as houseCategoriesAction } from './actions'
 
 import { normalizedHouseCategories } from './normalize'
-import {
-  currentHouseCategoriesSelector,
-  subChildHouseCategoriesNameSelector,
-} from './selectors'
 import { subscribeEvent } from './subscribeEvent'
 
 function subscribe() {
@@ -23,14 +15,6 @@ function* read() {
   while ( true ) {
     const action = yield take( channel )
     yield put( action )
-  }
-}
-
-function* write( context, method, onError, ...params ) {
-  try {
-    yield call( [ context, method ], ...params )
-  } catch ( error ) {
-    yield put( onError( error ) )
   }
 }
 
@@ -52,7 +36,7 @@ function* watchInitHouseCategoriesScreen() {
   }
 }
 
-export default ( sagas = [
+export default [
   fork( watchGetHouseCategories ),
   fork( watchInitHouseCategoriesScreen ),
-] )
+]

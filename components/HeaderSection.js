@@ -3,7 +3,6 @@ import { Colors } from 'constants'
 
 import { Text, StyleSheet, View } from 'react-native'
 import { Icon } from 'react-native-elements'
-import ButtonRadius from './ButtonRadius'
 
 const styles = StyleSheet.create( {
   title: {

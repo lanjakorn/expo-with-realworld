@@ -1,29 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
 
-const NoItemComponent = ( { iconName, infoHeading, infoParagraph } ) => {
-  return (
-    <View style={styles.alignContainers}>
-      <View style={styles.containerStyle}>
-        <Icon name={iconName} size={64} color={Colors.tabIconDefault} />
-        <Text style={styles.infoHeadingStyle}>
-          {infoHeading}
-        </Text>
-        <Text style={styles.infoParagraphStyle}>
-          {infoParagraph}
-        </Text>
-      </View>
-    </View>
-  )
-}
-
 const styles = StyleSheet.create( {
   alignContainers: {
     alignItems: 'center',
-    height: Dimensions.get( 'window' ).height - 150,
     justifyContent: 'center',
+    height: Dimensions.get( 'window' ).height - 150,
     width: Dimensions.get( 'window' ).width,
   },
   containerStyle: {
@@ -43,5 +27,21 @@ const styles = StyleSheet.create( {
     width: Dimensions.get( 'window' ).width / 1.75,
   },
 } )
+
+const NoItemComponent = ( { iconName, infoHeading, infoParagraph } ) => {
+  return (
+    <View style={styles.alignContainers}>
+      <View style={styles.containerStyle}>
+        <Icon name={iconName} size={64} color={Colors.tabIconDefault} />
+        <Text style={styles.infoHeadingStyle}>
+          {infoHeading}
+        </Text>
+        <Text style={styles.infoParagraphStyle}>
+          {infoParagraph}
+        </Text>
+      </View>
+    </View>
+  )
+}
 
 export default NoItemComponent

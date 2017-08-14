@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-native'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createSagaMonitor } from 'redux-saga-devtools'
 
-import { createStore, applyMiddleware } from 'redux'
+import { applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import rootReducers from 'rootReducer'

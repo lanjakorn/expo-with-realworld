@@ -1,4 +1,4 @@
-import { take, put, call } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 import range from 'lodash/range'
 /**
    * @param {[object]}      entity         |

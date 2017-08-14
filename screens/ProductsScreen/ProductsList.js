@@ -5,10 +5,15 @@ import { actions as productsAction, selectors } from 'modules/Products'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import ProductsDetail from './ProductsDetail'
-import { Colors } from 'constants'
 import { object } from 'utilities'
 
 import Spinner from 'react-native-loading-spinner-overlay'
+
+const styles = StyleSheet.create( {
+  container: {
+    marginTop: 10,
+  },
+} )
 
 class ProductsList extends Component {
   constructor( props ) {
@@ -54,12 +59,6 @@ class ProductsList extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  container: {
-    marginTop: 10,
-  },
-} )
 
 const combineAction = () => ( {
   ...faqsAction,

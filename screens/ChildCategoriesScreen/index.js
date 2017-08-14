@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import { Button, Card } from 'react-native-elements'
 import CategoriesList from './CategoriesList'
 import { HeaderNavigation } from '@components'
 
@@ -15,7 +13,5 @@ class CategoriesScreen extends Component {
     return <CategoriesList navigation={this.props.navigation} />
   }
 }
-
-const styles = StyleSheet.create( {} )
 
 export default CategoriesScreen

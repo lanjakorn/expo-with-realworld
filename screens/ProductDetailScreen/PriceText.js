@@ -16,7 +16,7 @@ const styles = {
   },
 }
 
-const PriceText = ( { price, salePrice, style, words } ) =>
+const PriceText = ( { price, style, words } ) =>
   <View style={[ styles.wrapper, style ]}>
     <Text
       style={styles.price}

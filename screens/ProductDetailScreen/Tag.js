@@ -1,17 +1,10 @@
 import React from 'react'
-import { PixelRatio, Platform, Text, View } from 'react-native'
+import { PixelRatio } from 'react-native'
 import PropTypes from 'prop-types'
 import { Badge } from 'react-native-elements'
 import { Colors } from 'constants'
 
-const commaNumber = require( 'comma-number' )
-
-const filledIconName = 'ios-star'
-const emptyIconName = 'ios-star-outline'
-if ( Platform.OS === 'android' ) {
-  filledIconName = 'md-star'
-  emptyIconName = 'md-star-outline'
-}
+// const commaNumber = require( 'comma-number' )
 
 const styles = {
   wrapper: {
@@ -31,20 +24,16 @@ const styles = {
   },
 }
 
-const Tag = ( { name, style } ) => {
-  const { wrapper } = styles
-  return (
-    <Badge
-      value={name.toUpperCase()}
-      textStyle={{ color: 'white', fontSize: 12 }}
-      containerStyle={{
-        backgroundColor: Colors.tintColor,
-        ...styles.icon,
-        ...style,
-      }}
-    />
-  )
-}
+const Tag = ( { name, style } ) =>
+  <Badge
+    value={name.toUpperCase()}
+    textStyle={{ color: 'white', fontSize: 12 }}
+    containerStyle={{
+      backgroundColor: Colors.tintColor,
+      ...styles.icon,
+      ...style,
+    }}
+  />
 
 Tag.propTypes = {
   rating: PropTypes.number,

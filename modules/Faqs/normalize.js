@@ -1,4 +1,4 @@
-import * as mocks from 'mocks/faqs'
+// import * as mocks from 'mocks/faqs'
 
 const normalizedFaqs = ( data = {}, productFaqs ) =>
   Object.keys( productFaqs ).reduce(

@@ -1,18 +1,10 @@
-import firebase from 'firebase'
 import { eventChannel } from 'redux-saga'
 import { call, fork, put, select, take } from 'redux-saga/effects'
-import {
-  GET_PRODUCTS,
-  INIT_PRODUCTS_SCREEN,
-  PRODUCTS_FAILURE,
-  PRODUCTS_REQUEST,
-  PRODUCTS_SUCCESS,
-} from './types'
-import { setProducts, products as productsAction } from './actions'
+import { GET_PRODUCTS, INIT_PRODUCTS_SCREEN } from './types'
+import { products as productsAction } from './actions'
 import { selectors } from 'modules/Categories'
 import { normalizedProducts } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
-import { factories } from 'utilities'
 
 function subscribe() {
   return eventChannel( emit => subscribeEvent.subscribe( emit ) )

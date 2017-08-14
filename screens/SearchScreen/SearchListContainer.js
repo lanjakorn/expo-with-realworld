@@ -16,6 +16,24 @@ import { Card } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 
+const styles = StyleSheet.create( {
+  searchListItemStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+    marginBottom: 10,
+    marginRight: 20,
+    marginLeft: 20,
+  },
+  searchListItemTextStyle: {
+    paddingTop: 5,
+    fontSize: 16,
+    marginLeft: 15,
+    marginRight: 15,
+    width: Dimensions.get( 'window' ).width * 0.7 - 25,
+  },
+} )
+
 class SearchListContainer extends Component {
   constructor( props ) {
     super( props )
@@ -54,24 +72,6 @@ class SearchListContainer extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create( {
-  searchListItemStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 10,
-    marginBottom: 10,
-    marginRight: 20,
-    marginLeft: 20,
-  },
-  searchListItemTextStyle: {
-    paddingTop: 5,
-    fontSize: 16,
-    marginLeft: 15,
-    marginRight: 15,
-    width: Dimensions.get( 'window' ).width * 0.7 - 25,
-  },
-} )
 
 const mapStateToProps = state => ( {
   search_history_items: selectors.getSearchHistories( state ),
