@@ -4,14 +4,15 @@ import Card from './Card'
 import CardContent from './CardContent'
 import CardContentImage from './CardContentImage'
 import CardSection from './CardSection'
-import HeaderNavigation from './HeaderNavigation'
-import HeaderTitle from './HeaderTitle'
-import HeaderSection from './HeaderSection'
 import HeaderButtonSection from './HeaderButtonSection'
+import HeaderNavigation from './HeaderNavigation'
+import HeaderSection from './HeaderSection'
+import HeaderTitle from './HeaderTitle'
 import NoItemComponent from './NoItemComponent'
-import TextDescriptionCard from './TextDescriptionCard'
 import Search from './SearchContainer'
+import Slider from './Slider'
 import StyledText from './StyledText'
+import TextDescriptionCard from './TextDescriptionCard'
 
 export {
   ButtonRadius,
@@ -20,12 +21,13 @@ export {
   CardContent,
   CardContentImage,
   CardSection,
-  HeaderNavigation,
-  HeaderTitle,
-  HeaderSection,
   HeaderButtonSection,
+  HeaderNavigation,
+  HeaderSection,
+  HeaderTitle,
   NoItemComponent,
-  TextDescriptionCard,
   Search,
+  Slider,
   StyledText,
+  TextDescriptionCard,
 }

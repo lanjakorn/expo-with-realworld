@@ -33,7 +33,6 @@ const styles = StyleSheet.create( {
 } )
 
 const CardContentImage = ( { description, title, url } ) => {
-  console.log( url )
   return (
     <View style={styles.container}>
       <View style={styles.slideImage}>
