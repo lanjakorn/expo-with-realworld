@@ -2,23 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   actions as houseCategoriesActions,
-  selectors as categoriesSelectors,
+  selectors as houseCategoriesSelectors,
 } from 'modules/HouseCategories'
-import { selectors as settingsSelectors } from 'modules/Settings'
+
+import {
+  actions as caseStudiesActions,
+  selectors as caseStudiesSelectors,
+} from 'modules/CaseStudies'
+
+import {
+  actions as solutionsActions,
+  selectors as solutionsSelectors,
+} from 'modules/Solutions'
+
 import PropTypes from 'prop-types'
 
 import { object } from 'utilities'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   CardContent,
   CardContentImage,
-  HeaderTitle,
   HeaderSection,
+  HeaderTitle,
+  Slider,
   TextDescriptionCard,
 } from '@components'
 
-import Slider from './Slider'
 import styles from './HouseCategoriesCardStyle'
 
 class HouseCategoriesCard extends Component {
@@ -27,48 +37,68 @@ class HouseCategoriesCard extends Component {
   }
 
   async componentWillMount() {
-    await this.props.initHouseCategoriesScreen()
+    await this.props.initCaseStudiesScreen()
+    await this.props.initSolutionsScreen()
+  }
+
+  shouldComponentUpdate( nextProps ) {
+    return nextProps.isFetching !== this.props.isFetching ? true : false
   }
 
   onPressContactUs = () => {
     this.props.navigation.navigate( 'contactUs' )
   }
 
-  // onPressHouseCategoriesSelect = () => {
-  //   this.props.selectChildCategory( childCategory, this.props.navigation )
-  //   this.props.navigation.navigate( 'contactUs' )
-  // }
+  onPressCategoriesSolutionSelect = category => {
+    console.log( category )
+  }
 
-  renderSulotions = () => {
-    const { houseCategories: { sulotions } } = this.props
-    return Object.keys( sulotions ).map( e =>
-      <CardContent
-        description={sulotions[ e ].description}
-        key={e}
-        title={sulotions[ e ].title}
-      />
+  onPressCaseStudySelect = caseStudy => {
+    console.log( caseStudy )
+  }
+
+  rendersolutions = () => {
+    const { solutions } = this.props
+    return Object.keys( solutions ).map( e =>
+      <TouchableOpacity
+        key={`touch-${ e }`}
+        onPress={() => this.onPressCategoriesSolutionSelect( e )}
+      >
+        <CardContent
+          description={solutions[ e ].description}
+          key={e}
+          title={solutions[ e ].title}
+        />
+      </TouchableOpacity>
     )
   }
 
   renderCaseStudies = () => {
-    const { houseCategories: { caseStudies, urls } } = this.props
+    const { caseStudies } = this.props
     return Object.keys( caseStudies ).map( e =>
-      <CardContentImage
-        description={caseStudies[ e ].description}
-        key={e}
-        title={caseStudies[ e ].title}
-        url={object.getFirstByKey( {
-          item: urls,
-          key: 'imgs',
-        } )}
-      />
+      <TouchableOpacity
+        key={`touch-${ e }`}
+        onPress={() => this.onPressCaseStudySelect( e )}
+      >
+        <CardContentImage
+          description={caseStudies[ e ].description}
+          key={e}
+          title={caseStudies[ e ].title}
+          url={object.getFirstByKey( {
+            item: caseStudies[ e ].urls,
+            key: 'imgs',
+          } )}
+        />
+      </TouchableOpacity>
     )
   }
 
   render() {
-    const { houseCategories: { description, title, urls } } = this.props
-
-    return true
+    const {
+      isFetching,
+      houseCategories: { description, title, urls },
+    } = this.props
+    return !isFetching
       ? <View style={styles.container}>
         <HeaderTitle
           buttonOnPress={this.onPressContactUs}
@@ -77,7 +107,7 @@ class HouseCategoriesCard extends Component {
           textTitle={title}
         />
         <View style={styles.thumbnailView}>
-          <Slider urls={urls} />
+          {<Slider urls={urls} />}
         </View>
         <TextDescriptionCard
           containerstyle={styles.detailsView}
@@ -87,16 +117,14 @@ class HouseCategoriesCard extends Component {
           containerstyle={styles.solution}
           textTitle={'Solution'}
         />
-        {this.renderSulotions()}
+        {this.rendersolutions()}
         <HeaderSection
           containerstyle={styles.caseStudy}
           textTitle={'Case Study'}
         />
         {this.renderCaseStudies()}
       </View>
-      : <View style={{ flex: 1 }}>
-        <Spinner visible={true} />
-      </View>
+      : <Spinner visible={true} />
   }
 }
 
@@ -111,11 +139,20 @@ HouseCategoriesCard.propTypes = {
 HouseCategoriesCard.defaultProps = {
   reviewCount: 0,
 }
-
-const mapStateToProps = state => ( {
-  houseCategories: categoriesSelectors.houseCategoryelector( state ),
+const combineActions = () => ( {
+  ...caseStudiesActions,
+  ...houseCategoriesActions,
+  ...solutionsActions,
 } )
 
-export default connect( mapStateToProps, houseCategoriesActions )(
-  HouseCategoriesCard
-)
+const mapStateToProps = state => ( {
+  caseStudies: caseStudiesSelectors.caseStudiesByIdSelector( state ),
+  currentHouseCategory: houseCategoriesSelectors.currentHouseCategoriesSelector(
+    state
+  ),
+  houseCategories: houseCategoriesSelectors.houseCategoriesSelector( state ),
+  isFetching: houseCategoriesSelectors.isFetchingSelector( state ),
+  solutions: solutionsSelectors.solutionsByIdSelector( state ),
+} )
+
+export default connect( mapStateToProps, combineActions() )( HouseCategoriesCard )

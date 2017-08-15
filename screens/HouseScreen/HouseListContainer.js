@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
 import { object } from 'utilities'
 import {
@@ -14,8 +15,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import { Card } from '@components'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { Card } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 
@@ -66,7 +67,7 @@ class HouseListContainer extends Component {
   }
 
   onPressHouseCategoriesSelect = category => {
-    this.props.setCurrentHouseCategories( category )
+    this.props.setCurrentHouseCategory( category )
     this.props.navigation.navigate( 'houseCategories' )
   }
 

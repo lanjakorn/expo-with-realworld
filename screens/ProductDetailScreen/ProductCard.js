@@ -15,15 +15,15 @@ import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
-  HeaderTitle,
   HeaderButtonSection,
+  HeaderTitle,
+  Slider,
   TextDescriptionCard,
 } from '@components'
 
 import Tag from './Tag'
 import Pro from './Pro'
 import PriceText from './PriceText'
-import Slider from './Slider'
 import Questions from './Questions'
 import styles from './ProductCardStyle'
 
@@ -63,8 +63,12 @@ const ProductCard = props => {
     navigation.navigate( 'contactUs' )
   }
 
+  const onPressContact = () => {
+    navigation.navigate( 'contact' )
+  }
+
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
         buttontitle={'Contact Us'}
@@ -90,7 +94,7 @@ const ProductCard = props => {
       {renderPros( props )}
       <View style={styles.more}>
         <ButtonRadiusOutlined
-          onPress={onPressContactUs}
+          onPress={onPressContact}
           style={{ marginRight: 5 }}
           title={'Contact'}
         />

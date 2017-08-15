@@ -1,7 +1,7 @@
 import { Colors } from 'constants'
 
 export default {
-  wrapper: {
+  container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
     paddingTop: 20,
