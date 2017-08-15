@@ -6,7 +6,7 @@ import {
   GET_HOUSE_CATEGORIES,
   INIT_HOUSE_CATEGORIES_SCREEN,
   SET_HOUSE_CATEGORIES,
-  SET_CURRENT_HOUSE_CATEGORIES,
+  SET_CURRENT_HOUSE_CATEGORY,
 } from './types'
 
 const getHouseCategories = houseCategories =>
@@ -14,8 +14,8 @@ const getHouseCategories = houseCategories =>
 const initHouseCategoriesScreen = () => action( INIT_HOUSE_CATEGORIES_SCREEN )
 const setHouseCategories = houseCategories =>
   action( SET_HOUSE_CATEGORIES, { houseCategories } )
-const setCurrentHouseCategories = houseCategories =>
-  action( SET_CURRENT_HOUSE_CATEGORIES, { houseCategories } )
+const setCurrentHouseCategory = houseCategory =>
+  action( SET_CURRENT_HOUSE_CATEGORY, { houseCategory } )
 
 const houseCategories = {
   request: () => action( HOUSE_CATEGORIES_REQUEST ),
@@ -28,6 +28,6 @@ export {
   getHouseCategories,
   houseCategories,
   initHouseCategoriesScreen,
-  setCurrentHouseCategories,
+  setCurrentHouseCategory,
   setHouseCategories,
 }

@@ -1,3 +1,3 @@
-import faqs from './faqReducer'
+import faqs from './faqsReducer'
 
 export { faqs }

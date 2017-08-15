@@ -9,7 +9,7 @@ import {
 export const INITIAL_STATE = {
   faqsById: {},
   faqIds: [],
-  faq: '',
+  faqs: '',
   isFetching: false,
   errorMessage: '',
 }
@@ -25,9 +25,9 @@ export default ( state = INITIAL_STATE, action ) => {
   case FAQS_FAILURE:
     return { ...state, isFetching: false, errorMessage: action.error }
   case SET_CURRENT_FAQS:
-    return {   
+    return {
       ...state,
-      faq: action.faqs,
+      faqs: action.faqs,
     }
   default:
     return state
