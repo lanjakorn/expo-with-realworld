@@ -6,6 +6,7 @@ import { Icon } from 'react-native-elements'
 
 import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
+import ContactScreen from '@screens/ContactScreen'
 import ContactUsScreen from '@screens/ContactUsScreen'
 import HomeScreen from '@screens/HomeScreen'
 import HouseScreen from '@screens/HouseScreen'
@@ -46,6 +47,13 @@ const HouseTab = StackNavigator( {
   },
 } )
 
+const ContactTab = StackNavigator( {
+  contact: {
+    screen: ContactScreen,
+    path: '/',
+  },
+} )
+
 const ProductsTab = StackNavigator( {
   categories: {
     screen: CategoriesScreen,
@@ -69,6 +77,10 @@ const ProductsTab = StackNavigator( {
   },
   contactUs: {
     screen: ContactUsScreen,
+    path: '/',
+  },
+  contact: {
+    screen: ContactScreen,
     path: '/',
   },
   search: {
@@ -147,7 +159,7 @@ const TabNav = TabNavigator(
       },
     },
     services: {
-      screen: ServicesTab,
+      screen: ContactTab,
       navigationOptions: {
         tabBarLabel: 'Services',
         tabBarIcon: ( { tintColor, focused } ) =>

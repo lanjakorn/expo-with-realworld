@@ -1,8 +1,6 @@
-const imageFactory = ( { data, urls, sulotions, caseStudies } ) => ( {
+const imageFactory = ( { data, urls } ) => ( {
   ...data,
   urls,
-  sulotions,
-  caseStudies,
 } )
 
 const houseCategories = data =>
@@ -15,18 +13,18 @@ const houseCategories = data =>
       ],
       videos: [ 'https://www.youtube.com/watch?v=HN9P8uHEtUg' ],
     },
-    sulotions: {
-      sulotionsKey1: {
+    solutions: {
+      solutionsKey1: {
         title: 'Managed Print Services',
         description:
           'Ricoh Managed Print Services (MPS) encompass the three fundamental elements of document management.',
       },
-      sulotionsKey2: {
+      solutionsKey2: {
         title: 'Managed Print Services',
         description:
           'Ricoh Managed Print Services (MPS) encompass the three fundamental elements of document management.',
       },
-      sulotionsKey3: {
+      solutionsKey3: {
         title: 'Managed Print Services',
         description:
           'Ricoh Managed Print Services (MPS) encompass the three fundamental elements of document management.',
