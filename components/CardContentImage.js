@@ -7,8 +7,8 @@ const { width, height } = Dimensions.get( 'window' )
 const styles = StyleSheet.create( {
   container: {
     backgroundColor: 'transparent',
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
+    // borderBottomWidth: 1,
+    // borderColor: '#ddd',
     flexDirection: 'column',
     minWidth: 12,
     paddingBottom: 30,
@@ -38,7 +38,7 @@ const CardContentImage = ( { description, title, url } ) => {
       <View style={styles.slideImage}>
         <Image
           resizeMode="cover"
-          source={{ url: url }}
+          source={{ uri: url }}
           style={{
             height: height * 0.3,
             width: width * 0.9 + 10,
@@ -61,7 +61,7 @@ const CardContentImage = ( { description, title, url } ) => {
           marginTop: 14,
         }}
       >
-        <Text style={styles.contentText}>
+        <Text style={styles.contentText} numberOfLines={2}>
           {description}
         </Text>
       </View>

@@ -15,6 +15,8 @@ import ProductDetailScreen from '@screens/ProductDetailScreen'
 import ProductsScreen from '@screens/ProductsScreen'
 import SearchScreen from '@screens/SearchScreen'
 import SettingsScreen from '@screens/SettingsScreen'
+import SolutionScreen from '@screens/SolutionScreen'
+import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 
 const HomeTab = StackNavigator( {
@@ -35,10 +37,22 @@ const HouseTab = StackNavigator( {
   },
   houseCategories: {
     screen: HouseCategoriesScreen,
-    path: '/',
+    path: '/:category',
+  },
+  solution: {
+    screen: SolutionScreen,
+    path: '/:solution',
+  },
+  solutionCategories: {
+    screen: SolutionCategoriesScreen,
+    path: '/:category',
   },
   contactUs: {
     screen: ContactUsScreen,
+    path: '/',
+  },
+  contact: {
+    screen: ContactScreen,
     path: '/',
   },
   search: {

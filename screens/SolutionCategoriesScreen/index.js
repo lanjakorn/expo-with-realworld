@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 import { ScrollView } from 'react-native'
-import HouseCategoriesCard from './HouseCategoriesCard'
+import SolutionContainer from './SolutionContainer'
 import { HeaderNavigation } from '@components'
 
-class HouseCategoriesScreen extends Component {
+class SolutionCategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       header: (
@@ -19,10 +19,10 @@ class HouseCategoriesScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <HouseCategoriesCard navigation={this.props.navigation} />
+        <SolutionContainer navigation={this.props.navigation} />
       </ScrollView>
     )
   }
 }
 
-export default HouseCategoriesScreen
+export default SolutionCategoriesScreen

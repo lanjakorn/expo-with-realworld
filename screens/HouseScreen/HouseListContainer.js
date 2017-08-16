@@ -66,22 +66,28 @@ class HouseListContainer extends Component {
     await this.props.initHouseCategoriesScreen()
   }
 
-  onPressHouseCategoriesSelect = category => {
-    this.props.setCurrentHouseCategory( category )
-    this.props.navigation.navigate( 'houseCategories' )
+  onPressHouseCategoriesSelect = ( key, value ) => {
+    this.props.setCurrentHouseCategory( key )
+    this.props.navigation.navigate( 'houseCategories', {
+      category: value,
+    } )
   }
 
   render() {
     const { houseCategories, isFetchingHouseCategories } = this.props
-
+    console.log( isFetchingHouseCategories )
     return (
       <ScrollView>
         <View>
-          {!this.props.isFetchingHouseCategories
+          {!isFetchingHouseCategories
             ? Object.keys( houseCategories ).map( e =>
               <TouchableOpacity
                 key={houseCategories[ e ].title}
-                onPress={() => this.onPressHouseCategoriesSelect( e )}
+                onPress={() =>
+                  this.onPressHouseCategoriesSelect(
+                    e,
+                    houseCategories[ e ].title
+                  )}
               >
                 <Card margin={10} backgroundColor={'white'}>
                   <View style={styles.searchListItemStyle}>

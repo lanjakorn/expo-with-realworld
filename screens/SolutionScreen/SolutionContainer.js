@@ -15,6 +15,11 @@ import {
   selectors as solutionsSelectors,
 } from 'modules/Solutions'
 
+import {
+  actions as solutionCategoriesActions,
+  selectors as solutionCategoriesSelectors,
+} from 'modules/SolutionCategories'
+
 import PropTypes from 'prop-types'
 
 import { object } from 'utilities'
@@ -29,16 +34,16 @@ import {
   TextDescriptionCard,
 } from '@components'
 
-import styles from './HouseCategoriesCardStyle'
+import styles from './SolutionContainerStyle'
 
-class HouseCategoriesCard extends Component {
+class Solution extends Component {
   constructor( props ) {
     super( props )
   }
 
   async componentWillMount() {
-    await this.props.initCaseStudiesScreen()
-    await this.props.initSolutionsScreen()
+    // await this.props.initCaseStudiesScreen()
+    await this.props.initSolutionCategoriesScreen()
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -49,18 +54,19 @@ class HouseCategoriesCard extends Component {
     this.props.navigation.navigate( 'contactUs' )
   }
 
-  onPressSolutionSelect = ( key, value ) => {
-    this.props.setCurrentSolutions( key )
-    this.props.navigation.navigate( 'solution', { solution: value } )
+  onPressSolutionCategorySelect = ( key, value ) => {
+    console.log( key, value )
+    this.props.setCurrentSolutionCategory( key )
+    this.props.navigation.navigate( 'solutionCategories', { category: value } )
   }
 
   // onPressCaseStudySelect = caseStudy => {
   //   console.log( caseStudy )
   // }
 
-  renderSolutions = () => {
-    const { solutions } = this.props
-    return Object.keys( solutions ).map( e =>
+  renderSolutionCategories = () => {
+    const { solutionCategories } = this.props
+    return Object.keys( solutionCategories ).map( e =>
       <View
         key={`container-solution-${ e }`}
         style={{
@@ -70,12 +76,13 @@ class HouseCategoriesCard extends Component {
       >
         <TouchableOpacity
           key={`touch-${ e }`}
-          onPress={() => this.onPressSolutionSelect( e, solutions[ e ].title )}
+          onPress={() =>
+            this.onPressSolutionCategorySelect( e, solutionCategories[ e ].title )}
         >
           <CardContent
-            description={solutions[ e ].description}
+            description={solutionCategories[ e ].description}
             key={e}
-            title={solutions[ e ].title}
+            title={solutionCategories[ e ].title}
           />
         </TouchableOpacity>
       </View>
@@ -106,10 +113,7 @@ class HouseCategoriesCard extends Component {
   }
 
   render() {
-    const {
-      isFetching,
-      houseCategory: { description, title, urls },
-    } = this.props
+    const { isFetching, solution: { description, title, urls } } = this.props
     return !isFetching
       ? <View style={styles.container}>
         <HeaderTitle
@@ -125,11 +129,8 @@ class HouseCategoriesCard extends Component {
           containerstyle={styles.detailsView}
           title={description}
         />
-        <HeaderSection
-          containerstyle={styles.solution}
-          textTitle={'Solution'}
-        />
-        {this.renderSolutions()}
+        <HeaderSection containerstyle={styles.solution} textTitle={'Types'} />
+        {this.renderSolutionCategories()}
         <HeaderSection
           containerstyle={styles.caseStudy}
           textTitle={'Case Study'}
@@ -140,7 +141,7 @@ class HouseCategoriesCard extends Component {
   }
 }
 
-HouseCategoriesCard.propTypes = {
+Solution.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   offer: PropTypes.object,
@@ -148,14 +149,14 @@ HouseCategoriesCard.propTypes = {
   reviewScore: PropTypes.number,
 }
 
-HouseCategoriesCard.defaultProps = {
+Solution.defaultProps = {
   reviewCount: 0,
 }
-
 const combineActions = () => ( {
   ...caseStudiesActions,
   ...houseCategoriesActions,
   ...solutionsActions,
+  ...solutionCategoriesActions,
 } )
 
 const mapStateToProps = state => ( {
@@ -163,11 +164,13 @@ const mapStateToProps = state => ( {
   currentHouseCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
-  houseCategory: houseCategoriesSelectors.houseCategorySelector( state ),
-  isFetching: houseCategoriesSelectors.isFetchingCaseStudiesAndSolutionsSelector(
+  solution: solutionsSelectors.solutionSelector( state ),
+  isFetching: solutionsSelectors.isFetchingCaseStudiesAndSolutionCategoriesSelector(
     state
   ),
-  solutions: solutionsSelectors.solutionsByIdSelector( state ),
+  solutionCategories: solutionCategoriesSelectors.solutionCategoriesByIdSelector(
+    state
+  ),
 } )
 
-export default connect( mapStateToProps, combineActions() )( HouseCategoriesCard )
+export default connect( mapStateToProps, combineActions() )( Solution )

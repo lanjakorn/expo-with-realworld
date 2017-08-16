@@ -22,7 +22,7 @@ const styles = StyleSheet.create( {
   centerSection: {
     alignItems: 'center',
     backgroundColor: Colors.tintColor,
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -61,7 +61,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
           />
         </View>
         <View style={styles.centerSection}>
-          <Text style={styles.title}>
+          <Text style={styles.title} numberOfLines={1}>
             {title}
           </Text>
         </View>

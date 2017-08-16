@@ -11,6 +11,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+
+import { actions as caseStudiesActions } from 'modules/CaseStudies'
+
+import { actions as contactsActions } from 'modules/Contacts'
+
 import { Card } from '@components'
 import Spinner from 'react-native-loading-spinner-overlay'
 
@@ -51,6 +56,11 @@ class SearchListContainer extends Component {
   //   await this.props.getSearchHistory()
   // }
 
+  async componentWillMount() {
+    await this.props.initCaseStudiesScreen()
+    await this.props.initContactsScreen()
+  }
+
   onPressMenuSelect = link => {
     return link === 'Products' && this.props.navigation.navigate( 'products' )
   }
@@ -88,8 +98,13 @@ class SearchListContainer extends Component {
   }
 }
 
+const combineActions = () => ( {
+  ...caseStudiesActions,
+  ...contactsActions,
+} )
+
 const mapStateToProps = state => ( {
   isFetching: state.categories.isFetching,
 } )
 
-export default connect( mapStateToProps )( SearchListContainer )
+export default connect( mapStateToProps, combineActions() )( SearchListContainer )

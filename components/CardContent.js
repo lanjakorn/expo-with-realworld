@@ -5,8 +5,8 @@ import { Colors } from 'constants'
 const styles = StyleSheet.create( {
   container: {
     backgroundColor: 'transparent',
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
+    // borderBottomWidth: 1,
+    // borderColor: '#ddd',
     flexDirection: 'column',
     minWidth: 12,
     paddingBottom: 30,
@@ -42,7 +42,7 @@ const CardContent = ( { description, title } ) => {
           flexDirection: 'row',
         }}
       >
-        <Text style={styles.contentText}>
+        <Text style={styles.contentText} numberOfLines={2}>
           {description}
         </Text>
       </View>
