@@ -89,7 +89,7 @@ class Slider extends Component {
       this.setState( {
         SwipLoaded: true,
       } )
-    }, 1 )
+    }, 100 )
   }
 
   componentWillUnmount() {
