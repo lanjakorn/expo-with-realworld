@@ -51,6 +51,10 @@ const HouseTab = StackNavigator( {
     screen: ContactUsScreen,
     path: '/',
   },
+  productDetail: {
+    screen: ProductDetailScreen,
+    path: '/productdetail/:name',
+  },
   contact: {
     screen: ContactScreen,
     path: '/',
