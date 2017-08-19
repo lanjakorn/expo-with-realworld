@@ -23,16 +23,13 @@ function* read() {
 
 function* watchGetSolutions() {
   while ( true ) {
-    const { solutionCategories: solutionCategoriesDb } = yield take(
-      GET_SOLUTION_CATEGORIES
-    )
-    const solutionCategoriesOfSolutions = yield select(
-      solutionsSelectors.solutionCategoriesOfSolutionsSelector
-    )
+    const { solutionCategories } = yield take( GET_SOLUTION_CATEGORIES )
+    // const solutionCategoriesOfSolutions = yield select(
+    //   solutionsSelectors.solutionCategoriesOfSolutionsSelector
+    // )
     const normalized = yield call(
       normalizedSolutionCategories,
-      solutionCategoriesDb,
-      solutionCategoriesOfSolutions
+      solutionCategories
     )
     yield put( solutionCategoriesAction.success( normalized ) )
   }

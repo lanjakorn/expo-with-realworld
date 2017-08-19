@@ -1,15 +1,18 @@
 import { createSelector } from 'reselect'
-// import { selectors as caseStudiesSelectors } from 'modules/CaseStudies'
-// import { selectors as solutionsSelectors } from 'modules/Solutions'
+import {
+  caseStudiesByIdSelector,
+  isFetchingSelector as isFetchingCaseStudies,
+} from 'modules/CaseStudies/selectors'
+import {
+  solutionsByIdSelector,
+  isFetchingSelector as isFetchingSolutions,
+} from 'modules/Solutions/selectors'
 
 const currentHouseCategorySelector = state =>
   state.houseCategories.houseCategory
 const houseCategoriesByIdSelector = state =>
   state.houseCategories.houseCategoriesById
 const houseCategoryIdsSelector = state => state.houseCategories.houseCategoryIds
-
-const isFetchingCaseStudies = state => state.caseStudies.isFetching
-const isFetchingSolutions = state => state.solutions.isFetching
 
 const isFetchingSelector = state => state.houseCategories.isFetching
 
@@ -27,23 +30,53 @@ const houseCategorySelector = createSelector(
   ( curr, items ) => items[ curr ]
 )
 
-const houseCategoriesCaseStudiesSelector = createSelector(
+const caseStudyIdsOfHouseCategorySelector = createSelector(
   houseCategorySelector,
   item => item.caseStudies
 )
 
-const houseCategoriesSolutionsSelector = createSelector(
+const caseStudyOfHouseCategorySelector = createSelector(
+  caseStudyIdsOfHouseCategorySelector,
+  caseStudiesByIdSelector,
+  ( caseStudyIdsOfHouseCategory, caseStudiesMaster ) =>
+    Object.keys( caseStudyIdsOfHouseCategory ).reduce(
+      ( p, c ) => ( {
+        ...p,
+        [ caseStudyIdsOfHouseCategory[ c ] ]:
+        caseStudiesMaster[ caseStudyIdsOfHouseCategory[ c ] ],
+      } ),
+      {}
+    )
+)
+
+const solutionIdsOfHouseCategorySelector = createSelector(
   houseCategorySelector,
   item => item.solutions
 )
 
+const solutionOfHouseCategorySelector = createSelector(
+  solutionIdsOfHouseCategorySelector,
+  solutionsByIdSelector,
+  ( solutionIdsOfHouseCategory, solutionsMaster ) =>
+    Object.keys( solutionIdsOfHouseCategory ).reduce(
+      ( p, c ) => ( {
+        ...p,
+        [ solutionIdsOfHouseCategory[ c ] ]:
+        solutionsMaster[ solutionIdsOfHouseCategory[ c ] ],
+      } ),
+      {}
+    )
+)
+
 export {
+  caseStudyIdsOfHouseCategorySelector,
+  caseStudyOfHouseCategorySelector,
   currentHouseCategorySelector,
   houseCategoriesByIdSelector,
-  houseCategoriesCaseStudiesSelector,
-  houseCategorySelector,
-  houseCategoriesSolutionsSelector,
   houseCategoryIdsSelector,
-  isFetchingSelector,
+  houseCategorySelector,
   isFetchingCaseStudiesAndSolutionsSelector,
+  isFetchingSelector,
+  solutionIdsOfHouseCategorySelector,
+  solutionOfHouseCategorySelector,
 }

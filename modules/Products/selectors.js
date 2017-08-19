@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { faqsByIdSelector } from 'modules/Faqs/selectors'
 
 const currentProductSelector = state => state.products.productId
 const productsByIdSelector = state => state.products.productsById
@@ -18,12 +19,29 @@ const productSelector = createSelector(
   }
 )
 
-const productFaqsSelector = createSelector( productSelector, item => item.faqs )
+const faqIdsOfProductSelector = createSelector(
+  productSelector,
+  item => item.faqs
+)
+
+const faqOfProductSelector = createSelector(
+  faqIdsOfProductSelector,
+  faqsByIdSelector,
+  ( faqIdsOfProduct, faqsMaster ) =>
+    Object.keys( faqIdsOfProduct ).reduce(
+      ( p, c ) => ( {
+        ...p,
+        [ faqIdsOfProduct[ c ] ]: faqsMaster[ faqIdsOfProduct[ c ] ],
+      } ),
+      {}
+    )
+)
 
 export {
   productIdsSelector,
   productsByIdSelector,
   productSelector,
   productsNameSelector,
-  productFaqsSelector,
+  faqIdsOfProductSelector,
+  faqOfProductSelector,
 }

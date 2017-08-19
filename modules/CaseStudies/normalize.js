@@ -40,4 +40,5 @@ const normalizedCaseStudies = ( data = {} ) =>
       caseStudyIds: [],
     }
   )
+
 export { normalizedCaseStudies }

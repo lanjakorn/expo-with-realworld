@@ -20,9 +20,9 @@ function* read() {
 
 function* watchGetFaqs() {
   while ( true ) {
-    const { faqs: faqsDb } = yield take( GET_FAQS )
-    const productFaqs = yield select( productsSelectors.productFaqsSelector )
-    const normalized = yield call( normalizedFaqs, faqsDb, productFaqs )
+    const { faqs } = yield take( GET_FAQS )
+    // const productFaqs = yield select( productsSelectors.productFaqsSelector )
+    const normalized = yield call( normalizedFaqs, faqs )
 
     yield put( faqsAction.success( normalized ) )
   }

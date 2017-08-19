@@ -1,6 +1,7 @@
 import { action } from 'utilities'
 import {
   GET_PRODUCTS,
+  GET_PRODUCTS_BY_SOLUTION_CATEGORY,
   INIT_PRODUCTS_SCREEN,
   PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
@@ -10,6 +11,8 @@ import {
 } from './types'
 
 const getProducts = products => action( GET_PRODUCTS, { products } )
+const getProductsBySolutionCategory = solutionCategory =>
+  action( GET_PRODUCTS_BY_SOLUTION_CATEGORY, { solutionCategory } )
 const initProductsScreen = () => action( INIT_PRODUCTS_SCREEN )
 const setProducts = products => action( SET_PRODUCTS, { products } )
 const setCurrentProduct = id => action( SET_CURRENT_PRODUCT, { id } )
@@ -22,6 +25,7 @@ const products = {
 
 export {
   getProducts,
+  getProductsBySolutionCategory,
   initProductsScreen,
   products,
   setCurrentProduct,

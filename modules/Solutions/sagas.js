@@ -20,15 +20,11 @@ function* read() {
 
 function* watchGetSolutions() {
   while ( true ) {
-    const { solutions: solutionsDb } = yield take( GET_SOLUTIONS )
-    const houseCategoriesSolutions = yield select(
-      houseCategoriesSelectors.houseCategoriesSolutionsSelector
-    )
-    const normalized = yield call(
-      normalizedSolutions,
-      solutionsDb,
-      houseCategoriesSolutions
-    )
+    const { solutions } = yield take( GET_SOLUTIONS )
+    // const houseCategoriesSolutions = yield select(
+    //   houseCategoriesSelectors.solutionIdsOfHouseCategorySelectorSelector
+    // )
+    const normalized = yield call( normalizedSolutions, solutions )
     yield put( solutionsAction.success( normalized ) )
   }
 }

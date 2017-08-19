@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { solutionCategoriesByIdSelector } from 'modules/SolutionCategories/selectors'
 
 const currentSolutionSelector = state => state.solutions.solution
 const solutionsByIdSelector = state => state.solutions.solutionsById
@@ -12,7 +13,7 @@ const solutionSelector = createSelector(
   }
 )
 
-const solutionCategoriesOfSolutionsSelector = createSelector(
+const solutionCategoryIdsOfSolutionsSelector = createSelector(
   solutionSelector,
   item => item.solutionCategories
 )
@@ -28,11 +29,27 @@ const isFetchingCaseStudiesAndSolutionCategoriesSelector = createSelector(
     return caseStudies || solutionCategories ? true : false
   }
 )
+
+const solutionCategorOfHouseCategorySelector = createSelector(
+  solutionCategoryIdsOfSolutionsSelector,
+  solutionCategoriesByIdSelector,
+  ( solutionCategoryIdsOfSolution, solutionCategoriesMaster ) =>
+    Object.keys( solutionCategoryIdsOfSolution ).reduce(
+      ( p, c ) => ( {
+        ...p,
+        [ solutionCategoryIdsOfSolution[ c ] ]:
+        solutionCategoriesMaster[ solutionCategoryIdsOfSolution[ c ] ],
+      } ),
+      {}
+    )
+)
+
 export {
   currentSolutionSelector,
   isFetchingSelector,
   solutionsByIdSelector,
   solutionSelector,
-  solutionCategoriesOfSolutionsSelector,
+  solutionCategoryIdsOfSolutionsSelector,
   isFetchingCaseStudiesAndSolutionCategoriesSelector,
+  solutionCategorOfHouseCategorySelector,
 }

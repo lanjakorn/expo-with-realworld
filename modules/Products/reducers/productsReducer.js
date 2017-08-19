@@ -24,11 +24,26 @@ export default ( state = INITIAL_STATE, action ) => {
   case PRODUCTS_REQUEST:
     return { ...state, isFetching: true }
   case PRODUCTS_SUCCESS:
-    return { ...state, ...action.products, isFetching: false }
+    return {
+      ...state,
+      productsById: {
+        ...state.productsById,
+        ...action.products.productsById,
+      },
+      productIds: [
+        ...state.productIds,
+        ...action.products.productIds.reduce(
+          ( p, c ) =>
+            state.productIds.some( oldItem => oldItem === c ) ? p : [ ...p, c ],
+          []
+        ),
+      ],
+      isFetching: false,
+    }
   case PRODUCTS_FAILURE:
     return { ...state, isFetching: false, errorMessage: action.error }
-  case SET_CURRENT_CATEGORIES:
-    return { ...state, ...INITIAL_STATE }
+    // case SET_CURRENT_CATEGORIES:
+    //   return { ...state, ...INITIAL_STATE }
   case SET_CURRENT_PRODUCT:
     return { ...state, productId: action.id }
   default:

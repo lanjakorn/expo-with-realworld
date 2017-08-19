@@ -1,10 +1,15 @@
 import { eventChannel } from 'redux-saga'
 import { call, fork, put, select, take } from 'redux-saga/effects'
-import { GET_PRODUCTS, INIT_PRODUCTS_SCREEN } from './types'
+import {
+  GET_PRODUCTS,
+  GET_PRODUCTS_BY_SOLUTION_CATEGORY,
+  INIT_PRODUCTS_SCREEN,
+} from './types'
 import { products as productsAction } from './actions'
 import { selectors } from 'modules/Categories'
 import { normalizedProducts } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
+import { firebaseDb } from 'services/firebase'
 
 function subscribe() {
   return eventChannel( emit => subscribeEvent.subscribe( emit ) )
@@ -18,14 +23,6 @@ function* read() {
   }
 }
 
-function* write( context, method, onError, ...params ) {
-  try {
-    yield call( [ context, method ], ...params )
-  } catch ( error ) {
-    yield put( onError( error ) )
-  }
-}
-
 function* watchGetProducts() {
   while ( true ) {
     const { products } = yield take( GET_PRODUCTS )
@@ -35,7 +32,6 @@ function* watchGetProducts() {
     //   300,
     //   normalized.productsById[ Object.keys( normalized.productsById )[ 0 ] ]
     // )
-
     yield put( productsAction.success( normalized ) )
   }
 }
@@ -53,4 +49,29 @@ function* watchInitProductsScreen() {
   }
 }
 
-export default ( sagas = [ fork( watchGetProducts ), fork( watchInitProductsScreen ) ] )
+const getProductsBySolutionCategory = solutionCategory => {
+  return new Promise( resolve => {
+    firebaseDb
+      .ref( 'products' )
+      .orderByChild( 'solutionCategories' )
+      .equalTo( solutionCategory )
+      .once( 'value', snap => {
+        resolve( snap.val() )
+      } )
+  } )
+}
+
+function* watchGetProductsBySolutionCategory() {
+  while ( true ) {
+    const { solutionCategory } = yield take( GET_PRODUCTS_BY_SOLUTION_CATEGORY )
+    const products = yield call( getProductsBySolutionCategory, solutionCategory )
+    const normalized = yield call( normalizedProducts, products )
+    yield put( productsAction.success( normalized ) )
+  }
+}
+
+export default [
+  fork( watchGetProducts ),
+  fork( watchInitProductsScreen ),
+  fork( watchGetProductsBySolutionCategory ),
+]

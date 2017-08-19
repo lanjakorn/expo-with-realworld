@@ -21,12 +21,10 @@ function* read() {
 function* watchGetContacts() {
   while ( true ) {
     const { contacts } = yield take( GET_CONTACTS )
-    console.log( contacts )
     // const houseCategoriesContacts = yield select(
     //   houseCategoriesSelectors.houseCategoriesContactsSelector
     // )
     const normalized = yield call( normalizedContacts, contacts )
-    console.log( normalized )
     yield put( contactsAction.success( normalized ) )
   }
 }
