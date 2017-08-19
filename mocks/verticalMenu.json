@@ -1,1 +1,22 @@
-["Promotion", "Ricoh House", "Products", "Services", "Company Profile"]
+{
+  "promotion": {
+    "title": "Promotion",
+    "navigate": "promotions"
+  },
+  "ricohHouse": {
+    "title": "Ricoh House",
+    "navigate": "house"
+  },
+  "products": {
+    "title": "Products",
+    "navigate": "products"
+  },
+  "services": {
+    "title": "Services",
+    "navigate": "services"
+  },
+  "companyProfile": {
+    "title": "Company Profile",
+    "navigate": "CompanyProfiles"
+  }
+}
