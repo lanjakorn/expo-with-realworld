@@ -36,10 +36,10 @@ class HouseCategoriesCard extends Component {
     super( props )
   }
 
-  async componentWillMount() {
-    await this.props.initCaseStudiesScreen()
-    await this.props.initSolutionsScreen()
-  }
+  // async componentWillMount() {
+  //   await this.props.initCaseStudiesScreen()
+  //   await this.props.initSolutionsScreen()
+  // }
 
   shouldComponentUpdate( nextProps ) {
     return nextProps.isFetching !== this.props.isFetching ? true : false
@@ -110,6 +110,7 @@ class HouseCategoriesCard extends Component {
       isFetching,
       houseCategory: { description, title, urls },
     } = this.props
+
     return !isFetching
       ? <View style={styles.container}>
         <HeaderTitle
@@ -159,7 +160,7 @@ const combineActions = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  caseStudies: caseStudiesSelectors.caseStudiesByIdSelector( state ),
+  caseStudies: houseCategoriesSelectors.caseStudyOfHouseCategorySelector( state ),
   currentHouseCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
@@ -167,7 +168,7 @@ const mapStateToProps = state => ( {
   isFetching: houseCategoriesSelectors.isFetchingCaseStudiesAndSolutionsSelector(
     state
   ),
-  solutions: solutionsSelectors.solutionsByIdSelector( state ),
+  solutions: houseCategoriesSelectors.solutionOfHouseCategorySelector( state ),
 } )
 
 export default connect( mapStateToProps, combineActions() )( HouseCategoriesCard )

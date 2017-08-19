@@ -92,4 +92,8 @@ export default {
     paddingRight: 20,
     paddingTop: 30,
   },
+  questions: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
 }

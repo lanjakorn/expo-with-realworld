@@ -20,6 +20,8 @@ import {
   selectors as solutionCategoriesSelectors,
 } from 'modules/SolutionCategories'
 
+import { actions as productsAction, selectors } from 'modules/Products'
+
 import PropTypes from 'prop-types'
 
 import { object } from 'utilities'
@@ -41,6 +43,9 @@ import {
 } from '@components'
 
 import styles from './SolutionContainerStyle'
+import Questions from './Questions'
+import Products from './Products'
+import Price from './Price'
 
 const { width, height } = Dimensions.get( 'window' )
 
@@ -75,72 +80,16 @@ class Solution extends Component {
     this.props.navigation.navigate( 'contact' )
   }
 
-  renderCaseStudies = () => {
-    const { caseStudies } = this.props
-    return Object.keys( caseStudies ).map( ( e, k ) =>
-      <View
-        style={{
-          padding: 20,
-          borderBottomWidth: 1,
-          borderColor: '#ddd',
-        }}
-        key={`card-${ e }`}
-      >
-        <CardSection>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginRight: 25,
-            }}
-          >
-            <Image
-              style={{
-                height: 100,
-                width: 100,
-              }}
-              source={{
-                uri: object.getFirstByKey( {
-                  item: caseStudies[ e ].urls,
-                  key: 'imgs',
-                } ),
-              }}
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: 'column',
-              justifyContent: 'center',
-            }}
-          >
-            <View style={{ flexDirection: 'row' }}>
-              <View />
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 14,
-                    width: width * 0.85 - 40,
-                    alignContent: 'center',
-                  }}
-                >
-                  {`MP C6002SP${ k }`}
-                </Text>
-              </View>
-            </View>
-          </View>
-        </CardSection>
-      </View>
-    )
+  onPressSelectProduct = id => {
+    this.props.setCurrentProduct( 'Prokey1' )
+    // this.props.initFaqsScreen()
+    this.props.navigation.navigate( 'productDetail', 'Prokey1' )
   }
 
   render() {
     const {
       isFetching,
+      faqs,
       solutionCategory: { description, title, urls },
     } = this.props
     return !isFetching
@@ -174,90 +123,20 @@ class Solution extends Component {
           textTitle={'Products'}
         />
         <View>
-          {this.renderCaseStudies()}
+          <Products onPressSelectProduct={this.onPressSelectProduct} />
         </View>
         <HeaderSection containerstyle={styles.price} textTitle={'Price'} />
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 40,
+            padding: 30,
           }}
         >
-          <View
-            style={{
-              flex: 5,
-              flexDirection: 'column',
-            }}
-          >
-            <View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: 'right',
-                }}
-              >
-                {'ราคาต่ำสุด'}
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: 'right',
-                  fontWeight: 'bold',
-                }}
-              >
-                {'36,000 ฿'}
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 3,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 14,
-                alignContent: 'center',
-              }}
-            >
-              {'-'}
-            </Text>
-          </View>
-          <View
-            style={{
-              flex: 5,
-              flexDirection: 'row',
-              flexDirection: 'column',
-            }}
-          >
-            <View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: 'left',
-                }}
-              >
-                {'ราคาสูงสุด'}
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: 'left',
-                  fontWeight: 'bold',
-                }}
-              >
-                {'45,000 ฿'}
-              </Text>
-            </View>
-          </View>
+          <Price
+            endPrice={'45,000 ฿'}
+            endPriceLable={'ราคาสูงสุด'}
+            startPrice={'36,000 ฿'}
+            startPriceLable={'ราคาต่ำสุด'}
+          />
         </View>
         <HeaderButtonSection
           buttonOnPress={this.onPressContactUs}
@@ -265,6 +144,9 @@ class Solution extends Component {
           containerstyle={styles.faq}
           textTitle={'FAQ'}
         />
+        <View style={styles.questions}>
+          <Questions questions={faqs} />
+        </View>
       </View>
       : <Spinner visible={true} />
   }
@@ -285,9 +167,11 @@ const combineActions = () => ( {
   ...caseStudiesActions,
   ...houseCategoriesActions,
   ...solutionsActions,
+  ...productsAction,
 } )
 
 const mapStateToProps = state => ( {
+  faqs: solutionCategoriesSelectors.faqOfSolutionCategorySelector( state ),
   caseStudies: caseStudiesSelectors.caseStudiesByIdSelector( state ),
   currentSolutionCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state

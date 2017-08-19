@@ -15,6 +15,9 @@ import {
 import { actions as caseStudiesActions } from 'modules/CaseStudies'
 
 import { actions as contactsActions } from 'modules/Contacts'
+import { actions as solutionsActions } from 'modules/Solutions'
+import { actions as solutionCategoriesActions } from 'modules/SolutionCategories'
+import { actions as faqsAction } from 'modules/Faqs'
 
 import { Card } from '@components'
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -59,20 +62,23 @@ class SearchListContainer extends Component {
   async componentWillMount() {
     await this.props.initCaseStudiesScreen()
     await this.props.initContactsScreen()
+    await this.props.initSolutionsScreen()
+    await this.props.initSolutionCategoriesScreen()
+    await this.props.initFaqsScreen()
   }
 
   onPressMenuSelect = link => {
-    return link === 'Products' && this.props.navigation.navigate( 'products' )
+    this.props.navigation.navigate( link )
   }
 
   render() {
     return (
       <ScrollView>
         {!this.props.isFetching
-          ? verticalMenu.map( e =>
+          ? Object.keys( verticalMenu ).map( e =>
             <TouchableOpacity
               key={e}
-              onPress={() => this.onPressMenuSelect( e )}
+              onPress={() => this.onPressMenuSelect( verticalMenu[ e ].navigate )}
             >
               <Card margin={0} backgroundColor={'white'}>
                 <View style={styles.searchListItemStyle}>
@@ -83,7 +89,7 @@ class SearchListContainer extends Component {
                     source={require( '../../assets/images/house-menu-item.png' )}
                   >
                     <Text style={styles.text} numberOfLines={1}>
-                      {e}
+                      {verticalMenu[ e ].title}
                     </Text>
                   </Image>
                 </View>
@@ -101,6 +107,9 @@ class SearchListContainer extends Component {
 const combineActions = () => ( {
   ...caseStudiesActions,
   ...contactsActions,
+  ...solutionsActions,
+  ...solutionCategoriesActions,
+  ...faqsAction,
 } )
 
 const mapStateToProps = state => ( {

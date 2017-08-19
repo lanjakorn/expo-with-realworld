@@ -20,6 +20,11 @@ import {
   selectors as solutionCategoriesSelectors,
 } from 'modules/SolutionCategories'
 
+import {
+  actions as productsActions,
+  selectors as productselectors,
+} from 'modules/Products'
+
 import PropTypes from 'prop-types'
 
 import { object } from 'utilities'
@@ -43,7 +48,7 @@ class Solution extends Component {
 
   async componentWillMount() {
     // await this.props.initCaseStudiesScreen()
-    await this.props.initSolutionCategoriesScreen()
+    //await this.props.initSolutionCategoriesScreen()
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -55,8 +60,9 @@ class Solution extends Component {
   }
 
   onPressSolutionCategorySelect = ( key, value ) => {
-    console.log( key, value )
+    console.log( this.props )
     this.props.setCurrentSolutionCategory( key )
+    this.props.getProductsBySolutionCategory( key )
     this.props.navigation.navigate( 'solutionCategories', { category: value } )
   }
 
@@ -157,6 +163,7 @@ const combineActions = () => ( {
   ...houseCategoriesActions,
   ...solutionsActions,
   ...solutionCategoriesActions,
+  ...productsActions,
 } )
 
 const mapStateToProps = state => ( {
@@ -168,7 +175,7 @@ const mapStateToProps = state => ( {
   isFetching: solutionsSelectors.isFetchingCaseStudiesAndSolutionCategoriesSelector(
     state
   ),
-  solutionCategories: solutionCategoriesSelectors.solutionCategoriesByIdSelector(
+  solutionCategories: solutionsSelectors.solutionCategorOfHouseCategorySelector(
     state
   ),
 } )

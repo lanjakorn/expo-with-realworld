@@ -26,7 +26,7 @@ class ProductsList extends Component {
 
   onPressSelectProduct = id => {
     this.props.setCurrentProduct( id )
-    this.props.initFaqsScreen()
+    // this.props.initFaqsScreen()
     this.props.navigation.navigate( 'productDetail', id )
   }
 

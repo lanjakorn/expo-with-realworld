@@ -75,7 +75,7 @@ class HouseListContainer extends Component {
 
   render() {
     const { houseCategories, isFetchingHouseCategories } = this.props
-    console.log( isFetchingHouseCategories )
+
     return (
       <ScrollView>
         <View>

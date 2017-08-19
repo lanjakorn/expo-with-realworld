@@ -133,7 +133,7 @@ const combineAction = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  faqs: faqsSelectors.faqsByIdSelector( state ),
+  faqs: productsSelectors.faqOfProductSelector( state ),
   isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),
   product: productsSelectors.productSelector( state ),
   words: settingsSelectors.getWordsByLangSelector( state ),
