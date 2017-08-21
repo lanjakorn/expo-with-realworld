@@ -67,8 +67,8 @@ class SearchListContainer extends Component {
     await this.props.initFaqsScreen()
   }
 
-  onPressMenuSelect = link => {
-    this.props.navigation.navigate( link )
+  onPressMenuSelect = ( { navigate, title } ) => {
+    this.props.navigation.navigate( navigate, { category: title } )
   }
 
   render() {
@@ -78,7 +78,7 @@ class SearchListContainer extends Component {
           ? Object.keys( verticalMenu ).map( e =>
             <TouchableOpacity
               key={e}
-              onPress={() => this.onPressMenuSelect( verticalMenu[ e ].navigate )}
+              onPress={() => this.onPressMenuSelect( verticalMenu[ e ] )}
             >
               <Card margin={0} backgroundColor={'white'}>
                 <View style={styles.searchListItemStyle}>

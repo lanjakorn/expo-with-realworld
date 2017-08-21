@@ -15,26 +15,18 @@ import {
   selectors as solutionsSelectors,
 } from 'modules/Solutions'
 
-import {
-  actions as solutionCategoriesActions,
-  selectors as solutionCategoriesSelectors,
-} from 'modules/SolutionCategories'
+import { selectors as solutionCategoriesSelectors } from 'modules/SolutionCategories'
 
-import { actions as productsAction, selectors } from 'modules/Products'
+import { selectors as productsSelectors } from 'modules/Products'
+
+import { actions as productsAction } from 'modules/Products'
 
 import PropTypes from 'prop-types'
 
-import { object } from 'utilities'
-import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native'
-import Colors from 'constants/Colors'
-import { Icon } from 'react-native-elements'
+import { Dimensions, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
-  Card,
-  CardSection,
-  CardContent,
-  CardContentImage,
   HeaderButtonSection,
   HeaderSection,
   HeaderTitle,
@@ -55,8 +47,8 @@ class Solution extends Component {
   }
 
   async componentWillMount() {
-    await this.props.initCaseStudiesScreen()
-    await this.props.initSolutionsScreen()
+    // await this.props.initCaseStudiesScreen()
+    // await this.props.initSolutionsScreen()
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -80,18 +72,27 @@ class Solution extends Component {
     this.props.navigation.navigate( 'contact' )
   }
 
+  onPressFaq = () => {
+    this.props.navigation.navigate( 'faq' )
+  }
+
   onPressSelectProduct = id => {
-    this.props.setCurrentProduct( 'Prokey1' )
+    this.props.setCurrentProductOfSolutionCategory( id )
     // this.props.initFaqsScreen()
-    this.props.navigation.navigate( 'productDetail', 'Prokey1' )
+    this.props.navigation.navigate( 'productDetail', {
+      id,
+      module: 'solutionCategoris',
+    } )
   }
 
   render() {
     const {
       isFetching,
       faqs,
+      products,
       solutionCategory: { description, title, urls },
     } = this.props
+
     return !isFetching
       ? <View style={styles.container}>
         <HeaderTitle
@@ -101,7 +102,7 @@ class Solution extends Component {
           textTitle={title}
         />
         <View style={styles.thumbnailView}>
-          {<Slider urls={urls} />}
+          {<Slider urls={urls} hasVideo />}
         </View>
         <TextDescriptionCard
           containerstyle={styles.detailsView}
@@ -123,7 +124,10 @@ class Solution extends Component {
           textTitle={'Products'}
         />
         <View>
-          <Products onPressSelectProduct={this.onPressSelectProduct} />
+          <Products
+            products={products}
+            onPressSelectProduct={this.onPressSelectProduct}
+          />
         </View>
         <HeaderSection containerstyle={styles.price} textTitle={'Price'} />
         <View
@@ -139,7 +143,7 @@ class Solution extends Component {
           />
         </View>
         <HeaderButtonSection
-          buttonOnPress={this.onPressContactUs}
+          buttonOnPress={this.onPressFaq}
           buttontitle={'Faq'}
           containerstyle={styles.faq}
           textTitle={'FAQ'}
@@ -172,12 +176,13 @@ const combineActions = () => ( {
 
 const mapStateToProps = state => ( {
   faqs: solutionCategoriesSelectors.faqOfSolutionCategorySelector( state ),
+  products: productsSelectors.productFilterBySolutionCategorySelector( state ),
   caseStudies: caseStudiesSelectors.caseStudiesByIdSelector( state ),
   currentSolutionCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
   solutionCategory: solutionCategoriesSelectors.solutionCategySelector( state ),
-  isFetching: houseCategoriesSelectors.isFetchingSelector( state ),
+  isFetching: productsSelectors.isFetchingSelector( state ),
   solutions: solutionsSelectors.solutionsByIdSelector( state ),
 } )
 

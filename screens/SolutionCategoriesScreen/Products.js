@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import values from 'lodash/values'
+import { object } from 'utilities'
+
 import {
   Image,
   ListView,
@@ -29,37 +32,12 @@ const styles = StyleSheet.create( {
 } )
 
 class Faq extends Component {
-  state = {
-    products: [
-      {
-        name: 'MP C6004SP1',
-        image:
-          'https://www.bhphotovideo.com/images/images500x500/ricoh_407587_sp_213nw_laser_printer_1109659.jpg',
-      },
-      {
-        name: 'MP C6004SP2',
-        image:
-          'https://www.bhphotovideo.com/images/images500x500/ricoh_407587_sp_213nw_laser_printer_1109659.jpg',
-      },
-      {
-        name: 'MP C8004SP1',
-        image:
-          'https://www.bhphotovideo.com/images/images500x500/ricoh_407587_sp_213nw_laser_printer_1109659.jpg',
-      },
-      {
-        name: 'MP C9004SP1',
-        image:
-          'https://www.bhphotovideo.com/images/images500x500/ricoh_407587_sp_213nw_laser_printer_1109659.jpg',
-      },
-    ],
-  }
-
   componentWillMount() {
     const ds = new ListView.DataSource( {
       rowHasChanged: ( r1, r2 ) => r1 !== r2,
     } )
 
-    this.dataSource = ds.cloneWithRows( this.state.products )
+    this.dataSource = ds.cloneWithRows( values( this.props.products ) )
   }
 
   renderProducts = product => {
@@ -69,18 +47,22 @@ class Faq extends Component {
       productImage,
       productName,
     } = styles
-    const { name, image } = product
+    const { id, name, urls } = product
+
     return (
       <View style={productContainer}>
         <TouchableOpacity
-          key={name}
-          onPress={() => this.props.onPressSelectProduct( name )}
+          key={id}
+          onPress={() => this.props.onPressSelectProduct( id )}
         >
           <View style={imageContainer}>
             <Image
               style={productImage}
               source={{
-                uri: image,
+                uri: object.getFirstByKey( {
+                  item: urls,
+                  key: 'imgs',
+                } ),
               }}
             />
           </View>

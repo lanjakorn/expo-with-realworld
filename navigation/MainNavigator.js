@@ -18,11 +18,25 @@ import SettingsScreen from '@screens/SettingsScreen'
 import SolutionScreen from '@screens/SolutionScreen'
 import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
+import FaqScreen from '@screens/FaqScreen'
+import ServiceScreen from '@screens/ServiceScreen'
+import ServiceDetailScreen from '@screens/ServiceDetailScreen'
+import MoresScreen from '@screens/MoresScreen'
+import LoginScreen from '@screens/LoginScreen'
+import PostsScreen from '@screens/PostsScreen'
 
 const HomeTab = StackNavigator( {
-  home: {
+  index: {
     screen: HomeScreen,
     path: '/',
+  },
+  promotions: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  companyProfiles: {
+    screen: PostsScreen,
+    path: '/:category',
   },
   search: {
     screen: SearchScreen,
@@ -53,10 +67,14 @@ const HouseTab = StackNavigator( {
   },
   productDetail: {
     screen: ProductDetailScreen,
-    path: '/productdetail/:name',
+    path: '/productdetail/:id:module',
   },
   contact: {
     screen: ContactScreen,
+    path: '/',
+  },
+  faq: {
+    screen: FaqScreen,
     path: '/',
   },
   search: {
@@ -65,9 +83,52 @@ const HouseTab = StackNavigator( {
   },
 } )
 
-const ContactTab = StackNavigator( {
+const ServiceTab = StackNavigator( {
   contact: {
-    screen: ContactScreen,
+    screen: ServiceScreen,
+    path: '/',
+  },
+  serviceDetail: {
+    screen: ServiceDetailScreen,
+    path: '/:service',
+  },
+} )
+
+const MoresTab = StackNavigator( {
+  index: {
+    screen: MoresScreen,
+    path: '/',
+  },
+  login: {
+    screen: LoginScreen,
+    path: '/',
+  },
+  promotions: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  companyProfiles: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  caseStudies: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  newsLetters: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  apps: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  touchs: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  contactUs: {
+    screen: ContactUsScreen,
     path: '/',
   },
 } )
@@ -97,6 +158,10 @@ const ProductsTab = StackNavigator( {
     screen: ContactUsScreen,
     path: '/',
   },
+  faq: {
+    screen: FaqScreen,
+    path: '/',
+  },
   contact: {
     screen: ContactScreen,
     path: '/',
@@ -114,32 +179,32 @@ const ServicesTab = StackNavigator( {
   },
 } )
 
-const MoresTab = StackNavigator( {
-  settings: {
-    screen: SettingsScreen.SettingsScreen,
-    path: '/',
-  },
-  defaultTabSetting: {
-    screen: SettingsScreen.DefaultTabSetting,
-  },
-  readabilitySetting: {
-    screen: SettingsScreen.ReadabilitySetting,
-  },
-  regionSetting: {
-    screen: SettingsScreen.RegionSetting,
-  },
-  sourcesSetting: {
-    screen: SettingsScreen.SourcesSetting,
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
+// const MoresTab = StackNavigator( {
+//   settings: {
+//     screen: SettingsScreen.SettingsScreen,
+//     path: '/',
+//   },
+//   defaultTabSetting: {
+//     screen: SettingsScreen.DefaultTabSetting,
+//   },
+//   readabilitySetting: {
+//     screen: SettingsScreen.ReadabilitySetting,
+//   },
+//   regionSetting: {
+//     screen: SettingsScreen.RegionSetting,
+//   },
+//   sourcesSetting: {
+//     screen: SettingsScreen.SourcesSetting,
+//   },
+//   search: {
+//     screen: SearchScreen,
+//     path: '/',
+//   },
+// } )
 
 const TabNav = TabNavigator(
   {
-    home: {
+    homes: {
       screen: HomeTab,
       navigationOptions: {
         tabBarLabel: 'Home',
@@ -151,7 +216,7 @@ const TabNav = TabNavigator(
           />,
       },
     },
-    house: {
+    houses: {
       screen: HouseTab,
       navigationOptions: {
         tabBarLabel: 'Ricoh House',
@@ -177,7 +242,7 @@ const TabNav = TabNavigator(
       },
     },
     services: {
-      screen: ContactTab,
+      screen: ServiceTab,
       navigationOptions: {
         tabBarLabel: 'Services',
         tabBarIcon: ( { tintColor, focused } ) =>
@@ -230,7 +295,7 @@ const TabNav = TabNavigator(
     lazy: true,
     animationEnabled: false,
     tabBarPosition: 'bottom',
-    initialRouteName: 'home',
+    initialRouteName: 'homes',
   }
 )
 

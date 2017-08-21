@@ -27,7 +27,7 @@ import PriceText from './PriceText'
 import Questions from './Questions'
 import styles from './ProductCardStyle'
 
-const renderTags = ( { product: { tags } } ) => {
+const renderTags = tags => {
   return (
     <View style={styles.tags}>
       {tags.map( ( e, k ) =>
@@ -37,7 +37,7 @@ const renderTags = ( { product: { tags } } ) => {
   )
 }
 
-const renderPros = ( { product: { pros }, words } ) => {
+const renderPros = ( pros, words ) => {
   return (
     <View style={styles.pros}>
       <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
@@ -50,14 +50,27 @@ const renderPros = ( { product: { pros }, words } ) => {
   )
 }
 
+// TODO: duplicate logic checking : Remove all duplicates but keep only one
 const ProductCard = props => {
   const {
-    faqs,
     isFetchingFaqs,
     navigation,
     words,
-    product: { name, urls, description, offer },
+    productOfProductCategory,
+    productOfSolutionCategory,
+    faqsOfProductfromProductCategory,
+    faqsOfProductfromSolutionCategory,
   } = props
+
+  const { name, urls, description, offer, tags, pros } =
+    navigation.state.params.module === 'productCategories'
+      ? productOfProductCategory
+      : productOfSolutionCategory
+
+  const faqs =
+    navigation.state.params.module === 'productCategories'
+      ? faqsOfProductfromProductCategory
+      : faqsOfProductfromSolutionCategory
 
   const onPressContactUs = () => {
     navigation.navigate( 'contactUs' )
@@ -65,6 +78,10 @@ const ProductCard = props => {
 
   const onPressContact = () => {
     navigation.navigate( 'contact' )
+  }
+
+  const onPressFaq = () => {
+    navigation.navigate( 'faq' )
   }
 
   return (
@@ -76,7 +93,7 @@ const ProductCard = props => {
         textTitle={name}
       />
       <View style={styles.thumbnailView}>
-        <Slider urls={urls} />
+        <Slider urls={urls} hasVideo />
       </View>
       <TextDescriptionCard
         containerstyle={styles.detailsView}
@@ -90,8 +107,8 @@ const ProductCard = props => {
           words={words}
         />
       </View>
-      {renderTags( props )}
-      {renderPros( props )}
+      {renderTags( tags )}
+      {renderPros( pros, words )}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
@@ -101,7 +118,7 @@ const ProductCard = props => {
         <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
       </View>
       <HeaderButtonSection
-        buttonOnPress={onPressContactUs}
+        buttonOnPress={onPressFaq}
         buttontitle={'Faq'}
         containerstyle={styles.faq}
         textTitle={'FAQ'}
@@ -133,9 +150,19 @@ const combineAction = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  faqs: productsSelectors.faqOfProductSelector( state ),
+  faqsOfProductfromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(
+    state
+  ),
+  faqsOfProductfromSolutionCategory: productsSelectors.faqOfProductFromSolutionCategorySelector(
+    state
+  ),
   isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),
-  product: productsSelectors.productSelector( state ),
+  productOfProductCategory: productsSelectors.productOfProductCategorySelector(
+    state
+  ),
+  productOfSolutionCategory: productsSelectors.productOfSolutionCategorySelector(
+    state
+  ),
   words: settingsSelectors.getWordsByLangSelector( state ),
 } )
 

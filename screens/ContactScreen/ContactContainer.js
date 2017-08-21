@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
-import {
-  Dimensions,
-  Platform,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-} from 'react-native'
+import { Platform, View, Text, Image, StyleSheet } from 'react-native'
 import { Card } from 'react-native-elements'
 import Colors from 'constants/Colors'
-
-const { height, width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   container: {

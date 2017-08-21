@@ -1,23 +1,7 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, View } from 'react-native'
 
-// const styles = StyleSheet.create( {
-//   containerStyle: {
-//     backgroundColor: '#fff',
-//     borderColor: '#ddd',
-//     flexDirection: 'row',
-//     justifyContent: 'flex-start',
-//     position: 'relative',
-//   },
-// } )
-
-const Price = ( {
-  containerstyle,
-  startPrice,
-  startPriceLable,
-  endPrice,
-  endPriceLable,
-} ) => {
+const Price = ( { startPrice, startPriceLable, endPrice, endPriceLable } ) => {
   return (
     <View
       style={{

@@ -25,21 +25,29 @@ class ProductsList extends Component {
   }
 
   onPressSelectProduct = id => {
-    this.props.setCurrentProduct( id )
+    this.props.setCurrentProductOfProductCategory( id )
     // this.props.initFaqsScreen()
-    this.props.navigation.navigate( 'productDetail', id )
+    this.props.navigation.navigate( 'productDetail', {
+      id: id,
+      module: 'productCategories',
+    } )
   }
 
   renderProducts() {
-    return this.props.products.map( ( e, k ) =>
+    const { products } = this.props
+
+    return Object.keys( products ).map( ( e, k ) =>
       <TouchableOpacity
-        key={`product-touch-${ e.name }-${ k }`}
-        onPress={() => this.onPressSelectProduct( e.id )}
+        key={`product-touch-${ products[ e ].name }-${ k }`}
+        onPress={() => this.onPressSelectProduct( e )}
       >
         <ProductsDetail
-          key={`product-${ e.name }-${ k }`}
-          productImage={object.getFirstByKey( { item: e.urls, key: 'imgs' } )}
-          productHeading={e.name}
+          key={`product-${ products[ e ].name }-${ k }`}
+          productImage={object.getFirstByKey( {
+            item: products[ e ].urls,
+            key: 'imgs',
+          } )}
+          productHeading={products[ e ].name}
         />
       </TouchableOpacity>
     )
@@ -67,7 +75,7 @@ const combineAction = () => ( {
 
 const mapStateToProps = state => ( {
   isFetching: state.products.isFetching,
-  products: selectors.productsNameSelector( state ),
+  products: selectors.productFilterByProductCategoriesSelector( state ),
 } )
 
 export default connect( mapStateToProps, combineAction() )( ProductsList )

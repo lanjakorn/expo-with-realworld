@@ -5,15 +5,9 @@ import {
   selectors as houseCategoriesSelectors,
 } from 'modules/HouseCategories'
 
-import {
-  actions as caseStudiesActions,
-  selectors as caseStudiesSelectors,
-} from 'modules/CaseStudies'
+import { actions as caseStudiesActions } from 'modules/CaseStudies'
 
-import {
-  actions as solutionsActions,
-  selectors as solutionsSelectors,
-} from 'modules/Solutions'
+import { actions as solutionsActions } from 'modules/Solutions'
 
 import PropTypes from 'prop-types'
 
@@ -120,7 +114,7 @@ class HouseCategoriesCard extends Component {
           textTitle={title}
         />
         <View style={styles.thumbnailView}>
-          {<Slider urls={urls} />}
+          {<Slider urls={urls} hasVideo />}
         </View>
         <TextDescriptionCard
           containerstyle={styles.detailsView}

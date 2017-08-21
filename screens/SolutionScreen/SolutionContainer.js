@@ -15,15 +15,9 @@ import {
   selectors as solutionsSelectors,
 } from 'modules/Solutions'
 
-import {
-  actions as solutionCategoriesActions,
-  selectors as solutionCategoriesSelectors,
-} from 'modules/SolutionCategories'
+import { actions as solutionCategoriesActions } from 'modules/SolutionCategories'
 
-import {
-  actions as productsActions,
-  selectors as productselectors,
-} from 'modules/Products'
+import { actions as productsActions } from 'modules/Products'
 
 import PropTypes from 'prop-types'
 
@@ -60,7 +54,6 @@ class Solution extends Component {
   }
 
   onPressSolutionCategorySelect = ( key, value ) => {
-    console.log( this.props )
     this.props.setCurrentSolutionCategory( key )
     this.props.getProductsBySolutionCategory( key )
     this.props.navigation.navigate( 'solutionCategories', { category: value } )
@@ -129,7 +122,7 @@ class Solution extends Component {
           textTitle={title}
         />
         <View style={styles.thumbnailView}>
-          {<Slider urls={urls} />}
+          {<Slider urls={urls} hasVideo />}
         </View>
         <TextDescriptionCard
           containerstyle={styles.detailsView}
@@ -171,10 +164,10 @@ const mapStateToProps = state => ( {
   currentHouseCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
-  solution: solutionsSelectors.solutionSelector( state ),
   isFetching: solutionsSelectors.isFetchingCaseStudiesAndSolutionCategoriesSelector(
     state
   ),
+  solution: solutionsSelectors.solutionSelector( state ),
   solutionCategories: solutionsSelectors.solutionCategorOfHouseCategorySelector(
     state
   ),
