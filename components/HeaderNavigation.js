@@ -50,7 +50,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
             iconStyle={{
               backgroundColor: Colors.tintColor,
               textAlign: 'left',
-              width: 25,
+              width: 50,
             }}
             name={'ios-arrow-back'}
             size={32}
@@ -71,7 +71,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
             iconStyle={{
               backgroundColor: Colors.tintColor,
               textAlign: 'right',
-              width: 25,
+              width: 50,
             }}
             name={'ios-search'}
             size={28}

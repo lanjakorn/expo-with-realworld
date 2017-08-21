@@ -24,7 +24,7 @@ const calHeight = {
 const styles = {
   wrapper: {},
   pagination: {
-    bottom: Platform.OS === 'android' ? 0 : -30,
+    bottom: Platform.OS === 'android' ? 30 : -30,
   },
   buttonWrappe: {
     backgroundColor: 'transparent',
@@ -48,7 +48,7 @@ const styles = {
   },
   slideImage: {
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
+    backgroundColor: '#FFF',
     flex: 1,
     justifyContent: 'center',
   },
@@ -119,6 +119,8 @@ class Slider extends Component {
           paginationStyle={styles.pagination}
           prevButton={<Text style={styles.prevButton}>‹</Text>}
           showsButtons={Platform.OS === 'android' ? true : false}
+          loadMinimal={true}
+          loadMinimalSize={1}
         >
           <View style={styles.slideImage}>
             <Image
@@ -135,20 +137,36 @@ class Slider extends Component {
               }}
             />
           </View>
-          <View style={styles.slideVideo}>
-            <WebView
-              source={{
-                uri: this.embedVideoLink(),
-              }}
-              style={{
-                alignItems: 'center',
-                backgroundColor: 'black',
-                height: 240,
-                justifyContent: 'center',
-                width: width,
-              }}
-            />
-          </View>
+          {this.props.hasVideo
+            ? <View style={styles.slideVideo}>
+              <WebView
+                source={{
+                  uri: this.embedVideoLink(),
+                }}
+                style={{
+                  alignItems: 'center',
+                  backgroundColor: 'black',
+                  height: 240,
+                  justifyContent: 'center',
+                  width: width,
+                }}
+              />
+            </View>
+            : <View style={styles.slideImage}>
+              <Image
+                resizeMode="cover"
+                source={{
+                  uri: object.getLastByKey( {
+                    item: this.props.urls,
+                    key: 'imgs',
+                  } ),
+                }}
+                style={{
+                  height: calHeight.height,
+                  width: width,
+                }}
+              />
+            </View>}
         </Swiper>
         : <View />
     }

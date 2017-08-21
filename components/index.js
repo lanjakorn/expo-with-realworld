@@ -11,6 +11,7 @@ import HeaderTitle from './HeaderTitle'
 import NoItemComponent from './NoItemComponent'
 import Search from './SearchContainer'
 import Slider from './Slider'
+import SpinnerButton from './SpinnerButton'
 import StyledText from './StyledText'
 import TextDescriptionCard from './TextDescriptionCard'
 
@@ -28,6 +29,7 @@ export {
   NoItemComponent,
   Search,
   Slider,
+  SpinnerButton,
   StyledText,
   TextDescriptionCard,
 }

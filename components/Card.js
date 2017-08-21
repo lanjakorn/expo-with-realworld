@@ -3,9 +3,7 @@ import { StyleSheet, View } from 'react-native'
 
 const styles = StyleSheet.create( {
   container: {
-    // borderBottomWidth: 0,
     borderColor: '#ddd',
-    // borderWidth: 1,
     elevation: 1,
     marginBottom: 10,
     marginTop: -1,

@@ -5,8 +5,6 @@ import { Colors } from 'constants'
 const styles = StyleSheet.create( {
   container: {
     backgroundColor: 'transparent',
-    // borderBottomWidth: 1,
-    // borderColor: '#ddd',
     flexDirection: 'column',
     minWidth: 12,
     paddingBottom: 30,
