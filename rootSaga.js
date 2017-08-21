@@ -10,6 +10,7 @@ import { sagas as searchSagas } from 'modules/Search'
 import { sagas as settingsSagas } from 'modules/Settings'
 import { sagas as solutionCategoriesSagas } from 'modules/SolutionCategories'
 import { sagas as solutionsSagas } from 'modules/Solutions'
+import { sagas as servicesSagas } from 'modules/Services'
 
 export default function* rootSagas() {
   yield all( [
@@ -23,5 +24,6 @@ export default function* rootSagas() {
     ...settingsSagas,
     ...solutionCategoriesSagas,
     ...solutionsSagas,
+    ...servicesSagas,
   ] )
 }

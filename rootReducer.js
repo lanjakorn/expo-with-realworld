@@ -10,6 +10,7 @@ import { reducers as searchReducers } from 'modules/Search'
 import { reducers as settingsReducer } from 'modules/Settings'
 import { reducers as solutionCategoriesReducer } from 'modules/SolutionCategories'
 import { reducers as solutionsReducer } from 'modules/Solutions'
+import { reducers as servicesReducer } from 'modules/Services'
 
 const rootReducer = combineReducers( {
   ...caseStudiesReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers( {
   ...settingsReducer,
   ...solutionCategoriesReducer,
   ...solutionsReducer,
+  ...servicesReducer,
 } )
 
 export default rootReducer

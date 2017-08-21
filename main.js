@@ -32,6 +32,10 @@ class AppContainer extends React.Component {
           require( './assets/images/business-item-2.png' ),
           require( './assets/images/vertical-menu-item.png' ),
           require( './assets/images/house-menu-item.png' ),
+          require( './assets/images/ricoh-logo.png' ),
+          require( './assets/images/ricoh-logo-white.png' ),
+          require( './assets/images/ricoh-logo.png' ),
+          require( './assets/images/ricoh-logo-red.jpg' ),
         ],
         fonts: [
           FontAwesome.font,
