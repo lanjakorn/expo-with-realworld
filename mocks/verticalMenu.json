@@ -1,11 +1,11 @@
 {
-  "promotion": {
-    "title": "Promotion",
+  "promotions": {
+    "title": "Promotion / Hot Seals",
     "navigate": "promotions"
   },
-  "ricohHouse": {
+  "houses": {
     "title": "Ricoh House",
-    "navigate": "house"
+    "navigate": "houses"
   },
   "products": {
     "title": "Products",
@@ -15,8 +15,8 @@
     "title": "Services",
     "navigate": "services"
   },
-  "companyProfile": {
+  "companyProfiles": {
     "title": "Company Profile",
-    "navigate": "CompanyProfiles"
+    "navigate": "companyProfiles"
   }
 }
