@@ -1,12 +1,13 @@
 import { action } from 'utilities'
 import {
-  GET_PRODUCTS,
   GET_PRODUCTS_BY_SOLUTION_CATEGORY,
+  GET_PRODUCTS,
   INIT_PRODUCTS_SCREEN,
   PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
-  SET_CURRENT_PRODUCT,
+  SET_CURRENT_PRODUCT_OF_PRODUCT_CATEGORY,
+  SET_CURRENT_PRODUCT_OF_SOLUTION_CATEGORY,
   SET_PRODUCTS,
 } from './types'
 
@@ -15,7 +16,10 @@ const getProductsBySolutionCategory = solutionCategory =>
   action( GET_PRODUCTS_BY_SOLUTION_CATEGORY, { solutionCategory } )
 const initProductsScreen = () => action( INIT_PRODUCTS_SCREEN )
 const setProducts = products => action( SET_PRODUCTS, { products } )
-const setCurrentProduct = id => action( SET_CURRENT_PRODUCT, { id } )
+const setCurrentProductOfProductCategory = id =>
+  action( SET_CURRENT_PRODUCT_OF_PRODUCT_CATEGORY, { id } )
+const setCurrentProductOfSolutionCategory = id =>
+  action( SET_CURRENT_PRODUCT_OF_SOLUTION_CATEGORY, { id } )
 
 const products = {
   request: () => action( PRODUCTS_REQUEST ),
@@ -28,6 +32,7 @@ export {
   getProductsBySolutionCategory,
   initProductsScreen,
   products,
-  setCurrentProduct,
+  setCurrentProductOfProductCategory,
+  setCurrentProductOfSolutionCategory,
   setProducts,
 }

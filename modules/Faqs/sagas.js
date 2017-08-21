@@ -1,8 +1,7 @@
 import { eventChannel } from 'redux-saga'
-import { call, fork, put, select, take } from 'redux-saga/effects'
+import { call, fork, put, take } from 'redux-saga/effects'
 import { GET_FAQS, INIT_FAQS_SCREEN } from './types'
 import { faqs as faqsAction } from './actions'
-import { selectors as productsSelectors } from 'modules/Products'
 import { normalizedFaqs } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
 

@@ -1,12 +1,12 @@
 import { action } from 'utilities'
 import {
-  SOLUTIONS_FAILURE,
-  SOLUTIONS_REQUEST,
-  SOLUTIONS_SUCCESS,
   GET_SOLUTIONS,
   INIT_SOLUTIONS_SCREEN,
   SET_CURRENT_SOLUTION,
   SET_SOLUTIONS,
+  SOLUTIONS_FAILURE,
+  SOLUTIONS_REQUEST,
+  SOLUTIONS_SUCCESS,
 } from './types'
 
 const getSolutions = solutions => action( GET_SOLUTIONS, { solutions } )
@@ -22,9 +22,9 @@ const solutions = {
 }
 
 export {
-  solutions,
   getSolutions,
   initSolutionsScreen,
   setCurrentSolutions,
   setSolutions,
+  solutions,
 }

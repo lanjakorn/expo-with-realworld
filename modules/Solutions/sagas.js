@@ -1,8 +1,7 @@
 import { eventChannel } from 'redux-saga'
-import { call, fork, put, select, take } from 'redux-saga/effects'
+import { call, fork, put, take } from 'redux-saga/effects'
 import { GET_SOLUTIONS, INIT_SOLUTIONS_SCREEN } from './types'
 import { solutions as solutionsAction } from './actions'
-import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
 import { normalizedSolutions } from './normalize'
 import { subscribeEvent } from './subscribeEvent'
 

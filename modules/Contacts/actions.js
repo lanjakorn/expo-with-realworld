@@ -5,8 +5,8 @@ import {
   CONTACTS_SUCCESS,
   GET_CONTACTS,
   INIT_CONTACTS_SCREEN,
-  SET_CURRENT_CONTACT,
   SET_CONTACTS,
+  SET_CURRENT_CONTACT,
 } from './types'
 
 const getContacts = contacts => action( GET_CONTACTS, { contacts } )
@@ -25,6 +25,6 @@ export {
   contacts,
   getContacts,
   initContactsScreen,
-  setCurrentContact,
   setContacts,
+  setCurrentContact,
 }

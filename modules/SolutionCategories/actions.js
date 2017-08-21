@@ -1,12 +1,12 @@
 import { action } from 'utilities'
 import {
-  SOLUTION_CATEGORIES_FAILURE,
-  SOLUTION_CATEGORIES_REQUEST,
-  SOLUTION_CATEGORIES_SUCCESS,
   GET_SOLUTION_CATEGORIES,
   INIT_SOLUTION_CATEGORIES_SCREEN,
   SET_CURRENT_SOLUTION_CATEGORY,
   SET_SOLUTION_CATEGORIES,
+  SOLUTION_CATEGORIES_FAILURE,
+  SOLUTION_CATEGORIES_REQUEST,
+  SOLUTION_CATEGORIES_SUCCESS,
 } from './types'
 
 const getSolutionCategories = solutionCategories =>
@@ -26,9 +26,9 @@ const solutionCategories = {
 }
 
 export {
-  solutionCategories,
   getSolutionCategories,
   initSolutionCategoriesScreen,
   setCurrentSolutionCategory,
   setSolutionCategories,
+  solutionCategories,
 }

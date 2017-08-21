@@ -10,9 +10,7 @@ const isFetchingSelector = state => state.solutionCategories.isFetching
 const solutionCategySelector = createSelector(
   currentSolutionCategorySelector,
   solutionCategoriesByIdSelector,
-  ( currentSolutionCategory, items ) => {
-    return items[ currentSolutionCategory ]
-  }
+  ( currentSolutionCategory, items ) => items[ currentSolutionCategory ]
 )
 
 const faqIdsOfSolutionCategorySelector = createSelector(
@@ -24,20 +22,23 @@ const faqOfSolutionCategorySelector = createSelector(
   faqIdsOfSolutionCategorySelector,
   faqsByIdSelector,
   ( faqIdsOfSolutionCategory, faqsMaster ) =>
-    Object.keys( faqIdsOfSolutionCategory ).reduce(
-      ( p, c ) => ( {
-        ...p,
-        [ faqIdsOfSolutionCategory[ c ] ]: faqsMaster[ faqIdsOfSolutionCategory[ c ] ],
-      } ),
-      {}
-    )
+    Object.keys( faqIdsOfSolutionCategory ).length !== 0
+      ? Object.keys( faqIdsOfSolutionCategory ).reduce(
+        ( p, c ) => ( {
+          ...p,
+          [ faqIdsOfSolutionCategory[ c ] ]:
+          faqsMaster[ faqIdsOfSolutionCategory[ c ] ],
+        } ),
+        {}
+      )
+      : {}
 )
 
 export {
   currentSolutionCategorySelector,
+  faqIdsOfSolutionCategorySelector,
+  faqOfSolutionCategorySelector,
   isFetchingSelector,
   solutionCategoriesByIdSelector,
   solutionCategySelector,
-  faqIdsOfSolutionCategorySelector,
-  faqOfSolutionCategorySelector,
 }

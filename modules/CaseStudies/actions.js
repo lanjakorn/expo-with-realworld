@@ -5,8 +5,8 @@ import {
   CASE_STUDIES_SUCCESS,
   GET_CASE_STUDIES,
   INIT_CASE_STUDIES_SCREEN,
-  SET_CURRENT_CASE_STUDY,
   SET_CASE_STUDIES,
+  SET_CURRENT_CASE_STUDY,
 } from './types'
 
 const getCaseStudies = caseStudies => action( GET_CASE_STUDIES, { caseStudies } )
@@ -25,6 +25,6 @@ export {
   caseStudies,
   getCaseStudies,
   initCaseStudiesScreen,
-  setCurrentCaseStudy,
   setCaseStudies,
+  setCurrentCaseStudy,
 }

@@ -64,6 +64,7 @@ const getProductsBySolutionCategory = solutionCategory => {
 function* watchGetProductsBySolutionCategory() {
   while ( true ) {
     const { solutionCategory } = yield take( GET_PRODUCTS_BY_SOLUTION_CATEGORY )
+    yield put( productsAction.request() )
     const products = yield call( getProductsBySolutionCategory, solutionCategory )
     const normalized = yield call( normalizedProducts, products )
     yield put( productsAction.success( normalized ) )

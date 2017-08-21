@@ -8,9 +8,7 @@ const isFetchingSelector = state => state.solutions.isFetching
 const solutionSelector = createSelector(
   currentSolutionSelector,
   solutionsByIdSelector,
-  ( currentSolution, items ) => {
-    return items[ currentSolution ]
-  }
+  ( currentSolution, items ) => items[ currentSolution ]
 )
 
 const solutionCategoryIdsOfSolutionsSelector = createSelector(
@@ -25,31 +23,32 @@ const isFetchingSolutionCategories = state =>
 const isFetchingCaseStudiesAndSolutionCategoriesSelector = createSelector(
   isFetchingCaseStudies,
   isFetchingSolutionCategories,
-  ( caseStudies, solutionCategories ) => {
-    return caseStudies || solutionCategories ? true : false
-  }
+  ( caseStudies, solutionCategories ) =>
+    caseStudies || solutionCategories ? true : false
 )
 
 const solutionCategorOfHouseCategorySelector = createSelector(
   solutionCategoryIdsOfSolutionsSelector,
   solutionCategoriesByIdSelector,
   ( solutionCategoryIdsOfSolution, solutionCategoriesMaster ) =>
-    Object.keys( solutionCategoryIdsOfSolution ).reduce(
-      ( p, c ) => ( {
-        ...p,
-        [ solutionCategoryIdsOfSolution[ c ] ]:
-        solutionCategoriesMaster[ solutionCategoryIdsOfSolution[ c ] ],
-      } ),
-      {}
-    )
+    Object.keys( solutionCategoryIdsOfSolution ).length !== 0
+      ? Object.keys( solutionCategoryIdsOfSolution ).reduce(
+        ( p, c ) => ( {
+          ...p,
+          [ solutionCategoryIdsOfSolution[ c ] ]:
+          solutionCategoriesMaster[ solutionCategoryIdsOfSolution[ c ] ],
+        } ),
+        {}
+      )
+      : {}
 )
 
 export {
   currentSolutionSelector,
+  isFetchingCaseStudiesAndSolutionCategoriesSelector,
   isFetchingSelector,
+  solutionCategorOfHouseCategorySelector,
+  solutionCategoryIdsOfSolutionsSelector,
   solutionsByIdSelector,
   solutionSelector,
-  solutionCategoryIdsOfSolutionsSelector,
-  isFetchingCaseStudiesAndSolutionCategoriesSelector,
-  solutionCategorOfHouseCategorySelector,
 }

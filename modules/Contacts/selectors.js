@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect'
 
-const currentSolutionSelector = state => state.contacts.contact
 const contactsByIdSelector = state => state.contacts.contactsById
+const currentContactSelector = state => state.contacts.contact
 const isFetchingSelector = state => state.contacts.isFetching
 
 const contactsSelector = createSelector(
-  currentSolutionSelector,
+  currentContactSelector,
   contactsByIdSelector,
   ( currentContact, items ) => {
     return items[ currentContact ]
@@ -13,8 +13,8 @@ const contactsSelector = createSelector(
 )
 
 export {
-  currentSolutionSelector,
-  isFetchingSelector,
   contactsByIdSelector,
   contactsSelector,
+  currentContactSelector,
+  isFetchingSelector,
 }

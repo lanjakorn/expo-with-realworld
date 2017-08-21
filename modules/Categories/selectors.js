@@ -14,11 +14,9 @@ const subChildCategoriesByIdSelector = state =>
 const subChildCatogoryIdsSelector = state =>
   state.categories.subChildCatogoryIds
 
-const categoriesNameSelector = createSelector( categoriesByIdSelector, items => {
-  return Object.keys( items ).reduce( ( p, c ) => {
-    return [ ...p, items[ c ] ]
-  }, [] )
-} )
+const categoriesNameSelector = createSelector( categoriesByIdSelector, items =>
+  Object.keys( items ).reduce( ( p, c ) => [ ...p, items[ c ] ], [] )
+)
 
 const currentCategorieQuerySelector = createSelector(
   currentCategoriesSelector,
@@ -28,21 +26,25 @@ const currentCategorieQuerySelector = createSelector(
 const childCategoriesNameSelector = createSelector(
   currentCategoriesSelector,
   childCategoriesByIdSelector,
-  ( curr, items ) => {
-    return Object.keys( items ).reduce( ( p, c ) => {
-      return items[ c ].category === curr[ 0 ] ? [ ...p, items[ c ] ] : p
-    }, [] )
-  }
+  ( curr, items ) =>
+    Object.keys( items ).length !== 0
+      ? Object.keys( items ).reduce(
+        ( p, c ) => ( items[ c ].category === curr[ 0 ] ? [ ...p, items[ c ] ] : p ),
+        []
+      )
+      : []
 )
 
 const subChildCategoriesNameSelector = createSelector(
   currentCategoriesSelector,
   subChildCategoriesByIdSelector,
-  ( curr, items ) => {
-    return Object.keys( items ).reduce( ( p, c ) => {
-      return items[ c ].childCategory === curr[ 1 ] ? [ ...p, items[ c ] ] : p
-    }, [] )
-  }
+  ( curr, items ) =>
+    Object.keys( items ).length !== 0
+      ? Object.keys( items ).reduce(
+        ( p, c ) => ( items[ c ].childCategory === curr[ 1 ] ? [ ...p, items[ c ] ] : p ),
+        []
+      )
+      : []
 )
 
 export {

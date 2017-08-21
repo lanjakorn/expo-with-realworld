@@ -2,7 +2,8 @@ import {
   PRODUCTS_FAILURE,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
-  SET_CURRENT_PRODUCT,
+  SET_CURRENT_PRODUCT_OF_PRODUCT_CATEGORY,
+  SET_CURRENT_PRODUCT_OF_SOLUTION_CATEGORY,
   SET_PRODUCTS,
 } from '../types'
 import { types } from 'modules/Categories'
@@ -12,7 +13,8 @@ const { SET_CURRENT_CATEGORIES } = types
 export const INITIAL_STATE = {
   productsById: {},
   productIds: [],
-  productId: '',
+  productIdOfProductCategory: '',
+  productIdOfSolutionCategory: '',
   isFetching: false,
   errorMessage: '',
 }
@@ -42,10 +44,10 @@ export default ( state = INITIAL_STATE, action ) => {
     }
   case PRODUCTS_FAILURE:
     return { ...state, isFetching: false, errorMessage: action.error }
-    // case SET_CURRENT_CATEGORIES:
-    //   return { ...state, ...INITIAL_STATE }
-  case SET_CURRENT_PRODUCT:
-    return { ...state, productId: action.id }
+  case SET_CURRENT_PRODUCT_OF_PRODUCT_CATEGORY:
+    return { ...state, productIdOfProductCategory: action.id }
+  case SET_CURRENT_PRODUCT_OF_SOLUTION_CATEGORY:
+    return { ...state, productIdOfSolutionCategory: action.id }
   default:
     return state
   }
