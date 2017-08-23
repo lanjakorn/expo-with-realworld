@@ -1,29 +1,19 @@
 import { all } from 'redux-saga/effects'
 
-import { sagas as caseStudiesSagas } from 'modules/CaseStudies'
+import { sagas as homeSagas } from 'modules/Home'
 import { sagas as categoriesSagas } from 'modules/Categories'
-import { sagas as contactsSagas } from 'modules/Contacts'
-import { sagas as faqsSagas } from 'modules/Faqs'
-import { sagas as houseCategoriesSagas } from 'modules/HouseCategories'
+// import { sagas as faqsSagas } from 'modules/Faqs'
 import { sagas as productsSagas } from 'modules/Products'
 import { sagas as searchSagas } from 'modules/Search'
 import { sagas as settingsSagas } from 'modules/Settings'
-import { sagas as solutionCategoriesSagas } from 'modules/SolutionCategories'
-import { sagas as solutionsSagas } from 'modules/Solutions'
-import { sagas as servicesSagas } from 'modules/Services'
 
 export default function* rootSagas() {
   yield all( [
-    ...caseStudiesSagas,
+    ...homeSagas,
     ...categoriesSagas,
-    ...contactsSagas,
-    ...faqsSagas,
-    ...houseCategoriesSagas,
+    // ...faqsSagas,
     ...productsSagas,
     ...searchSagas,
     ...settingsSagas,
-    ...solutionCategoriesSagas,
-    ...solutionsSagas,
-    ...servicesSagas,
   ] )
 }

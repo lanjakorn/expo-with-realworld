@@ -5,8 +5,8 @@ const normalizedSubChildCategories = ( data = {} ) => {
   return data.subChild.reduce(
     ( p, c ) => ( {
       ...p,
-      subChildCatogoriesById: {
-        ...p.subChildCatogoriesById,
+      subChildCategoriesById: {
+        ...p.subChildCategoriesById,
         [ c.mainCategories ]: {
           ...mocks.subChildCategories( {
             name: c.mainCategories,
@@ -14,24 +14,24 @@ const normalizedSubChildCategories = ( data = {} ) => {
           } ),
         },
       },
-      subChildCatogoriesIds: [ ...p.subChildCatogoriesIds, c.mainCategories ],
+      subChildCategoryIds: [ ...p.subChildCategoryIds, c.mainCategories ],
     } ),
-    { subChildCatogoriesById: {}, subChildCatogoriesIds: [] }
+    { subChildCategoriesById: {}, subChildCategoryIds: [] }
   )
 }
 
 const normalizedChildCategories = ( data = {} ) => {
   return (
     data &&
-    data.childCatogories &&
-    data.childCatogories.reduce(
+    data.childCategories &&
+    data.childCategories.reduce(
       ( p, c ) => {
         const subChildCategories = c.subChild && normalizedSubChildCategories( c )
 
         return {
           ...p,
-          childCatogoriesById: {
-            ...p.childCatogoriesById,
+          childCategoriesById: {
+            ...p.childCategoriesById,
             [ c.mainCategories ]: {
               ...mocks.childCategories( {
                 name: c.mainCategories,
@@ -39,26 +39,26 @@ const normalizedChildCategories = ( data = {} ) => {
               } ),
             },
           },
-          childCatogoriesIds: [ ...p.childCatogoriesIds, c.mainCategories ],
-          subChildCatogoriesById: categories.hasSubCategories(
+          childCategoryIds: [ ...p.childCategoryIds, c.mainCategories ],
+          subChildCategoriesById: categories.hasSubCategories(
             c.subChild,
-            p.subChildCatogoriesById,
+            p.subChildCategoriesById,
             subChildCategories,
-            'subChildCatogoriesById'
+            'subChildCategoriesById'
           ),
-          subChildCatogoriesIds: categories.hasSubCategories(
+          subChildCategoryIds: categories.hasSubCategories(
             c.subChild,
-            p.subChildCatogoriesIds,
+            p.subChildCategoryIds,
             subChildCategories,
-            'subChildCatogoriesIds'
+            'subChildCategoryIds'
           ),
         }
       },
       {
-        childCatogoriesById: {},
-        childCatogoriesIds: [],
-        subChildCatogoriesById: {},
-        subChildCatogoriesIds: [],
+        childCategoriesById: {},
+        childCategoryIds: [],
+        subChildCategoriesById: {},
+        subChildCategoryIds: [],
       }
     )
   )
@@ -77,31 +77,31 @@ const normalizedCategories = ( data = {} ) =>
           },
         },
         categoryIds: [ ...p.categoryIds, c ],
-        childCatogoriesById: {
-          ...p.childCatogoriesById,
-          ...childCategorie.childCatogoriesById,
+        childCategoriesById: {
+          ...p.childCategoriesById,
+          ...childCategorie.childCategoriesById,
         },
-        childCatogoriesIds: [
-          ...p.childCatogoriesIds,
-          ...childCategorie.childCatogoriesIds,
+        childCategoryIds: [
+          ...p.childCategoryIds,
+          ...childCategorie.childCategoryIds,
         ],
-        subChildCatogoriesById: {
-          ...p.subChildCatogoriesById,
-          ...childCategorie.subChildCatogoriesById,
+        subChildCategoriesById: {
+          ...p.subChildCategoriesById,
+          ...childCategorie.subChildCategoriesById,
         },
-        subChildCatogoriesIds: [
-          ...p.subChildCatogoriesIds,
-          ...childCategorie.subChildCatogoriesIds,
+        subChildCategoryIds: [
+          ...p.subChildCategoryIds,
+          ...childCategorie.subChildCategoryIds,
         ],
       }
     },
     {
       categoriesById: {},
       categoryIds: [],
-      childCatogoriesById: {},
-      childCatogoriesIds: [],
-      subChildCatogoriesById: {},
-      subChildCatogoriesIds: [],
+      childCategoriesById: {},
+      childCategoryIds: [],
+      subChildCategoriesById: {},
+      subChildCategoryIds: [],
     }
   )
 

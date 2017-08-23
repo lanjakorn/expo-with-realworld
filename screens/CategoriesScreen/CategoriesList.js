@@ -11,7 +11,7 @@ class CategoriesList extends Component {
   }
 
   async componentWillMount() {
-    await this.props.initCategoriesScreen()
+    //await this.props.initCategoriesScreen()
   }
 
   onPressSelectChildCategory = childCategory => {

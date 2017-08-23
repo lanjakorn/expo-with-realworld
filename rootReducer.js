@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import { reducers as caseStudiesReducer } from 'modules/CaseStudies'
 import { reducers as categoriesReducer } from 'modules/Categories'
 import { reducers as contactsReducer } from 'modules/Contacts'
+import { reducers as contactUsReducer } from 'modules/ContactUs'
 import { reducers as faqsReducer } from 'modules/Faqs'
 import { reducers as houseCategoriesReducer } from 'modules/HouseCategories'
 import { reducers as productsReducer } from 'modules/Products'
@@ -16,6 +17,7 @@ const rootReducer = combineReducers( {
   ...caseStudiesReducer,
   ...categoriesReducer,
   ...contactsReducer,
+  ...contactUsReducer,
   ...faqsReducer,
   ...houseCategoriesReducer,
   ...productsReducer,

@@ -63,7 +63,7 @@ class HouseListContainer extends Component {
   }
 
   async componentWillMount() {
-    await this.props.initHouseCategoriesScreen()
+    // await this.props.initHouseCategoriesScreen()
   }
 
   onPressHouseCategoriesSelect = ( key, value ) => {

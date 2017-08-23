@@ -13,8 +13,9 @@ import {
 } from 'react-native'
 
 import { actions as caseStudiesActions } from 'modules/CaseStudies'
-
+import { actions as homeActions } from 'modules/Home'
 import { actions as contactsActions } from 'modules/Contacts'
+
 import { actions as solutionsActions } from 'modules/Solutions'
 import { actions as solutionCategoriesActions } from 'modules/SolutionCategories'
 import { actions as faqsAction } from 'modules/Faqs'
@@ -60,11 +61,9 @@ class SearchListContainer extends Component {
   // }
 
   async componentWillMount() {
-    await this.props.initCaseStudiesScreen()
-    await this.props.initContactsScreen()
-    await this.props.initSolutionsScreen()
-    await this.props.initSolutionCategoriesScreen()
-    await this.props.initFaqsScreen()
+
+    // await this.props.initCaseStudiesScreen()
+    await this.props.initHomeScreen()
   }
 
   onPressMenuSelect = ( { navigate, title } ) => {
@@ -110,6 +109,7 @@ const combineActions = () => ( {
   ...solutionsActions,
   ...solutionCategoriesActions,
   ...faqsAction,
+  ...homeActions,
 } )
 
 const mapStateToProps = state => ( {

@@ -6,13 +6,13 @@ const categoriesByIdSelector = state => state.categories.categoriesById
 const categoryIdsSelector = state => state.categories.categoryIds
 
 const childCategoriesByIdSelector = state =>
-  state.categories.childCatogoriesById
-const childCatogoryIdsSelector = state => state.categories.childCatogoryIds
+  state.categories.childCategoriesById
+const childCategoryIdsSelector = state => state.categories.childCategoryIds
 
 const subChildCategoriesByIdSelector = state =>
-  state.categories.subChildCatogoriesById
-const subChildCatogoryIdsSelector = state =>
-  state.categories.subChildCatogoryIds
+  state.categories.subChildCategoriesById
+const subChildCategoryIdsSelector = state =>
+  state.categories.subChildCategoryIds
 
 const categoriesNameSelector = createSelector( categoriesByIdSelector, items =>
   Object.keys( items ).reduce( ( p, c ) => [ ...p, items[ c ] ], [] )
@@ -51,9 +51,9 @@ export {
   categoriesNameSelector,
   categoryIdsSelector,
   childCategoriesNameSelector,
-  childCatogoryIdsSelector,
+  childCategoryIdsSelector,
   currentCategorieQuerySelector,
   currentCategoriesSelector,
   subChildCategoriesNameSelector,
-  subChildCatogoryIdsSelector,
+  subChildCategoryIdsSelector,
 }
