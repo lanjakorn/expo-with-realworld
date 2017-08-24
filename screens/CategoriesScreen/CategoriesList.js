@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import Spinner from 'react-native-loading-spinner-overlay'
+
 import CategoriesDetail from './CategoriesDetail'
 
 class CategoriesList extends Component {
@@ -37,9 +39,13 @@ class CategoriesList extends Component {
   render() {
     return (
       <ScrollView>
-        <View style={styles.container}>
-          {this.renderCategories()}
-        </View>
+        {!this.props.isFetching
+          ? <View style={styles.container}>
+            {this.renderCategories()}
+          </View>
+          : <View style={{ flex: 1 }}>
+            <Spinner visible={true} />
+          </View>}
       </ScrollView>
     )
   }
@@ -52,6 +58,7 @@ const styles = StyleSheet.create( {
 } )
 
 const mapStateToProps = state => ( {
+  isFetching: state.categories.isFetching,
   categories: selectors.categoriesNameSelector( state ),
 } )
 

@@ -72,7 +72,7 @@ export default {
   },
   questions: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    //justifyContent: 'flex-start',
   },
   shippingText: {
     color: '#C0C0C0',

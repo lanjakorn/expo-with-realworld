@@ -30,7 +30,7 @@ class ServiceDetail extends Component {
       <View style={styles.container}>
         <HeaderTitle
           buttonOnPress={this.onPressContactUs}
-          buttontitle={'Services'}
+          buttontitle={'Contact Us'}
           containerstyle={styles.title}
           textTitle={title}
         />

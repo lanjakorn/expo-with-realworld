@@ -10,7 +10,7 @@ import { StatusBar, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { MainNavigator } from 'navigation'
 import { getDefaultTab } from '@screens/SettingsScreen'
-// import { firebaseApp } from 'services/firebase'
+import { firebaseApp } from 'services/firebase'
 
 class AppContainer extends React.Component {
   constructor( props ) {
@@ -22,7 +22,7 @@ class AppContainer extends React.Component {
 
   async componentWillMount() {
     await this._loadAssetsAsync()
-    //await firebaseApp
+    await firebaseApp
   }
 
   async _loadAssetsAsync() {

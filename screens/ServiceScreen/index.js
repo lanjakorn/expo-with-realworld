@@ -17,7 +17,7 @@ class ServicesScreen extends Component {
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
           <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'service'} />
+            <Search navigation={navigation} navOnCancel={'serviceห'} />
           </View>
         </View>
       ),
