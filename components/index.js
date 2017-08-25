@@ -4,6 +4,7 @@ import Card from './Card'
 import CardContent from './CardContent'
 import CardContentImage from './CardContentImage'
 import CardSection from './CardSection'
+import CollapsibleFaqs from './CollapsibleFaqs'
 import HeaderButtonSection from './HeaderButtonSection'
 import HeaderNavigation from './HeaderNavigation'
 import HeaderSection from './HeaderSection'
@@ -22,6 +23,7 @@ export {
   CardContent,
   CardContentImage,
   CardSection,
+  CollapsibleFaqs,
   HeaderButtonSection,
   HeaderNavigation,
   HeaderSection,

@@ -4,7 +4,8 @@ import { StyleSheet, View } from 'react-native'
 const styles = StyleSheet.create( {
   containerStyle: {
     backgroundColor: '#fff',
-    borderColor: '#ddd',
+    borderColor: '#dddddd',
+    borderBottomWidth: 2,    
     flexDirection: 'row',
     justifyContent: 'flex-start',
     position: 'relative',

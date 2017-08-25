@@ -16,10 +16,29 @@ const HeaderTitle = ( {
   buttontitle,
 } ) =>
   <View style={containerstyle}>
-    <Text style={[ styles.title ]}>
-      {textTitle}
-    </Text>
-    <ButtonRadius onPress={buttonOnPress} title={buttontitle} />
+    <View
+      style={{
+        alignSelf: 'flex-start',                
+        flex: 2,        
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+      }}
+    >
+      <Text style={[ styles.title ]}>
+        {textTitle}
+      </Text>
+    </View>
+    <View
+      style={{
+        alignSelf: 'flex-start',        
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+      }}
+    >
+      <ButtonRadius onPress={buttonOnPress} title={buttontitle} />
+    </View>
   </View>
 
 export default HeaderTitle

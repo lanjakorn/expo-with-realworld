@@ -1,9 +1,11 @@
 import React from 'react'
+import { Colors } from 'constants'
+
 import { StyleSheet, View } from 'react-native'
 
 const styles = StyleSheet.create( {
   container: {
-    borderColor: '#ddd',
+    borderColor: Colors.cardBorder,
     elevation: 1,
     marginBottom: 10,
     marginTop: -1,

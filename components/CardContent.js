@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
-  container: {
+  containerStyle: {
     backgroundColor: 'transparent',
     flexDirection: 'column',
     minWidth: 12,
@@ -12,35 +12,35 @@ const styles = StyleSheet.create( {
     paddingRight: 20,
     paddingTop: 30,
   },
-  headerText: {
+  rowTitle: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  titleText: {
     fontSize: 14,
     fontWeight: 'bold',
   },
-  contentText: {
-    color: Colors.textDescription,
+  rowDescription: {
+    flexDirection: 'row',
+  },
+  descriptionText: {
     fontSize: 13,
+    lineHeight: 20,
+    color: Colors.textDescription,
   },
 } )
 
 const CardContent = ( { description, title } ) => {
+  const { containerStyle, rowTitle, titleText, rowDescription, descriptionText } = styles
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginBottom: 10,
-        }}
-      >
-        <Text style={styles.headerText}>
+    <View style={containerStyle}>
+      <View style={rowTitle}>
+        <Text style={titleText}>
           {title}
         </Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-        }}
-      >
-        <Text style={styles.contentText} numberOfLines={2}>
+      <View style={rowDescription}>
+        <Text style={descriptionText} numberOfLines={2}>
           {description}
         </Text>
       </View>

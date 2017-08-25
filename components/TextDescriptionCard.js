@@ -5,6 +5,8 @@ const styles = StyleSheet.create( {
   textDescription: {
     fontSize: 12.5,
     fontWeight: '600',
+    lineHeight: 24,
+    textAlign:'justify',
   },
 } )
 

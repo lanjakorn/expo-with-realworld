@@ -13,7 +13,6 @@ const styles = StyleSheet.create( {
   },
   leftSection: {
     alignItems: 'center',
-    alignItems: 'center',
     backgroundColor: Colors.tintColor,
     flex: 1,
     flexDirection: 'row',

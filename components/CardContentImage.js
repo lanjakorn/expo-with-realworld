@@ -5,7 +5,7 @@ import { Colors } from 'constants'
 const { width, height } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
-  container: {
+  containerStyle: {
     backgroundColor: 'transparent',
     flexDirection: 'column',
     minWidth: 12,
@@ -14,52 +14,58 @@ const styles = StyleSheet.create( {
     paddingRight: 20,
     paddingTop: 30,
   },
-  headerText: {
+  rowTitle: {
+    flexDirection: 'row',
+    marginBottom: 14,
+  },
+  titleText: {
     fontSize: 14,
     fontWeight: 'bold',
   },
-  contentText: {
-    color: Colors.textDescription,
-    fontSize: 13,
+  rowDescription: {
+    flexDirection: 'row',
   },
-  slideImage: {
+  descriptionText: {
+    fontSize: 13,
+    lineHeight: 20,
+    color: Colors.textDescription,
+  },
+  rowImage: {
+    marginBottom: 24,
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
     flex: 1,
     justifyContent: 'center',
   },
+  image: {
+    height: height * 0.3,
+    width: width * 0.9 + 10,
+  },
 } )
 
 const CardContentImage = ( { description, title, url } ) => {
+  const {
+    containerStyle,
+    descriptionText,
+    image,
+    rowDescription,
+    rowImage,
+    rowTitle,
+    titleText,
+  } = styles
+
   return (
-    <View style={styles.container}>
-      <View style={styles.slideImage}>
-        <Image
-          resizeMode="cover"
-          source={{ uri: url }}
-          style={{
-            height: height * 0.3,
-            width: width * 0.9 + 10,
-          }}
-        />
+    <View style={containerStyle}>
+      <View style={rowImage}>
+        <Image resizeMode="cover" source={{ uri: url }} style={image} />
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 16.5,
-        }}
-      >
-        <Text style={styles.headerText}>
+      <View style={rowTitle}>
+        <Text style={titleText}>
           {title}
         </Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 14,
-        }}
-      >
-        <Text style={styles.contentText} numberOfLines={2}>
+      <View style={rowDescription}>
+        <Text style={descriptionText} numberOfLines={2}>
           {description}
         </Text>
       </View>
