@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect'
 import { faqsByIdSelector } from 'modules/Faqs/selectors'
+import { contactsByIdSelector } from 'modules/Contacts/selectors'
 import { currentCategorieQuerySelector } from 'modules/Categories/selectors'
 import { currentSolutionCategorySelector } from 'modules/SolutionCategories/selectors'
 
@@ -62,6 +63,16 @@ const faqIdsOfProductFromProductCategorySelector = createSelector(
   item => ( item ? item.faqs : [] )
 )
 
+const contactIdsOfProductFromProductCategorySelector = createSelector(
+  productOfProductCategorySelector,
+  item => ( item ? item.contacts : [] )
+)
+
+const contactIdsOfProductFromSolutionCategorySelector = createSelector(
+  productOfSolutionCategorySelector,
+  item => ( item ? item.contacts : [] )
+)
+
 const faqIdsOfProductFromSolutionCategorySelector = createSelector(
   productOfSolutionCategorySelector,
   item => ( item ? item.faqs : [] )
@@ -97,13 +108,64 @@ const faqOfProductFromSolutionCategorySelector = createSelector(
       : {}
 )
 
+const contactOfProductFromProductCategorySelector = createSelector(
+  contactIdsOfProductFromProductCategorySelector,
+  contactsByIdSelector,
+  ( contactIdsOfProduct, contactsMaster ) =>
+    contactIdsOfProduct.length !== 0
+      ? Object.keys( contactIdsOfProduct ).reduce(
+        ( p, c ) => ( {
+          ...p,
+          [ contactIdsOfProduct[ c ] ]: contactsMaster[ contactIdsOfProduct[ c ] ],
+        } ),
+        {}
+      )
+      : {}
+)
+
+const contactOfProductFromSolutionCategorySelector = createSelector(
+  contactIdsOfProductFromSolutionCategorySelector,
+  contactsByIdSelector,
+  ( contactIdsOfProduct, contactsMaster ) =>
+    contactIdsOfProduct.length !== 0
+      ? Object.keys( contactIdsOfProduct ).reduce(
+        ( p, c ) => ( {
+          ...p,
+          [ contactIdsOfProduct[ c ] ]: contactsMaster[ contactIdsOfProduct[ c ] ],
+        } ),
+        {}
+      )
+      : {}
+)
+
+const getFirstContactOfProductFromProductCategorySelector = createSelector(
+  contactOfProductFromProductCategorySelector,
+  contactOfProduct =>
+    Object.keys( contactOfProduct ).length !== 0
+      ? contactOfProduct[ Object.keys( contactOfProduct )[ 0 ] ]
+      : {}
+)
+
+const getFirstContactOfProductFromSolutionCategorySelector = createSelector(
+  contactOfProductFromSolutionCategorySelector,
+  contactOfProduct =>
+    Object.keys( contactOfProduct ).length !== 0
+      ? contactOfProduct[ Object.keys( contactOfProduct )[ 0 ] ]
+      : {}
+)
+
 export {
+  contactIdsOfProductFromSolutionCategorySelector,
+  contactOfProductFromProductCategorySelector,
+  contactOfProductFromSolutionCategorySelector,
   currentProductOfProductCategorySelector,
   currentProductOfSolutionCategorySelector,
   faqIdsOfProductFromProductCategorySelector,
   faqIdsOfProductFromSolutionCategorySelector,
   faqOfProductFromProductCategorySelector,
   faqOfProductFromSolutionCategorySelector,
+  getFirstContactOfProductFromProductCategorySelector,
+  getFirstContactOfProductFromSolutionCategorySelector,
   isFetchingSelector,
   productFilterByProductCategoriesSelector,
   productFilterBySolutionCategorySelector,
