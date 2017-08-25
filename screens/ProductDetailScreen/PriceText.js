@@ -1,4 +1,6 @@
 import React from 'react'
+import { string } from 'utilities'
+
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { Colors } from 'constants'
@@ -18,9 +20,14 @@ const styles = {
 
 const PriceText = ( { price, style, words } ) =>
   <View style={[ styles.wrapper, style ]}>
-    <Text
-      style={styles.price}
-    >{`${ words.price } ${ price.value } ${ words.baht }`}</Text>
+    <Text style={styles.price}>{`${ words.price } ${ string.formatMoney( {
+      digit: 0,
+      num: price.value,
+      showDigit: false,
+      showSymbol: false,
+      symbol: '฿',
+      symbolBack: true,
+    } ) } ${ words.baht }`}</Text>
   </View>
 
 PriceText.propTypes = {

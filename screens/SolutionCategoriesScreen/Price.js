@@ -1,85 +1,100 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { string } from 'utilities'
 
-const Price = ( { startPrice, startPriceLable, endPrice, endPriceLable } ) => {
+import { Text, StyleSheet, View } from 'react-native'
+
+const styles = StyleSheet.create( {
+  containerStyle: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  sectionLeft: {
+    flex: 5,
+    flexDirection: 'column',
+  },
+  sectionCenter: {
+    alignItems: 'center',
+    flex: 3,
+    justifyContent: 'center',
+  },
+  sectionRight: {
+    flex: 5,
+    flexDirection: 'column',
+  },
+} )
+
+const Price = ( { minPrice, minPriceLable, maxPrice, maxPriceLable } ) => {
+  const { containerStyle, sectionLeft, sectionCenter, sectionRight } = styles
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <View
-        style={{
-          flex: 5,
-          flexDirection: 'column',
-        }}
-      >
+    <View style={containerStyle}>
+      <View style={sectionLeft}>
         <View>
           <Text
             style={{
               fontSize: 14,
+              paddingBottom: 10,
               textAlign: 'right',
             }}
           >
-            {startPriceLable}
+            {minPriceLable}
           </Text>
         </View>
         <View>
           <Text
             style={{
               fontSize: 14,
-              textAlign: 'right',
               fontWeight: 'bold',
+              textAlign: 'right',
             }}
           >
-            {startPrice}
+            {string.formatMoney( {
+              digit: 0,
+              num: minPrice,
+              showDigit: false,
+              symbol: '฿',
+              symbolBack: true,
+            } )}
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          flex: 3,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <View style={sectionCenter}>
         <Text
           style={{
-            fontSize: 14,
             alignContent: 'center',
+            fontSize: 14,
           }}
         >
           {'-'}
         </Text>
       </View>
-      <View
-        style={{
-          flex: 5,
-          flexDirection: 'row',
-          flexDirection: 'column',
-        }}
-      >
+      <View style={sectionRight}>
         <View>
           <Text
             style={{
               fontSize: 14,
+              paddingBottom: 10,
               textAlign: 'left',
             }}
           >
-            {endPriceLable}
+            {maxPriceLable}
           </Text>
         </View>
         <View>
           <Text
             style={{
               fontSize: 14,
-              textAlign: 'left',
               fontWeight: 'bold',
+              textAlign: 'left',
             }}
           >
-            {endPrice}
+            {string.formatMoney( {
+              digit: 0,
+              num: maxPrice,
+              showDigit: false,
+              symbol: '฿',
+              symbolBack: true,
+            } )}
           </Text>
         </View>
       </View>

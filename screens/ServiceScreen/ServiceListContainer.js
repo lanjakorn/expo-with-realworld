@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { object } from 'utilities'
+import { Colors } from 'constants'
 import {
   actions as servicesActions,
   selectors as servicesSelectors,
@@ -30,6 +31,8 @@ const styles = StyleSheet.create( {
     marginLeft: 0,
     marginRight: 0,
     marginTop: 0,
+    borderColor: '#686666',
+    // borderWidth: 2.5,
   },
   backgroundImage: {
     alignItems: 'center',
@@ -37,7 +40,7 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     resizeMode: 'cover',
     height: height * 0.2 - 20,
-    width: width * 1 - 15,
+    width: width * 1,
     // opacity: 0.7,
   },
   text: {
@@ -88,7 +91,7 @@ class HouseListContainer extends Component {
                 onPress={() =>
                   this.onPressServiceSelect( e, services[ e ].title )}
               >
-                <Card margin={10} backgroundColor={'white'}>
+                <Card margin={0} backgroundColor={'white'}>
                   <View style={styles.searchListItemStyle}>
                     <Image
                       key={`image-${ e }`}

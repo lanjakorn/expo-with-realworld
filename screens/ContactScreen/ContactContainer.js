@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Platform, View, Text, Image, StyleSheet } from 'react-native'
 import { Card } from 'react-native-elements'
 import Colors from 'constants/Colors'
+
+import {
+  actions as productsActions,
+  selectors as productsSelectors,
+} from 'modules/Products'
 
 const styles = StyleSheet.create( {
   container: {
@@ -67,26 +73,26 @@ const styles = StyleSheet.create( {
 } )
 
 class ContactScreen extends Component {
-  state = {
-    imageContact:
-      'https://www.mendetails.com/wp-content/uploads/2015/10/JD3.jpg',
-    contactInfo: {
-      Name: 'Loyal Von MD',
-      Position: 'Marketing',
-      Department: 'Lake Melyssa, AZ 36398',
-      Tel: '088 888 8888',
-      Email: 'Loyal70@xxx.com',
-    },
+  getContactByModule() {
+    const {
+      navigation,
+      contactOfProductFromProductCategory,
+      contactOfProductFromSolutionCategory,
+    } = this.props
+    return navigation.state.params.module === 'productCategories'
+      ? contactOfProductFromProductCategory
+      : contactOfProductFromSolutionCategory
   }
 
   renderContactHeader() {
-    const { imageContact } = this.state
+    const { imgUrl } = this.getContactByModule()
     const {
       contactHeaderText,
       image,
       imageIosContainer,
       imageAndroidContainer,
     } = styles
+
     return (
       <View>
         <Text style={contactHeaderText}>CONTACT</Text>
@@ -98,7 +104,7 @@ class ContactScreen extends Component {
           <Image
             style={image}
             source={{
-              uri: imageContact,
+              uri: imgUrl,
             }}
           />
         </View>
@@ -107,7 +113,6 @@ class ContactScreen extends Component {
   }
 
   renderContactInfo() {
-    const { contactInfo } = this.state
     const {
       container,
       contactBodyColon,
@@ -115,26 +120,30 @@ class ContactScreen extends Component {
       contactBodyText,
       contactBodyTitle,
     } = styles
+
     return (
       <View style={container}>
-        {Object.keys( contactInfo ).map( ( Objkey, i ) => {
-          return (
-            <View style={contactBodyItem} key={i}>
-              <Text style={contactBodyTitle}>
-                {Objkey}
-              </Text>
-              <Text style={contactBodyColon}>:</Text>
-              <Text style={contactBodyText}>
-                {contactInfo[ Objkey ]}
-              </Text>
-            </View>
-          )
-        } )}
+        {Object.keys( this.getContactByModule() )
+          .filter( e => e !== 'imgUrl' )
+          .map( ( Objkey, i ) => {
+            return (
+              <View style={contactBodyItem} key={i}>
+                <Text style={contactBodyTitle}>
+                  {Objkey}
+                </Text>
+                <Text style={contactBodyColon}>:</Text>
+                <Text style={contactBodyText}>
+                  {this.getContactByModule()[ Objkey ]}
+                </Text>
+              </View>
+            )
+          } )}
       </View>
     )
   }
 
   render() {
+    console.log( this.props )
     return (
       <View>
         <Card containerStyle={styles.cardContainer}>
@@ -146,4 +155,17 @@ class ContactScreen extends Component {
   }
 }
 
-export default ContactScreen
+const combineActions = () => ( {
+  ...productsActions,
+} )
+
+const mapStateToProps = state => ( {
+  contactOfProductFromProductCategory: productsSelectors.getFirstContactOfProductFromProductCategorySelector(
+    state
+  ),
+  contactOfProductFromSolutionCategory: productsSelectors.getFirstContactOfProductFromSolutionCategorySelector(
+    state
+  ),
+} )
+
+export default connect( mapStateToProps, combineActions() )( ContactScreen )

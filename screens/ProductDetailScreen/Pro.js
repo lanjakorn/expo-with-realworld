@@ -1,6 +1,9 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Dimensions, Text, StyleSheet, View } from 'react-native'
 import { Colors } from 'constants'
+
+const { width } = Dimensions.get( 'window' )
+
 
 const styles = StyleSheet.create( {
   container: {
@@ -9,16 +12,16 @@ const styles = StyleSheet.create( {
   },
   prefix: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     marginRight: 12,
   },
   title: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    width: width * 0.8 + 20,
   },
   text: {
-    color: Colors.textDescription,
     fontSize: 15,
+    lineHeight: 24,
+    color: Colors.textDescription,    
   },
 } )
 

@@ -11,10 +11,11 @@ import {
 import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
-import { View, Text } from 'react-native'
+import { Dimensions, View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
+  CollapsibleFaqs,
   HeaderButtonSection,
   HeaderTitle,
   Slider,
@@ -24,8 +25,10 @@ import {
 import Tag from './Tag'
 import Pro from './Pro'
 import PriceText from './PriceText'
-import Questions from './Questions'
 import styles from './ProductCardStyle'
+
+import { Colors } from 'constants'
+const { width } = Dimensions.get( 'window' )
 
 const renderTags = tags => {
   return (
@@ -50,6 +53,101 @@ const renderPros = ( pros, words ) => {
   )
 }
 
+const renderFeatures = ( pros, words ) => {
+  return (
+    <View style={styles.pros}>
+      <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
+        {'Feature'}
+      </Text>
+      <View>
+        {Array( 1, 2, 3 ).map( ( e, k ) =>
+          <View
+            key={k}
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+            }}
+          >
+            <View
+              // key={k}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  marginRight: 12,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 16,
+                  }}
+                >
+                  {'•'}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: width * 0.8 + 20,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    lineHeight: 24,
+                    // color: Colors.textDescription,
+                  }}
+                >
+                  {`Feature ${ k }`}
+                </Text>
+              </View>
+            </View>
+            <View
+              // key={k}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  marginRight: 20,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: width * 0.8 + 20,
+                }}
+              >
+                <Text
+                  multiline={true}
+                  numberOfLines={1}
+                  style={{
+                    fontSize: 15,
+                    lineHeight: 24,
+                    color: Colors.textDescription,
+                  }}
+                >
+                  {
+                    'Quasi debitis possimus qui rerum fugiat est aut alias voluptatem. Recusandae cumque et asperiores sed ratione aut accusantium voluptatum. Qui illum impedit atque.'
+                  }
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
+      </View>
+      <View />
+    </View>
+  )
+}
+
 // TODO: duplicate logic checking : Remove all duplicates but keep only one
 const ProductCard = props => {
   const {
@@ -58,26 +156,28 @@ const ProductCard = props => {
     words,
     productOfProductCategory,
     productOfSolutionCategory,
-    faqsOfProductfromProductCategory,
-    faqsOfProductfromSolutionCategory,
+    faqsOfProductFromProductCategory,
+    faqsOfProductFromSolutionCategory,
   } = props
 
-  const { name, urls, description, offer, tags, pros } =
+  const { name, urls, description, offer, tags, pros, hasMPF } =
     navigation.state.params.module === 'productCategories'
       ? productOfProductCategory
       : productOfSolutionCategory
 
   const faqs =
     navigation.state.params.module === 'productCategories'
-      ? faqsOfProductfromProductCategory
-      : faqsOfProductfromSolutionCategory
+      ? faqsOfProductFromProductCategory
+      : faqsOfProductFromSolutionCategory
 
   const onPressContactUs = () => {
     navigation.navigate( 'contactUs' )
   }
 
   const onPressContact = () => {
-    navigation.navigate( 'contact' )
+    navigation.navigate( 'contact', {
+      module: navigation.state.params.module,
+    } )
   }
 
   const onPressFaq = () => {
@@ -99,16 +199,19 @@ const ProductCard = props => {
         containerstyle={styles.detailsView}
         title={description}
       />
-      <View style={styles.price}>
-        <PriceText
-          price={offer.price}
-          salePrice={offer.salePrice}
-          style={styles.priceText}
-          words={words}
-        />
-      </View>
+      {!hasMPF
+        ? <View style={styles.price}>
+          <PriceText
+            price={offer.price}
+            salePrice={offer.salePrice}
+            style={styles.priceText}
+            words={words}
+          />
+        </View>
+        : <View />}
       {renderTags( tags )}
       {renderPros( pros, words )}
+      {hasMPF ? renderFeatures( pros, words ) : <View />}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
@@ -126,7 +229,7 @@ const ProductCard = props => {
       <View style={styles.questions}>
         {isFetchingFaqs
           ? <Spinner visible={true} />
-          : <Questions questions={faqs} />}
+          : <CollapsibleFaqs faqs={faqs} />}
       </View>
     </View>
   )
@@ -150,10 +253,10 @@ const combineAction = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  faqsOfProductfromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(
+  faqsOfProductFromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(
     state
   ),
-  faqsOfProductfromSolutionCategory: productsSelectors.faqOfProductFromSolutionCategorySelector(
+  faqsOfProductFromSolutionCategory: productsSelectors.faqOfProductFromSolutionCategorySelector(
     state
   ),
   isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),

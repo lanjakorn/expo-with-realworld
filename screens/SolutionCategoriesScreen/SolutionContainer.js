@@ -15,6 +15,8 @@ import {
   selectors as solutionsSelectors,
 } from 'modules/Solutions'
 
+import { selectors as settingsSelectors } from 'modules/Settings'
+
 import { selectors as solutionCategoriesSelectors } from 'modules/SolutionCategories'
 
 import { selectors as productsSelectors } from 'modules/Products'
@@ -23,10 +25,11 @@ import { actions as productsAction } from 'modules/Products'
 
 import PropTypes from 'prop-types'
 
-import { Dimensions, View } from 'react-native'
+import { View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
+  CollapsibleFaqs,
   HeaderButtonSection,
   HeaderSection,
   HeaderTitle,
@@ -35,11 +38,8 @@ import {
 } from '@components'
 
 import styles from './SolutionContainerStyle'
-import Questions from './Questions'
 import Products from './Products'
 import Price from './Price'
-
-const { width, height } = Dimensions.get( 'window' )
 
 class Solution extends Component {
   constructor( props ) {
@@ -64,12 +64,9 @@ class Solution extends Component {
     this.props.navigation.navigate( 'solution', { solution: value } )
   }
 
-  onPressContactUs = () => {
-    this.props.navigation.navigate( 'contactUs' )
-  }
-
   onPressContact = () => {
-    this.props.navigation.navigate( 'contact' )
+    this.props.navigation.navigate( 'contact', { module: 'solutionCategoris' } )
+    
   }
 
   onPressFaq = () => {
@@ -78,7 +75,6 @@ class Solution extends Component {
 
   onPressSelectProduct = id => {
     this.props.setCurrentProductOfSolutionCategory( id )
-    // this.props.initFaqsScreen()
     this.props.navigation.navigate( 'productDetail', {
       id,
       module: 'solutionCategoris',
@@ -90,7 +86,8 @@ class Solution extends Component {
       isFetching,
       faqs,
       products,
-      solutionCategory: { description, title, urls },
+      solutionCategory: { description, title, urls, price: { max, min } },
+      words: { maxPrice, minPrice },
     } = this.props
 
     return !isFetching
@@ -136,10 +133,10 @@ class Solution extends Component {
           }}
         >
           <Price
-            endPrice={'45,000 ฿'}
-            endPriceLable={'ราคาสูงสุด'}
-            startPrice={'36,000 ฿'}
-            startPriceLable={'ราคาต่ำสุด'}
+            maxPrice={max}
+            maxPriceLable={maxPrice}
+            minPrice={min}
+            minPriceLable={minPrice}
           />
         </View>
         <HeaderButtonSection
@@ -149,7 +146,7 @@ class Solution extends Component {
           textTitle={'FAQ'}
         />
         <View style={styles.questions}>
-          <Questions questions={faqs} />
+          <CollapsibleFaqs faqs={faqs} />
         </View>
       </View>
       : <Spinner visible={true} />
@@ -175,15 +172,16 @@ const combineActions = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  faqs: solutionCategoriesSelectors.faqOfSolutionCategorySelector( state ),
-  products: productsSelectors.productFilterBySolutionCategorySelector( state ),
   caseStudies: caseStudiesSelectors.caseStudiesByIdSelector( state ),
   currentSolutionCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
-  solutionCategory: solutionCategoriesSelectors.solutionCategySelector( state ),
+  faqs: solutionCategoriesSelectors.faqOfSolutionCategorySelector( state ),
   isFetching: productsSelectors.isFetchingSelector( state ),
+  products: productsSelectors.productFilterBySolutionCategorySelector( state ),
+  solutionCategory: solutionCategoriesSelectors.solutionCategySelector( state ),
   solutions: solutionsSelectors.solutionsByIdSelector( state ),
+  words: settingsSelectors.getWordsByLangSelector( state ),
 } )
 
 export default connect( mapStateToProps, combineActions() )( Solution )

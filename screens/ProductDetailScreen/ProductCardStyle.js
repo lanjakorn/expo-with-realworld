@@ -16,6 +16,7 @@ export default {
   },
   detailsView: {
     marginTop: 35,
+    marginBottom: 22,    
     paddingLeft: 20,
     paddingRight: 20,
   },
@@ -32,7 +33,7 @@ export default {
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginBottom: 25,
-    marginTop: 25,
+    // marginTop: 25,
     paddingBottom: 30,
     paddingTop: 30,
   },

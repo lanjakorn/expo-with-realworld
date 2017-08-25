@@ -27,7 +27,7 @@ const styles = StyleSheet.create( {
 
 const ProductsDetail = ( { productImage, productHeading } ) => {
   return (
-    <Card margin={10}>
+    <Card margin={0}>
       <CardSection>
         <View style={styles.thumbnailContainerStyle}>
           <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />

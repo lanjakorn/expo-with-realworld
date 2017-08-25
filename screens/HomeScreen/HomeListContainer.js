@@ -21,9 +21,8 @@ import { actions as solutionCategoriesActions } from 'modules/SolutionCategories
 import { actions as faqsAction } from 'modules/Faqs'
 
 import { Card } from '@components'
-import Spinner from 'react-native-loading-spinner-overlay'
 
-var { height, width } = Dimensions.get( 'window' )
+const { height, width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   searchListItemStyle: {

@@ -22,12 +22,13 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
+    
   },
 } )
 
 const CategoriesDetail = ( { categoryHeading, categoryImage } ) => {
   return (
-    <Card margin={10}>
+    <Card margin={0}>
       <CardSection>
         <View style={styles.thumbnailContainerStyle}>
           <Image

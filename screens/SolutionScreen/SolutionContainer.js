@@ -59,10 +59,6 @@ class Solution extends Component {
     this.props.navigation.navigate( 'solutionCategories', { category: value } )
   }
 
-  // onPressCaseStudySelect = caseStudy => {
-  //   console.log( caseStudy )
-  // }
-
   renderSolutionCategories = () => {
     const { solutionCategories } = this.props
     return Object.keys( solutionCategories ).map( e =>

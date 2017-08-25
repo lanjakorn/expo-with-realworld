@@ -36,7 +36,7 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     resizeMode: 'cover',
     height: height * 0.2 - 20,
-    width: width * 1 - 15,
+    width: width * 1,
   },
   text: {
     backgroundColor: 'rgba(0,0,0,0)',
@@ -89,7 +89,7 @@ class HouseListContainer extends Component {
                     houseCategories[ e ].title
                   )}
               >
-                <Card margin={10} backgroundColor={'white'}>
+                <Card margin={0} backgroundColor={'white'}>
                   <View style={styles.searchListItemStyle}>
                     <Image
                       key={`image-${ houseCategories[ e ].title }`}

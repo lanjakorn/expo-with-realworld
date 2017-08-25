@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { connect } from 'react-redux'
+
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
+
+import {
+  actions as contactUsActions,
+  selectors as contactUsSelectors,
+} from 'modules/ContactUs'
+
 import { MapView } from 'expo'
 import { Icon } from 'react-native-elements'
 import Colors from 'constants/Colors'
+
+const { height } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   screenContainer: {
@@ -12,7 +22,8 @@ const styles = StyleSheet.create( {
     flex: 1,
   },
   mapView: {
-    flex: 1,
+    alignSelf: 'stretch',
+    height: height * 0.4 - 50,
   },
   infoContainer: {
     flex: 1.5,
@@ -45,40 +56,27 @@ const styles = StyleSheet.create( {
 } )
 
 class ContactUsScreen extends Component {
-  state = {
-    region: {
-      latitude: 13.801961,
-      latitudeDelta: 0.004,
-      longitude: 100.5751,
-      longitudeDelta: 0.004,
-    },
-    coordinate: {
-      latitude: 13.801961,
-      longitude: 100.5751,
-    },
-    titleMarker: 'SellSuki',
-    infoItems: [
+  renderInfo() {
+    const { officeAddress, callCenter, hotLine } = this.props.contactUs
+
+    const info = [
       {
         icon: { type: 'material', name: 'location-on' },
         title: 'Head Office สำนักงานใหญ่ (อ่อนนุช)',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+        description: officeAddress,
       },
       {
         icon: { type: 'material', name: 'phone-in-talk' },
         title: 'ศูนย์บริการแจ้งซ่อม (Call Center)',
-        content:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: callCenter,
       },
       {
         icon: { type: 'material', name: 'phone-in-talk' },
         title: 'ศูนย์รับร้องเรียน',
-        content: 'Lorem ipsum dolor sit amet',
+        description: hotLine,
       },
-    ],
-  }
+    ]
 
-  renderInfo() {
     const {
       iconContainer,
       infoContainer,
@@ -88,48 +86,69 @@ class ContactUsScreen extends Component {
       infoItemsBox,
     } = styles
     return (
-      <ScrollView>
-        <View style={infoContainer}>
-          <View style={infoItemsBox}>
-            {this.state.infoItems.map( ( info, i ) => {
-              return (
-                <View key={i} style={infoItemBox}>
-                  <Icon
-                    name={info.icon.name}
-                    type={info.icon.type}
-                    color={Colors.tintColor}
-                    containerStyle={iconContainer}
-                  />
-                  <View style={infoContentBox}>
-                    <Text style={infoContentTitle}>
-                      {info.title}
-                    </Text>
-                    <Text>
-                      {info.content}
-                    </Text>
-                  </View>
+      <View style={infoContainer}>
+        <View style={infoItemsBox}>
+          {info.map( ( { icon, title, description }, i ) => {
+            return (
+              <View key={i} style={infoItemBox}>
+                <Icon
+                  name={icon.name}
+                  type={icon.type}
+                  color={Colors.tintColor}
+                  containerStyle={iconContainer}
+                />
+                <View style={infoContentBox}>
+                  <Text style={infoContentTitle}>
+                    {title}
+                  </Text>
+                  <Text>
+                    {description}
+                  </Text>
                 </View>
-              )
-            } )}
+              </View>
+            )
+          } )}
+        </View>
+      </View>
+    )
+  }
+  render() {
+    console.log( this.props.contactUs )
+    const {
+      titleMarker,
+      latitude,
+      longitude,
+      latitudeDelta,
+      longitudeDelta,
+    } = this.props.contactUs
+    const { screenContainer, mapContaininer, mapView } = styles
+    return (
+      <ScrollView>
+        <View style={screenContainer}>
+          <View style={mapContaininer}>
+            <MapView
+              style={mapView}
+              region={{ latitude, longitude, latitudeDelta, longitudeDelta }}
+            >
+              <MapView.Marker
+                title={titleMarker}
+                coordinate={{ latitude, longitude }}
+              />
+            </MapView>
+            {this.renderInfo()}
           </View>
         </View>
       </ScrollView>
     )
   }
-  render() {
-    const { titleMarker, coordinate, region } = this.state
-    const { screenContainer, mapContaininer, mapView } = styles
-    return (
-      <View style={screenContainer}>
-        <View style={mapContaininer}>
-          <MapView style={mapView} region={region}>
-            <MapView.Marker title={titleMarker} coordinate={coordinate} />
-          </MapView>
-          {this.renderInfo()}
-        </View>
-      </View>
-    )
-  }
 }
 
-export default ContactUsScreen
+const combineActions = () => ( {
+  ...contactUsActions,
+} )
+
+const mapStateToProps = state => ( {
+  contactUs: contactUsSelectors.getFirstContactUsSelector( state ),
+} )
+
+export default connect( mapStateToProps, combineActions() )( ContactUsScreen )
