@@ -199,19 +199,16 @@ const ProductCard = props => {
         containerstyle={styles.detailsView}
         title={description}
       />
-      {!hasMPF
-        ? <View style={styles.price}>
-          <PriceText
-            price={offer.price}
-            salePrice={offer.salePrice}
-            style={styles.priceText}
-            words={words}
-          />
-        </View>
-        : <View />}
+      <View style={styles.price}>
+        <PriceText
+          price={offer.price}
+          salePrice={offer.salePrice}
+          style={styles.priceText}
+          words={words}
+        />
+      </View>
       {renderTags( tags )}
       {renderPros( pros, words )}
-      {hasMPF ? renderFeatures( pros, words ) : <View />}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}

@@ -66,13 +66,26 @@ class SearchContainer extends Component {
   }
 
   componentWillUpdate() {
-    LayoutAnimation.linear()
+    //LayoutAnimation.linear()
+    LayoutAnimation.configureNext({
+      duration: 400,
+      create: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+        springDamping: 0.7,
+      },
+      update: {
+        type: LayoutAnimation.Types.spring,
+        springDamping: 0.7,
+      },
+    })
   }
 
   onSearchActive = () => {
     this.props.searching( true )
-    this.props.navigation.navigate( 'search' )
+    this.props.navigation.navigate( 'mores' )
     this.setState( { isTouchableDisabled: true } )
+    this.refs.search_textinput_component.focus()
   }
 
   // componentDidMount() {
@@ -81,18 +94,23 @@ class SearchContainer extends Component {
   //   this.setState( { isTouchableDisabled: true } )
   //   this.refs.search_textinput_component.focus()
   // }
-
+  shouldComponentUpdate( nextProps ) {
+    // console.log( nextProps )
+    return true
+  }
   componentDidUpdate() {
+    // console.log('isFocused', this.refs.search_textinput_component.isFocused())
     if ( this.props.is_searching ) {
-      console.log( this.props.is_searching )
-      // this.refs.search_textinput_component.focus()
+      // console.log( this.props.is_searching )
+      //this.refs.search_textinput_component.focus()
     }
   }
 
   pressCancelButton = () => {
     this.props.searching( false )
     Keyboard.dismiss()
-    this.props.navigation.goBack( null )
+    // console.log(this.props.navigation)
+    this.props.navigation.goBack()
     this.props.changeSearchText( '' )
     this.setState( { isTouchableDisabled: false } )
   }
@@ -144,7 +162,7 @@ class SearchContainer extends Component {
       <View style={styles.SearchContainer}>
         <TouchableOpacity
           style={{ elevation: 4 }}
-          disabled={this.state.isTouchableDisabled}
+          // disabled={this.state.isTouchableDisabled}
           onPress={this.onSearchActive}
         >
           <View ref="touchable_search" style={styles.touchableSearch}>

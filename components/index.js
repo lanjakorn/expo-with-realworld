@@ -5,6 +5,7 @@ import CardContent from './CardContent'
 import CardContentImage from './CardContentImage'
 import CardSection from './CardSection'
 import CollapsibleFaqs from './CollapsibleFaqs'
+import CustomSearchBar from './CustomSearchBar'
 import HeaderButtonSection from './HeaderButtonSection'
 import HeaderNavigation from './HeaderNavigation'
 import HeaderSection from './HeaderSection'
@@ -24,6 +25,7 @@ export {
   CardContentImage,
   CardSection,
   CollapsibleFaqs,
+  CustomSearchBar,
   HeaderButtonSection,
   HeaderNavigation,
   HeaderSection,

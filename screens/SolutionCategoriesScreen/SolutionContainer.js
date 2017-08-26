@@ -107,7 +107,7 @@ class Solution extends Component {
         />
         <View style={styles.more}>
           <ButtonRadiusOutlined
-            onPress={this.onPressContact}
+            onPress={this.onPressContactUs}
             style={{ marginRight: 5 }}
             title={'Contact'}
           />

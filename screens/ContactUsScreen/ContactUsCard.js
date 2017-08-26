@@ -113,7 +113,6 @@ class ContactUsScreen extends Component {
     )
   }
   render() {
-    console.log( this.props.contactUs )
     const {
       titleMarker,
       latitude,

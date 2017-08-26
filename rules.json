@@ -1,9 +1,0 @@
-{
-  "rules": {
-    ".read": true,
-    ".write": true,
-    "products": {
-      ".indexOn": ["solutionCategories", "categories"]
-    }
-  }
-}
