@@ -29,11 +29,11 @@ const products = data => {
     offer: {
       price: {
         currency: '$',
-        value: 120,
+        value: 4300,
       },
       salePrice: {
         currency: '$',
-        value: 120,
+        value: 5400,
       },
     },
     // faqs: [
