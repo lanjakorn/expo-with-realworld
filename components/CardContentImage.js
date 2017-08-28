@@ -28,7 +28,8 @@ const styles = StyleSheet.create( {
   descriptionText: {
     fontSize: 13,
     lineHeight: 20,
-    color: Colors.textDescription,
+    textAlign:'justify',    
+    color: Colors.textDescription,    
   },
   rowImage: {
     marginBottom: 24,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const CardContentImage = ( { description, title, url } ) => {
+const CardContentImage = ( { description, title, url, limitLine = true } ) => {
   const {
     containerStyle,
     descriptionText,
@@ -65,9 +66,13 @@ const CardContentImage = ( { description, title, url } ) => {
         </Text>
       </View>
       <View style={rowDescription}>
-        <Text style={descriptionText} numberOfLines={2}>
-          {description}
-        </Text>
+        {limitLine
+          ? <Text style={descriptionText} numberOfLines={2}>
+            {description}
+          </Text>
+          : <Text style={descriptionText}>
+            {description}
+          </Text>}
       </View>
     </View>
   )
