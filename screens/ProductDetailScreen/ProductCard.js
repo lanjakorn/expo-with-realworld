@@ -11,7 +11,7 @@ import {
 import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
-import { Dimensions, View, Text } from 'react-native'
+import { Dimensions, View, Text, TouchableOpacity } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
@@ -53,14 +53,19 @@ const renderPros = ( pros, words ) => {
   )
 }
 
-const renderFeatures = ( pros, words ) => {
+const renderFeatures = ( pros, navigation ) => {
+  console.log( navigation )
+  const onPressFeature = () => {
+    navigation.navigate( 'feature' )
+  }
+
   return (
     <View style={styles.pros}>
       <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
         {'Feature'}
       </Text>
       <View>
-        {Array( 1, 2, 3 ).map( ( e, k ) =>
+        {Array( 1, 2 ).map( ( e, k ) =>
           <View
             key={k}
             style={{
@@ -121,13 +126,13 @@ const renderFeatures = ( pros, words ) => {
               />
               <View
                 style={{
-                  flexDirection: 'row',
-                  width: width * 0.8 + 20,
+                  flex: 5,
+                  justifyContent: 'flex-start',
                 }}
               >
                 <Text
                   multiline={true}
-                  numberOfLines={1}
+                  numberOfLines={2}
                   style={{
                     fontSize: 15,
                     lineHeight: 24,
@@ -135,9 +140,30 @@ const renderFeatures = ( pros, words ) => {
                   }}
                 >
                   {
-                    'Quasi debitis possimus qui rerum fugiat est aut alias voluptatem. Recusandae cumque et asperiores sed ratione aut accusantium voluptatum. Qui illum impedit atque.'
+                    'Improve your coloring skills with these simple, step-by-step instructions for techniques using colored pencils. Intended for beginning artists and coloring book enthusiasts, this guide is ideal for those without formal training but with some experience of coloring with pencils. A wealth of suggestions and exercises will show you how to take your skills to the next level'
                   }
                 </Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'flex-end',
+                  marginRight: 10,
+                }}
+              >
+                <TouchableOpacity
+                  onPress={onPressFeature}
+                >
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      lineHeight: 24,
+                      color: '#0066c0',
+                    }}
+                  >
+                    {'more'}
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -199,16 +225,19 @@ const ProductCard = props => {
         containerstyle={styles.detailsView}
         title={description}
       />
-      <View style={styles.price}>
-        <PriceText
-          price={offer.price}
-          salePrice={offer.salePrice}
-          style={styles.priceText}
-          words={words}
-        />
-      </View>
+      {!hasMPF
+        ? <View style={styles.price}>
+          <PriceText
+            price={offer.price}
+            salePrice={offer.salePrice}
+            style={styles.priceText}
+            words={words}
+          />
+        </View>
+        : <View />}
       {renderTags( tags )}
       {renderPros( pros, words )}
+      {hasMPF ? renderFeatures( pros, navigation ) : <View />}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
