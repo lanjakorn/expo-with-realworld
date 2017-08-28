@@ -19,6 +19,11 @@ import {
 } from 'modules/Contacts'
 
 import {
+  normalize as companyProfileNormalized,
+  actions as companyProfileAction,
+} from 'modules/CompanyProfile'
+
+import {
   normalize as contactUsNormalized,
   actions as contactUsAction,
 } from 'modules/ContactUs'
@@ -96,6 +101,17 @@ function* getContactUs() {
   yield put( contactUsAction.contactUs.success( normalizedContactUs ) )
 }
 
+function* getCompanyProfile() {
+  yield put( companyProfileAction.companyProfile.request() )
+  const companyProfile = yield call( getFireBaseByRef, 'companyProfile' )
+
+  yield put(
+    companyProfileAction.companyProfile.success( {
+      companyProfile: companyProfile,
+    } )
+  )
+}
+
 function* getFaqs() {
   yield put( faqsAction.faqs.request() )
   const faqs = yield call( getFireBaseByRef, 'faqs' )
@@ -157,6 +173,7 @@ function* watchInitHomeScreen() {
       yield fork( getCaseStudies ),
       yield fork( getCategories ),
       yield fork( getContacts ),
+      yield fork( getCompanyProfile ),
       yield fork( getContactUs ),
       yield fork( getFaqs ),
       yield fork( getHouseCategories ),
