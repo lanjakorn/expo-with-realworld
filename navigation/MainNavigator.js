@@ -8,6 +8,7 @@ import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
 import ContactScreen from '@screens/ContactScreen'
 import ContactUsScreen from '@screens/ContactUsScreen'
+import CompanyProfileScreen from '@screens/CompanyProfileScreen'
 import HomeScreen from '@screens/HomeScreen'
 import HouseScreen from '@screens/HouseScreen'
 import HouseCategoriesScreen from '@screens/HouseCategoriesScreen'
@@ -24,6 +25,7 @@ import ServiceDetailScreen from '@screens/ServiceDetailScreen'
 import MoresScreen from '@screens/MoresScreen'
 import LoginScreen from '@screens/LoginScreen'
 import PostsScreen from '@screens/PostsScreen'
+import FeatureScreen from '@screens/FeatureScreen'
 
 const HomeTab = StackNavigator( {
   index: {
@@ -69,6 +71,10 @@ const HouseTab = StackNavigator( {
     screen: ProductDetailScreen,
     path: '/productdetail/:id:module',
   },
+  feature: {
+    screen: FeatureScreen,
+    path: '/',
+  },
   contact: {
     screen: ContactScreen,
     path: '/',
@@ -108,8 +114,8 @@ const MoresTab = StackNavigator( {
     path: '/:category',
   },
   companyProfiles: {
-    screen: PostsScreen,
-    path: '/:category',
+    screen: CompanyProfileScreen,
+    path: '/',
   },
   caseStudies: {
     screen: PostsScreen,
@@ -153,6 +159,10 @@ const ProductsTab = StackNavigator( {
   productDetail: {
     screen: ProductDetailScreen,
     path: '/productdetail/:name',
+  },
+  feature: {
+    screen: FeatureScreen,
+    path: '/',
   },
   contactUs: {
     screen: ContactUsScreen,
