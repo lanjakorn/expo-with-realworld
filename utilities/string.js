@@ -1,16 +1,22 @@
 const getYoutubeId = url => {
-  const code = url.match( /v=([^&#]{5,})/ )
-  return typeof code[ 1 ] == 'string' ? code[ 1 ] : url
+  const [ , code ] = url.match( /v=([^&#]{5,})/ )
+  return typeof code == 'string' ? code : url
 }
 
-function formatMoney( {
+const capitalize = str => {
+  return str[ 0 ].toUpperCase() + str.substring( 1 )
+}
+
+const paragraph = ( str ) => `   ${ str }`
+
+const formatMoney = ( {
   num,
   digit = 2,
   symbol = '$',
   symbolBack = false,
   showDigit = true,
   showSymbol = true,
-} ) {
+} ) => {
   const [ number, decimal = '00' ] = num.toFixed( digit ).split( '.' )
   const money = number
     .split( '' )
@@ -29,4 +35,4 @@ function formatMoney( {
     : `${ symbol } ${ moneyWithDigit }`
 }
 
-export { getYoutubeId, formatMoney }
+export { getYoutubeId, formatMoney, capitalize, paragraph }
