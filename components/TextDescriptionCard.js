@@ -1,20 +1,27 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, View } from 'react-native'
 
-const styles = StyleSheet.create( {
+const styles = {
   textDescription: {
     fontSize: 12.5,
     fontWeight: '600',
     lineHeight: 24,
-    textAlign:'justify',
+    textAlign: 'justify',
   },
-} )
+}
 
-export const TextDescriptionCard = ( { containerstyle, title } ) =>
-  <View style={containerstyle}>
-    <Text style={styles.textDescription}>
-      {title}
-    </Text>
-  </View>
+export const TextDescriptionCard = ( {
+  containerstyle,
+  textStyle = {},
+  title,
+} ) => {
+  return (
+    <View style={containerstyle}>
+      <Text style={{ ...styles.textDescription, ...textStyle }}>
+        {title}
+      </Text>
+    </View>
+  )
+}
 
 export default TextDescriptionCard

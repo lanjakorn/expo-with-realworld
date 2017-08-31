@@ -76,7 +76,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
             size={28}
             type={'ionicon'}
             onPress={() => {
-              navigation.navigate( 'mores' )
+              navigation.navigate( 'mores', { module: 'mores' } )
             }}
           />
         </View>

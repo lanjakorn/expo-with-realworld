@@ -8,6 +8,7 @@ import CollapsibleFaqs from './CollapsibleFaqs'
 import CustomSearchBar from './CustomSearchBar'
 import HeaderButtonSection from './HeaderButtonSection'
 import HeaderNavigation from './HeaderNavigation'
+import HeaderRootNavigation from './HeaderRootNavigation'
 import HeaderSection from './HeaderSection'
 import HeaderTitle from './HeaderTitle'
 import NoItemComponent from './NoItemComponent'
@@ -28,6 +29,7 @@ export {
   CustomSearchBar,
   HeaderButtonSection,
   HeaderNavigation,
+  HeaderRootNavigation,
   HeaderSection,
   HeaderTitle,
   NoItemComponent,

@@ -67,7 +67,7 @@ class SearchContainer extends Component {
 
   componentWillUpdate() {
     //LayoutAnimation.linear()
-    LayoutAnimation.configureNext({
+    LayoutAnimation.configureNext( {
       duration: 400,
       create: {
         type: LayoutAnimation.Types.linear,
@@ -78,7 +78,7 @@ class SearchContainer extends Component {
         type: LayoutAnimation.Types.spring,
         springDamping: 0.7,
       },
-    })
+    } )
   }
 
   onSearchActive = () => {
@@ -99,8 +99,8 @@ class SearchContainer extends Component {
     return true
   }
   componentDidUpdate() {
-    // console.log('isFocused', this.refs.search_textinput_component.isFocused())
-    if ( this.props.is_searching ) {
+    console.log( 'isFocused', this.refs.search_textinput_component.isFocused() )
+    if ( !this.props.is_searching ) {
       // console.log( this.props.is_searching )
       //this.refs.search_textinput_component.focus()
     }

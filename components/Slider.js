@@ -70,32 +70,6 @@ const styles = {
 }
 
 class Slider extends Component {
-  constructor( props ) {
-    super( props )
-    this.timeouts = null
-    this.state = {
-      SwipLoaded: false,
-    }
-  }
-
-  clearTimeouts() {
-    if ( this.timeouts ) {
-      clearTimeout( this.timeouts )
-    }
-  }
-
-  componentDidMount() {
-    this.timeouts = setTimeout( () => {
-      this.setState( {
-        SwipLoaded: true,
-      } )
-    }, 100 )
-  }
-
-  componentWillUnmount() {
-    this.clearTimeouts()
-  }
-
   embedVideoLink() {
     const video = object.getFirstByKey( {
       item: this.props.urls,
@@ -109,8 +83,8 @@ class Slider extends Component {
 
   render() {
     {
-      return this.state.SwipLoaded
-        ? <Swiper
+      return (
+        <Swiper
           activeDotColor={Colors.tintColor}
           buttonWrapperStyle={styles.buttonWrappe}
           height={calHeight.height}
@@ -121,6 +95,7 @@ class Slider extends Component {
           showsButtons={Platform.OS === 'android' ? true : false}
           loadMinimal={true}
           loadMinimalSize={1}
+          removeClippedSubviews={false}
         >
           <View style={styles.slideImage}>
             <Image
@@ -132,6 +107,7 @@ class Slider extends Component {
                 } ),
               }}
               style={{
+                backgroundColor: 'transparent',
                 height: calHeight.height,
                 width: width,
               }}
@@ -168,7 +144,7 @@ class Slider extends Component {
               />
             </View>}
         </Swiper>
-        : <View />
+      )
     }
   }
 }
