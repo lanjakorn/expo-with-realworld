@@ -147,7 +147,7 @@ const combineActions = () => ( {
 } )
 
 const mapStateToProps = state => ( {
-  contactUs: contactUsSelectors.getFirstContactUsSelector( state ),
+  contactUs: contactUsSelectors.contactUsSelector( state ),
 } )
 
 export default connect( mapStateToProps, combineActions() )( ContactUsScreen )

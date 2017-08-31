@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView } from 'react-native'
-import ProductCard from './ProductCard'
+import Product from './ProductContainer'
 import { HeaderNavigation } from '@components'
 
 class HouseCategoriesScreen extends Component {
@@ -13,7 +13,7 @@ class HouseCategoriesScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <ProductCard navigation={this.props.navigation} />
+        <Product navigation={this.props.navigation} />
       </ScrollView>
     )
   }

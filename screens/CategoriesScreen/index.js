@@ -1,35 +1,36 @@
-import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Colors from 'constants/Colors'
-import CategoriesList from './CategoriesList'
+
+import { View } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
+import Categories from './CategoriesContainer'
 import Search from '@components/SearchContainer'
 
-class CategoriesScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      tabBarLabel: 'Categories',
-      tabBarIcon: ( { focused } ) =>
-        <FontAwesome
-          name={'newspaper-o'}
-          size={24}
-          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'house'} />
-          </View>
-        </View>
-      ),
-    }
-  }
+const CategoriesScreen = ( { navigation } ) =>
+  <Categories navigation={navigation} />
 
-  render() {
-    return <CategoriesList navigation={this.props.navigation} />
+CategoriesScreen.navigationOptions = ( { navigation } ) => {
+  return {
+    tabBarLabel: 'Categories',
+    tabBarIcon: ( { focused } ) =>
+      <FontAwesome
+        name={'newspaper-o'}
+        size={24}
+        color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+      />,
+    header: (
+      <View style={{ backgroundColor: Colors.tintColor }}>
+        <View style={{ marginTop: 24, height: 40 }}>
+          <Search navigation={navigation} navOnCancel={'house'} />
+        </View>
+      </View>
+    ),
   }
 }
 
-const styles = StyleSheet.create( {} )
+CategoriesScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
 export default CategoriesScreen

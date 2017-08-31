@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { object } from 'utilities'
-import { Colors } from 'constants'
 import {
   actions as servicesActions,
   selectors as servicesSelectors,

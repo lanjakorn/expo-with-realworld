@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
 
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import CategoriesDetail from './CategoriesDetail'
+import Category from './Category'
 
 const styles = StyleSheet.create( {
   container: {
@@ -42,7 +42,7 @@ class CategoriesList extends Component {
         key={e.name}
         onPress={() => this.onPressSelectChildCategory( e.name )}
       >
-        <CategoriesDetail
+        <Category
           key={e.name}
           StoryImage={e.image}
           StoryHeading={e.name}

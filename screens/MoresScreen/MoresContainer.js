@@ -38,18 +38,11 @@ const styles = StyleSheet.create( {
 } )
 
 class SearchListContainer extends Component {
-  state = { mores: mores }
-
-  // async componentWillMount() {
-  //   await this.props.getSearchHistory()
-  // }
-
   onPressMenuSelect = ( { navigate, title } ) => {
     this.props.navigation.navigate( navigate, { category: title } )
   }
 
   render() {
-    const { mores } = this.state
 
     return (
       <View>

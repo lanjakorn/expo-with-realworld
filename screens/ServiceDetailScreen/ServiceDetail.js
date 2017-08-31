@@ -39,6 +39,7 @@ class ServiceDetail extends Component {
         </View>
         <TextDescriptionCard
           containerstyle={styles.detailsView}
+          textStyle={{ fontWeight: '500' }}          
           title={description}
         />
       </View>

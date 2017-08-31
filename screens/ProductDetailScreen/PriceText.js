@@ -33,7 +33,7 @@ const PriceText = ( { price, style, words } ) =>
 PriceText.propTypes = {
   price: PropTypes.object,
   salePrice: PropTypes.object,
-  style: PropTypes.object,
+  style: PropTypes.number,
   words: PropTypes.object,
 }
 

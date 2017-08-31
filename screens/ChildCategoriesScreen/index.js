@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
-import CategoriesList from './CategoriesList'
+import { nav } from 'utilities'
+
+import Categories from './CategoriesContainer'
 import { HeaderNavigation } from '@components'
 
 class CategoriesScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
+      header: (
+        <HeaderNavigation
+          navigation={navigation}
+          title={nav.getNavigationParam( navigation, 'category' )}
+        />
+      ),
     }
   }
 
   render() {
-    return <CategoriesList navigation={this.props.navigation} />
+    return <Categories navigation={this.props.navigation} />
   }
 }
 

@@ -1,17 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import {
-  actions as faqsActions,
-  selectors as faqsSelectors,
-} from 'modules/Faqs'
-import {
-  actions as productsActions,
-  selectors as productsSelectors,
-} from 'modules/Products'
-import { selectors as settingsSelectors } from 'modules/Settings'
 import PropTypes from 'prop-types'
 
-import { Dimensions, View, Text, TouchableOpacity } from 'react-native'
+import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
@@ -25,10 +15,8 @@ import {
 import Tag from './Tag'
 import Pro from './Pro'
 import PriceText from './PriceText'
+import Feature from './Feature'
 import styles from './ProductCardStyle'
-
-import { Colors } from 'constants'
-const { width } = Dimensions.get( 'window' )
 
 const renderTags = tags => {
   return (
@@ -53,10 +41,12 @@ const renderPros = ( pros, words ) => {
   )
 }
 
-const renderFeatures = ( pros, navigation ) => {
-  console.log( navigation )
-  const onPressFeature = () => {
-    navigation.navigate( 'feature' )
+const renderFeatures = ( features, navigation ) => {
+  const onPressFeature = index => {
+    navigation.navigate( 'feature', {
+      index,
+      module: navigation.state.params.module,
+    } )
   }
 
   return (
@@ -65,108 +55,14 @@ const renderFeatures = ( pros, navigation ) => {
         {'Feature'}
       </Text>
       <View>
-        {Array( 1, 2 ).map( ( e, k ) =>
-          <View
-            key={k}
-            style={{
-              flex: 1,
-              flexDirection: 'column',
-            }}
-          >
-            <View
-              // key={k}
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  marginRight: 12,
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 16,
-                  }}
-                >
-                  {'•'}
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: width * 0.8 + 20,
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 15,
-                    lineHeight: 24,
-                    // color: Colors.textDescription,
-                  }}
-                >
-                  {`Feature ${ k }`}
-                </Text>
-              </View>
-            </View>
-            <View
-              // key={k}
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  marginRight: 20,
-                }}
-              />
-              <View
-                style={{
-                  flex: 5,
-                  justifyContent: 'flex-start',
-                }}
-              >
-                <Text
-                  multiline={true}
-                  numberOfLines={2}
-                  style={{
-                    fontSize: 15,
-                    lineHeight: 24,
-                    color: Colors.textDescription,
-                  }}
-                >
-                  {
-                    'Improve your coloring skills with these simple, step-by-step instructions for techniques using colored pencils. Intended for beginning artists and coloring book enthusiasts, this guide is ideal for those without formal training but with some experience of coloring with pencils. A wealth of suggestions and exercises will show you how to take your skills to the next level'
-                  }
-                </Text>
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'flex-end',
-                  marginRight: 10,
-                }}
-              >
-                <TouchableOpacity
-                  onPress={onPressFeature}
-                >
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      lineHeight: 24,
-                      color: '#0066c0',
-                    }}
-                  >
-                    {'more'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+        {features.map( ( { title, description }, k ) =>
+          <Feature
+            description={description}
+            key={`feature-${ k }-${ title }`}
+            index={k}
+            onPressFeature={onPressFeature}
+            title={title}
+          />
         )}
       </View>
       <View />
@@ -174,27 +70,14 @@ const renderFeatures = ( pros, navigation ) => {
   )
 }
 
-// TODO: duplicate logic checking : Remove all duplicates but keep only one
 const ProductCard = props => {
   const {
     isFetchingFaqs,
     navigation,
     words,
-    productOfProductCategory,
-    productOfSolutionCategory,
-    faqsOfProductFromProductCategory,
-    faqsOfProductFromSolutionCategory,
+    faqs,
+    products: { name, description, features, hasMPF, offer, pros, tags, urls },
   } = props
-
-  const { name, urls, description, offer, tags, pros, hasMPF } =
-    navigation.state.params.module === 'productCategories'
-      ? productOfProductCategory
-      : productOfSolutionCategory
-
-  const faqs =
-    navigation.state.params.module === 'productCategories'
-      ? faqsOfProductFromProductCategory
-      : faqsOfProductFromSolutionCategory
 
   const onPressContactUs = () => {
     navigation.navigate( 'contactUs' )
@@ -237,7 +120,7 @@ const ProductCard = props => {
         : <View />}
       {renderTags( tags )}
       {renderPros( pros, words )}
-      {hasMPF ? renderFeatures( pros, navigation ) : <View />}
+      {hasMPF ? renderFeatures( features, navigation ) : <View />}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
@@ -262,37 +145,20 @@ const ProductCard = props => {
 }
 
 ProductCard.propTypes = {
-  image: PropTypes.string,
-  name: PropTypes.string,
-  offer: PropTypes.object,
-  reviewCount: PropTypes.number,
-  reviewScore: PropTypes.number,
+  isFetchingFaqs: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  words: PropTypes.object.isRequired,
+  faqs: PropTypes.object,
+  products: PropTypes.shape( {
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    features: PropTypes.array,
+    hasMPF: PropTypes.bool.isRequired,
+    offer: PropTypes.object.isRequired,
+    pros: PropTypes.array,
+    tags: PropTypes.array,
+    urls: PropTypes.object.isRequired,
+  } ),
 }
 
-ProductCard.defaultProps = {
-  reviewCount: 0,
-}
-
-const combineAction = () => ( {
-  ...faqsActions,
-  ...productsActions,
-} )
-
-const mapStateToProps = state => ( {
-  faqsOfProductFromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(
-    state
-  ),
-  faqsOfProductFromSolutionCategory: productsSelectors.faqOfProductFromSolutionCategorySelector(
-    state
-  ),
-  isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),
-  productOfProductCategory: productsSelectors.productOfProductCategorySelector(
-    state
-  ),
-  productOfSolutionCategory: productsSelectors.productOfSolutionCategorySelector(
-    state
-  ),
-  words: settingsSelectors.getWordsByLangSelector( state ),
-} )
-
-export default connect( mapStateToProps, combineAction() )( ProductCard )
+export default ProductCard

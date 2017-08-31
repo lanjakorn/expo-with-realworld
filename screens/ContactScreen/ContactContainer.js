@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Platform, View, Text, Image, StyleSheet } from 'react-native'
-import { Card } from 'react-native-elements'
-import Colors from 'constants/Colors'
-
 import {
   actions as productsActions,
   selectors as productsSelectors,
 } from 'modules/Products'
+import Colors from 'constants/Colors'
+
+import { Platform, View, Text, Image, StyleSheet } from 'react-native'
+import { Card } from 'react-native-elements'
 
 const styles = StyleSheet.create( {
   container: {

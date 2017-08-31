@@ -5,7 +5,12 @@ import { HeaderNavigation } from '@components'
 class ProductsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
-      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
+      header: (
+        <HeaderNavigation
+          navigation={navigation}
+          title={navigation.state.params.childCategory}
+        />
+      ),
     }
   }
 

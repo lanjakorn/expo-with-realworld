@@ -1,6 +1,7 @@
+import { StyleSheet } from 'react-native'
 import { Colors } from 'constants'
 
-export default {
+export default StyleSheet.create( {
   container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
@@ -16,7 +17,7 @@ export default {
   },
   detailsView: {
     marginTop: 35,
-    marginBottom: 22,    
+    marginBottom: 22,
     paddingLeft: 20,
     paddingRight: 20,
   },
@@ -33,7 +34,6 @@ export default {
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginBottom: 25,
-    // marginTop: 25,
     paddingBottom: 30,
     paddingTop: 30,
   },
@@ -73,7 +73,6 @@ export default {
   },
   questions: {
     flexDirection: 'row',
-    //justifyContent: 'flex-start',
   },
   shippingText: {
     color: '#C0C0C0',
@@ -82,4 +81,4 @@ export default {
   priceText: {
     marginTop: 5,
   },
-}
+} )
