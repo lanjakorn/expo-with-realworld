@@ -6,26 +6,26 @@ import { Icon } from 'react-native-elements'
 
 import CategoriesScreen from '@screens/CategoriesScreen'
 import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
+import CompanyProfileScreen from '@screens/CompanyProfileScreen'
 import ContactScreen from '@screens/ContactScreen'
 import ContactUsScreen from '@screens/ContactUsScreen'
-import CompanyProfileScreen from '@screens/CompanyProfileScreen'
+import FaqScreen from '@screens/FaqScreen'
+import FeatureScreen from '@screens/FeatureScreen'
 import HomeScreen from '@screens/HomeScreen'
-import HouseScreen from '@screens/HouseScreen'
 import HouseCategoriesScreen from '@screens/HouseCategoriesScreen'
+import HouseScreen from '@screens/HouseScreen'
+import LoginScreen from '@screens/LoginScreen'
+import MoresScreen from '@screens/MoresScreen'
+import PostsScreen from '@screens/PostsScreen'
 import ProductDetailScreen from '@screens/ProductDetailScreen'
 import ProductsScreen from '@screens/ProductsScreen'
 import SearchScreen from '@screens/SearchScreen'
-import SettingsScreen from '@screens/SettingsScreen'
-import SolutionScreen from '@screens/SolutionScreen'
-import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
-import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
-import FaqScreen from '@screens/FaqScreen'
-import ServiceScreen from '@screens/ServiceScreen'
 import ServiceDetailScreen from '@screens/ServiceDetailScreen'
-import MoresScreen from '@screens/MoresScreen'
-import LoginScreen from '@screens/LoginScreen'
-import PostsScreen from '@screens/PostsScreen'
-import FeatureScreen from '@screens/FeatureScreen'
+import ServiceScreen from '@screens/ServiceScreen'
+// import SettingsScreen from '@screens/SettingsScreen'
+import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
+import SolutionScreen from '@screens/SolutionScreen'
+import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 
 const HomeTab = StackNavigator( {
   index: {
@@ -73,7 +73,7 @@ const HouseTab = StackNavigator( {
   },
   feature: {
     screen: FeatureScreen,
-    path: '/',
+    path: '/:index:module',
   },
   contact: {
     screen: ContactScreen,
@@ -103,7 +103,7 @@ const ServiceTab = StackNavigator( {
 const MoresTab = StackNavigator( {
   index: {
     screen: MoresScreen,
-    path: '/',
+    path: '/:module',
   },
   login: {
     screen: LoginScreen,
@@ -146,15 +146,15 @@ const ProductsTab = StackNavigator( {
   },
   childCategories: {
     screen: ChildCategoriesScreen,
-    path: '/childcategories/name',
+    path: '/:category',
   },
   subChildCategories: {
     screen: SubChildCategoriesScreen,
-    path: '/subchildcategories/name',
+    path: '/:childCategory',
   },
   products: {
     screen: ProductsScreen,
-    path: '/product/:categories',
+    path: '/:childCategory',
   },
   productDetail: {
     screen: ProductDetailScreen,
@@ -162,7 +162,7 @@ const ProductsTab = StackNavigator( {
   },
   feature: {
     screen: FeatureScreen,
-    path: '/',
+    path: '/:index:module',
   },
   contactUs: {
     screen: ContactUsScreen,
@@ -182,43 +182,13 @@ const ProductsTab = StackNavigator( {
   },
 } )
 
-const ServicesTab = StackNavigator( {
-  services: {
-    screen: SettingsScreen.SourcesSetting,
-    path: '/',
-  },
-} )
-
-// const MoresTab = StackNavigator( {
-//   settings: {
-//     screen: SettingsScreen.SettingsScreen,
-//     path: '/',
-//   },
-//   defaultTabSetting: {
-//     screen: SettingsScreen.DefaultTabSetting,
-//   },
-//   readabilitySetting: {
-//     screen: SettingsScreen.ReadabilitySetting,
-//   },
-//   regionSetting: {
-//     screen: SettingsScreen.RegionSetting,
-//   },
-//   sourcesSetting: {
-//     screen: SettingsScreen.SourcesSetting,
-//   },
-//   search: {
-//     screen: SearchScreen,
-//     path: '/',
-//   },
-// } )
-
 const TabNav = TabNavigator(
   {
     homes: {
       screen: HomeTab,
       navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ( { tintColor, focused } ) =>
+        tabBarIcon: ( { focused } ) =>
           <Icon
             name={'home'}
             size={28}
@@ -230,7 +200,7 @@ const TabNav = TabNavigator(
       screen: HouseTab,
       navigationOptions: {
         tabBarLabel: 'Ricoh House',
-        tabBarIcon: ( { tintColor, focused } ) =>
+        tabBarIcon: ( { focused } ) =>
           <Icon
             name={'dashboard'}
             size={25}
@@ -242,7 +212,7 @@ const TabNav = TabNavigator(
       screen: ProductsTab,
       navigationOptions: {
         tabBarLabel: 'Products',
-        tabBarIcon: ( { tintColor, focused } ) =>
+        tabBarIcon: ( { focused } ) =>
           <Icon
             name={'md-cube'}
             size={24}
@@ -255,7 +225,7 @@ const TabNav = TabNavigator(
       screen: ServiceTab,
       navigationOptions: {
         tabBarLabel: 'Services',
-        tabBarIcon: ( { tintColor, focused } ) =>
+        tabBarIcon: ( { focused } ) =>
           <Icon
             name={'tools'}
             size={22}
@@ -268,7 +238,7 @@ const TabNav = TabNavigator(
       screen: MoresTab,
       navigationOptions: {
         tabBarLabel: 'More',
-        tabBarIcon: ( { tintColor, focused } ) =>
+        tabBarIcon: ( { focused } ) =>
           <Icon
             name={'ios-more'}
             size={35}
@@ -298,7 +268,7 @@ const TabNav = TabNavigator(
         backgroundColor: 'white',
         justifyContent: 'center',
       },
-      tabBarIcon: ( { tintColor } ) => {
+      tabBarIcon: () => {
         Colors.darkTintColor
       },
     },
