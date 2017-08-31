@@ -17,9 +17,13 @@ function* watchSelectChildCategory() {
     ] )
 
     if ( subChildCategories.length === 0 ) {
-      navigation.navigate( 'products' )
+      navigation.navigate( 'products', {
+        childCategory: currentCategories[ 1 ],
+      } )
     } else {
-      navigation.navigate( 'subChildCategories', currentCategories[ 1 ] )
+      navigation.navigate( 'subChildCategories', {
+        childCategory: currentCategories[ 1 ],
+      } )
     }
   }
 }

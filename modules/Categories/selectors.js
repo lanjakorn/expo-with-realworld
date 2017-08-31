@@ -4,6 +4,7 @@ const currentCategoriesSelector = state => state.categories.categories
 
 const categoriesByIdSelector = state => state.categories.categoriesById
 const categoryIdsSelector = state => state.categories.categoryIds
+const isFetchingSelector= state => state.categories.isFetching
 
 const childCategoriesByIdSelector = state =>
   state.categories.childCategoriesById
@@ -54,6 +55,7 @@ export {
   childCategoryIdsSelector,
   currentCategorieQuerySelector,
   currentCategoriesSelector,
+  isFetchingSelector,
   subChildCategoriesNameSelector,
   subChildCategoryIdsSelector,
 }

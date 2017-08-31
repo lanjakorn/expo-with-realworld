@@ -19,12 +19,10 @@ import {
 } from 'modules/Contacts'
 
 import {
-  normalize as companyProfileNormalized,
   actions as companyProfileAction,
 } from 'modules/CompanyProfile'
 
 import {
-  normalize as contactUsNormalized,
   actions as contactUsAction,
 } from 'modules/ContactUs'
 
@@ -94,11 +92,7 @@ function* getContacts() {
 function* getContactUs() {
   yield put( contactsAction.contacts.request() )
   const contactUs = yield call( getFireBaseByRef, 'contactUs' )
-  const normalizedContactUs = yield call(
-    contactUsNormalized.normalizedContactUs,
-    contactUs
-  )
-  yield put( contactUsAction.contactUs.success( normalizedContactUs ) )
+  yield put( contactUsAction.contactUs.success( { contactUs: contactUs } ) )
 }
 
 function* getCompanyProfile() {
