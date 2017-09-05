@@ -92,7 +92,6 @@ const ProductCard = props => {
   const onPressFaq = () => {
     navigation.navigate( 'faq' )
   }
-
   return (
     <View style={styles.container}>
       <HeaderTitle

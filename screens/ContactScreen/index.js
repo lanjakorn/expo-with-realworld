@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import { ScrollView } from 'react-native'
 import Contact from './ContactContainer'
 import { HeaderNavigation } from '@components'
 
-class ContactScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
-    }
-  }
+const ContactScreen = ( { navigation } ) =>
+  <ScrollView>
+    <Contact navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <Contact navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+ContactScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title="Products" />,
+} )
+
+ContactScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ContactScreen

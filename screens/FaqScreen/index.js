@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import Faq from './FaqContainer'
 import { HeaderNavigation } from '@components'
 
-class FaqScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: <HeaderNavigation navigation={navigation} title={'FAQ'} />,
-    }
-  }
+const FaqScreen = ( { navigation } ) => <Faq navigation={navigation} />
 
-  render() {
-    return <Faq navigation={this.props.navigation} />
-  }
+FaqScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title={'FAQ'} />,
+} )
+
+FaqScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default FaqScreen

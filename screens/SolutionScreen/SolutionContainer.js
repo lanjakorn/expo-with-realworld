@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { actions as faqsAction } from 'modules/Faqs'
+
 import {
   actions as houseCategoriesActions,
   selectors as houseCategoriesSelectors,
@@ -56,6 +58,8 @@ class Solution extends Component {
   onPressSolutionCategorySelect = ( key, value ) => {
     this.props.setCurrentSolutionCategory( key )
     this.props.getProductsBySolutionCategory( key )
+    this.props.getFaqsBySolutionCategory( key )
+
     this.props.navigation.navigate( 'solutionCategories', { category: value } )
   }
 
@@ -148,6 +152,7 @@ Solution.defaultProps = {
   reviewCount: 0,
 }
 const combineActions = () => ( {
+  ...faqsAction,
   ...caseStudiesActions,
   ...houseCategoriesActions,
   ...solutionsActions,

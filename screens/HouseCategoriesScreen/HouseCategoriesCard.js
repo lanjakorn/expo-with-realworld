@@ -26,15 +26,6 @@ import {
 import styles from './HouseCategoriesCardStyle'
 
 class HouseCategoriesCard extends Component {
-  constructor( props ) {
-    super( props )
-  }
-
-  // async componentWillMount() {
-  //   await this.props.initCaseStudiesScreen()
-  //   await this.props.initSolutionsScreen()
-  // }
-
   shouldComponentUpdate( nextProps ) {
     return nextProps.isFetching !== this.props.isFetching ? true : false
   }

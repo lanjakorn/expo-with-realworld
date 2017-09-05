@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Text, View, Image, Dimensions, StyleSheet } from 'react-native'
 import { Card, CardSection } from '@components'
 
 const { width } = Dimensions.get( 'window' )
-
 const styles = StyleSheet.create( {
   headerContentStyle: {
     flexDirection: 'column',
@@ -25,21 +25,23 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Category = ( { StoryImage, StoryHeading } ) => {
-  return (
-    <Card margin={0}>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {StoryHeading}
-          </Text>
-        </View>
-      </CardSection>
-    </Card>
-  )
+const Category = ( { StoryImage, StoryHeading } ) =>
+  <Card margin={0}>
+    <CardSection>
+      <View style={styles.thumbnailContainerStyle}>
+        <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
+      </View>
+      <View style={styles.headerContentStyle}>
+        <Text style={styles.headerTextStyle} numberOfLines={2}>
+          {StoryHeading}
+        </Text>
+      </View>
+    </CardSection>
+  </Card>
+
+Category.propTypes = {
+  StoryImage: PropTypes.string.isRequired,
+  StoryHeading: PropTypes.string.isRequired,
 }
 
 export default Category

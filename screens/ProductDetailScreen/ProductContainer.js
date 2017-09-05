@@ -42,7 +42,7 @@ export default compose(
           faqs: faqsOfProductFromProductCategory,
           products: productOfProductCategory,
         }
-      case 'faqCategories':
+      case 'solutionCategoris':
         return {
           faqs: faqsOfProductFromSolutionCategory,
           products: productOfSolutionCategory,
@@ -51,6 +51,7 @@ export default compose(
         break
       }
     }
+
     return {
       ...props,
       ...strategy(),

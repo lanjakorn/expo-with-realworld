@@ -66,7 +66,6 @@ class Solution extends Component {
 
   onPressContact = () => {
     this.props.navigation.navigate( 'contact', { module: 'solutionCategoris' } )
-    
   }
 
   onPressFaq = () => {
@@ -89,7 +88,7 @@ class Solution extends Component {
       solutionCategory: { description, title, urls, price: { max, min } },
       words: { maxPrice, minPrice },
     } = this.props
-
+    // console.log( 'faqs', faqs )
     return !isFetching
       ? <View style={styles.container}>
         <HeaderTitle
@@ -176,10 +175,12 @@ const mapStateToProps = state => ( {
   currentSolutionCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
-  faqs: solutionCategoriesSelectors.faqOfSolutionCategorySelector( state ),
-  isFetching: productsSelectors.isFetchingSelector( state ),
+  faqs: productsSelectors.faqOfSolutionCategorySelector( state ),
+  isFetching: solutionCategoriesSelectors.isFetchingProductsAndFaqsSelector(
+    state
+  ),
   products: productsSelectors.productFilterBySolutionCategorySelector( state ),
-  solutionCategory: solutionCategoriesSelectors.solutionCategySelector( state ),
+  solutionCategory: solutionCategoriesSelectors.solutionCategorySelector( state ),
   solutions: solutionsSelectors.solutionsByIdSelector( state ),
   words: settingsSelectors.getWordsByLangSelector( state ),
 } )

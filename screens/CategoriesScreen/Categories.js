@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
-
 import Category from './Category'
 
 const styles = StyleSheet.create( {
@@ -20,8 +19,8 @@ const CategoriesList = ( { actions, categories, isFetching, navigation } ) => {
     } )
   }
 
-  const renderCategories = () => {
-    return categories.map( e =>
+  const renderCategories = () =>
+    categories.map( e =>
       <TouchableOpacity
         key={e.name}
         onPress={() => onPressSelectChildCategory( e.name )}
@@ -33,7 +32,6 @@ const CategoriesList = ( { actions, categories, isFetching, navigation } ) => {
         />
       </TouchableOpacity>
     )
-  }
 
   return (
     <ScrollView>

@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
-import ContactUsCard from './ContactUsCard'
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import ContactUs from './ContactUsContainer'
 import { HeaderNavigation } from '@components'
 
-class ContactUsScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
-    }
-  }
+const ContactUsScreen = ( { navigation } ) =>
+  <ContactUs navigation={navigation} />
 
-  render() {
-    return <ContactUsCard navigation={this.props.navigation} />
-  }
+ContactUsScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title={'Products'} />,
+} )
+
+ContactUsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ContactUsScreen

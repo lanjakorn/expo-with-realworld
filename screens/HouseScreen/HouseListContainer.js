@@ -62,10 +62,6 @@ class HouseListContainer extends Component {
     super( props )
   }
 
-  async componentWillMount() {
-    // await this.props.initHouseCategoriesScreen()
-  }
-
   onPressHouseCategoriesSelect = ( key, value ) => {
     this.props.setCurrentHouseCategory( key )
     this.props.navigation.navigate( 'houseCategories', {

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { actions, selectors } from 'modules/Search'
+import React from 'react'
+import PropTypes from 'prop-types'
+import mores from 'mocks/mores'
 import { Colors } from 'constants'
 
 import {
@@ -11,10 +11,8 @@ import {
   View,
 } from 'react-native'
 import { Card } from '@components'
-import mores from 'mocks/mores'
 
 const { width } = Dimensions.get( 'window' )
-
 const styles = StyleSheet.create( {
   searchListItemStyle: {
     flexDirection: 'row',
@@ -37,46 +35,37 @@ const styles = StyleSheet.create( {
   },
 } )
 
-class SearchListContainer extends Component {
-  onPressMenuSelect = ( { navigate, title } ) => {
-    this.props.navigation.navigate( navigate, { category: title } )
+const Mores = ( { navigation } ) => {
+  const onPressMenuSelect = ( { navigate, title } ) => {
+    navigation.navigate( navigate, { category: title } )
   }
 
-  render() {
-
-    return (
-      <View>
-        {Object.keys( mores ).map( e =>
-          <TouchableOpacity
-            key={e}
-            onPress={() => this.onPressMenuSelect( mores[ e ] )}
+  return (
+    <View>
+      {Object.keys( mores ).map( e =>
+        <TouchableOpacity key={e} onPress={() => onPressMenuSelect( mores[ e ] )}>
+          <View
+            style={{
+              borderColor: 'white',
+              borderBottomWidth: 2.5,
+            }}
           >
-            <View
-              style={{
-                borderColor: 'white',
-                borderBottomWidth: 2.5,
-              }}
-            >
-              <Card margin={0} backgroundColor={Colors.tintColor}>
-                <View style={styles.searchListItemStyle}>
-                  <Text
-                    style={styles.searchListItemTextStyle}
-                    numberOfLines={1}
-                  >
-                    {mores[ e ].title}
-                  </Text>
-                </View>
-              </Card>
-            </View>
-          </TouchableOpacity>
-        )}
-      </View>
-    )
-  }
+            <Card margin={0} backgroundColor={Colors.tintColor}>
+              <View style={styles.searchListItemStyle}>
+                <Text style={styles.searchListItemTextStyle} numberOfLines={1}>
+                  {mores[ e ].title}
+                </Text>
+              </View>
+            </Card>
+          </View>
+        </TouchableOpacity>
+      )}
+    </View>
+  )
 }
 
-const mapStateToProps = state => ( {
-  search_history_items: selectors.getSearchHistories( state ),
-} )
+Mores.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
-export default connect( mapStateToProps, actions )( SearchListContainer )
+export default Mores

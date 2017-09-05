@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import { ScrollView } from 'react-native'
 import CompanyProfile from './CompanyProfileContainer'
 import { HeaderNavigation } from '@components'
 
-class ContactUsScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title="Company Profile"
-        />
-      ),
-    }
-  }
+const CompanyProfileScreen = ( { navigation } ) =>
+  <ScrollView>
+    <CompanyProfile navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <CompanyProfile navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+CompanyProfileScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title="Company Profile" />,
+} )
+
+CompanyProfileScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
-export default ContactUsScreen
+export default CompanyProfileScreen
