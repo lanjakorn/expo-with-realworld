@@ -4,6 +4,9 @@
     ".write": true,
     "products": {
       ".indexOn": ["solutionCategories", "categories"]
+    },
+    "faqs": {
+      ".indexOn": ["productId", "solutionCategoryId"]
     }
   }
 }
