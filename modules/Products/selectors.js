@@ -79,33 +79,46 @@ const faqIdsOfProductFromSolutionCategorySelector = createSelector(
 )
 
 const faqOfProductFromProductCategorySelector = createSelector(
-  faqIdsOfProductFromProductCategorySelector,
+  currentProductOfProductCategorySelector,
   faqsByIdSelector,
-  ( faqIdsOfProduct, faqsMaster ) =>
-    faqIdsOfProduct.length !== 0
-      ? Object.keys( faqIdsOfProduct ).reduce(
-        ( p, c ) => ( {
-          ...p,
-          [ faqIdsOfProduct[ c ] ]: faqsMaster[ faqIdsOfProduct[ c ] ],
-        } ),
-        {}
-      )
+  ( currentProduct, faqsMaster ) => {
+    return currentProduct
+      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
+        return faqsMaster[ c ].productId === currentProduct
+          ? { ...p, [ c ]: faqsMaster[ c ] }
+          : p
+      }, {} )
       : {}
+  }
 )
 
 const faqOfProductFromSolutionCategorySelector = createSelector(
-  faqIdsOfProductFromSolutionCategorySelector,
+  currentProductOfSolutionCategorySelector,
   faqsByIdSelector,
-  ( faqIdsOfProduct, faqsMaster ) =>
-    faqIdsOfProduct.length !== 0
-      ? Object.keys( faqIdsOfProduct ).reduce(
-        ( p, c ) => ( {
-          ...p,
-          [ faqIdsOfProduct[ c ] ]: faqsMaster[ faqIdsOfProduct[ c ] ],
-        } ),
-        {}
-      )
+  ( currentSolutionCategory, faqsMaster ) => {
+    return currentSolutionCategory
+      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
+        return faqsMaster[ c ].productId === currentSolutionCategory
+          ? { ...p, [ c ]: faqsMaster[ c ] }
+          : p
+      }, {} )
       : {}
+  }
+)
+
+// TODO: move to correct module
+const faqOfSolutionCategorySelector = createSelector(
+  currentSolutionCategorySelector,
+  faqsByIdSelector,
+  ( currentSolutionCategory, faqsMaster ) => {
+    return currentSolutionCategory
+      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
+        return faqsMaster[ c ].solutionCategoryId === currentSolutionCategory
+          ? { ...p, [ c ]: faqsMaster[ c ] }
+          : p
+      }, {} )
+      : {}
+  }
 )
 
 const contactOfProductFromProductCategorySelector = createSelector(
@@ -174,4 +187,5 @@ export {
   productOfSolutionCategorySelector,
   productsByIdSelector,
   productsNameSelector,
+  faqOfSolutionCategorySelector,
 }

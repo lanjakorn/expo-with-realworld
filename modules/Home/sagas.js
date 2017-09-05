@@ -18,18 +18,9 @@ import {
   actions as contactsAction,
 } from 'modules/Contacts'
 
-import {
-  actions as companyProfileAction,
-} from 'modules/CompanyProfile'
+import { actions as companyProfileAction } from 'modules/CompanyProfile'
 
-import {
-  actions as contactUsAction,
-} from 'modules/ContactUs'
-
-import {
-  normalize as faqsNormalized,
-  actions as faqsAction,
-} from 'modules/Faqs'
+import { actions as contactUsAction } from 'modules/ContactUs'
 
 import {
   normalize as houseCategoriesNormalized,
@@ -106,13 +97,6 @@ function* getCompanyProfile() {
   )
 }
 
-function* getFaqs() {
-  yield put( faqsAction.faqs.request() )
-  const faqs = yield call( getFireBaseByRef, 'faqs' )
-  const normalizedFaqs = yield call( faqsNormalized.normalizedFaqs, faqs )
-  yield put( faqsAction.faqs.success( normalizedFaqs ) )
-}
-
 function* getHouseCategories() {
   yield put( houseCategoriesAction.houseCategories.request() )
   const houseCategories = yield call( getFireBaseByRef, 'houseCategories' )
@@ -169,7 +153,6 @@ function* watchInitHomeScreen() {
       yield fork( getContacts ),
       yield fork( getCompanyProfile ),
       yield fork( getContactUs ),
-      yield fork( getFaqs ),
       yield fork( getHouseCategories ),
       yield fork( getServices ),
       yield fork( getSolutionCategories ),
