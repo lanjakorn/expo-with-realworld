@@ -1,6 +1,9 @@
 import React from 'react'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import Colors from 'constants/Colors'
+import { Colors } from 'constants'
+import config from 'config'
+import { nav } from 'utilities'
+import { ga } from 'services'
 
 import { Icon } from 'react-native-elements'
 
@@ -279,4 +282,20 @@ const TabNav = TabNavigator(
   }
 )
 
-export default TabNav
+const navTracker = () => {
+  const tracker = new ga.Tracker( config.ga, config.app.name, config.app.version )
+  return (
+    <TabNav
+      onNavigationStateChange={( prevState, currentState ) => {
+        const currentScreen = nav.getCurrentRouteName( currentState )
+        const prevScreen = nav.getCurrentRouteName( prevState )
+        // console.log( currentScreen, prevScreen )
+        if ( prevScreen !== currentScreen ) {
+          tracker.trackScreenView( currentScreen )
+        }
+      }}
+    />
+  )
+}
+
+export default navTracker
