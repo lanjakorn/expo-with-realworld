@@ -11,7 +11,7 @@ const ContactScreen = ( { navigation } ) =>
   </ScrollView>
 
 ContactScreen.navigationOptions = ( { navigation } ) => ( {
-  header: <HeaderNavigation navigation={navigation} title="Products" />,
+  header: <HeaderNavigation navigation={navigation} title="Contact" />,
 } )
 
 ContactScreen.propTypes = {

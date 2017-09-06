@@ -1,30 +1,28 @@
-import React, { Component } from 'react'
-import { Colors } from 'constants'
+import React from 'react'
+import PropTypes from 'prop-types'
 
+import { Colors } from 'constants'
 import { ScrollView, View } from 'react-native'
 import Mores from './MoresContainer'
-import { Search, HeaderNavigation } from '@components'
+import { Search } from '@components'
 
-class MoresScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'mores'} />
-          </View>
-        </View>
-      ),
-    }
-  }
+const MoresScreen = ( { navigation } ) =>
+  <ScrollView>
+    <Mores navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <Mores navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+MoresScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <View style={{ backgroundColor: Colors.tintColor }}>
+      <View style={{ marginTop: 24, height: 40 }}>
+        <Search navigation={navigation} navOnCancel={'mores'} />
+      </View>
+    </View>
+  ),
+} )
+
+MoresScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default MoresScreen

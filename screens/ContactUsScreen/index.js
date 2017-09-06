@@ -8,7 +8,7 @@ const ContactUsScreen = ( { navigation } ) =>
   <ContactUs navigation={navigation} />
 
 ContactUsScreen.navigationOptions = ( { navigation } ) => ( {
-  header: <HeaderNavigation navigation={navigation} title={'Products'} />,
+  header: <HeaderNavigation navigation={navigation} title={'Contact Us'} />,
 } )
 
 ContactUsScreen.propTypes = {

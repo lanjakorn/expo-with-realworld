@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import { ScrollView } from 'react-native'
 import Feature from './FeatureContainer'
 import { HeaderNavigation } from '@components'
 
-class ContactUsScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title={'Feature'}
-        />
-      ),
-    }
-  }
+const ContactUsScreen = ( { navigation } ) =>
+  <ScrollView>
+    <Feature navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <Feature navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+ContactUsScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title={'Feature'} />,
+} )
+
+ContactUsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ContactUsScreen

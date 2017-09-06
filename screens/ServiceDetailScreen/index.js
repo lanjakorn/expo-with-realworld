@@ -1,28 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { nav } from 'utilities'
 
 import { ScrollView } from 'react-native'
 import ServiceDetail from './ServiceDetail'
 import { HeaderNavigation } from '@components'
 
-class ServiceDetailScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title={navigation.state.params.service}
-        />
-      ),
-    }
-  }
+const ServiceDetailScreen = ( { navigation } ) =>
+  <ScrollView>
+    <ServiceDetail navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <ServiceDetail navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+ServiceDetailScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <HeaderNavigation
+      navigation={navigation}
+      title={nav.getNavigationParam( navigation, 'service' )}
+    />
+  ),
+} )
+
+ServiceDetailScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ServiceDetailScreen

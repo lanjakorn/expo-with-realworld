@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 import { View, StyleSheet } from 'react-native'
@@ -11,26 +12,23 @@ const styles = StyleSheet.create( {
   },
 } )
 
-class ServicesScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'serviceห'} />
-          </View>
-        </View>
-      ),
-    }
-  }
+const ServicesScreen = ( { navigation } ) =>
+  <View style={styles.container}>
+    <ServiceList navigation={navigation} />
+  </View>
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <ServiceList navigation={this.props.navigation} />
+ServicesScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <View style={{ backgroundColor: Colors.tintColor }}>
+      <View style={{ marginTop: 24, height: 40 }}>
+        <Search navigation={navigation} navOnCancel={'serviceห'} />
       </View>
-    )
-  }
+    </View>
+  ),
+} )
+
+ServicesScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ServicesScreen

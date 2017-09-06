@@ -40,12 +40,12 @@ export default compose(
       case 'productCategories':
         return {
           faqs: faqsOfProductFromProductCategory,
-          products: productOfProductCategory,
+          product: productOfProductCategory,
         }
       case 'solutionCategoris':
         return {
           faqs: faqsOfProductFromSolutionCategory,
-          products: productOfSolutionCategory,
+          product: productOfSolutionCategory,
         }
       default:
         break

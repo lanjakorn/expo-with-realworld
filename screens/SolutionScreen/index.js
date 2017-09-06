@@ -1,28 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { nav } from 'utilities'
 
 import { ScrollView } from 'react-native'
 import SolutionContainer from './SolutionContainer'
 import { HeaderNavigation } from '@components'
 
-class SolutionScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title={navigation.state.params.solution}
-        />
-      ),
-    }
-  }
+const SolutionScreen = ( { navigation } ) =>
+  <ScrollView>
+    <SolutionContainer navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <SolutionContainer navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+SolutionScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <HeaderNavigation
+      navigation={navigation}
+      title={nav.getNavigationParam( navigation, 'solution' )}
+    />
+  ),
+} )
+
+SolutionScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default SolutionScreen

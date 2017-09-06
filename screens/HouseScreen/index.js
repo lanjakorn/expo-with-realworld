@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 import { View, StyleSheet } from 'react-native'
@@ -11,26 +12,23 @@ const styles = StyleSheet.create( {
   },
 } )
 
-class HouseScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'home'} />
-          </View>
-        </View>
-      ),
-    }
-  }
+const HouseScreen = ( { navigation } ) =>
+  <View style={styles.container}>
+    <HouseList navigation={navigation} />
+  </View>
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <HouseList navigation={this.props.navigation} />
+HouseScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <View style={{ backgroundColor: Colors.tintColor }}>
+      <View style={{ marginTop: 24, height: 40 }}>
+        <Search navigation={navigation} navOnCancel={'home'} />
       </View>
-    )
-  }
+    </View>
+  ),
+} )
+
+HouseScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default HouseScreen

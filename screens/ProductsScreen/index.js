@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { nav } from 'utilities'
+
 import ProductsList from './ProductsList'
 import { HeaderNavigation } from '@components'
 
-class ProductsScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title={navigation.state.params.childCategory}
-        />
-      ),
-    }
-  }
+const ProductsScreen = ( { navigation } ) =>
+  <ProductsList navigation={navigation} />
 
-  render() {
-    return <ProductsList navigation={this.props.navigation} />
-  }
+ProductsScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <HeaderNavigation
+      navigation={navigation}
+      title={nav.getNavigationParam( navigation, 'childCategory' )}
+    />
+  ),
+} )
+
+ProductsScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default ProductsScreen

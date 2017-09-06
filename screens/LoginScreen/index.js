@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import Login from './LoginContainer'
 import { HeaderNavigation } from '@components'
 
-class LoginScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: <HeaderNavigation navigation={navigation} title={'Login'} />,
-    }
-  }
+const LoginScreen = ( { navigation } ) => <Login navigation={navigation} />
 
-  render() {
-    return <Login navigation={this.props.navigation} />
-  }
+LoginScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title={'Login'} />,
+} )
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default LoginScreen

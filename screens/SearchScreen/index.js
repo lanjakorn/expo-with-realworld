@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
 import { View, StyleSheet } from 'react-native'
@@ -6,35 +7,30 @@ import { Icon } from 'react-native-elements'
 import { Search } from '@components'
 import SearchList from './SearchListContainer'
 
-class SearchScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      tabBarLabel: 'Search',
-      tabBarIcon: ( { focused } ) =>
-        <Icon
-          name={'search'}
-          size={24}
-          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
-      header: (
-        <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} navOnCancel={'search'} />
-          </View>
-        </View>
-      ),
-    }
-  }
+const SearchScreen = ( { navigation } ) =>
+  <View>
+    <SearchList navigation={navigation} />
+  </View>
 
-  render() {
-    return (
-      <View>
-        <SearchList navigation={this.props.navigation} />
+SearchScreen.navigationOptions = ( { navigation } ) => ( {
+  tabBarLabel: 'Search',
+  tabBarIcon: ( { focused } ) =>
+    <Icon
+      name={'search'}
+      size={24}
+      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+    />,
+  header: (
+    <View style={{ backgroundColor: Colors.tintColor }}>
+      <View style={{ marginTop: 24, height: 40 }}>
+        <Search navigation={navigation} navOnCancel={'search'} />
       </View>
-    )
-  }
-}
+    </View>
+  ),
+} )
 
-const styles = StyleSheet.create( {} )
+SearchScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
 export default SearchScreen

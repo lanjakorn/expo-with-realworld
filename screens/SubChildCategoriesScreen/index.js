@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { nav } from 'utilities'
+
 import CategoriesList from './CategoriesList'
 import { HeaderNavigation } from '@components'
 
-class SubChildCategoriesScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: (
-        <HeaderNavigation
-          navigation={navigation}
-          title={navigation.state.params.childCategory}
-        />
-      ),
-    }
-  }
+const SubChildCategoriesScreen = ( { navigation } ) =>
+  <CategoriesList navigation={navigation} />
 
-  render() {
-    return <CategoriesList navigation={this.props.navigation} />
-  }
+SubChildCategoriesScreen.navigationOptions = ( { navigation } ) => ( {
+  header: (
+    <HeaderNavigation
+      navigation={navigation}
+      title={nav.getNavigationParam( navigation, 'childCategory' )}
+    />
+  ),
+} )
+
+SubChildCategoriesScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default SubChildCategoriesScreen

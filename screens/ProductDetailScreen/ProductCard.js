@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { nav } from 'utilities'
 
 import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -45,7 +46,7 @@ const renderFeatures = ( features, navigation ) => {
   const onPressFeature = index => {
     navigation.navigate( 'feature', {
       index,
-      module: navigation.state.params.module,
+      module: nav.getNavigationParam( navigation, 'module' ),
     } )
   }
 
@@ -76,7 +77,7 @@ const ProductCard = props => {
     navigation,
     words,
     faqs,
-    products: { name, description, features, hasMPF, offer, pros, tags, urls },
+    product: { name, description, features, hasMPF, offer, pros, tags, urls },
   } = props
 
   const onPressContactUs = () => {
@@ -85,7 +86,7 @@ const ProductCard = props => {
 
   const onPressContact = () => {
     navigation.navigate( 'contact', {
-      module: navigation.state.params.module,
+      module: nav.getNavigationParam( navigation, 'module' ),
     } )
   }
 
@@ -148,7 +149,7 @@ ProductCard.propTypes = {
   navigation: PropTypes.object.isRequired,
   words: PropTypes.object.isRequired,
   faqs: PropTypes.object,
-  products: PropTypes.shape( {
+  product: PropTypes.shape( {
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
     features: PropTypes.array,
