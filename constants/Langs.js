@@ -5,6 +5,7 @@ export default {
     baht: 'Baht',
     minPrice: 'Minimum Price',
     maxPrice: 'Maximum Price',
+    howToUse: 'How to use',
   },
   th: {
     productPros: 'ข้อดีของผลิตภัณฑ์',
@@ -12,5 +13,6 @@ export default {
     baht: 'บาท',
     minPrice: 'ราคาต่ำสุด',
     maxPrice: 'ราคาสูงสุด',
+    howToUse: 'วิธีการใช้',
   },
 }
