@@ -2,8 +2,8 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-
 import { object } from 'utilities'
+
 import {
   CardContent,
   CardContentImage,
@@ -12,27 +12,31 @@ import {
   Slider,
   TextDescriptionCard,
 } from '@components'
-import styles from './HouseCategoriesStyle'
 
-const HouseCategories = ( {
+import styles from './SolutionContainerStyle'
+
+const Solution = ( {
+  actions,
   caseStudies,
   isFetching,
   navigation,
-  solutions,
-  actions: { setCurrentSolutions },
-  houseCategory: { description, title, urls },
+  solutionCategories,
+  solution: { description, title, urls },
 } ) => {
   const onPressContactUs = () => {
     navigation.navigate( 'contactUs' )
   }
 
-  const onPressSolutionSelect = ( key, value ) => {
-    setCurrentSolutions( key )
-    navigation.navigate( 'solution', { solution: value } )
+  const onPressSolutionCategorySelect = ( key, value ) => {
+    actions.setCurrentSolutionCategory( key )
+    actions.getProductsBySolutionCategory( key )
+    actions.getFaqsBySolutionCategory( key )
+
+    navigation.navigate( 'solutionCategories', { category: value } )
   }
 
-  const renderSolutions = () => {
-    return Object.keys( solutions ).map( e =>
+  const renderSolutionCategories = () => {
+    return Object.keys( solutionCategories ).map( e =>
       <View
         key={`container-solution-${ e }`}
         style={{
@@ -42,12 +46,13 @@ const HouseCategories = ( {
       >
         <TouchableOpacity
           key={`touch-${ e }`}
-          onPress={() => onPressSolutionSelect( e, solutions[ e ].title )}
+          onPress={() =>
+            onPressSolutionCategorySelect( e, solutionCategories[ e ].title )}
         >
           <CardContent
-            description={solutions[ e ].description}
+            description={solutionCategories[ e ].description}
             key={e}
-            title={solutions[ e ].title}
+            title={solutionCategories[ e ].title}
           />
         </TouchableOpacity>
       </View>
@@ -91,11 +96,8 @@ const HouseCategories = ( {
         containerstyle={styles.detailsView}
         title={description}
       />
-      <HeaderSection
-        containerstyle={styles.solution}
-        textTitle={'Solution'}
-      />
-      {renderSolutions()}
+      <HeaderSection containerstyle={styles.solution} textTitle={'Types'} />
+      {renderSolutionCategories()}
       <HeaderSection
         containerstyle={styles.caseStudy}
         textTitle={'Case Study'}
@@ -105,11 +107,13 @@ const HouseCategories = ( {
     : <Spinner visible={true} />
 }
 
-HouseCategories.propTypes = {
+Solution.propTypes = {
   actions: PropTypes.shape( {
-    setCurrentSolutions: PropTypes.func.isRequired,
+    setCurrentSolutionCategory: PropTypes.func.isRequired,
+    getProductsBySolutionCategory: PropTypes.func.isRequired,
+    getFaqsBySolutionCategory: PropTypes.func.isRequired,
   } ),
-  houseCategory: PropTypes.shape( {
+  solution: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     urls: PropTypes.object.isRequired,
@@ -117,7 +121,7 @@ HouseCategories.propTypes = {
   caseStudies: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
-  solutions: PropTypes.object.isRequired,
+  solutionCategories: PropTypes.object.isRequired,
 }
 
-export default HouseCategories
+export default Solution

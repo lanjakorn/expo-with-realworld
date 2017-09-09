@@ -4,7 +4,7 @@ import { Colors } from 'constants'
 
 import { View, StyleSheet } from 'react-native'
 import { Search } from '@components'
-import HouseList from './HouseListContainer'
+import House from './HouseContainer'
 
 const styles = StyleSheet.create( {
   container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create( {
 
 const HouseScreen = ( { navigation } ) =>
   <View style={styles.container}>
-    <HouseList navigation={navigation} />
+    <House navigation={navigation} />
   </View>
 
 HouseScreen.navigationOptions = ( { navigation } ) => ( {

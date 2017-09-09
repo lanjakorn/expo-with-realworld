@@ -31,33 +31,14 @@ const styles = StyleSheet.create( {
   productName: { fontWeight: 'bold' },
 } )
 
-class Faq extends Component {
-  componentWillMount() {
-    const ds = new ListView.DataSource( {
-      rowHasChanged: ( r1, r2 ) => r1 !== r2,
-    } )
-
-    this.dataSource = ds.cloneWithRows( values( this.props.products ) )
-  }
-
-  renderProducts = product => {
-    const {
-      productContainer,
-      imageContainer,
-      productImage,
-      productName,
-    } = styles
-    const { id, name, urls } = product
-
+const Faq = ( { dataSourceProducts, onPressSelectProduct } ) => {
+  const renderProducts = ( { id, name, urls } ) => {
     return (
-      <View style={productContainer}>
-        <TouchableOpacity
-          key={id}
-          onPress={() => this.props.onPressSelectProduct( id )}
-        >
-          <View style={imageContainer}>
+      <View style={styles.productContainer}>
+        <TouchableOpacity key={id} onPress={() => onPressSelectProduct( id )}>
+          <View style={styles.imageContainer}>
             <Image
-              style={productImage}
+              style={styles.productImage}
               source={{
                 uri: object.getFirstByKey( {
                   item: urls,
@@ -66,7 +47,7 @@ class Faq extends Component {
               }}
             />
           </View>
-          <Text style={productName}>
+          <Text style={styles.productName}>
             {name}
           </Text>
         </TouchableOpacity>
@@ -74,15 +55,13 @@ class Faq extends Component {
     )
   }
 
-  render() {
-    return (
-      <ListView
-        contentContainerStyle={styles.productsContainer}
-        dataSource={this.dataSource}
-        renderRow={this.renderProducts}
-      />
-    )
-  }
+  return dataSourceProducts.length !== 0
+    ? <ListView
+      contentContainerStyle={styles.productsContainer}
+      dataSource={dataSourceProducts}
+      renderRow={renderProducts}
+    />
+    : <View />
 }
 
 export default Faq

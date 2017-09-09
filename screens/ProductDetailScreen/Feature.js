@@ -1,61 +1,8 @@
 import React from 'react'
-import { Dimensions, View, Text, TouchableOpacity } from 'react-native'
-import { Colors } from 'constants'
+import { TouchableOpacity, Text, View } from 'react-native'
+import PropTypes from 'prop-types'
 
-const { width } = Dimensions.get( 'window' )
-
-const styles = {
-  containerStyle: {
-    flex: 1,
-    flexDirection: 'column',
-  },
-  sectionTitle: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  rowSymbol: {
-    flexDirection: 'row',
-    marginRight: 12,
-  },
-  rowTitle: {
-    flexDirection: 'row',
-    width: width * 0.8 + 20,
-  },
-  textTitle: {
-    fontSize: 15,
-    lineHeight: 24,
-  },
-  symbol: {
-    fontSize: 16,
-  },
-  rowPrefix: {
-    flexDirection: 'row',
-    marginRight: 20,
-  },
-  rowDescription: {
-    flex: 5,
-    justifyContent: 'flex-start',
-  },
-  sectionDescription: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  textDescription: {
-    fontSize: 15,
-    lineHeight: 24,
-    color: Colors.textDescription,
-  },
-  rowMores: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginRight: 10,
-  },
-  textMores: {
-    fontSize: 15,
-    lineHeight: 24,
-    color: '#0066c0',
-  },
-}
+import styles from './FeatureStyle'
 
 const Feature = ( { description, index, onPressFeature, title } ) =>
   <View style={styles.containerStyle}>
@@ -87,5 +34,12 @@ const Feature = ( { description, index, onPressFeature, title } ) =>
       </View>
     </View>
   </View>
+
+Feature.propTypes = {
+  description: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  onPressFeature: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+}
 
 export default Feature

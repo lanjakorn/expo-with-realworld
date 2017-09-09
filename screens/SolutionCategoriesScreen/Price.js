@@ -1,53 +1,21 @@
 import React from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
 import { string } from 'utilities'
 
-import { Text, StyleSheet, View } from 'react-native'
-
-const styles = StyleSheet.create( {
-  containerStyle: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  sectionLeft: {
-    flex: 5,
-    flexDirection: 'column',
-  },
-  sectionCenter: {
-    alignItems: 'center',
-    flex: 3,
-    justifyContent: 'center',
-  },
-  sectionRight: {
-    flex: 5,
-    flexDirection: 'column',
-  },
-} )
+import styles from './PriceStyle'
 
 const Price = ( { minPrice, minPriceLable, maxPrice, maxPriceLable } ) => {
-  const { containerStyle, sectionLeft, sectionCenter, sectionRight } = styles
   return (
-    <View style={containerStyle}>
-      <View style={sectionLeft}>
+    <View style={styles.containerStyle}>
+      <View style={styles.sectionLeft}>
         <View>
-          <Text
-            style={{
-              fontSize: 14,
-              paddingBottom: 10,
-              textAlign: 'right',
-            }}
-          >
+          <Text style={styles.textMinPriceLable}>
             {minPriceLable}
           </Text>
         </View>
         <View>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: 'bold',
-              textAlign: 'right',
-            }}
-          >
+          <Text style={styles.textMinPrice}>
             {string.formatMoney( {
               digit: 0,
               num: minPrice,
@@ -58,36 +26,19 @@ const Price = ( { minPrice, minPriceLable, maxPrice, maxPriceLable } ) => {
           </Text>
         </View>
       </View>
-      <View style={sectionCenter}>
-        <Text
-          style={{
-            alignContent: 'center',
-            fontSize: 14,
-          }}
-        >
+      <View style={styles.sectionCenter}>
+        <Text style={styles.textSymbol}>
           {'-'}
         </Text>
       </View>
-      <View style={sectionRight}>
+      <View style={styles.sectionRight}>
         <View>
-          <Text
-            style={{
-              fontSize: 14,
-              paddingBottom: 10,
-              textAlign: 'left',
-            }}
-          >
+          <Text style={styles.textMaxPriceLable}>
             {maxPriceLable}
           </Text>
         </View>
         <View>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: 'bold',
-              textAlign: 'left',
-            }}
-          >
+          <Text style={styles.textMaxPrice}>
             {string.formatMoney( {
               digit: 0,
               num: maxPrice,
@@ -100,6 +51,13 @@ const Price = ( { minPrice, minPriceLable, maxPrice, maxPriceLable } ) => {
       </View>
     </View>
   )
+}
+
+Price.propTypes = {
+  minPrice: PropTypes.number.isRequired,
+  minPriceLable: PropTypes.string.isRequired,
+  maxPrice: PropTypes.number.isRequired,
+  maxPriceLable: PropTypes.string.isRequired,
 }
 
 export default Price

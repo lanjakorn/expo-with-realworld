@@ -1,10 +1,10 @@
 import React from 'react'
+import { ScrollView } from 'react-native'
 import PropTypes from 'prop-types'
 import { nav } from 'utilities'
 
-import { ScrollView } from 'react-native'
-import SolutionContainer from './SolutionContainer'
 import { HeaderNavigation } from '@components'
+import SolutionContainer from './SolutionContainer'
 
 const SolutionCategoriesScreen = ( { navigation } ) =>
   <ScrollView>

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import { Card, CardSection } from '@components'
 
 const { width } = Dimensions.get( 'window' )
-
 const styles = StyleSheet.create( {
   headerContentStyle: {
     flexDirection: 'column',
@@ -25,7 +26,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const ProductsDetail = ( { productImage, productHeading } ) => {
+const ProductsDetail = ( { productHeading, productImage } ) => {
   return (
     <Card margin={0}>
       <CardSection>
@@ -40,6 +41,11 @@ const ProductsDetail = ( { productImage, productHeading } ) => {
       </CardSection>
     </Card>
   )
+}
+
+ProductsDetail.propTypes = {
+  productHeading: PropTypes.string.isRequired,
+  productImage: PropTypes.string.isRequired,
 }
 
 export default ProductsDetail

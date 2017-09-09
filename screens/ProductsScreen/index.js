@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { nav } from 'utilities'
 
-import ProductsList from './ProductsList'
+import Products from './ProductsContainer'
 import { HeaderNavigation } from '@components'
 
-const ProductsScreen = ( { navigation } ) =>
-  <ProductsList navigation={navigation} />
+const ProductsScreen = ( { navigation } ) => <Products navigation={navigation} />
 
 ProductsScreen.navigationOptions = ( { navigation } ) => ( {
   header: (

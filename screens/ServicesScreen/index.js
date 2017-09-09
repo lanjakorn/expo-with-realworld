@@ -1,10 +1,10 @@
 import React from 'react'
+import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
-import { View, StyleSheet } from 'react-native'
 import { Search } from '@components'
-import ServiceList from './ServiceListContainer'
+import Services from './ServicesContainer'
 
 const styles = StyleSheet.create( {
   container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create( {
 
 const ServicesScreen = ( { navigation } ) =>
   <View style={styles.container}>
-    <ServiceList navigation={navigation} />
+    <Services navigation={navigation} />
   </View>
 
 ServicesScreen.navigationOptions = ( { navigation } ) => ( {

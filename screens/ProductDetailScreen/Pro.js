@@ -1,10 +1,10 @@
 import React from 'react'
 import { Dimensions, Text, StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import { Colors } from 'constants'
 
 const { width } = Dimensions.get( 'window' )
-
-
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create( {
   text: {
     fontSize: 15,
     lineHeight: 24,
-    color: Colors.textDescription,    
+    color: Colors.textDescription,
   },
 } )
 
@@ -45,6 +45,10 @@ const Pro = ( { name } ) => {
       </View>
     </View>
   )
+}
+
+Pro.propTypes = {
+  name: PropTypes.string.isRequired,
 }
 
 export default Pro

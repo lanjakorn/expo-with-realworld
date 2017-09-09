@@ -1,20 +1,20 @@
 import React from 'react'
-import { PixelRatio } from 'react-native'
-import PropTypes from 'prop-types'
+import { PixelRatio, StyleSheet } from 'react-native'
 import { Badge } from 'react-native-elements'
+import PropTypes from 'prop-types'
+
 import { Colors } from 'constants'
 
-// const commaNumber = require( 'comma-number' )
-
-const styles = {
+const styles = StyleSheet.create( {
   wrapper: {
     alignItems: 'center',
   },
   icon: {
-    borderRadius: 90 / PixelRatio.get(),
     marginRight: 8,
     marginTop: 8,
     minWidth: 50,
+    backgroundColor: Colors.tintColor,
+    borderRadius: 90 / PixelRatio.get(),
   },
   text: {
     color: '#ccc',
@@ -22,22 +22,17 @@ const styles = {
     fontWeight: '600',
     marginLeft: 4,
   },
-}
+} )
 
 const Tag = ( { name, style } ) =>
   <Badge
     value={name.toUpperCase()}
     textStyle={{ color: 'white', fontSize: 12 }}
-    containerStyle={{
-      backgroundColor: Colors.tintColor,
-      ...styles.icon,
-      ...style,
-    }}
+    containerStyle={[ styles.icon, style ]}
   />
 
 Tag.propTypes = {
-  rating: PropTypes.number,
-  reviewCount: PropTypes.number,
+  name: PropTypes.string.isRequired,
   style: PropTypes.object,
 }
 

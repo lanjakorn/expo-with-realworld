@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import { ScrollView } from 'react-native'
 import Product from './ProductContainer'
 import { HeaderNavigation } from '@components'
 
-class HouseCategoriesScreen extends Component {
-  static navigationOptions = ( { navigation } ) => {
-    return {
-      header: <HeaderNavigation navigation={navigation} title={'Products'} />,
-    }
-  }
+const ProductDetailScreen = ( { navigation } ) =>
+  <ScrollView>
+    <Product navigation={navigation} />
+  </ScrollView>
 
-  render() {
-    return (
-      <ScrollView>
-        <Product navigation={this.props.navigation} />
-      </ScrollView>
-    )
-  }
+ProductDetailScreen.navigationOptions = ( { navigation } ) => ( {
+  header: <HeaderNavigation navigation={navigation} title={'Products'} />,
+} )
+
+ProductDetailScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
-export default HouseCategoriesScreen
+export default ProductDetailScreen

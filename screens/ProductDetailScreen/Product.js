@@ -1,9 +1,9 @@
 import React from 'react'
+import { View, Text } from 'react-native'
+import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
 import { nav } from 'utilities'
 
-import { View, Text } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay'
 import {
   ButtonRadiusOutlined,
   CollapsibleFaqs,
@@ -17,7 +17,7 @@ import Tag from './Tag'
 import Pro from './Pro'
 import PriceText from './PriceText'
 import Feature from './Feature'
-import styles from './ProductCardStyle'
+import styles from './ProductStyle'
 
 const renderTags = tags => {
   return (
@@ -93,6 +93,7 @@ const ProductCard = props => {
   const onPressFaq = () => {
     navigation.navigate( 'faq' )
   }
+
   return (
     <View style={styles.container}>
       <HeaderTitle
@@ -112,7 +113,6 @@ const ProductCard = props => {
         ? <View style={styles.price}>
           <PriceText
             price={offer.price}
-            salePrice={offer.salePrice}
             style={styles.priceText}
             words={words}
           />
@@ -145,10 +145,6 @@ const ProductCard = props => {
 }
 
 ProductCard.propTypes = {
-  isFetchingFaqs: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired,
-  words: PropTypes.object.isRequired,
-  faqs: PropTypes.object,
   product: PropTypes.shape( {
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
@@ -159,6 +155,10 @@ ProductCard.propTypes = {
     tags: PropTypes.array,
     urls: PropTypes.object.isRequired,
   } ),
+  isFetchingFaqs: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  words: PropTypes.object.isRequired,
+  faqs: PropTypes.object,
 }
 
 export default ProductCard

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
 import { actions as solutionsActions } from 'modules/Solutions'
+
 import HouseCategories from './HouseCategories'
 
 const { setCurrentSolutions } = solutionsActions

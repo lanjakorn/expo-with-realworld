@@ -5,7 +5,7 @@ import { selectors as productsSelectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
 import { nav } from 'utilities'
 
-import Product from './ProductCard'
+import Product from './Product'
 
 const mapStateToProps = state => ( {
   faqsOfProductFromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(

@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { nav } from 'utilities'
 
-import CategoriesList from './CategoriesList'
+import Categories from './CategoriesContainer'
 import { HeaderNavigation } from '@components'
 
 const SubChildCategoriesScreen = ( { navigation } ) =>
-  <CategoriesList navigation={navigation} />
+  <Categories navigation={navigation} />
 
 SubChildCategoriesScreen.navigationOptions = ( { navigation } ) => ( {
   header: (
