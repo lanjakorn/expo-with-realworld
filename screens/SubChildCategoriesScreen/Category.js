@@ -1,9 +1,10 @@
 import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import { Card, CardSection } from '@components'
 
 const { width } = Dimensions.get( 'window' )
-
 const styles = StyleSheet.create( {
   headerContentStyle: {
     flexDirection: 'column',
@@ -14,14 +15,14 @@ const styles = StyleSheet.create( {
     fontSize: 16,
     width: width * 0.85 - 100,
   },
-  thumbnailStyle: {
-    height: 100,
-    width: 100,
-  },
   thumbnailContainerStyle: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+  },
+  thumbnailStyle: {
+    height: 100,
+    width: 100,
   },
 } )
 
@@ -40,6 +41,11 @@ const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
       </CardSection>
     </Card>
   )
+}
+
+CategoriesDetail.propTypes = {
+  StoryImage: PropTypes.string.isRequired,
+  StoryHeading: PropTypes.string.isRequired,
 }
 
 export default CategoriesDetail
