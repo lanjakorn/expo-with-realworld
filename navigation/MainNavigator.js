@@ -24,7 +24,7 @@ import ProductDetailScreen from '@screens/ProductDetailScreen'
 import ProductsScreen from '@screens/ProductsScreen'
 import SearchScreen from '@screens/SearchScreen'
 import ServiceDetailScreen from '@screens/ServiceDetailScreen'
-import ServiceScreen from '@screens/ServiceScreen'
+import ServicesScreen from '@screens/ServicesScreen'
 // import SettingsScreen from '@screens/SettingsScreen'
 import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SolutionScreen from '@screens/SolutionScreen'
@@ -94,7 +94,7 @@ const HouseTab = StackNavigator( {
 
 const ServiceTab = StackNavigator( {
   contact: {
-    screen: ServiceScreen,
+    screen: ServicesScreen,
     path: '/',
   },
   serviceDetail: {
