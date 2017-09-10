@@ -1,11 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import Category from './Category'
 
 const styles = StyleSheet.create( {
   container: {
     marginTop: 10,
+  },
+  textStyle: {
+    fontSize: 20,
   },
   viewStyle: {
     alignItems: 'center',
@@ -17,11 +21,11 @@ const styles = StyleSheet.create( {
     paddingTop: 15,
     position: 'relative',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {
+      height: 2,
+      width: 0,
+    },
     shadowOpacity: 0.2,
-  },
-  textStyle: {
-    fontSize: 20,
   },
 } )
 

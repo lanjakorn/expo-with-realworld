@@ -2,6 +2,7 @@ import { compose, pure } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { actions as CategoriesAction, selectors } from 'modules/Categories'
+
 import Categories from './Categories'
 
 const { setCurrentCategories } = CategoriesAction

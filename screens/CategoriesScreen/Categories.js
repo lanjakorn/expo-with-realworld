@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
+import PropTypes from 'prop-types'
+
 import Category from './Category'
 
 const styles = StyleSheet.create( {

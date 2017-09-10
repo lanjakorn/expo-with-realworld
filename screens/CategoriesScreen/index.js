@@ -1,9 +1,9 @@
 import React from 'react'
+import { View } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
 import PropTypes from 'prop-types'
 import Colors from 'constants/Colors'
 
-import { View } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
 import Categories from './CategoriesContainer'
 import Search from '@components/SearchContainer'
 

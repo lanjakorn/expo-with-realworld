@@ -1,5 +1,6 @@
 import { compose, mapProps, pure } from 'recompose'
 import { connect } from 'react-redux'
+
 import { selectors as productsSelectors } from 'modules/Products'
 import { nav } from 'utilities'
 

@@ -1,5 +1,6 @@
 import { compose, pure } from 'recompose'
 import { connect } from 'react-redux'
+
 import { selectors as companyProfileSelector } from 'modules/CompanyProfile'
 import CompanyProfile from './CompanyProfile'
 

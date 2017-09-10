@@ -10,9 +10,9 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Categories = ( { setCurrentCategories, navigation, categories } ) => {
+const Categories = ( { actions, navigation, categories } ) => {
   const onPressSelectProduct = subChildCategory => {
-    setCurrentCategories( subChildCategory, 2 )
+    actions.setCurrentCategories( subChildCategory, 2 )
     navigation.navigate( 'products', {
       childCategory: subChildCategory,
     } )
@@ -38,9 +38,11 @@ const Categories = ( { setCurrentCategories, navigation, categories } ) => {
 }
 
 Categories.propTypes = {
-  categories: PropTypes.object.isRequired,
+  actions: PropTypes.shape( {
+    setCurrentCategories: PropTypes.func.isRequired,
+  } ),
+  categories: PropTypes.array.isRequired,
   navigation: PropTypes.object.isRequired,
-  setCurrentCategories: PropTypes.func.isRequired,
 }
 
 export default Categories

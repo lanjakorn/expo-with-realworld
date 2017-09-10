@@ -1,11 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { StyleSheet, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
+import PropTypes from 'prop-types'
+
 import { CardContentImage } from '@components'
 
 const styles = StyleSheet.create( {
+  companyProfileSection: {
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
   container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
@@ -21,10 +25,7 @@ const CompanyProfileScreen = ( {
     {!isFetching
       ? <View
         key={`container-company-${ title }`}
-        style={{
-          borderBottomWidth: 1,
-          borderColor: '#ddd',
-        }}
+        style={styles.companyProfileSection}
       >
         <CardContentImage
           description={description}

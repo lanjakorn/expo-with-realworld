@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import Card from '@components/Card'
-import CardSection from '@components/CardSection'
+import PropTypes from 'prop-types'
+
+import { Card, CardSection } from '@components'
 
 const styles = StyleSheet.create( {
   headerContentStyle: {
@@ -10,19 +10,19 @@ const styles = StyleSheet.create( {
     justifyContent: 'space-around',
   },
   headerTextStyle: {
+    alignContent: 'center',
     fontSize: 16,
     marginRight: 25,
     paddingRight: 25,
-    alignContent: 'center',
+  },
+  thumbnailContainerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
   },
   thumbnailStyle: {
     height: 100,
     width: 100,
-  },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
   },
 } )
 
