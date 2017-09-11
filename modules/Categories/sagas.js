@@ -2,7 +2,6 @@ import { all, fork, put, select, take } from 'redux-saga/effects'
 import { SELECT_CHILD_CATEGORY } from './types'
 import { setCurrentCategories } from './actions'
 import { ga } from 'services'
-import config from 'config'
 
 import {
   currentCategoriesSelector,
@@ -18,21 +17,18 @@ function* watchSelectChildCategory() {
       select( subChildCategoriesNameSelector ),
     ] )
 
-    //TODO: example ga  trackEvent
-    const tracker = new ga.Tracker(
-      config.ga,
-      config.app.name,
-      config.app.version
-    )
-
-    tracker.trackEvent( 'product', 'select product category' )
+    ga.trackEvent( {
+      eventCategory: 'products',
+      eventAction: 'select child category of products',
+      eventLabel: currentCategories[ 1 ],
+    } )
 
     if ( subChildCategories.length === 0 ) {
       navigation.navigate( 'products', {
         childCategory: currentCategories[ 1 ],
       } )
     } else {
-      navigation.navigate( 'subChildCategories', {
+      navigation.navigate( 'productSubChildCategories', {
         childCategory: currentCategories[ 1 ],
       } )
     }
