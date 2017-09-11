@@ -31,7 +31,7 @@ import SolutionScreen from '@screens/SolutionScreen'
 import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 
 const HomeTab = StackNavigator( {
-  index: {
+  homes: {
     screen: HomeScreen,
     path: '/',
   },
@@ -50,7 +50,7 @@ const HomeTab = StackNavigator( {
 } )
 
 const HouseTab = StackNavigator( {
-  product: {
+  houses: {
     screen: HouseScreen,
     path: '/',
   },
@@ -93,7 +93,7 @@ const HouseTab = StackNavigator( {
 } )
 
 const ServiceTab = StackNavigator( {
-  contact: {
+  services: {
     screen: ServicesScreen,
     path: '/',
   },
@@ -104,7 +104,7 @@ const ServiceTab = StackNavigator( {
 } )
 
 const MoresTab = StackNavigator( {
-  index: {
+  mores: {
     screen: MoresScreen,
     path: '/:module',
   },
@@ -143,15 +143,15 @@ const MoresTab = StackNavigator( {
 } )
 
 const ProductsTab = StackNavigator( {
-  categories: {
+  productCategories: {
     screen: CategoriesScreen,
     path: '/',
   },
-  childCategories: {
+  productChildCategories: {
     screen: ChildCategoriesScreen,
     path: '/:category',
   },
-  subChildCategories: {
+  productSubChildCategories: {
     screen: SubChildCategoriesScreen,
     path: '/:childCategory',
   },
@@ -289,7 +289,7 @@ const navTracker = () => {
       onNavigationStateChange={( prevState, currentState ) => {
         const currentScreen = nav.getCurrentRouteName( currentState )
         const prevScreen = nav.getCurrentRouteName( prevState )
-        // console.log( currentScreen, prevScreen )
+        console.log( currentScreen, prevScreen )
         if ( prevScreen !== currentScreen ) {
           tracker.trackScreenView( currentScreen )
         }
