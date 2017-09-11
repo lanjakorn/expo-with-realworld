@@ -1,8 +1,8 @@
 import { compose, lifecycle, pure } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { actions as homeActions } from 'modules/Home'
 
+import { actions as homeActions } from 'modules/Home'
 import Homes from './Homes'
 
 const { initHomeScreen } = homeActions

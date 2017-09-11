@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 import { nav } from 'utilities'
 
 import {
@@ -13,34 +14,28 @@ import {
   TextDescriptionCard,
 } from '@components'
 
-import Tag from './Tag'
-import Pro from './Pro'
-import PriceText from './PriceText'
 import Feature from './Feature'
+import PriceText from './PriceText'
+import Pro from './Pro'
 import styles from './ProductStyle'
+import Tag from './Tag'
 
-const renderTags = tags => {
-  return (
-    <View style={styles.tags}>
-      {tags.map( ( e, k ) =>
-        <Tag key={`tags-${ k }`} name={e} style={styles.rating} />
-      )}
-    </View>
-  )
-}
+const renderTags = tags =>
+  <View style={styles.tags}>
+    {tags.map( ( e, k ) =>
+      <Tag key={`tags-${ k }`} name={e} style={styles.rating} />
+    )}
+  </View>
 
-const renderPros = ( pros, words ) => {
-  return (
-    <View style={styles.pros}>
-      <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
-        {words.productPros}
-      </Text>
-      <View>
-        {pros.map( ( e, k ) => <Pro key={`pros-${ k }`} name={e} /> )}
-      </View>
+const renderPros = ( pros, words ) =>
+  <View style={styles.pros}>
+    <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
+      {words.productPros}
+    </Text>
+    <View>
+      {pros.map( ( e, k ) => <Pro key={`pros-${ k }`} name={e} /> )}
     </View>
-  )
-}
+  </View>
 
 const renderFeatures = ( features, navigation ) => {
   const onPressFeature = index => {
@@ -71,12 +66,20 @@ const renderFeatures = ( features, navigation ) => {
   )
 }
 
+const faqOnChange = question => {
+  ga.trackEvent( {
+    eventCategory: 'faqs',
+    eventAction: 'select faq of product',
+    eventLabel: question,
+  } )
+}
+
 const ProductCard = props => {
   const {
+    faqs,
     isFetchingFaqs,
     navigation,
     words,
-    faqs,
     product: { name, description, features, hasMPF, offer, pros, tags, urls },
   } = props
 
@@ -138,7 +141,7 @@ const ProductCard = props => {
       <View style={styles.questions}>
         {isFetchingFaqs
           ? <Spinner visible={true} />
-          : <CollapsibleFaqs faqs={faqs} />}
+          : <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />}
       </View>
     </View>
   )
@@ -146,19 +149,19 @@ const ProductCard = props => {
 
 ProductCard.propTypes = {
   product: PropTypes.shape( {
-    name: PropTypes.string.isRequired,
     description: PropTypes.string,
     features: PropTypes.array,
     hasMPF: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
     offer: PropTypes.object.isRequired,
     pros: PropTypes.array,
     tags: PropTypes.array,
     urls: PropTypes.object.isRequired,
   } ),
+  faqs: PropTypes.object,
   isFetchingFaqs: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
   words: PropTypes.object.isRequired,
-  faqs: PropTypes.object,
 }
 
 export default ProductCard

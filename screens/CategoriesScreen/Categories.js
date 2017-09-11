@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 
 import Category from './Category'
 
@@ -12,10 +13,15 @@ const styles = StyleSheet.create( {
 } )
 
 const CategoriesList = ( { actions, categories, isFetching, navigation } ) => {
-  const onPressSelectChildCategory = childCategory => {
-    actions.setCurrentCategories( childCategory, 0 )
-    navigation.navigate( 'childCategories', {
-      category: childCategory,
+  const onPressSelectChildCategory = category => {
+    ga.trackEvent( {
+      eventCategory: 'products',
+      eventAction: 'select category of products',
+      eventLabel: category,
+    } )
+    actions.setCurrentCategories( category, 0 )
+    navigation.navigate( 'productChildCategories', {
+      category: category,
     } )
   }
 

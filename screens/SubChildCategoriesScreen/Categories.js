@@ -1,6 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 
 import Category from './Category'
 
@@ -12,6 +13,11 @@ const styles = StyleSheet.create( {
 
 const Categories = ( { actions, navigation, categories } ) => {
   const onPressSelectProduct = subChildCategory => {
+    ga.trackEvent( {
+      eventCategory: 'products',
+      eventAction: 'select sub child category of products',
+      eventLabel: subChildCategory,
+    } )
     actions.setCurrentCategories( subChildCategory, 2 )
     navigation.navigate( 'products', {
       childCategory: subChildCategory,

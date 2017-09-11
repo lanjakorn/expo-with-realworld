@@ -11,37 +11,34 @@ const styles = StyleSheet.create( {
     justifyContent: 'space-around',
   },
   headerTextStyle: {
+    alignContent: 'center',
     fontSize: 14,
     width: width * 0.85 - 40,
-    alignContent: 'center',
+  },
+  thumbnailContainerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
   },
   thumbnailStyle: {
     height: 40,
     width: 40,
   },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
 } )
 
-const ProductsDetail = ( { productHeading, productImage } ) => {
-  return (
-    <Card margin={0}>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {productHeading}
-          </Text>
-        </View>
-      </CardSection>
-    </Card>
-  )
-}
+const ProductsDetail = ( { productHeading, productImage } ) =>
+  <Card margin={0}>
+    <CardSection>
+      <View style={styles.thumbnailContainerStyle}>
+        <Image style={styles.thumbnailStyle} source={{ uri: productImage }} />
+      </View>
+      <View style={styles.headerContentStyle}>
+        <Text style={styles.headerTextStyle} numberOfLines={2}>
+          {productHeading}
+        </Text>
+      </View>
+    </CardSection>
+  </Card>
 
 ProductsDetail.propTypes = {
   productHeading: PropTypes.string.isRequired,

@@ -1,8 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import { Colors } from 'constants'
 import { ScrollView, View } from 'react-native'
+import PropTypes from 'prop-types'
+import { Colors } from 'constants'
+
 import Mores from './MoresContainer'
 import { Search } from '@components'
 

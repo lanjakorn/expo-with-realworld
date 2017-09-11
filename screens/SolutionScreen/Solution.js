@@ -2,6 +2,7 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 import { object } from 'utilities'
 
 import {
@@ -28,6 +29,11 @@ const Solution = ( {
   }
 
   const onPressSolutionCategorySelect = ( key, value ) => {
+    ga.trackEvent( {
+      eventCategory: 'houses',
+      eventAction: 'select solution category of solution',
+      eventLabel: value,
+    } )
     actions.setCurrentSolutionCategory( key )
     actions.getProductsBySolutionCategory( key )
     actions.getFaqsBySolutionCategory( key )

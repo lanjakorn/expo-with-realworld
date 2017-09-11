@@ -1,7 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { object } from 'utilities'
-
 import {
   Dimensions,
   Image,
@@ -12,10 +9,22 @@ import {
   View,
 } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
+import PropTypes from 'prop-types'
+import { ga } from 'services'
+import { object } from 'utilities'
+
 import { Card } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 const styles = StyleSheet.create( {
+  backgroundImage: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    resizeMode: 'cover',
+    height: height * 0.2 - 20,
+    width: width * 1,
+  },
   searchListItemStyle: {
     alignItems: 'center',
     flexDirection: 'column',
@@ -25,20 +34,17 @@ const styles = StyleSheet.create( {
     marginRight: 0,
     marginTop: 0,
   },
-  backgroundImage: {
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    resizeMode: 'cover',
-    height: height * 0.2 - 20,
-    width: width * 1,
-  },
   text: {
     backgroundColor: 'rgba(0,0,0,0)',
     color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  textSection: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   textDescription: {
     backgroundColor: 'rgba(0,0,0,0)',
@@ -50,6 +56,11 @@ const styles = StyleSheet.create( {
     marginTop: 5,
     textAlign: 'center',
   },
+  textDescriptionSection: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
+  },
 } )
 
 const House = ( {
@@ -59,6 +70,11 @@ const House = ( {
   navigation,
 } ) => {
   const onPressHouseCategoriesSelect = ( key, value ) => {
+    ga.trackEvent( {
+      eventCategory: 'houses',
+      eventAction: 'select house category of house',
+      eventLabel: value,
+    } )
     actions.setCurrentHouseCategory( key )
     navigation.navigate( 'houseCategories', {
       category: value,
@@ -87,24 +103,12 @@ const House = ( {
                       } ),
                     }}
                   >
-                    <View
-                      stlye={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                      }}
-                    >
+                    <View stlye={styles.textSection}>
                       <Text style={styles.text} numberOfLines={1}>
                         {houseCategories[ e ].title}
                       </Text>
                     </View>
-                    <View
-                      stlye={{
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        flex: 1,
-                      }}
-                    >
+                    <View stlye={styles.textDescriptionSection}>
                       <Text style={styles.textDescription}>
                         {houseCategories[ e ].description}
                       </Text>

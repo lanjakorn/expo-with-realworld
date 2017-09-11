@@ -6,41 +6,41 @@ export default StyleSheet.create( {
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  sectionLeft: {
-    flex: 5,
-    flexDirection: 'column',
-  },
   sectionCenter: {
     alignItems: 'center',
     flex: 3,
     justifyContent: 'center',
   },
+  sectionLeft: {
+    flex: 5,
+    flexDirection: 'column',
+  },
   sectionRight: {
     flex: 5,
     flexDirection: 'column',
   },
-  textMinPriceLable: {
-    fontSize: 14,
-    paddingBottom: 10,
-    textAlign: 'right',
-  },
-  textMinPrice: {
+  textMaxPrice: {
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'right',
-  },
-  textSymbol: {
-    alignContent: 'center',
-    fontSize: 14,
+    textAlign: 'left',
   },
   textMaxPriceLable: {
     fontSize: 14,
     paddingBottom: 10,
     textAlign: 'left',
   },
-  textMaxPrice: {
+  textMinPrice: {
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'right',
+  },
+  textMinPriceLable: {
+    fontSize: 14,
+    paddingBottom: 10,
+    textAlign: 'right',
+  },
+  textSymbol: {
+    alignContent: 'center',
+    fontSize: 14,
   },
 } )

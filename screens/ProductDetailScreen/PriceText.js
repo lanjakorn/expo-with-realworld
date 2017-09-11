@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
-
 import { Colors } from 'constants'
 import { string } from 'utilities'
 
@@ -18,20 +17,18 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const PriceText = ( { price, style, words } ) => {
-  return (
-    <View style={[ styles.wrapper, style ]}>
-      <Text style={styles.price}>{`${ words.price } ${ string.formatMoney( {
-        digit: 0,
-        num: price.value,
-        showDigit: false,
-        showSymbol: false,
-        symbol: '฿',
-        symbolBack: true,
-      } ) } ${ words.baht }`}</Text>
-    </View>
-  )
-}
+const PriceText = ( { price, style, words } ) =>
+  <View style={[ styles.wrapper, style ]}>
+    <Text style={styles.price}>{`${ words.price } ${ string.formatMoney( {
+      digit: 0,
+      num: price.value,
+      showDigit: false,
+      showSymbol: false,
+      symbol: '฿',
+      symbolBack: true,
+    } ) } ${ words.baht }`}</Text>
+  </View>
+
 PriceText.propTypes = {
   price: PropTypes.object.isRequired,
   style: PropTypes.number,

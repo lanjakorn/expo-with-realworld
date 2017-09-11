@@ -1,8 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import mores from 'mocks/mores'
-import { Colors } from 'constants'
-
 import {
   Dimensions,
   StyleSheet,
@@ -10,6 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import PropTypes from 'prop-types'
+import mores from 'mocks/mores'
+import { Colors } from 'constants'
+
 import { Card } from '@components'
 
 const { width } = Dimensions.get( 'window' )
@@ -17,21 +17,20 @@ const styles = StyleSheet.create( {
   searchListItemStyle: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 10,
     marginBottom: 10,
-    marginRight: 20,
     marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
   },
   searchListItemTextStyle: {
-    paddingTop: 5,
-    fontSize: 16,
-    marginLeft: 15,
-    marginRight: 15,
-    width: width * 0.7 - 25,
     color: 'white',
-    textAlign: 'center',
     fontSize: 16,
     fontWeight: '600',
+    marginLeft: 15,
+    marginRight: 15,
+    paddingTop: 5,
+    textAlign: 'center',
+    width: width * 0.7 - 25,
   },
 } )
 

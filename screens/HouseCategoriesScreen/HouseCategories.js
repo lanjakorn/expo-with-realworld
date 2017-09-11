@@ -2,8 +2,9 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-
+import { ga } from 'services'
 import { object } from 'utilities'
+
 import {
   CardContent,
   CardContentImage,
@@ -27,12 +28,17 @@ const HouseCategories = ( {
   }
 
   const onPressSolutionSelect = ( key, value ) => {
+    ga.trackEvent( {
+      eventCategory: 'houses',
+      eventAction: 'select solution of house category',
+      eventLabel: value,
+    } )
     setCurrentSolutions( key )
     navigation.navigate( 'solution', { solution: value } )
   }
 
-  const renderSolutions = () => {
-    return Object.keys( solutions ).map( e =>
+  const renderSolutions = () =>
+    Object.keys( solutions ).map( e =>
       <View
         key={`container-solution-${ e }`}
         style={{
@@ -52,10 +58,9 @@ const HouseCategories = ( {
         </TouchableOpacity>
       </View>
     )
-  }
 
-  const renderCaseStudies = () => {
-    return Object.keys( caseStudies ).map( e =>
+  const renderCaseStudies = () =>
+    Object.keys( caseStudies ).map( e =>
       <View
         key={`container-case-${ e }`}
         style={{
@@ -74,7 +79,6 @@ const HouseCategories = ( {
         />
       </View>
     )
-  }
 
   return !isFetching
     ? <View style={styles.container}>

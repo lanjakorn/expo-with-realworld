@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { actions as faqsAction } from 'modules/Faqs'
-
 import { actions as productsActions } from 'modules/Products'
 import { actions as solutionCategoriesActions } from 'modules/SolutionCategories'
 import { selectors as caseStudiesSelectors } from 'modules/CaseStudies'

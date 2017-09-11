@@ -1,6 +1,7 @@
 import { compose, lifecycle, pure } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import {
   actions as serviceActions,
   selectors as servicesSelectors,
@@ -20,8 +21,8 @@ const mapDispatchToProps = dispatch => ( {
 } )
 
 const mapStateToProps = state => ( {
-  services: servicesSelectors.servicesByIdSelector( state ),
   isFetching: servicesSelectors.isFetchingSelector( state ),
+  services: servicesSelectors.servicesByIdSelector( state ),
 } )
 
 export default compose(

@@ -1,15 +1,14 @@
+import { ListView } from 'react-native'
 import { compose, lifecycle, pure, withHandlers, withState } from 'recompose'
 import values from 'lodash/values'
-import { ListView } from 'react-native'
 
 import Products from './Products'
 
 export default compose(
   withState( 'dataSourceProducts', 'setDataSourceProducts', [] ),
   withHandlers( {
-    setDataSource: ( { setDataSourceProducts } ) => data => {
-      return setDataSourceProducts( data )
-    },
+    setDataSource: ( { setDataSourceProducts } ) => data =>
+      setDataSourceProducts( data ),
   } ),
   lifecycle( {
     componentWillMount() {

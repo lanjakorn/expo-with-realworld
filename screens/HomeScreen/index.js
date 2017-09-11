@@ -1,8 +1,8 @@
 import React from 'react'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
-import { View } from 'react-native'
 import { Search } from '@components'
 import Home from './HomesContainer'
 

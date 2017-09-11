@@ -1,6 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 
 import Category from './Category'
 
@@ -31,6 +32,11 @@ const styles = StyleSheet.create( {
 
 const Categories = ( { actions, categories, navigation } ) => {
   const onPressSelectChildCategory = childCategory => {
+    ga.trackEvent( {
+      eventCategory: 'products',
+      eventAction: 'select child category of products',
+      eventLabel: childCategory,
+    } )
     actions.selectChildCategory( childCategory, navigation )
   }
 
@@ -40,7 +46,7 @@ const Categories = ( { actions, categories, navigation } ) => {
         key={e.name}
         onPress={() => onPressSelectChildCategory( e.name )}
       >
-        <Category key={e.name} StoryImage={e.image} StoryHeading={e.name} />
+        <Category key={e.name} StoryHeading={e.name} StoryImage={e.image} />
       </TouchableOpacity>
     )
 

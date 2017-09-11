@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, View, Text, Image } from 'react-native'
+import { Image, Platform, Text, View } from 'react-native'
 import { Card } from 'react-native-elements'
 import PropTypes from 'prop-types'
 

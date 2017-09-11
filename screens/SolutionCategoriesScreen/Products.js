@@ -1,7 +1,4 @@
-import React, { Component } from 'react'
-import values from 'lodash/values'
-import { object } from 'utilities'
-
+import React from 'react'
 import {
   Image,
   ListView,
@@ -10,32 +7,43 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import PropTypes from 'prop-types'
+import { object } from 'utilities'
 
 const styles = StyleSheet.create( {
-  productsContainer: {
-    backgroundColor: '#FFF',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
+  productContainer: {
+    padding: 5,
+    paddingBottom: 25,
+    width: '50%',
   },
-  productContainer: { padding: 5, width: '50%', paddingBottom: 25 },
   productImage: {
     alignSelf: 'center',
     height: 140,
     marginBottom: 10,
     width: 140,
   },
-  productName: { fontWeight: 'bold' },
+  productName: {
+    fontWeight: 'bold',
+  },
+  productsContainer: {
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 20,
+  },
 } )
 
 const Faq = ( { dataSourceProducts, onPressSelectProduct } ) => {
   const renderProducts = ( { id, name, urls } ) => {
     return (
       <View style={styles.productContainer}>
-        <TouchableOpacity key={id} onPress={() => onPressSelectProduct( id )}>
+        <TouchableOpacity
+          key={id}
+          onPress={() => onPressSelectProduct( id, name )}
+        >
           <View style={styles.imageContainer}>
             <Image
               style={styles.productImage}
@@ -62,6 +70,11 @@ const Faq = ( { dataSourceProducts, onPressSelectProduct } ) => {
       renderRow={renderProducts}
     />
     : <View />
+}
+
+Faq.propTypes = {
+  // dataSourceProducts: PropTypes.object,
+  onPressSelectProduct: PropTypes.func.isRequired,
 }
 
 export default Faq

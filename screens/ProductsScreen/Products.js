@@ -2,9 +2,10 @@ import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
+import { object } from 'utilities'
 
 import ProductDetail from './ProductDetail'
-import { object } from 'utilities'
 
 const styles = StyleSheet.create( {
   container: {
@@ -13,7 +14,12 @@ const styles = StyleSheet.create( {
 } )
 
 const Products = ( { actions, isFetching, navigation, products } ) => {
-  const onPressSelectProduct = id => {
+  const onPressSelectProduct = ( id, value ) => {
+    ga.trackEvent( {
+      eventCategory: 'products',
+      eventAction: 'select product',
+      eventLabel: value,
+    } )
     actions.setCurrentProductOfProductCategory( id )
     actions.getFaqsByProduct( id )
     navigation.navigate( 'productDetail', {
@@ -26,7 +32,7 @@ const Products = ( { actions, isFetching, navigation, products } ) => {
     return Object.keys( products ).map( ( e, k ) =>
       <TouchableOpacity
         key={`product-touch-${ products[ e ].name }-${ k }`}
-        onPress={() => onPressSelectProduct( e )}
+        onPress={() => onPressSelectProduct( e, products[ e ].name )}
       >
         <ProductDetail
           key={`product-${ products[ e ].name }-${ k }`}

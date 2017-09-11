@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
+import { ga } from 'services'
 
 import {
   ButtonRadiusOutlined,
@@ -13,9 +14,9 @@ import {
   TextDescriptionCard,
 } from '@components'
 
-import styles from './SolutionContainerStyle'
-import Products from './ProductsContainer'
 import Price from './Price'
+import Products from './ProductsContainer'
+import styles from './SolutionContainerStyle'
 
 const Solution = ( {
   actions,
@@ -34,11 +35,24 @@ const Solution = ( {
     navigation.navigate( 'faq' )
   }
 
-  const onPressSelectProduct = id => {
+  const onPressSelectProduct = ( id, value ) => {
+    ga.trackEvent( {
+      eventCategory: 'houses',
+      eventAction: 'select product of solution category',
+      eventLabel: value,
+    } )
     actions.setCurrentProductOfSolutionCategory( id )
     navigation.navigate( 'productDetail', {
       id,
       module: 'solutionCategoris',
+    } )
+  }
+
+  const faqOnChange = question => {
+    ga.trackEvent( {
+      eventCategory: 'faqs',
+      eventAction: 'select faq of solution category',
+      eventLabel: question,
     } )
   }
 
@@ -95,7 +109,7 @@ const Solution = ( {
         textTitle={'FAQ'}
       />
       <View style={styles.questions}>
-        <CollapsibleFaqs faqs={faqs} />
+        <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
       </View>
     </View>
     : <Spinner visible={true} />
@@ -106,10 +120,6 @@ Solution.propTypes = {
     setCurrentProductOfSolutionCategory: PropTypes.func.isRequired,
     setCurrentSolutions: PropTypes.func.isRequired,
   } ),
-  faqs: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired,
-  products: PropTypes.object,
   solutionCategory: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -123,6 +133,10 @@ Solution.propTypes = {
     maxPrice: PropTypes.string.isRequired,
     minPrice: PropTypes.string.isRequired,
   } ),
+  faqs: PropTypes.object,
+  isFetching: PropTypes.bool.isRequired,
+  navigation: PropTypes.object.isRequired,
+  products: PropTypes.object,
 }
 
 export default Solution

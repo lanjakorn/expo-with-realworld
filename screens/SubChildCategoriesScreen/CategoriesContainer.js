@@ -1,6 +1,7 @@
 import { compose, onlyUpdateForKeys, pure } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import {
   actions as categoriesAction,
   selectors as categoriesSelectors,

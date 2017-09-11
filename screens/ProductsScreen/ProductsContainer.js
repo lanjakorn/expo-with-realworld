@@ -1,6 +1,7 @@
 import { compose, lifecycle, pure } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import { actions as faqsAction } from 'modules/Faqs'
 import {
   actions as productsAction,

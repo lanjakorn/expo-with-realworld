@@ -1,7 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import verticalMenu from 'mocks/verticalMenu'
-
 import {
   Dimensions,
   Image,
@@ -11,11 +8,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import PropTypes from 'prop-types'
+import verticalMenu from 'mocks/verticalMenu'
 
 import { Card } from '@components'
 
 const { height, width } = Dimensions.get( 'window' )
 const styles = StyleSheet.create( {
+  backgroundImage: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    resizeMode: 'cover',
+    height: height * 0.2 - 20,
+    width: width * 1,
+  },
   searchListItemStyle: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -25,14 +32,7 @@ const styles = StyleSheet.create( {
     marginRight: 0,
     marginTop: 0,
   },
-  backgroundImage: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: height * 0.2 - 20,
-    width: width * 1,
-    justifyContent: 'center',
-    resizeMode: 'cover',
-  },
+
   text: {
     backgroundColor: 'rgba(0,0,0,0)',
     color: 'white',

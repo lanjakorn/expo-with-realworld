@@ -1,9 +1,10 @@
 import { compose, mapProps, pure } from 'recompose'
 import { connect } from 'react-redux'
+import { nav } from 'utilities'
+
 import { selectors as faqsSelectors } from 'modules/Faqs'
 import { selectors as productsSelectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
-import { nav } from 'utilities'
 
 import Product from './Product'
 

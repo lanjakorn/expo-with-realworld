@@ -1,22 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-
-import { MapView } from 'expo'
 import { Icon } from 'react-native-elements'
+import { MapView } from 'expo'
+import PropTypes from 'prop-types'
+
 import Colors from 'constants/Colors'
 
 const { height } = Dimensions.get( 'window' )
 const styles = StyleSheet.create( {
-  screenContainer: {
-    flex: 1,
-  },
-  mapContaininer: {
-    flex: 1,
-  },
-  mapView: {
-    alignSelf: 'stretch',
-    height: height * 0.4 - 50,
+  iconContainer: {
+    borderColor: '#888',
+    borderRadius: 50,
+    borderWidth: 2,
+    marginLeft: 5,
+    marginRight: 15,
+    padding: 8,
   },
   infoContainer: {
     backgroundColor: 'white',
@@ -26,25 +24,29 @@ const styles = StyleSheet.create( {
     paddingRight: 20,
     paddingTop: 30,
   },
-  infoItemsBox: { flex: 1 },
-  infoItemBox: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    paddingBottom: 25,
-  },
-  iconContainer: {
-    borderColor: '#888',
-    borderRadius: 50,
-    borderWidth: 2,
-    marginLeft: 5,
-    marginRight: 15,
-    padding: 8,
-  },
   infoContentBox: {
     flex: 1,
   },
   infoContentTitle: {
     fontWeight: 'bold',
+  },
+  infoItemBox: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    paddingBottom: 25,
+  },
+  infoItemsBox: {
+    flex: 1,
+  },
+  mapContaininer: {
+    flex: 1,
+  },
+  mapView: {
+    alignSelf: 'stretch',
+    height: height * 0.4 - 50,
+  },
+  screenContainer: {
+    flex: 1,
   },
 } )
 

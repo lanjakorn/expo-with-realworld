@@ -1,8 +1,8 @@
 import React from 'react'
+import { ScrollView } from 'react-native'
 import PropTypes from 'prop-types'
 import { nav } from 'utilities'
 
-import { ScrollView } from 'react-native'
 import HouseCategories from './HouseCategoriesContainer'
 import { HeaderNavigation } from '@components'
 
