@@ -1,5 +1,6 @@
 import { Constants } from 'expo'
 import { Platform } from 'react-native'
+import config from 'config'
 
 class Tracker {
   constructor( trackingId, appName, appVersion ) {
@@ -52,7 +53,7 @@ class Tracker {
     return fetch( url, options )
   }
 
-  trackEvent = ( eventCategory, eventAction ) => {
+  trackEvent = ( eventCategory, eventAction, eventLabel ) => {
     let hit = {
       v: 1,
       tid: this.trackingId, // Tracking ID
@@ -62,6 +63,7 @@ class Tracker {
       av: this.appVersion, // App version.
       ec: eventCategory,
       ea: eventAction,
+      el: eventLabel,
       dn: Constants.deviceName, // Device name.
       dm:
         Platform.OS === 'android' ? Platform.OS : Constants.platform.ios.model, // Device model.
@@ -84,4 +86,9 @@ class Tracker {
   }
 }
 
-export { Tracker }
+const trackEvent = ( { eventCategory, eventAction, eventLabel } ) => {
+  const tracker = new Tracker( config.ga, config.app.name, config.app.version )
+  tracker.trackEvent( eventCategory, eventAction, eventLabel )
+}
+
+export { Tracker, trackEvent }
