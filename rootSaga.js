@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects'
-import { sagas as categoriesSagas } from 'modules/Categories'
+import { sagas as categoriesSagas } from 'modules/ProductCategories'
 import { sagas as faqsSagas } from 'modules/Faqs'
 import { sagas as homeSagas } from 'modules/Home'
 import { sagas as productsSagas } from 'modules/Products'
