@@ -7,8 +7,6 @@ import { ga } from 'services'
 
 import { Icon } from 'react-native-elements'
 
-import CategoriesScreen from '@screens/CategoriesScreen'
-import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
 import CompanyProfileScreen from '@screens/CompanyProfileScreen'
 import ContactScreen from '@screens/ContactScreen'
 import ContactUsScreen from '@screens/ContactUsScreen'
@@ -20,15 +18,16 @@ import HouseScreen from '@screens/HouseScreen'
 import LoginScreen from '@screens/LoginScreen'
 import MoresScreen from '@screens/MoresScreen'
 import PostsScreen from '@screens/PostsScreen'
+import ProductCategoriesScreen from '@screens/ProductCategoriesScreen'
+import ProductChildCategoriesScreen from '@screens/ProductChildCategoriesScreen'
 import ProductDetailScreen from '@screens/ProductDetailScreen'
 import ProductsScreen from '@screens/ProductsScreen'
+import ProductSubChildCategoriesScreen from '@screens/ProductSubChildCategoriesScreen'
 import SearchScreen from '@screens/SearchScreen'
 import ServiceDetailScreen from '@screens/ServiceDetailScreen'
 import ServicesScreen from '@screens/ServicesScreen'
-// import SettingsScreen from '@screens/SettingsScreen'
 import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SolutionScreen from '@screens/SolutionScreen'
-import SubChildCategoriesScreen from '@screens/SubChildCategoriesScreen'
 
 const HomeTab = StackNavigator( {
   homes: {
@@ -144,15 +143,15 @@ const MoresTab = StackNavigator( {
 
 const ProductsTab = StackNavigator( {
   productCategories: {
-    screen: CategoriesScreen,
+    screen: ProductCategoriesScreen,
     path: '/',
   },
   productChildCategories: {
-    screen: ChildCategoriesScreen,
+    screen: ProductChildCategoriesScreen,
     path: '/:category',
   },
   productSubChildCategories: {
-    screen: SubChildCategoriesScreen,
+    screen: ProductSubChildCategoriesScreen,
     path: '/:childCategory',
   },
   products: {

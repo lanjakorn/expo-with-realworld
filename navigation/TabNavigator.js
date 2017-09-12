@@ -5,8 +5,8 @@ import Colors from 'constants/Colors'
 
 import { Icon } from 'react-native-elements'
 
-import CategoriesScreen from '@screens/CategoriesScreen'
-import ChildCategoriesScreen from '@screens/ChildCategoriesScreen'
+import ProductCategoriesScreen from '@screens/ProductCategoriesScreen'
+import ProductChildCategoriesScreen from '@screens/ProductChildCategoriesScreen'
 import HomeScreen from '@screens/HomeScreen'
 import SearchScreen from '@screens/SearchScreen'
 import SettingsScreen from '@screens/SettingsScreen'
@@ -20,18 +20,18 @@ const HomeTab = StackNavigator( {
 
 const CategoriesTab = StackNavigator( {
   categories: {
-    screen: CategoriesScreen,
+    screen: ProductCategoriesScreen,
     path: '/',
   },
   childCategories: {
-    screen: ChildCategoriesScreen,
+    screen: ProductChildCategoriesScreen,
     path: '/childcategories/name',
   },
 } )
 
 const ProductsTab = StackNavigator( {
   productc: {
-    screen: CategoriesScreen,
+    screen: ProductCategoriesScreen,
     path: '/',
   },
 } )
