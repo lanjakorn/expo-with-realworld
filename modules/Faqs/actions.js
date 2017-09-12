@@ -1,5 +1,9 @@
 import { action } from 'utilities'
 import {
+  ADD_FAQ,
+  ADD_FAQ_FAILURE,
+  ADD_FAQ_REQUEST,
+  ADD_FAQ_SUCCESS,
   FAQS_FAILURE,
   FAQS_REQUEST,
   FAQS_SUCCESS,
@@ -13,6 +17,7 @@ import {
   SET_FAQS,
 } from './types'
 
+const addFaq = faq => action( ADD_FAQ, { faq } )
 const getFaqs = faqs => action( GET_FAQS, { faqs } )
 const getFaqsByProduct = productId => action( GET_FAQS_BY_PRODUCT, { productId } )
 const getFaqsBySolutionCategory = solutionCategoryId =>
@@ -34,7 +39,15 @@ const faqs = {
   failure: error => action( FAQS_FAILURE, { error } ),
 }
 
+const addFaqApi = {
+  request: () => action( ADD_FAQ_REQUEST ),
+  success: faq => action( ADD_FAQ_SUCCESS, { faq } ),
+  failure: error => action( ADD_FAQ_FAILURE, { error } ),
+}
+
 export {
+  addFaq,
+  addFaqApi,
   faqs,
   getFaqs,
   getFaqsByProduct,

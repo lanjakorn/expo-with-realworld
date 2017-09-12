@@ -1,3 +1,7 @@
+const ADD_FAQ = 'add_faq'
+const ADD_FAQ_FAILURE = 'add_faq_failure'
+const ADD_FAQ_REQUEST = 'add_faq_request'
+const ADD_FAQ_SUCCESS = 'add_faq_success'
 const FAQS_FAILURE = 'faqs_failure'
 const FAQS_REQUEST = 'faqs_request'
 const FAQS_SUCCESS = 'faqs_success'
@@ -13,6 +17,10 @@ const SET_CURRENT_FAQS = 'set_current_faqs'
 const SET_FAQS = 'set_faqs'
 
 export {
+  ADD_FAQ,
+  ADD_FAQ_FAILURE,
+  ADD_FAQ_REQUEST,
+  ADD_FAQ_SUCCESS,
   FAQS_FAILURE,
   FAQS_REQUEST,
   FAQS_SUCCESS,

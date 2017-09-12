@@ -11,7 +11,7 @@ import {
 import {
   normalize as categoriesNormalized,
   actions as categoriesAction,
-} from 'modules/Categories'
+} from 'modules/ProductCategories'
 
 import {
   normalize as contactsNormalized,

@@ -1,5 +1,9 @@
 import { call, fork, put, take } from 'redux-saga/effects'
-import { GET_FAQS_BY_PRODUCT, GET_FAQS_BY_SOLUTION_CATEGORY } from './types'
+import {
+  ADD_FAQ,
+  GET_FAQS_BY_PRODUCT,
+  GET_FAQS_BY_SOLUTION_CATEGORY,
+} from './types'
 import {
   normalize as faqsNormalized,
   actions as faqsAction,
@@ -30,6 +34,17 @@ const getFaqsBySolutionCategory = solutionCategoryId => {
   } )
 }
 
+const addFaq = faq => {
+  return new Promise( resolve => {
+    firebaseDb.ref( 'faqs' ).push().set( faq, error => {
+      if ( error ) {
+      } else {
+        resolve( true )
+      }
+    } )
+  } )
+}
+
 function* watchGetFaqsByProduct() {
   while ( true ) {
     const { productId } = yield take( GET_FAQS_BY_PRODUCT )
@@ -50,7 +65,19 @@ function* watchGetFaqsBySolutionCategory() {
   }
 }
 
+function* watchAddFaq() {
+  while ( true ) {
+    const { faq } = yield take( ADD_FAQ )
+    console.log( 'payload', faq )
+    yield put( faqsAction.addFaqApi.request() )
+    const saved = yield call( addFaq, faq )
+    console.log( saved )
+    yield put( faqsAction.addFaqApi.success( saved ) )
+  }
+}
+
 export default [
+  fork( watchAddFaq ),
   fork( watchGetFaqsByProduct ),
   fork( watchGetFaqsBySolutionCategory ),
 ]

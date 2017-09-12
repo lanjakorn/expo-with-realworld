@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { faqsByIdSelector } from 'modules/Faqs/selectors'
 import { contactsByIdSelector } from 'modules/Contacts/selectors'
-import { currentCategorieQuerySelector } from 'modules/Categories/selectors'
+import { currentCategorieQuerySelector } from 'modules/ProductCategories/selectors'
 import { currentSolutionCategorySelector } from 'modules/SolutionCategories/selectors'
 
 const currentProductOfProductCategorySelector = state =>

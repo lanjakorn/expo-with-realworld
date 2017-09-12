@@ -5,7 +5,7 @@ import {
   INIT_PRODUCTS_SCREEN,
 } from './types'
 import { products as productsAction } from './actions'
-import { selectors } from 'modules/Categories'
+import { selectors } from 'modules/ProductCategories'
 import { normalizedProducts } from './normalize'
 import { firebaseDb } from 'services/firebase'
 

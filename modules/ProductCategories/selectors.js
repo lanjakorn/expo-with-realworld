@@ -1,19 +1,20 @@
 import { createSelector } from 'reselect'
 
-const currentCategoriesSelector = state => state.categories.categories
+const currentCategoriesSelector = state => state.productCategories.categories
 
-const categoriesByIdSelector = state => state.categories.categoriesById
-const categoryIdsSelector = state => state.categories.categoryIds
-const isFetchingSelector= state => state.categories.isFetching
+const categoriesByIdSelector = state => state.productCategories.categoriesById
+const categoryIdsSelector = state => state.productCategories.categoryIds
+const isFetchingSelector = state => state.productCategories.isFetching
 
 const childCategoriesByIdSelector = state =>
-  state.categories.childCategoriesById
-const childCategoryIdsSelector = state => state.categories.childCategoryIds
+  state.productCategories.childCategoriesById
+const childCategoryIdsSelector = state =>
+  state.productCategories.childCategoryIds
 
 const subChildCategoriesByIdSelector = state =>
-  state.categories.subChildCategoriesById
+  state.productCategories.subChildCategoriesById
 const subChildCategoryIdsSelector = state =>
-  state.categories.subChildCategoryIds
+  state.productCategories.subChildCategoryIds
 
 const categoriesNameSelector = createSelector( categoriesByIdSelector, items =>
   Object.keys( items ).reduce( ( p, c ) => [ ...p, items[ c ] ], [] )

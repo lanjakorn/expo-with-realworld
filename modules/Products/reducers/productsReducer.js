@@ -6,7 +6,7 @@ import {
   SET_CURRENT_PRODUCT_OF_SOLUTION_CATEGORY,
   SET_PRODUCTS,
 } from '../types'
-import { types } from 'modules/Categories'
+import { types } from 'modules/ProductCategories'
 
 const { SET_CURRENT_CATEGORIES } = types
 
