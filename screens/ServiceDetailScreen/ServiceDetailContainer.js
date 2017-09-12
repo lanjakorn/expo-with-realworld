@@ -1,4 +1,4 @@
-import { compose, pure } from 'recompose'
+import { compose, pure, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { selectors as servicesSelectors } from 'modules/Services'
@@ -9,4 +9,12 @@ const mapStateToProps = state => ( {
   service: servicesSelectors.servicesSelector( state ),
 } )
 
-export default compose( connect( mapStateToProps ), pure )( ServiceDetail )
+export default compose(
+  connect( mapStateToProps ),
+  withHandlers( {
+    onPressContactUs: ( { navigation } ) => () => {
+      navigation.navigate( 'contactUs' )
+    },
+  } ),
+  pure
+)( ServiceDetail )

@@ -26,22 +26,19 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const CategoriesDetail = ( { StoryImage, StoryHeading } ) => {
-  return (
-    <Card margin={0}>
-      <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.headerTextStyle} numberOfLines={2}>
-            {StoryHeading}
-          </Text>
-        </View>
-      </CardSection>
-    </Card>
-  )
-}
+const CategoriesDetail = ( { StoryImage, StoryHeading } ) =>
+  <Card margin={0}>
+    <CardSection>
+      <View style={styles.thumbnailContainerStyle}>
+        <Image style={styles.thumbnailStyle} source={{ uri: StoryImage }} />
+      </View>
+      <View style={styles.headerContentStyle}>
+        <Text style={styles.headerTextStyle} numberOfLines={2}>
+          {StoryHeading}
+        </Text>
+      </View>
+    </CardSection>
+  </Card>
 
 CategoriesDetail.propTypes = {
   StoryImage: PropTypes.string.isRequired,

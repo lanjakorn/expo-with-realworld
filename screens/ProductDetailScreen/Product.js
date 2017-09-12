@@ -2,8 +2,6 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-import { ga } from 'services'
-import { nav } from 'utilities'
 
 import {
   ButtonRadiusOutlined,
@@ -17,8 +15,8 @@ import {
 import Feature from './Feature'
 import PriceText from './PriceText'
 import Pro from './Pro'
-import styles from './ProductStyle'
 import Tag from './Tag'
+import styles from './ProductStyle'
 
 const renderTags = tags =>
   <View style={styles.tags}>
@@ -37,65 +35,38 @@ const renderPros = ( pros, words ) =>
     </View>
   </View>
 
-const renderFeatures = ( features, navigation ) => {
-  const onPressFeature = index => {
-    navigation.navigate( 'feature', {
-      index,
-      module: nav.getNavigationParam( navigation, 'module' ),
-    } )
-  }
-
-  return (
-    <View style={styles.pros}>
-      <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
-        {'Feature'}
-      </Text>
-      <View>
-        {features.map( ( { title, description }, k ) =>
-          <Feature
-            description={description}
-            key={`feature-${ k }-${ title }`}
-            index={k}
-            onPressFeature={onPressFeature}
-            title={title}
-          />
-        )}
-      </View>
-      <View />
+const renderFeatures = ( features, onPressFeature ) =>
+  <View style={styles.pros}>
+    <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
+      {'Feature'}
+    </Text>
+    <View>
+      {features.map( ( { title, description }, k ) =>
+        <Feature
+          description={description}
+          key={`feature-${ k }-${ title }`}
+          index={k}
+          onPressFeature={onPressFeature}
+          title={title}
+        />
+      )}
     </View>
-  )
-}
+    <View />
+  </View>
 
-const faqOnChange = question => {
-  ga.trackEvent( {
-    eventCategory: 'faqs',
-    eventAction: 'select faq of product',
-    eventLabel: question,
-  } )
-}
-
+//TODO: strategy render component check by has MPF
 const ProductCard = props => {
   const {
+    faqOnChange,
     faqs,
     isFetchingFaqs,
-    navigation,
+    onPressContact,
+    onPressContactUs,
+    onPressFaq,
+    onPressFeature,
     words,
     product: { name, description, features, hasMPF, offer, pros, tags, urls },
   } = props
-
-  const onPressContactUs = () => {
-    navigation.navigate( 'contactUs' )
-  }
-
-  const onPressContact = () => {
-    navigation.navigate( 'contact', {
-      module: nav.getNavigationParam( navigation, 'module' ),
-    } )
-  }
-
-  const onPressFaq = () => {
-    navigation.navigate( 'faq' )
-  }
 
   return (
     <View style={styles.container}>
@@ -123,7 +94,7 @@ const ProductCard = props => {
         : <View />}
       {renderTags( tags )}
       {renderPros( pros, words )}
-      {hasMPF ? renderFeatures( features, navigation ) : <View />}
+      {hasMPF ? renderFeatures( features, onPressFeature ) : <View />}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
@@ -158,9 +129,14 @@ ProductCard.propTypes = {
     tags: PropTypes.array,
     urls: PropTypes.object.isRequired,
   } ),
+  faqOnChange: PropTypes.func.isRequired,
   faqs: PropTypes.object,
   isFetchingFaqs: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
+  onPressContact: PropTypes.func.isRequired,
+  onPressContactUs: PropTypes.func.isRequired,
+  onPressFaq: PropTypes.func.isRequired,
+  onPressFeature: PropTypes.func.isRequired,
   words: PropTypes.object.isRequired,
 }
 

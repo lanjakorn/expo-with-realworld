@@ -46,29 +46,32 @@ const Homes = ( { navigation } ) => {
     navigation.navigate( navigate, { category: title } )
   }
 
+  const renderVerticalMenu = () =>
+    Object.keys( verticalMenu ).map( e =>
+      <TouchableOpacity
+        key={e}
+        onPress={() => onPressMenuSelect( verticalMenu[ e ] )}
+      >
+        <Card margin={0} backgroundColor={'white'}>
+          <View style={styles.searchListItemStyle}>
+            <Image
+              key={`image-${ e }`}
+              resizeMode="cover"
+              source={require( '../../assets/images/house-menu-item.png' )}
+              style={styles.backgroundImage}
+            >
+              <Text style={styles.text} numberOfLines={1}>
+                {verticalMenu[ e ].title}
+              </Text>
+            </Image>
+          </View>
+        </Card>
+      </TouchableOpacity>
+    )
+
   return (
     <ScrollView>
-      {Object.keys( verticalMenu ).map( e =>
-        <TouchableOpacity
-          key={e}
-          onPress={() => onPressMenuSelect( verticalMenu[ e ] )}
-        >
-          <Card margin={0} backgroundColor={'white'}>
-            <View style={styles.searchListItemStyle}>
-              <Image
-                key={`image-${ e }`}
-                style={styles.backgroundImage}
-                resizeMode="cover"
-                source={require( '../../assets/images/house-menu-item.png' )}
-              >
-                <Text style={styles.text} numberOfLines={1}>
-                  {verticalMenu[ e ].title}
-                </Text>
-              </Image>
-            </View>
-          </Card>
-        </TouchableOpacity>
-      )}
+      {renderVerticalMenu()}
     </ScrollView>
   )
 }

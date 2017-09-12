@@ -1,6 +1,7 @@
-import { compose, pure } from 'recompose'
+import { compose, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ga } from 'services'
 
 import {
   actions as houseCategoriesActions,
@@ -24,6 +25,20 @@ const mapStateToProps = state => ( {
   isFetchingHouseCategories: houseCategoriesSelectors.isFetchingSelector( state ),
 } )
 
-export default compose( connect( mapStateToProps, mapDispatchToProps ), pure )(
-  House
-)
+export default compose(
+  connect( mapStateToProps, mapDispatchToProps ),
+  withHandlers( {
+    onPressHouseCategoriesSelect: ( { actions, navigation } ) => ( id, value ) => {
+      ga.trackEvent( {
+        eventCategory: 'houses',
+        eventAction: 'select house category of house',
+        eventLabel: value,
+      } )
+      actions.setCurrentHouseCategory( id )
+      navigation.navigate( 'houseCategories', {
+        category: value,
+      } )
+    },
+  } ),
+  pure
+)( House )

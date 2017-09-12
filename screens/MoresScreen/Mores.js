@@ -32,39 +32,31 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
     width: width * 0.7 - 25,
   },
+  searchSection: {
+    borderBottomWidth: 2.5,
+    borderColor: 'white',
+  },
 } )
 
-const Mores = ( { navigation } ) => {
-  const onPressMenuSelect = ( { navigate, title } ) => {
-    navigation.navigate( navigate, { category: title } )
-  }
-
-  return (
-    <View>
-      {Object.keys( mores ).map( e =>
-        <TouchableOpacity key={e} onPress={() => onPressMenuSelect( mores[ e ] )}>
-          <View
-            style={{
-              borderColor: 'white',
-              borderBottomWidth: 2.5,
-            }}
-          >
-            <Card margin={0} backgroundColor={Colors.tintColor}>
-              <View style={styles.searchListItemStyle}>
-                <Text style={styles.searchListItemTextStyle} numberOfLines={1}>
-                  {mores[ e ].title}
-                </Text>
-              </View>
-            </Card>
-          </View>
-        </TouchableOpacity>
-      )}
-    </View>
-  )
-}
+const Mores = ( { onPressMenuSelect } ) =>
+  <View>
+    {Object.keys( mores ).map( e =>
+      <TouchableOpacity key={e} onPress={() => onPressMenuSelect( mores[ e ] )}>
+        <View style={styles.searchSection}>
+          <Card margin={0} backgroundColor={Colors.tintColor}>
+            <View style={styles.searchListItemStyle}>
+              <Text style={styles.searchListItemTextStyle} numberOfLines={1}>
+                {mores[ e ].title}
+              </Text>
+            </View>
+          </Card>
+        </View>
+      </TouchableOpacity>
+    )}
+  </View>
 
 Mores.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  onPressMenuSelect: PropTypes.func.isRequired,
 }
 
 export default Mores

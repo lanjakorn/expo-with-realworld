@@ -14,7 +14,7 @@ import {
 import { Icon } from 'react-native-elements'
 import { Card } from '@components'
 
-const { height, width } = Dimensions.get( 'window' )
+const { height } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
   searchListItemStyle: {

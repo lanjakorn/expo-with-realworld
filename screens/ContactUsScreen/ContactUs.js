@@ -1,54 +1,11 @@
 import React from 'react'
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { MapView } from 'expo'
 import PropTypes from 'prop-types'
-
 import Colors from 'constants/Colors'
 
-const { height } = Dimensions.get( 'window' )
-const styles = StyleSheet.create( {
-  iconContainer: {
-    borderColor: '#888',
-    borderRadius: 50,
-    borderWidth: 2,
-    marginLeft: 5,
-    marginRight: 15,
-    padding: 8,
-  },
-  infoContainer: {
-    backgroundColor: 'white',
-    flex: 1.5,
-    flexDirection: 'row',
-    paddingLeft: 10,
-    paddingRight: 20,
-    paddingTop: 30,
-  },
-  infoContentBox: {
-    flex: 1,
-  },
-  infoContentTitle: {
-    fontWeight: 'bold',
-  },
-  infoItemBox: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    paddingBottom: 25,
-  },
-  infoItemsBox: {
-    flex: 1,
-  },
-  mapContaininer: {
-    flex: 1,
-  },
-  mapView: {
-    alignSelf: 'stretch',
-    height: height * 0.4 - 50,
-  },
-  screenContainer: {
-    flex: 1,
-  },
-} )
+import styles from './ContactUsStyle'
 
 const ContactUs = ( {
   info,

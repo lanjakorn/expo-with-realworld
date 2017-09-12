@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Dimensions,
   Image,
@@ -29,9 +29,9 @@ const styles = StyleSheet.create( {
   backgroundImage: {
     alignItems: 'center',
     flexDirection: 'column',
-    height: height * 0.2 - 20,
     justifyContent: 'center',
     resizeMode: 'cover',
+    height: height * 0.2 - 20,
     width: width * 1,
   },
   text: {
@@ -58,59 +58,47 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Services = ( { services, isFetching, actions, navigation } ) => {
-  const onPressServiceSelect = ( key, value ) => {
-    actions.setCurrentService( key )
-    navigation.navigate( 'serviceDetail', {
-      service: value,
-    } )
-  }
-  return (
-    <ScrollView>
-      <View>
-        {!isFetching
-          ? Object.keys( services ).map( e =>
-            <TouchableOpacity
-              key={e}
-              onPress={() => onPressServiceSelect( e, services[ e ].title )}
-            >
-              <Card margin={0} backgroundColor={'white'}>
-                <View style={styles.searchListItemStyle}>
-                  <Image
-                    key={`image-${ e }`}
-                    style={styles.backgroundImage}
-                    source={{
-                      uri: object.getFirstByKey( {
-                        item: services[ e ].urls,
-                        key: 'imgs',
-                      } ),
-                    }}
-                  >
-                    <View stlye={styles.textService}>
-                      <Text style={styles.text} numberOfLines={1}>
-                        {services[ e ].title}
-                      </Text>
-                    </View>
-                  </Image>
-                </View>
-              </Card>
-            </TouchableOpacity>
-          )
-          : <View style={{ flex: 1 }}>
-            <Spinner visible={true} />
-          </View>}
-      </View>
-    </ScrollView>
-  )
-}
+const Services = ( { isFetching, onPressServiceSelect, services } ) =>
+  <ScrollView>
+    <View>
+      {!isFetching
+        ? Object.keys( services ).map( e =>
+          <TouchableOpacity
+            key={e}
+            onPress={() => onPressServiceSelect( e, services[ e ].title )}
+          >
+            <Card margin={0} backgroundColor={'white'}>
+              <View style={styles.searchListItemStyle}>
+                <Image
+                  key={`image-${ e }`}
+                  style={styles.backgroundImage}
+                  source={{
+                    uri: object.getFirstByKey( {
+                      item: services[ e ].urls,
+                      key: 'imgs',
+                    } ),
+                  }}
+                >
+                  <View stlye={styles.textService}>
+                    <Text style={styles.text} numberOfLines={1}>
+                      {services[ e ].title}
+                    </Text>
+                  </View>
+                </Image>
+              </View>
+            </Card>
+          </TouchableOpacity>
+        )
+        : <View style={{ flex: 1 }}>
+          <Spinner visible={true} />
+        </View>}
+    </View>
+  </ScrollView>
 
 Services.propTypes = {
-  actions: PropTypes.shape( {
-    setCurrentService: PropTypes.func.isRequired,
-  } ),
-  services: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired,
+  onPressServiceSelect: PropTypes.func.isRequired,
+  services: PropTypes.object.isRequired,
 }
 
 export default Services

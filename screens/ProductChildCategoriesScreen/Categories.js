@@ -9,28 +9,35 @@ const styles = StyleSheet.create( {
   container: {
     marginTop: 10,
   },
+  textStyle: {
+    fontSize: 20,
+  },
+  viewStyle: {
+    alignItems: 'center',
+    backgroundColor: '#eeeeee',
+    elevation: 2,
+    height: 60,
+    justifyContent: 'center',
+    marginTop: 10,
+    paddingTop: 15,
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: {
+      height: 2,
+      width: 0,
+    },
+    shadowOpacity: 0.2,
+  },
 } )
 
-const Categories = ( { actions, navigation, categories } ) => {
-  const onPressSelectProduct = subChildCategory => {
-    ga.trackEvent( {
-      eventCategory: 'products',
-      eventAction: 'select sub child category of products',
-      eventLabel: subChildCategory,
-    } )
-    actions.setCurrentCategories( subChildCategory, 2 )
-    navigation.navigate( 'products', {
-      childCategory: subChildCategory,
-    } )
-  }
-
+const Categories = ( { categories, onPressSelectChildCategory } ) => {
   const renderStories = () =>
     categories.map( e =>
       <TouchableOpacity
         key={e.name}
-        onPress={() => onPressSelectProduct( e.name )}
+        onPress={() => onPressSelectChildCategory( e.name )}
       >
-        <Category key={e.name} StoryImage={e.image} StoryHeading={e.name} />
+        <Category key={e.name} StoryHeading={e.name} StoryImage={e.image} />
       </TouchableOpacity>
     )
 
@@ -44,11 +51,9 @@ const Categories = ( { actions, navigation, categories } ) => {
 }
 
 Categories.propTypes = {
-  actions: PropTypes.shape( {
-    setCurrentCategories: PropTypes.func.isRequired,
-  } ),
   categories: PropTypes.array.isRequired,
   navigation: PropTypes.object.isRequired,
+  onPressSelectChildCategory: PropTypes.func.isRequired,
 }
 
 export default Categories

@@ -2,7 +2,6 @@ import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-import { ga } from 'services'
 import { object } from 'utilities'
 
 import ProductDetail from './ProductDetail'
@@ -13,23 +12,9 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Products = ( { actions, isFetching, navigation, products } ) => {
-  const onPressSelectProduct = ( id, value ) => {
-    ga.trackEvent( {
-      eventCategory: 'products',
-      eventAction: 'select product',
-      eventLabel: value,
-    } )
-    actions.setCurrentProductOfProductCategory( id )
-    actions.getFaqsByProduct( id )
-    navigation.navigate( 'productDetail', {
-      id: id,
-      module: 'productCategories',
-    } )
-  }
-
-  const renderProducts = () => {
-    return Object.keys( products ).map( ( e, k ) =>
+const Products = ( { isFetching, onPressSelectProduct, products } ) => {
+  const renderProducts = () =>
+    Object.keys( products ).map( ( e, k ) =>
       <TouchableOpacity
         key={`product-touch-${ products[ e ].name }-${ k }`}
         onPress={() => onPressSelectProduct( e, products[ e ].name )}
@@ -44,7 +29,6 @@ const Products = ( { actions, isFetching, navigation, products } ) => {
         />
       </TouchableOpacity>
     )
-  }
 
   return (
     <ScrollView>
@@ -60,12 +44,9 @@ const Products = ( { actions, isFetching, navigation, products } ) => {
 }
 
 Products.propTypes = {
-  actions: PropTypes.shape( {
-    getFaqsByProduct: PropTypes.func.isRequired,
-    setCurrentProductOfProductCategory: PropTypes.func.isRequired,
-  } ),
   isFetching: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
+  onPressSelectProduct: PropTypes.func.isRequired,
   products: PropTypes.object.isRequired,
 }
 

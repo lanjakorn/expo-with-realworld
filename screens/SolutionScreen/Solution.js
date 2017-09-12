@@ -2,7 +2,6 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-import { ga } from 'services'
 import { object } from 'utilities'
 
 import {
@@ -14,35 +13,18 @@ import {
   TextDescriptionCard,
 } from '@components'
 
-import styles from './SolutionContainerStyle'
+import styles from './SolutionStyle'
 
 const Solution = ( {
-  actions,
   caseStudies,
   isFetching,
-  navigation,
+  onPressContactUs,
+  onPressSolutionCategorySelect,
   solutionCategories,
   solution: { description, title, urls },
 } ) => {
-  const onPressContactUs = () => {
-    navigation.navigate( 'contactUs' )
-  }
-
-  const onPressSolutionCategorySelect = ( key, value ) => {
-    ga.trackEvent( {
-      eventCategory: 'houses',
-      eventAction: 'select solution category of solution',
-      eventLabel: value,
-    } )
-    actions.setCurrentSolutionCategory( key )
-    actions.getProductsBySolutionCategory( key )
-    actions.getFaqsBySolutionCategory( key )
-
-    navigation.navigate( 'solutionCategories', { category: value } )
-  }
-
-  const renderSolutionCategories = () => {
-    return Object.keys( solutionCategories ).map( e =>
+  const renderSolutionCategories = () =>
+    Object.keys( solutionCategories ).map( e =>
       <View
         key={`container-solution-${ e }`}
         style={{
@@ -63,10 +45,9 @@ const Solution = ( {
         </TouchableOpacity>
       </View>
     )
-  }
 
-  const renderCaseStudies = () => {
-    return Object.keys( caseStudies ).map( e =>
+  const renderCaseStudies = () =>
+    Object.keys( caseStudies ).map( e =>
       <View
         key={`container-case-${ e }`}
         style={{
@@ -85,7 +66,6 @@ const Solution = ( {
         />
       </View>
     )
-  }
 
   return !isFetching
     ? <View style={styles.container}>
@@ -114,11 +94,6 @@ const Solution = ( {
 }
 
 Solution.propTypes = {
-  actions: PropTypes.shape( {
-    setCurrentSolutionCategory: PropTypes.func.isRequired,
-    getProductsBySolutionCategory: PropTypes.func.isRequired,
-    getFaqsBySolutionCategory: PropTypes.func.isRequired,
-  } ),
   solution: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -126,7 +101,8 @@ Solution.propTypes = {
   } ),
   caseStudies: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired,
+  onPressContactUs: PropTypes.func.isRequired,
+  onPressSolutionCategorySelect: PropTypes.func.isRequired,
   solutionCategories: PropTypes.object.isRequired,
 }
 

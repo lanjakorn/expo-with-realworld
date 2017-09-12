@@ -1,5 +1,6 @@
-import { compose, mapProps, pure } from 'recompose'
+import { compose, mapProps, pure, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
+import { ga } from 'services'
 import { nav } from 'utilities'
 
 import { selectors as faqsSelectors } from 'modules/Faqs'
@@ -57,6 +58,43 @@ export default compose(
       ...props,
       ...strategy(),
     }
+  } ),
+  withHandlers( {
+    onPressContact: ( { navigation } ) => () => {
+      navigation.navigate( 'contact', {
+        module: nav.getNavigationParam( navigation, 'module' ),
+      } )
+    },
+    onPressContactUs: ( { navigation } ) => () => {
+      navigation.navigate( 'contactUs' )
+    },
+    onPressFaq: ( { navigation } ) => () => {
+      navigation.navigate( 'faq' )
+    },
+    onPressFeature: ( { navigation } ) => index => {
+      navigation.navigate( 'feature', {
+        index,
+        module: nav.getNavigationParam( navigation, 'module' ),
+      } )
+    },
+    onPressSelectChildCategory: ( { actions, navigation } ) => category => {
+      ga.trackEvent( {
+        eventCategory: 'products',
+        eventAction: 'select category of products',
+        eventLabel: category,
+      } )
+      actions.setCurrentCategories( category, 0 )
+      navigation.navigate( 'productChildCategories', {
+        category: category,
+      } )
+    },
+    faqOnChange: () => question => {
+      ga.trackEvent( {
+        eventCategory: 'faqs',
+        eventAction: 'select faq of product',
+        eventLabel: question,
+      } )
+    },
   } ),
   pure
 )( Product )

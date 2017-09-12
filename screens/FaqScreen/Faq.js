@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, Text, TextInput, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import Colors from 'constants/Colors'
@@ -7,6 +7,7 @@ import Colors from 'constants/Colors'
 import styles from './FaqStyle'
 
 const Faq = ( {
+  onPressAddFaq,
   question,
   titleQuestion,
   typingQuestion,
@@ -34,11 +35,7 @@ const Faq = ( {
           {words.message}
         </Text>
         <TextInput
-          style={
-            Platform.OS === 'ios'
-              ? styles.textAreaStyleIos
-              : styles.textAreaStyleAndriod
-          }
+          style={styles.textAreaStyle}
           multiline={true}
           numberOfLines={6}
           onChangeText={text => typingQuestion( text )}
@@ -50,17 +47,26 @@ const Faq = ( {
         buttonStyle={styles.buttonStyle}
         textStyle={styles.buttonTextStyle}
         title={words.send}
-        onPress={() => {}}
+        onPress={() =>
+          onPressAddFaq( {
+            answer: 'Ricoh Managed Print Services (MPS) encompass th...',
+            productId: 'Prokey1',
+            question: 'Managed Print Services',
+            solutionCategoryId: 'keySolutionCategories1',
+            syncApp: false,
+          } )}
       />
     </View>
   )
 }
 
 Faq.propTypes = {
+  onPressAddFaq: PropTypes.func.isRequired,
   question: PropTypes.string,
   titleQuestion: PropTypes.string,
   typingQuestion: PropTypes.func.isRequired,
   typingTitleQuestion: PropTypes.func.isRequired,
+  words: PropTypes.object.isRequired,
 }
 
 export default Faq

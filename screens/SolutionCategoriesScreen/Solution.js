@@ -2,7 +2,6 @@ import React from 'react'
 import { View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-import { ga } from 'services'
 
 import {
   ButtonRadiusOutlined,
@@ -16,47 +15,20 @@ import {
 
 import Price from './Price'
 import Products from './ProductsContainer'
-import styles from './SolutionContainerStyle'
+import styles from './SolutionStyle'
 
 const Solution = ( {
-  actions,
   faqs,
+  faqOnChange,
   isFetching,
-  navigation,
+  onPressContactUs,
+  onPressFaq,
+  onPressSelectProduct,
   products,
   solutionCategory: { description, title, urls, price: { max, min } },
   words: { maxPrice, minPrice },
-} ) => {
-  const onPressContactUs = () => {
-    navigation.navigate( 'contactUs' )
-  }
-
-  const onPressFaq = () => {
-    navigation.navigate( 'faq' )
-  }
-
-  const onPressSelectProduct = ( id, value ) => {
-    ga.trackEvent( {
-      eventCategory: 'houses',
-      eventAction: 'select product of solution category',
-      eventLabel: value,
-    } )
-    actions.setCurrentProductOfSolutionCategory( id )
-    navigation.navigate( 'productDetail', {
-      id,
-      module: 'solutionCategoris',
-    } )
-  }
-
-  const faqOnChange = question => {
-    ga.trackEvent( {
-      eventCategory: 'faqs',
-      eventAction: 'select faq of solution category',
-      eventLabel: question,
-    } )
-  }
-
-  return !isFetching
+} ) =>
+  !isFetching
     ? <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
@@ -113,13 +85,8 @@ const Solution = ( {
       </View>
     </View>
     : <Spinner visible={true} />
-}
 
 Solution.propTypes = {
-  actions: PropTypes.shape( {
-    setCurrentProductOfSolutionCategory: PropTypes.func.isRequired,
-    setCurrentSolutions: PropTypes.func.isRequired,
-  } ),
   solutionCategory: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -133,9 +100,12 @@ Solution.propTypes = {
     maxPrice: PropTypes.string.isRequired,
     minPrice: PropTypes.string.isRequired,
   } ),
+  faqOnChange: PropTypes.func.isRequired,
   faqs: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
-  navigation: PropTypes.object.isRequired,
+  onPressContactUs: PropTypes.func.isRequired,
+  onPressFaq: PropTypes.func.isRequired,
+  onPressSelectProduct: PropTypes.func.isRequired,
   products: PropTypes.object,
 }
 

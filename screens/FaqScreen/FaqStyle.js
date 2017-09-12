@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import Colors from 'constants/Colors'
+import { Platform, StyleSheet } from 'react-native'
+import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
   boxContainer: {
@@ -39,24 +39,28 @@ const styles = StyleSheet.create( {
     marginBottom: 20,
     textAlign: 'center',
   },
-  textAreaStyleAndriod: {
-    backgroundColor: '#FFF',
-    borderColor: '#FFF',
-    borderRadius: 5,
-    borderWidth: 1,
-    fontSize: 16,
-    height: 200,
-    padding: 5,
-    textAlignVertical: 'top',
-  },
-  textAreaStyleIos: {
-    backgroundColor: '#FFF',
-    borderColor: '#FFF',
-    borderRadius: 5,
-    borderWidth: 1,
-    fontSize: 16,
-    height: 200,
-    padding: 5,
+  textAreaStyle: {
+    ...Platform.select( {
+      ios: {
+        backgroundColor: '#FFF',
+        borderColor: '#FFF',
+        borderRadius: 5,
+        borderWidth: 1,
+        fontSize: 16,
+        height: 200,
+        padding: 5,
+      },
+      android: {
+        backgroundColor: '#FFF',
+        borderColor: '#FFF',
+        borderRadius: 5,
+        borderWidth: 1,
+        fontSize: 16,
+        height: 200,
+        padding: 5,
+        textAlignVertical: 'top',
+      },
+    } ),
   },
   textInputStyle: {
     backgroundColor: '#FFF',

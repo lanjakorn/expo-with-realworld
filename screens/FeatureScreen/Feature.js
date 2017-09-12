@@ -1,58 +1,11 @@
 import React from 'react'
+import { Image, ScrollView, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
-
-import { ScrollView, View, Text, Image, StyleSheet } from 'react-native'
+import { nav } from 'utilities'
 import { TextDescriptionCard } from '@components'
+import styles from './FeatureStyle'
 
-const styles = StyleSheet.create( {
-  screenContainer: {
-    backgroundColor: '#fff',
-  },
-  detailsView: {
-    // marginTop: 35,
-    // marginBottom: 22,
-    // paddingLeft: 20,
-    // paddingRight: 20,
-  },
-  featureContainer: {
-    paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  featureTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    marginTop: 5,
-    textAlign: 'center',
-  },
-  featureImageContainer: {
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-    padding: 10,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  featureImage: {
-    height: 200,
-    width: 200,
-  },
-  featureDescription1: { marginTop: 10 },
-  featureDescription2: {
-    marginTop: 10,
-    textAlign: 'justify',
-  },
-  featureInstruction: { marginTop: 10 },
-  featureInstructionContainer: {
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-  featureInstructionTitle: {
-    fontSize: 14,
-    marginTop: 15,
-  },
-} )
-
+// TODO: move instructions prop to firebase
 const FeatureScreen = ( { navigation, words, product: { features } } ) => {
   const instructions = [
     'Accusamus quam quis qui.',
@@ -61,17 +14,17 @@ const FeatureScreen = ( { navigation, words, product: { features } } ) => {
     'Ut sit voluptatem expedita consectetur.',
   ]
 
-  const renderInstruction = () => {
-    return instructions.map( ( instruction, i ) => {
-      return (
-        <Text key={i} style={{ fontSize: 14 }}>
-          {`${ i + 1 }.  ${ instruction }`}
-        </Text>
-      )
-    } )
-  }
+  const renderInstruction = () =>
+    instructions.map( ( instruction, i ) =>
+      <Text key={i} style={{ fontSize: 14 }}>
+        {`${ i + 1 }.  ${ instruction }`}
+      </Text>
+    )
 
-  const { title, imgUrl, description } = features[ navigation.state.params.index ]
+  const { title, imgUrl, description } = features[
+    nav.getNavigationParam( navigation, 'index' )
+  ]
+
   return (
     <ScrollView style={styles.screenContainer}>
       <View style={styles.featureContainer}>

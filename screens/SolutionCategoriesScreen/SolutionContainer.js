@@ -1,6 +1,7 @@
-import { compose, onlyUpdateForKeys, pure } from 'recompose'
+import { compose, onlyUpdateForKeys, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ga } from 'services'
 
 import { actions as productsAction } from 'modules/Products'
 import {
@@ -44,6 +45,33 @@ const mapStateToProps = state => ( {
 
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
+  withHandlers( {
+    onPressSelectProduct: ( { actions, navigation } ) => ( id, value ) => {
+      ga.trackEvent( {
+        eventCategory: 'houses',
+        eventAction: 'select product of solution category',
+        eventLabel: value,
+      } )
+      actions.setCurrentProductOfSolutionCategory( id )
+      navigation.navigate( 'productDetail', {
+        id,
+        module: 'solutionCategoris',
+      } )
+    },
+    onPressFaq: ( { navigation } ) => () => {
+      navigation.navigate( 'faq' )
+    },
+    onPressContactUs: ( { navigation } ) => () => {
+      navigation.navigate( 'contactUs' )
+    },
+    faqOnChange: () => question => {
+      ga.trackEvent( {
+        eventCategory: 'faqs',
+        eventAction: 'select faq of solution category',
+        eventLabel: question,
+      } )
+    },
+  } ),
   onlyUpdateForKeys( [ 'isFetching' ] ),
   pure
 )( Solution )

@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 import { Colors } from 'constants'
 
-const styles = StyleSheet.create( {
+export default StyleSheet.create( {
   cardContainer: {
     flex: 1,
     marginBottom: 25,
@@ -49,22 +49,24 @@ const styles = StyleSheet.create( {
     marginBottom: 25,
     width: 225,
   },
-  imageAndroidContainer: {
-    alignItems: 'center',
-  },
-  imageIosContainer: {
-    alignItems: 'center',
-    borderColor: '#ddd',
-    elevation: 1,
-    marginTop: -1,
-    shadowColor: '#000',
-    shadowOffset: {
-      height: 2,
-      width: 0,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+  imageContainer: {
+    ...Platform.select( {
+      ios: {
+        alignItems: 'center',
+        borderColor: '#ddd',
+        elevation: 1,
+        marginTop: -1,
+        shadowColor: '#000',
+        shadowOffset: {
+          height: 2,
+          width: 0,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+      },
+      android: {
+        alignItems: 'center',
+      },
+    } ),
   },
 } )
-
-export default styles

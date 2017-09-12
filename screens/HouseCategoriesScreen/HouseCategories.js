@@ -1,86 +1,28 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
-import { ga } from 'services'
-import { object } from 'utilities'
 
 import {
-  CardContent,
-  CardContentImage,
   HeaderSection,
   HeaderTitle,
   Slider,
   TextDescriptionCard,
 } from '@components'
+
+import CaseStudies from './CaseStudies'
+import Solutions from './Solutions'
 import styles from './HouseCategoriesStyle'
 
 const HouseCategories = ( {
   caseStudies,
   isFetching,
-  navigation,
   solutions,
-  actions: { setCurrentSolutions },
+  onPressContactUs,
+  onPressSolutionSelect,
   houseCategory: { description, title, urls },
-} ) => {
-  const onPressContactUs = () => {
-    navigation.navigate( 'contactUs' )
-  }
-
-  const onPressSolutionSelect = ( key, value ) => {
-    ga.trackEvent( {
-      eventCategory: 'houses',
-      eventAction: 'select solution of house category',
-      eventLabel: value,
-    } )
-    setCurrentSolutions( key )
-    navigation.navigate( 'solution', { solution: value } )
-  }
-
-  const renderSolutions = () =>
-    Object.keys( solutions ).map( e =>
-      <View
-        key={`container-solution-${ e }`}
-        style={{
-          borderBottomWidth: 1,
-          borderColor: '#ddd',
-        }}
-      >
-        <TouchableOpacity
-          key={`touch-${ e }`}
-          onPress={() => onPressSolutionSelect( e, solutions[ e ].title )}
-        >
-          <CardContent
-            description={solutions[ e ].description}
-            key={e}
-            title={solutions[ e ].title}
-          />
-        </TouchableOpacity>
-      </View>
-    )
-
-  const renderCaseStudies = () =>
-    Object.keys( caseStudies ).map( e =>
-      <View
-        key={`container-case-${ e }`}
-        style={{
-          borderBottomWidth: 1,
-          borderColor: '#ddd',
-        }}
-      >
-        <CardContentImage
-          description={caseStudies[ e ].description}
-          key={e}
-          title={caseStudies[ e ].title}
-          url={object.getFirstByKey( {
-            item: caseStudies[ e ].urls,
-            key: 'imgs',
-          } )}
-        />
-      </View>
-    )
-
-  return !isFetching
+} ) =>
+  !isFetching
     ? <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
@@ -99,20 +41,19 @@ const HouseCategories = ( {
         containerstyle={styles.solution}
         textTitle={'Solution'}
       />
-      {renderSolutions()}
+      <Solutions
+        solutions={solutions}
+        onPressSolutionSelect={onPressSolutionSelect}
+      />
       <HeaderSection
         containerstyle={styles.caseStudy}
         textTitle={'Case Study'}
       />
-      {renderCaseStudies()}
+      <CaseStudies caseStudies={caseStudies} />
     </View>
     : <Spinner visible={true} />
-}
 
 HouseCategories.propTypes = {
-  actions: PropTypes.shape( {
-    setCurrentSolutions: PropTypes.func.isRequired,
-  } ),
   houseCategory: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -121,6 +62,8 @@ HouseCategories.propTypes = {
   caseStudies: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
+  onPressContactUs: PropTypes.func.isRequired,
+  onPressSolutionSelect: PropTypes.func.isRequired,
   solutions: PropTypes.object.isRequired,
 }
 

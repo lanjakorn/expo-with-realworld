@@ -1,6 +1,7 @@
-import { compose, onlyUpdateForKeys, pure } from 'recompose'
+import { compose, onlyUpdateForKeys, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ga } from 'services'
 
 import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
 import { actions as solutionsActions } from 'modules/Solutions'
@@ -31,6 +32,20 @@ const mapStateToProps = state => ( {
 
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
+  withHandlers( {
+    onPressContactUs: ( { navigation } ) => () => {
+      navigation.navigate( 'contactUs' )
+    },
+    onPressSolutionSelect: ( { actions, navigation } ) => ( id, value ) => {
+      ga.trackEvent( {
+        eventCategory: 'houses',
+        eventAction: 'select solution of house category',
+        eventLabel: value,
+      } )
+      actions.setCurrentSolutions( id )
+      navigation.navigate( 'solution', { solution: value } )
+    },
+  } ),
   onlyUpdateForKeys( [ 'isFetching' ] ),
   pure
 )( HouseCategories )

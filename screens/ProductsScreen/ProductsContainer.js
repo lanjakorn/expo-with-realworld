@@ -1,6 +1,7 @@
-import { compose, lifecycle, pure } from 'recompose'
+import { compose, lifecycle, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { ga } from 'services'
 
 import { actions as faqsAction } from 'modules/Faqs'
 import {
@@ -34,6 +35,21 @@ const mapStateToProps = state => ( {
 
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
+  withHandlers( {
+    onPressSelectProduct: ( { actions, navigation } ) => ( id, value ) => {
+      ga.trackEvent( {
+        eventCategory: 'products',
+        eventAction: 'select product',
+        eventLabel: value,
+      } )
+      actions.setCurrentProductOfProductCategory( id )
+      actions.getFaqsByProduct( id )
+      navigation.navigate( 'productDetail', {
+        id: id,
+        module: 'productCategories',
+      } )
+    },
+  } ),
   lifecycle( {
     componentWillMount() {
       this.props.actions.initProductsScreen()

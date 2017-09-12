@@ -6,32 +6,25 @@ import { HeaderTitle, Slider, TextDescriptionCard } from '@components'
 import styles from './ServiceDetailStyle'
 
 const ServiceDetail = ( {
-  navigation,
+  onPressContactUs,
   service: { description, title, urls },
-} ) => {
-  const onPressContactUs = () => {
-    navigation.navigate( 'contactUs' )
-  }
-
-  return (
-    <View style={styles.container}>
-      <HeaderTitle
-        buttonOnPress={onPressContactUs}
-        buttontitle={'Contact Us'}
-        containerstyle={styles.title}
-        textTitle={title}
-      />
-      <View style={styles.thumbnailView}>
-        {<Slider urls={urls} />}
-      </View>
-      <TextDescriptionCard
-        containerstyle={styles.detailsView}
-        textStyle={{ fontWeight: '500' }}
-        title={description}
-      />
+} ) =>
+  <View style={styles.container}>
+    <HeaderTitle
+      buttonOnPress={onPressContactUs}
+      buttontitle={'Contact Us'}
+      containerstyle={styles.title}
+      textTitle={title}
+    />
+    <View style={styles.thumbnailView}>
+      {<Slider urls={urls} />}
     </View>
-  )
-}
+    <TextDescriptionCard
+      containerstyle={styles.detailsView}
+      textStyle={{ fontWeight: '500' }}
+      title={description}
+    />
+  </View>
 
 ServiceDetail.propTypes = {
   service: PropTypes.shape( {
@@ -39,7 +32,7 @@ ServiceDetail.propTypes = {
     title: PropTypes.string.isRequired,
     urls: PropTypes.object.isRequired,
   } ),
-  navigation: PropTypes.object.isRequired,
+  onPressContactUs: PropTypes.func.isRequired,
 }
 
 export default ServiceDetail

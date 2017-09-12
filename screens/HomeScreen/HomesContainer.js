@@ -15,12 +15,8 @@ const mapDispatchToProps = dispatch => ( {
   ),
 } )
 
-const mapStateToProps = state => ( {
-  isFetching: state.categories.isFetching,
-} )
-
 export default compose(
-  connect( mapStateToProps, mapDispatchToProps ),
+  connect( null, mapDispatchToProps ),
   lifecycle( {
     componentWillMount() {
       this.props.actions.initHomeScreen()
