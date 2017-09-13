@@ -68,7 +68,6 @@ function* watchGetFaqsBySolutionCategory() {
 function* watchAddFaq() {
   while ( true ) {
     const { faq } = yield take( ADD_FAQ )
-    console.log( 'payload', faq )
     yield put( faqsAction.addFaqApi.request() )
     const saved = yield call( addFaq, faq )
     console.log( saved )

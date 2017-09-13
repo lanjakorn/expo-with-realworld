@@ -1,4 +1,7 @@
 import {
+  ADD_FAQ_FAILURE,
+  ADD_FAQ_REQUEST,
+  ADD_FAQ_SUCCESS,
   FAQS_FAILURE,
   FAQS_REQUEST,
   FAQS_SUCCESS,
@@ -15,6 +18,7 @@ export const INITIAL_STATE = {
   faqIdsOfProductCategory: [],
   faqIdsOfSolutionCategory: [],
   isFetching: false,
+  isAddFetching: false,
   errorMessage: '',
 }
 
@@ -22,6 +26,15 @@ export default ( state = INITIAL_STATE, action ) => {
   switch ( action.type ) {
   case SET_FAQS:
     return { ...state, ...action.faqs }
+  case ADD_FAQ_REQUEST:
+    return { ...state, isAddFetching: true }
+  case ADD_FAQ_SUCCESS:
+    return {
+      ...state,
+      isAddFetching: false,
+    }
+  case ADD_FAQ_FAILURE:
+    return { ...state, isAddFetching: false, errorMessage: action.error }
   case FAQS_REQUEST:
     return { ...state, isFetching: true }
   case FAQS_SUCCESS:
