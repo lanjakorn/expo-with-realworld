@@ -69,7 +69,10 @@ export default compose(
       navigation.navigate( 'contactUs' )
     },
     onPressFaq: ( { navigation } ) => () => {
-      navigation.navigate( 'faq' )
+      navigation.navigate( 'faq', {
+        module: nav.getNavigationParam( navigation, 'module' ),
+        prevScreen: 'productDetailScreen',
+      } )
     },
     onPressFeature: ( { navigation } ) => index => {
       navigation.navigate( 'feature', {

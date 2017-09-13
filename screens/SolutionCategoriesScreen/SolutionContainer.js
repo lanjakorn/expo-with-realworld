@@ -59,7 +59,10 @@ export default compose(
       } )
     },
     onPressFaq: ( { navigation } ) => () => {
-      navigation.navigate( 'faq' )
+      navigation.navigate( 'faq', {
+        module: 'solutionCategoris',
+        prevScreen: 'solutionCategorisScreen',
+      } )
     },
     onPressContactUs: ( { navigation } ) => () => {
       navigation.navigate( 'contactUs' )
