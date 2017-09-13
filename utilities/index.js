@@ -5,5 +5,15 @@ import * as factories from './factories'
 import * as nav from './navigation'
 import * as object from './object'
 import * as string from './string'
+import * as validateForm from './validateForm'
 
-export { action, cacheAssetsAsync, categories, factories, nav, object, string }
+export {
+  action,
+  cacheAssetsAsync,
+  categories,
+  factories,
+  nav,
+  object,
+  string,
+  validateForm,
+}

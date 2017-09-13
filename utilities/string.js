@@ -1,3 +1,5 @@
+import { compose, curry, prop } from 'ramda'
+
 const getYoutubeId = url => {
   const [ , code ] = url.match( /v=([^&#]{5,})/ )
   return typeof code == 'string' ? code : url
@@ -7,7 +9,13 @@ const capitalize = str => {
   return str[ 0 ].toUpperCase() + str.substring( 1 )
 }
 
-const paragraph = ( str ) => `   ${ str }`
+const isNotEmpty = a => a.trim().length > 0
+
+const hasCapitalLetter = a => /[A-Z]/.test( a )
+
+const isGreaterThan = curry( ( len, a ) => a > len )
+
+const isLengthGreaterThan = len => compose( isGreaterThan( len ), prop( 'length' ) )
 
 const formatMoney = ( {
   num,
@@ -35,4 +43,11 @@ const formatMoney = ( {
     : `${ symbol } ${ moneyWithDigit }`
 }
 
-export { getYoutubeId, formatMoney, capitalize, paragraph }
+export {
+  capitalize,
+  formatMoney,
+  getYoutubeId,
+  hasCapitalLetter,
+  isLengthGreaterThan,
+  isNotEmpty,
+}
