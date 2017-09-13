@@ -83,7 +83,7 @@ const HouseTab = StackNavigator( {
   },
   faq: {
     screen: FaqScreen,
-    path: '/',
+    path: '/:module',
   },
   search: {
     screen: SearchScreen,
@@ -172,7 +172,7 @@ const ProductsTab = StackNavigator( {
   },
   faq: {
     screen: FaqScreen,
-    path: '/',
+    path: '/:module',
   },
   contact: {
     screen: ContactScreen,
