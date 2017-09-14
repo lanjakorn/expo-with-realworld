@@ -1,7 +1,8 @@
 import React from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
 import { Colors } from 'constants'
 
-import { Text, StyleSheet, View } from 'react-native'
 import ButtonRadius from './ButtonRadius'
 
 const styles = StyleSheet.create( {
@@ -13,10 +14,10 @@ const styles = StyleSheet.create( {
 } )
 
 const HeaderButtonSection = ( {
-  containerstyle,
-  textTitle,
   buttonOnPress,
   buttontitle,
+  containerstyle,
+  textTitle,
 } ) =>
   <View style={containerstyle}>
     <Text style={styles.title}>
@@ -24,5 +25,12 @@ const HeaderButtonSection = ( {
     </Text>
     <ButtonRadius onPress={buttonOnPress} title={buttontitle} />
   </View>
+
+HeaderButtonSection.propTypes = {
+  buttonOnPress: PropTypes.func.isRequired,
+  buttontitle: PropTypes.string.isRequired,
+  containerstyle: PropTypes.number,
+  textTitle: PropTypes.string.isRequired,
+}
 
 export default HeaderButtonSection

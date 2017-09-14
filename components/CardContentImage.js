@@ -1,5 +1,7 @@
 import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import { Colors } from 'constants'
 
 const { width, height } = Dimensions.get( 'window' )
@@ -28,8 +30,8 @@ const styles = StyleSheet.create( {
   descriptionText: {
     fontSize: 13,
     lineHeight: 20,
-    textAlign:'justify',    
-    color: Colors.textDescription,    
+    textAlign: 'justify',
+    color: Colors.textDescription,
   },
   rowImage: {
     marginBottom: 24,
@@ -44,7 +46,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const CardContentImage = ( { description, title, url, limitLine = true } ) => {
+const CardContentImage = ( { description, title, url, limitLine } ) => {
   const {
     containerStyle,
     descriptionText,
@@ -76,6 +78,17 @@ const CardContentImage = ( { description, title, url, limitLine = true } ) => {
       </View>
     </View>
   )
+}
+
+CardContentImage.defaultProps = {
+  limitLine: true,
+}
+
+CardContentImage.propTypes = {
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  limitLine: PropTypes.bool.isRequired,
 }
 
 export default CardContentImage

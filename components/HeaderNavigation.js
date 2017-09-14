@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Colors from 'constants/Colors'
 import { Icon } from 'react-native-elements'
+import PropTypes from 'prop-types'
+
+import Colors from 'constants/Colors'
 
 const styles = StyleSheet.create( {
   container: {
@@ -83,6 +85,11 @@ const HeaderNavigation = ( { navigation, title } ) => {
       </View>
     </View>
   )
+}
+
+HeaderNavigation.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default HeaderNavigation

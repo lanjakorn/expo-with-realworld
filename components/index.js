@@ -17,6 +17,7 @@ import Slider from './Slider'
 import SpinnerButton from './SpinnerButton'
 import StyledText from './StyledText'
 import TextDescriptionCard from './TextDescriptionCard'
+import TextError from './TextError'
 
 export {
   ButtonRadius,
@@ -38,4 +39,5 @@ export {
   SpinnerButton,
   StyledText,
   TextDescriptionCard,
+  TextError,
 }

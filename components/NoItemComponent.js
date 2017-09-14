@@ -1,7 +1,9 @@
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
-import Colors from 'constants/Colors'
+import PropTypes from 'prop-types'
+
+import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
   alignContainers: {
@@ -42,6 +44,12 @@ const NoItemComponent = ( { iconName, infoHeading, infoParagraph } ) => {
       </View>
     </View>
   )
+}
+
+NoItemComponent.propTypes = {
+  iconName: PropTypes.string.isRequired,
+  infoHeading: PropTypes.string.isRequired,
+  infoParagraph: PropTypes.string.isRequired,
 }
 
 export default NoItemComponent

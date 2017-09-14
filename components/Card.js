@@ -1,7 +1,8 @@
 import React from 'react'
-import { Colors } from 'constants'
-
 import { StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
+
+import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
   container: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Card = ( { backgroundColor, children, margin } ) => {
+const Card = ( { backgroundColor, children, margin = 0 } ) => {
   return (
     <View
       style={[
@@ -35,6 +36,17 @@ const Card = ( { backgroundColor, children, margin } ) => {
       {children}
     </View>
   )
+}
+
+Card.defaultProps = {
+  backgroundColor: '#FFF',
+  margin: 0,
+}
+
+Card.propTypes = {
+  backgroundColor: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  margin: PropTypes.number,
 }
 
 export default Card

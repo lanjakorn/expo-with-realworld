@@ -1,5 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
+
 import ButtonRadius from './ButtonRadius'
 
 const styles = StyleSheet.create( {
@@ -10,16 +12,16 @@ const styles = StyleSheet.create( {
 } )
 
 const HeaderTitle = ( {
-  containerstyle,
+  containerStyle,
   textTitle,
   buttonOnPress,
-  buttontitle,
+  buttonTitle,
 } ) =>
-  <View style={containerstyle}>
+  <View style={containerStyle}>
     <View
       style={{
-        alignSelf: 'flex-start',                
-        flex: 2,        
+        alignSelf: 'flex-start',
+        flex: 2,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
@@ -31,14 +33,21 @@ const HeaderTitle = ( {
     </View>
     <View
       style={{
-        alignSelf: 'flex-start',        
+        alignSelf: 'flex-start',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
       }}
     >
-      <ButtonRadius onPress={buttonOnPress} title={buttontitle} />
+      <ButtonRadius onPress={buttonOnPress} title={buttonTitle} />
     </View>
   </View>
+
+HeaderTitle.propTypes = {
+  containerStyle: PropTypes.number,
+  textTitle: PropTypes.string.isRequired,
+  buttonOnPress: PropTypes.func.isRequired,
+  buttonTitle: PropTypes.string.isRequired,
+}
 
 export default HeaderTitle

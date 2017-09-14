@@ -1,6 +1,8 @@
 import React from 'react'
-import { Colors } from 'constants'
 import { Button } from 'react-native-elements'
+import PropTypes from 'prop-types'
+
+import { Colors } from 'constants'
 
 const ButtonRadiusOutlined = ( { title, onPress, style } ) =>
   <Button
@@ -23,5 +25,11 @@ const ButtonRadiusOutlined = ( { title, onPress, style } ) =>
       ...style,
     }}
   />
+
+ButtonRadiusOutlined.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  style: PropTypes.object,
+}
 
 export default ButtonRadiusOutlined

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, ActivityIndicator } from 'react-native'
+import PropTypes from 'prop-types'
 
 const styles = {
   spinnerStyle: {
@@ -8,7 +9,7 @@ const styles = {
   },
 }
 
-const Spinner = ( { size, containerStyle } ) => {
+const SpinnerButton = ( { containerStyle, size } ) => {
   const style = { ...styles.spinnerStyle, ...containerStyle }
   return (
     <View style={style}>
@@ -17,4 +18,9 @@ const Spinner = ( { size, containerStyle } ) => {
   )
 }
 
-export default Spinner
+SpinnerButton.propTypes = {
+  containerStyle: PropTypes.number.isRequired,
+  size: PropTypes.string.isRequired,
+}
+
+export default SpinnerButton

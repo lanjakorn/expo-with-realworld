@@ -1,8 +1,9 @@
 import React from 'react'
-import { Colors } from 'constants'
-
 import { Text, StyleSheet, View } from 'react-native'
 import { Icon } from 'react-native-elements'
+import PropTypes from 'prop-types'
+
+import { Colors } from 'constants'
 
 const styles = StyleSheet.create( {
   title: {
@@ -28,5 +29,10 @@ const HeaderSection = ( { containerstyle, textTitle } ) =>
       }}
     />
   </View>
+
+HeaderSection.propTypes = {
+  containerStyle: PropTypes.number,
+  textTitle: PropTypes.string.isRequired,
+}
 
 export default HeaderSection

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import PropTypes from 'prop-types'
 
 const styles = {
   textDescription: {
@@ -22,6 +23,16 @@ export const TextDescriptionCard = ( {
       </Text>
     </View>
   )
+}
+
+TextDescriptionCard.defaultProps = {
+  textStyle: {},
+}
+
+TextDescriptionCard.propTypes = {
+  containerstyle: PropTypes.number,
+  textStyle: PropTypes.object,
+  title: PropTypes.string.isRequired,
 }
 
 export default TextDescriptionCard
