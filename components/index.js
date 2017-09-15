@@ -1,5 +1,6 @@
 import ButtonRadius from './ButtonRadius'
 import ButtonRadiusOutlined from './ButtonRadiusOutlined'
+import ButtonSpinner from './ButtonSpinner'
 import Card from './Card'
 import CardContent from './CardContent'
 import CardContentImage from './CardContentImage'
@@ -13,8 +14,9 @@ import HeaderSection from './HeaderSection'
 import HeaderTitle from './HeaderTitle'
 import NoItemComponent from './NoItemComponent'
 import Search from './SearchContainer'
+import SearchHighlight from './SearchHighlight'
+import SearchSpinner from './SearchSpinner'
 import Slider from './Slider'
-import SpinnerButton from './SpinnerButton'
 import StyledText from './StyledText'
 import TextDescriptionCard from './TextDescriptionCard'
 import TextError from './TextError'
@@ -22,6 +24,7 @@ import TextError from './TextError'
 export {
   ButtonRadius,
   ButtonRadiusOutlined,
+  ButtonSpinner,
   Card,
   CardContent,
   CardContentImage,
@@ -35,6 +38,8 @@ export {
   HeaderTitle,
   NoItemComponent,
   Search,
+  SearchHighlight,
+  SearchSpinner,
   Slider,
   SpinnerButton,
   StyledText,
