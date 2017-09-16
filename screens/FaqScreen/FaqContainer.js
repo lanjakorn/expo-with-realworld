@@ -1,17 +1,18 @@
 import { compose, mapProps, pure, withHandlers, withState } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { nav, validateForm } from 'utilities'
+import { validateForm } from 'utilities'
 
 import {
   actions as faqsActions,
   selectors as faqsSelectors,
+  validate,
 } from 'modules/Faqs'
 import { selectors as productsSelectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
 import { selectors as solutionCategoriesSelector } from 'modules/SolutionCategories'
 
-import validationRules from './validate'
+import strategyNav from './strategyNav'
 import Faq from './Faq'
 
 const { addFaq } = faqsActions
@@ -40,68 +41,26 @@ const mapStateToProps = state => ( {
 
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
-  mapProps( props => {
-    const {
-      navigation,
-      productIdOfProductCategory,
-      productIdOfSolutionCategory,
-      solutionCategoryId,
-    } = props
-
-    const strategy = () => {
-      const faq = {}
-      switch ( nav.getNavigationParam( navigation, 'prevScreen' ) ) {
-      case 'productDetailScreen':
-        switch ( nav.getNavigationParam( navigation, 'module' ) ) {
-        case 'productCategories':
-          return {
-            ...faq,
-            productId: productIdOfProductCategory,
-            solutionCategoryId: '',
-          }
-        case 'solutionCategoris':
-          return {
-            ...faq,
-            productId: productIdOfSolutionCategory,
-            solutionCategoryId: '',
-          }
-
-        default:
-          return null
-        }
-      case 'solutionCategorisScreen':
-        switch ( nav.getNavigationParam( navigation, 'module' ) ) {
-        case 'solutionCategoris':
-          return {
-            ...faq,
-            productId: '',
-            solutionCategoryId,
-          }
-
-        default:
-          return null
-        }
-      default:
-        return null
-      }
-    }
-
-    return {
-      ...props,
-      ...strategy(),
-    }
-  } ),
+  mapProps( props => strategyNav( props ) ),
   withState( 'titleQuestion', 'setTitleQuestion', '' ),
   withState( 'question', 'setQuestion', '' ),
   withState( 'submissionError', 'setSubmissionError', {} ),
   withState( 'enableButton', 'setEnableButton', true ),
   withHandlers( {
-    typingTitleQuestion: ( { setTitleQuestion } ) => data => {
-      setTitleQuestion( data )
-    },
-    typingQuestion: ( { setQuestion } ) => data => {
-      setQuestion( data )
-    },
+    typingTitleQuestion: ( { setTitleQuestion } ) => data =>
+      setTitleQuestion( data ),
+    typingQuestion: ( { setQuestion } ) => data => setQuestion( data ),
+    selectStyleTextInput: ( { submissionError } ) => ( style, prop ) => [
+      style,
+      {
+        borderColor:
+          ( Object.keys( submissionError ).length !== 0 &&
+            submissionError.errors[ prop ].length === 0 ) ||
+          !submissionError.visit
+            ? '#FFF'
+            : 'firebrick',
+      },
+    ],
     onPressAddFaq: ( {
       actions,
       productId,
@@ -109,7 +68,6 @@ export default compose(
       setEnableButton,
       setSubmissionError,
       solutionCategoryId,
-      submissionError,
       titleQuestion,
     } ) => () => {
       const faqModle = {
@@ -120,10 +78,11 @@ export default compose(
         answer: '',
         syncApp: false,
       }
-      const filedCheck = validateForm.validate( faqModle, validationRules )
-      setSubmissionError( { ...filedCheck, visit: true } )
 
-      if ( filedCheck.pass ) {
+      const validated = validateForm.validate( faqModle, validate )
+      setSubmissionError( { ...validated, visit: true } )
+
+      if ( validated.pass ) {
         actions.addFaq( faqModle )
         setEnableButton( false )
       }

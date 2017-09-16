@@ -12,9 +12,7 @@ const mapStateToProps = state => ( {
 export default compose(
   connect( mapStateToProps ),
   withHandlers( {
-    onPressContactUs: ( { navigation } ) => () => {
-      navigation.navigate( 'contactUs' )
-    },
+    onPressContactUs: ( { navigation } ) => () => navigation.navigate( 'contactUs' ),
   } ),
   pure
 )( ServiceDetail )

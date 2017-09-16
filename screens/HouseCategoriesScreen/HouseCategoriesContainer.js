@@ -33,9 +33,8 @@ const mapStateToProps = state => ( {
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
   withHandlers( {
-    onPressContactUs: ( { navigation } ) => () => {
-      navigation.navigate( 'contactUs' )
-    },
+    onPressContactUs: ( { navigation } ) => () =>
+      navigation.navigate( 'contactUs' ),
     onPressSolutionSelect: ( { actions, navigation } ) => ( id, value ) => {
       ga.trackEvent( {
         eventCategory: 'houses',

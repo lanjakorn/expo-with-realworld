@@ -12,8 +12,8 @@ const ServiceDetail = ( {
   <View style={styles.container}>
     <HeaderTitle
       buttonOnPress={onPressContactUs}
-      buttontitle={'Contact Us'}
-      containerstyle={styles.title}
+      buttonTitle={'Contact Us'}
+      containerStyle={styles.title}
       textTitle={title}
     />
     <View style={styles.thumbnailView}>

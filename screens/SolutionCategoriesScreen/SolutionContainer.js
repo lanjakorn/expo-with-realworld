@@ -58,15 +58,13 @@ export default compose(
         module: 'solutionCategoris',
       } )
     },
-    onPressFaq: ( { navigation } ) => () => {
+    onPressFaq: ( { navigation } ) => () =>
       navigation.navigate( 'faq', {
         module: 'solutionCategoris',
         prevScreen: 'solutionCategorisScreen',
-      } )
-    },
-    onPressContactUs: ( { navigation } ) => () => {
-      navigation.navigate( 'contactUs' )
-    },
+      } ),
+    onPressContactUs: ( { navigation } ) => () =>
+      navigation.navigate( 'contactUs' ),
     faqOnChange: () => question => {
       ga.trackEvent( {
         eventCategory: 'faqs',

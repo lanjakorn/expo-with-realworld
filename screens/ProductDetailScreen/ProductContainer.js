@@ -60,26 +60,22 @@ export default compose(
     }
   } ),
   withHandlers( {
-    onPressContact: ( { navigation } ) => () => {
+    onPressContact: ( { navigation } ) => () =>
       navigation.navigate( 'contact', {
         module: nav.getNavigationParam( navigation, 'module' ),
-      } )
-    },
-    onPressContactUs: ( { navigation } ) => () => {
-      navigation.navigate( 'contactUs' )
-    },
-    onPressFaq: ( { navigation } ) => () => {
+      } ),
+    onPressContactUs: ( { navigation } ) => () =>
+      navigation.navigate( 'contactUs' ),
+    onPressFaq: ( { navigation } ) => () =>
       navigation.navigate( 'faq', {
         module: nav.getNavigationParam( navigation, 'module' ),
         prevScreen: 'productDetailScreen',
-      } )
-    },
-    onPressFeature: ( { navigation } ) => index => {
+      } ),
+    onPressFeature: ( { navigation } ) => index =>
       navigation.navigate( 'feature', {
         index,
         module: nav.getNavigationParam( navigation, 'module' ),
-      } )
-    },
+      } ),
     onPressSelectChildCategory: ( { actions, navigation } ) => category => {
       ga.trackEvent( {
         eventCategory: 'products',

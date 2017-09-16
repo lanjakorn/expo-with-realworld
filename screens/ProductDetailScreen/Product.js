@@ -72,8 +72,8 @@ const ProductCard = props => {
     <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
-        buttontitle={'Contact Us'}
-        containerstyle={styles.title}
+        buttonTitle={'Contact Us'}
+        containerStyle={styles.title}
         textTitle={name}
       />
       <View style={styles.thumbnailView}>

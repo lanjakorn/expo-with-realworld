@@ -56,9 +56,7 @@ export default compose(
 
       navigation.navigate( 'solutionCategories', { category: value } )
     },
-    onPressContactUs: ( { navigation } ) => () => {
-      navigation.navigate( 'contactUs' )
-    },
+    onPressContactUs: ( { navigation } ) => () => navigation.navigate( 'contactUs' ),
   } ),
   onlyUpdateForKeys( [ 'isFetching' ] ),
   pure

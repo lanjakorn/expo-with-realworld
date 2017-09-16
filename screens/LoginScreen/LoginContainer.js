@@ -16,7 +16,7 @@ import { Button, FormInput, FormValidationMessage } from 'react-native-elements'
 //   loginUser,
 //   passwordChanged,
 // } from '@actions/AuthActions'
-import SpinnerButton from '@components'
+import { ButtonSpinner } from '@components'
 const { width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
@@ -123,7 +123,7 @@ class LoginForm extends Component {
           disabled={loading}
         />
         {loading &&
-          <SpinnerButton size="large" containerStyle={{ marginTop: -38 }} />}
+          <ButtonSpinner size="large" containerStyle={{ marginTop: -38 }} />}
       </View>
     )
   }
