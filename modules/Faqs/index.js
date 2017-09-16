@@ -1,8 +1,10 @@
 import * as actions from './actions'
+import * as api from './api'
+import * as normalize from './normalize'
 import * as reducers from './reducers'
 import * as selectors from './selectors'
 import * as types from './types'
-import * as normalize from './normalize'
 import sagas from './sagas'
+import validate from './validate'
 
-export { actions, reducers, selectors, types, normalize, sagas }
+export { actions, api, normalize, reducers, sagas, selectors, types, validate }

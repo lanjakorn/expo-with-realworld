@@ -1,7 +1,7 @@
 import { all, call, fork, put, take } from 'redux-saga/effects'
 import { INIT_HOME_SCREEN } from './types'
 import { home as homeAction } from './actions'
-import { firebaseDb } from 'services/firebase'
+import { getFireBaseByRef } from './api'
 
 import {
   normalize as caseStudiesNormalized,
@@ -41,14 +41,6 @@ import {
   normalize as solutionsNormalized,
   actions as solutionsAction,
 } from 'modules/Solutions'
-
-const getFireBaseByRef = db => {
-  return new Promise( resolve => {
-    firebaseDb.ref( db ).once( 'value', snap => {
-      resolve( snap.val() )
-    } )
-  } )
-}
 
 function* getCaseStudies() {
   yield put( caseStudiesAction.caseStudies.request() )

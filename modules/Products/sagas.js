@@ -7,7 +7,10 @@ import {
 import { products as productsAction } from './actions'
 import { selectors } from 'modules/ProductCategories'
 import { normalizedProducts } from './normalize'
-import { firebaseDb } from 'services/firebase'
+import {
+  getProductsByProductCategory,
+  getProductsBySolutionCategory,
+} from './api'
 
 function* watchGetProducts() {
   while ( true ) {
@@ -15,19 +18,6 @@ function* watchGetProducts() {
     const normalized = yield call( normalizedProducts, products )
     yield put( productsAction.success( normalized ) )
   }
-}
-
-const getProductsByProductCategory = query => {
-  return new Promise( resolve => {
-    firebaseDb
-      .ref( 'products' )
-      .orderByChild( 'categories' )
-      .startAt( query )
-      .endAt( `${ query }\uf8ff` )
-      .once( 'value', snap => {
-        resolve( snap.val() )
-      } )
-  } )
 }
 
 function* watchInitProductsScreen() {
@@ -38,18 +28,6 @@ function* watchInitProductsScreen() {
     const normalized = yield call( normalizedProducts, products )
     yield put( productsAction.success( normalized ) )
   }
-}
-
-const getProductsBySolutionCategory = solutionCategory => {
-  return new Promise( resolve => {
-    firebaseDb
-      .ref( 'products' )
-      .orderByChild( 'solutionCategories' )
-      .equalTo( solutionCategory )
-      .once( 'value', snap => {
-        resolve( snap.val() )
-      } )
-  } )
 }
 
 function* watchGetProductsBySolutionCategory() {
