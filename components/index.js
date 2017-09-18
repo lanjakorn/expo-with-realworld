@@ -41,7 +41,6 @@ export {
   SearchHighlight,
   SearchSpinner,
   Slider,
-  SpinnerButton,
   StyledText,
   TextDescriptionCard,
   TextError,

@@ -82,8 +82,8 @@ class SearchContainer extends Component {
   }
 
   onSearchActive = () => {
-    this.props.searching( true )
-    this.props.navigation.navigate( 'mores' )
+    // this.props.searching( true )
+    this.props.navigation.navigate( 'search' )
     this.setState( { isTouchableDisabled: true } )
     this.refs.search_textinput_component.focus()
   }

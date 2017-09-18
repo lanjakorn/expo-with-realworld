@@ -134,7 +134,7 @@ const styles = StyleSheet.create( {
     marginLeft: 4,
     marginRight: 4,
     alignItems: 'center',
-    
+
     marginTop: 0,
     marginBottom: 0,
     padding: 0,
@@ -149,12 +149,12 @@ const styles = StyleSheet.create( {
     margin: 0,
     height: 24,
     alignItems: 'center',
-    textAlign: 'center',    
-    
+    textAlign: 'center',
+
     justifyContent: 'center',
-    
+
     borderTopWidth: 0,
-    borderBottomWidth: 0,   
+    borderBottomWidth: 0,
     backgroundColor: Colors.darkTintColor,
     borderColor: Colors.darkTintColor,
     fontSize: 15,
