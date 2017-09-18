@@ -12,22 +12,9 @@ const SearchScreen = ( { navigation } ) =>
     <SearchList navigation={navigation} />
   </View>
 
-// SearchScreen.navigationOptions = ( { navigation } ) => ( {
-//   tabBarLabel: 'Search',
-//   tabBarIcon: ( { focused } ) =>
-//     <Icon
-//       name={'search'}
-//       size={24}
-//       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-//     />,
-//   header: (
-//     <View style={{ backgroundColor: Colors.tintColor }}>
-//       <View style={{ marginTop: 24, height: 40 }}>
-//         <Search navigation={navigation} navOnCancel={'search'} />
-//       </View>
-//     </View>
-//   ),
-// } )
+SearchScreen.navigationOptions = ( { navigation } ) => ( {
+  header: null,
+} )
 
 SearchScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
