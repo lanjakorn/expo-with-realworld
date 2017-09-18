@@ -21,6 +21,18 @@ const getFaqsByProduct = productId =>
       } )
   } )
 
+const getFaqsByProductCategory = query =>
+  new Promise( resolve => {
+    firebaseDb
+      .ref( 'faqs' )
+      .orderByChild( 'productCategories' )
+      .startAt( query )
+      .endAt( `${ query }\uf8ff` )
+      .once( 'value', snap => {
+        resolve( snap.val() )
+      } )
+  } )
+
 const getFaqsBySolutionCategory = solutionCategoryId =>
   new Promise( resolve => {
     firebaseDb
@@ -32,4 +44,9 @@ const getFaqsBySolutionCategory = solutionCategoryId =>
       } )
   } )
 
-export { addFaq, getFaqsByProduct, getFaqsBySolutionCategory }
+export {
+  addFaq,
+  getFaqsByProduct,
+  getFaqsByProductCategory,
+  getFaqsBySolutionCategory,
+}

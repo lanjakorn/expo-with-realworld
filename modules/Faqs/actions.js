@@ -9,6 +9,7 @@ import {
   FAQS_SUCCESS,
   GET_FAQS,
   GET_FAQS_BY_PRODUCT,
+  GET_FAQS_BY_PRODUCT_CATEGORY,
   GET_FAQS_BY_SOLUTION_CATEGORY,
   INIT_FAQS_SCREEN,
   SET_CURRENT_FAQS,
@@ -20,6 +21,8 @@ import {
 const addFaq = faq => action( ADD_FAQ, { faq } )
 const getFaqs = faqs => action( GET_FAQS, { faqs } )
 const getFaqsByProduct = productId => action( GET_FAQS_BY_PRODUCT, { productId } )
+const getFaqsByProductCategory = productCategoryId =>
+  action( GET_FAQS_BY_PRODUCT_CATEGORY, { productCategoryId } )
 const getFaqsBySolutionCategory = solutionCategoryId =>
   action( GET_FAQS_BY_SOLUTION_CATEGORY, { solutionCategoryId } )
 
@@ -51,6 +54,7 @@ export {
   faqs,
   getFaqs,
   getFaqsByProduct,
+  getFaqsByProductCategory,
   getFaqsBySolutionCategory,
   initFaqsScreen,
   setCurrentFaqIdsOfProductCategory,

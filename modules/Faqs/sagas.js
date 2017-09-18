@@ -2,9 +2,15 @@ import { call, fork, put, take } from 'redux-saga/effects'
 import {
   ADD_FAQ,
   GET_FAQS_BY_PRODUCT,
+  GET_FAQS_BY_PRODUCT_CATEGORY,
   GET_FAQS_BY_SOLUTION_CATEGORY,
 } from './types'
-import { addFaq, getFaqsByProduct, getFaqsBySolutionCategory } from './api'
+import {
+  addFaq,
+  getFaqsByProduct,
+  getFaqsByProductCategory,
+  getFaqsBySolutionCategory,
+} from './api'
 
 import {
   normalize as faqsNormalized,
@@ -32,6 +38,19 @@ function* watchGetFaqsByProduct() {
   }
 }
 
+function* watchGetFaqsByProductCategory() {
+  while ( true ) {
+    const { productCategoryId } = yield take( GET_FAQS_BY_PRODUCT_CATEGORY )
+    yield put( faqsAction.faqs.request() )
+    const faqs = yield call( getFaqsByProductCategory, productCategoryId )
+    const normalizedFaqs = yield call(
+      faqsNormalized.normalizedFaqs,
+      filterSyncApp( faqs )
+    )
+    yield put( faqsAction.faqs.success( normalizedFaqs ) )
+  }
+}
+
 function* watchGetFaqsBySolutionCategory() {
   while ( true ) {
     const { solutionCategoryId } = yield take( GET_FAQS_BY_SOLUTION_CATEGORY )
@@ -50,7 +69,6 @@ function* watchAddFaq() {
     const { faq } = yield take( ADD_FAQ )
     yield put( faqsAction.addFaqApi.request() )
     const saved = yield call( addFaq, faq )
-    console.log( saved )
     yield put( faqsAction.addFaqApi.success( saved ) )
   }
 }
@@ -58,5 +76,6 @@ function* watchAddFaq() {
 export default [
   fork( watchAddFaq ),
   fork( watchGetFaqsByProduct ),
+  fork( watchGetFaqsByProductCategory ),
   fork( watchGetFaqsBySolutionCategory ),
 ]
