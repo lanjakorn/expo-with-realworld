@@ -49,7 +49,7 @@ class Tracker {
       'https://www.google-analytics.com/collect?' +
       `${ this.toQueryString( hit ) }` +
       `&z=${ Math.round( Math.random() * 1e8 ) }` // Cache buster.
-    console.log( 'trackScreenView', url )
+    //console.log( 'trackScreenView', url )
     return fetch( url, options )
   }
 
@@ -81,7 +81,7 @@ class Tracker {
       'https://www.google-analytics.com/collect?' +
       `${ this.toQueryString( hit ) }` +
       `&z=${ Math.round( Math.random() * 1e8 ) }` // Cache buster.
-    console.log( 'trackEvent', url )
+    //console.log( 'trackEvent', url )
     return fetch( url, options )
   }
 }
