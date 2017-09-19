@@ -3,19 +3,29 @@ import { categories } from 'utilities'
 
 const normalizedSubChildCategories = ( data = {} ) => {
   return data.subChild.reduce(
-    ( p, c ) => ( {
-      ...p,
-      subChildCategoriesById: {
-        ...p.subChildCategoriesById,
-        [ c.mainCategories ]: {
-          ...mocks.subChildCategories( {
-            name: c.mainCategories,
-            childCategory: data.mainCategories,
-          } ),
+    ( p, c ) => {
+      return {
+        ...p,
+        subChildCategoriesById: {
+          ...p.subChildCategoriesById,
+          [ c.mainCategories ]: {
+            ...mocks.subChildCategories(
+              data.hasOwnProperty( 'hasMPF' )
+                ? {
+                  name: c.mainCategories,
+                  childCategory: data.mainCategories,
+                  hasMPF: data.hasMPF,
+                }
+                : {
+                  name: c.mainCategories,
+                  childCategory: data.mainCategories,
+                }
+            ),
+          },
         },
-      },
-      subChildCategoryIds: [ ...p.subChildCategoryIds, c.mainCategories ],
-    } ),
+        subChildCategoryIds: [ ...p.subChildCategoryIds, c.mainCategories ],
+      }
+    },
     { subChildCategoriesById: {}, subChildCategoryIds: [] }
   )
 }

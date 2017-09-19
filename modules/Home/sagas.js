@@ -135,22 +135,25 @@ function* getSolutions() {
   yield put( solutionsAction.solutions.success( normalizedSolutions ) )
 }
 
+function* allTask() {
+  yield all( [
+    yield fork( getCaseStudies ),
+    yield fork( getCategories ),
+    yield fork( getContacts ),
+    yield fork( getCompanyProfile ),
+    yield fork( getContactUs ),
+    yield fork( getHouseCategories ),
+    yield fork( getServices ),
+    yield fork( getSolutionCategories ),
+    yield fork( getSolutions ),
+  ] )
+}
+
 function* watchInitHomeScreen() {
   while ( yield take( INIT_HOME_SCREEN ) ) {
     yield put( homeAction.request() )
 
-    yield all( [
-      yield fork( getCaseStudies ),
-      yield fork( getCategories ),
-      yield fork( getContacts ),
-      yield fork( getCompanyProfile ),
-      yield fork( getContactUs ),
-      yield fork( getHouseCategories ),
-      yield fork( getServices ),
-      yield fork( getSolutionCategories ),
-      yield fork( getSolutions ),
-    ] )
-
+    yield call( allTask )
     yield put( homeAction.success() )
   }
 }

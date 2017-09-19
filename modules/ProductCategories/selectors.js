@@ -25,6 +25,11 @@ const currentCategorieQuerySelector = createSelector(
   curr => curr.join( '>' )
 )
 
+const currentChildCategorieQuerySelector = createSelector(
+  currentCategoriesSelector,
+  curr => curr.slice( 0, 2 ).join( '>' )
+)
+
 const childCategoriesNameSelector = createSelector(
   currentCategoriesSelector,
   childCategoriesByIdSelector,
@@ -56,6 +61,7 @@ export {
   childCategoryIdsSelector,
   currentCategorieQuerySelector,
   currentCategoriesSelector,
+  currentChildCategorieQuerySelector,
   isFetchingSelector,
   subChildCategoriesNameSelector,
   subChildCategoryIdsSelector,

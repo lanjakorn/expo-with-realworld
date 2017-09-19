@@ -1,4 +1,4 @@
-import { call, fork, put, take } from 'redux-saga/effects'
+import { call, fork, put, select, take } from 'redux-saga/effects'
 import {
   ADD_FAQ,
   GET_FAQS_BY_PRODUCT,
@@ -12,6 +12,7 @@ import {
   getFaqsBySolutionCategory,
 } from './api'
 
+import { selectors as ProductCategoriesSelectors } from 'modules/ProductCategories'
 import {
   normalize as faqsNormalized,
   actions as faqsAction,
@@ -41,8 +42,11 @@ function* watchGetFaqsByProduct() {
 function* watchGetFaqsByProductCategory() {
   while ( true ) {
     const { productCategoryId } = yield take( GET_FAQS_BY_PRODUCT_CATEGORY )
+    const query = yield select(
+      ProductCategoriesSelectors.currentCategorieQuerySelector
+    )
     yield put( faqsAction.faqs.request() )
-    const faqs = yield call( getFaqsByProductCategory, productCategoryId )
+    const faqs = yield call( getFaqsByProductCategory, query )
     const normalizedFaqs = yield call(
       faqsNormalized.normalizedFaqs,
       filterSyncApp( faqs )

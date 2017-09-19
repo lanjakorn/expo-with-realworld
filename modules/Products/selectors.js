@@ -1,7 +1,10 @@
 import { createSelector } from 'reselect'
 import { faqsByIdSelector } from 'modules/Faqs/selectors'
 import { contactsByIdSelector } from 'modules/Contacts/selectors'
-import { currentCategorieQuerySelector } from 'modules/ProductCategories/selectors'
+import {
+  currentCategorieQuerySelector,
+  currentChildCategorieQuerySelector,
+} from 'modules/ProductCategories/selectors'
 import { currentSolutionCategorySelector } from 'modules/SolutionCategories/selectors'
 
 const currentProductOfProductCategorySelector = state =>
@@ -121,6 +124,22 @@ const faqOfSolutionCategorySelector = createSelector(
   }
 )
 
+// TODO: move to correct module
+const faqOfProductCategorySelector = createSelector(
+  currentChildCategorieQuerySelector,
+  faqsByIdSelector,
+  ( currentChildCategorieProduct, faqsMaster ) => {
+    return currentChildCategorieProduct
+      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
+        return faqsMaster[ c ].productCategories ===
+          currentChildCategorieProduct
+          ? { ...p, [ c ]: faqsMaster[ c ] }
+          : p
+      }, {} )
+      : {}
+  }
+)
+
 const contactOfProductFromProductCategorySelector = createSelector(
   contactIdsOfProductFromProductCategorySelector,
   contactsByIdSelector,
@@ -175,8 +194,10 @@ export {
   currentProductOfSolutionCategorySelector,
   faqIdsOfProductFromProductCategorySelector,
   faqIdsOfProductFromSolutionCategorySelector,
+  faqOfProductCategorySelector,
   faqOfProductFromProductCategorySelector,
   faqOfProductFromSolutionCategorySelector,
+  faqOfSolutionCategorySelector,
   getFirstContactOfProductFromProductCategorySelector,
   getFirstContactOfProductFromSolutionCategorySelector,
   isFetchingSelector,
@@ -187,5 +208,4 @@ export {
   productOfSolutionCategorySelector,
   productsByIdSelector,
   productsNameSelector,
-  faqOfSolutionCategorySelector,
 }
