@@ -6,7 +6,7 @@
       ".indexOn": ["solutionCategories", "categories"]
     },
     "faqs": {
-      ".indexOn": ["productId", "solutionCategoryId"]
+      ".indexOn": ["productId", "productCategories", "solutionCategoryId"]
     }
   }
 }
