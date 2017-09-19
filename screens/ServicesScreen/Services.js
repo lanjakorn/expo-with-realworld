@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
 import { object } from 'utilities'
 
@@ -58,45 +57,40 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Services = ( { isFetching, onPressServiceSelect, services } ) =>
+const Services = ( { onPressServiceSelect, services } ) =>
   <ScrollView>
     <View>
-      {!isFetching
-        ? Object.keys( services ).map( e =>
-          <TouchableOpacity
-            key={e}
-            onPress={() => onPressServiceSelect( e, services[ e ].title )}
-          >
-            <Card margin={0} backgroundColor={'white'}>
-              <View style={styles.searchListItemStyle}>
-                <Image
-                  key={`image-${ e }`}
-                  style={styles.backgroundImage}
-                  source={{
-                    uri: object.getFirstByKey( {
-                      item: services[ e ].urls,
-                      key: 'imgs',
-                    } ),
-                  }}
-                >
-                  <View stlye={styles.textService}>
-                    <Text style={styles.text} numberOfLines={1}>
-                      {services[ e ].title}
-                    </Text>
-                  </View>
-                </Image>
-              </View>
-            </Card>
-          </TouchableOpacity>
-        )
-        : <View style={{ flex: 1 }}>
-          <Spinner visible={true} />
-        </View>}
+      {Object.keys( services ).map( e =>
+        <TouchableOpacity
+          key={e}
+          onPress={() => onPressServiceSelect( e, services[ e ].title )}
+        >
+          <Card margin={0} backgroundColor={'white'}>
+            <View style={styles.searchListItemStyle}>
+              <Image
+                key={`image-${ e }`}
+                style={styles.backgroundImage}
+                source={{
+                  uri: object.getFirstByKey( {
+                    item: services[ e ].urls,
+                    key: 'imgs',
+                  } ),
+                }}
+              >
+                <View stlye={styles.textService}>
+                  <Text style={styles.text} numberOfLines={1}>
+                    {services[ e ].title}
+                  </Text>
+                </View>
+              </Image>
+            </View>
+          </Card>
+        </TouchableOpacity>
+      )}
     </View>
   </ScrollView>
 
 Services.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
   onPressServiceSelect: PropTypes.func.isRequired,
   services: PropTypes.object.isRequired,
 }

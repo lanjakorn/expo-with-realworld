@@ -10,6 +10,7 @@ import {
   StatusBar,
   Button,
   Platform,
+  Keyboard,
   Dimensions,
 } from 'react-native'
 import { InstantSearch } from 'react-instantsearch/native'
@@ -23,7 +24,10 @@ import {
   connectRange,
   connectCurrentRefinements,
 } from 'react-instantsearch/connectors'
+import { Colors } from 'constants'
+
 import { SearchHighlight, SearchSpinner } from '@components'
+import { Icon, SearchBar } from 'react-native-elements'
 
 import StarRating from 'react-native-star-rating'
 import { Dropdown } from 'react-native-material-dropdown'
@@ -69,17 +73,26 @@ const styles = StyleSheet.create( {
   },
   searchBox: {
     backgroundColor: 'white',
-    height: 40,
+    height: 28,
     borderWidth: 1,
-    padding: 10,
-    margin: 10,
-    flexGrow: 1,
-    ...Platform.select( {
-      ios: {
-        borderRadius: 5,
-      },
-      android: {},
-    } ),
+    // padding: 10,
+    borderRadius: 4,
+    marginTop: 30,
+    marginBottom: 6,
+    marginLeft: 12,
+    marginRight: 12,
+    fontSize: 15,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderColor: Colors.tintColor,
+    // flexGrow: 1,
+
+    // ...Platform.select( {
+    //   ios: {
+    //     borderRadius: 5,
+    //   },
+    //   android: {},
+    // } ),
   },
   itemContent: {
     paddingLeft: 15,
@@ -104,6 +117,35 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  searchBar: {
+    // marginLeft: 4,
+    // marginRight: 4,
+    alignItems: 'center',
+
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    backgroundColor: Colors.tintColor,
+    borderColor: Colors.tintColor,
+  },
+  insideSearchBar: {
+    // margin: 10,
+    padding: 0,
+    margin: 0,
+    height: 24,
+    alignItems: 'center',
+    textAlign: 'center',
+
+    justifyContent: 'center',
+
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    backgroundColor: Colors.darkTintColor,
+    borderColor: Colors.darkTintColor,
+    fontSize: 15,
   },
 } )
 class Home extends Component {
@@ -136,7 +178,7 @@ class Home extends Component {
           onSearchStateChange={this.onSearchStateChange}
         >
           <StatusBar backgroundColor="blue" barStyle="light-content" />
-          <ConnectedSearchBox />
+          <ConnectedSearchBox navigation={this.props.navigation} />
 
           <View style={styles.options}>
             <ConnectedStats />
@@ -159,21 +201,76 @@ Home.propTypes = {
 export default Home
 
 class SearchBox extends Component {
+  constructor( props ) {
+    super( props )
+    this.state = {
+      isTouchableDisabled: false,
+      searching: false,
+    }
+  }
+
+  showCancelButton = () => {
+    if ( this.state.searching ) {
+      return (
+        <Button
+          buttonStyle={styles.buttonCancel}
+          containerViewStyle={{
+            marginLeft: 12,
+            marginRight: 12,
+          }}
+          title="Cancel"
+          fontSize={14}
+          backgroundColor={Colors.tintColor}
+          onPress={() => this.pressCancelButton()}
+        />
+      )
+    }
+  }
+
+  pressCancelButton = () => {
+    Keyboard.dismiss()
+    console.log( this.props )
+    this.props.navigation.goBack( null )
+    //this.props.changeSearchText( '' )
+    this.setState( { searching: false } )
+    this.setState( { isTouchableDisabled: false } )
+  }
+
+  onSearchActive = () => {
+    console.log( 'qqq' )
+    this.setState( { searching: true } )
+    this.setState( { isTouchableDisabled: true } )
+  }
+
+  componentDidMount() {
+    console.log( this.refs )
+    this.refs.search_textinput_component.props.onFocus()
+  }
+
   render() {
     return (
-      <View style={styles.searchBoxContainer}>
+      <View>
         <SearchSpinner left={60} />
-        <TextInput
+        <SearchBar
+          lightTheme
+          ref="search_textinput_component"
           style={styles.searchBox}
           onChangeText={text => this.props.refine( text )}
           value={this.props.currentRefinement}
-          placeholder={'Search a product...'}
+          placeholder={'Search'}
           clearButtonMode={'always'}
-          underlineColorAndroid={'white'}
           spellCheck={false}
           autoCorrect={false}
           autoCapitalize={'none'}
+          keyboardType={'web-search'}
+          textAlign="center"
+          containerStyle={styles.searchBar}
+          inputStyle={styles.insideSearchBar}
+          icon={{ style: { marginTop: 20 } }}
+          onFocus={this.onSearchActive}
+          underlineColorAndroid={Colors.darkTintColor}
         />
+        {this.showCancelButton()}
       </View>
     )
   }
@@ -197,7 +294,6 @@ class Hits extends Component {
     const ds = new ListView.DataSource( {
       rowHasChanged: ( r1, r2 ) => r1 !== r2,
     } )
-    console.log( this.props.hits )
     const hits =
       this.props.hits.length > 0
         ? <View style={styles.items}>
@@ -214,7 +310,6 @@ class Hits extends Component {
 
   _renderRow = ( hit, sectionId, rowId ) =>
     <View style={styles.item} key={rowId}>
-      <Image style={{ height: 100, width: 100 }} source={{ uri: hit.image }} />
       <View style={styles.itemContent}>
         <Text style={styles.itemName}>
           <SearchHighlight
@@ -231,17 +326,8 @@ class Hits extends Component {
           />
         </Text>
         <Text style={styles.itemPrice}>
-          ${hit.price}
+          {hit.title}
         </Text>
-        <View style={styles.starRating}>
-          <StarRating
-            disabled={true}
-            maxStars={5}
-            rating={hit.rating}
-            starSize={15}
-            starColor="#FBAE00"
-          />
-        </View>
       </View>
     </View>
 
@@ -264,7 +350,7 @@ Hits.propTypes = {
 const ConnectedHits = connectInfiniteHits( Hits )
 const ConnectedStats = connectStats( ( { nbHits } ) =>
   <Text style={{ paddingLeft: 8 }}>
-    {nbHits} products found
+    {nbHits} found
   </Text>
 )
 

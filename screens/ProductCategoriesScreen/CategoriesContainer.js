@@ -2,6 +2,7 @@ import { compose, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ga } from 'services'
+import { withPreloader } from 'hocs'
 
 import {
   actions as CategoriesAction,
@@ -40,5 +41,6 @@ export default compose(
       } )
     },
   } ),
+  withPreloader,
   pure
 )( Categories )

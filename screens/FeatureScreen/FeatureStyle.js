@@ -6,6 +6,7 @@ export default StyleSheet.create( {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20,
+    marginBottom: 10,
   },
   featureDescription1: {
     marginTop: 10,

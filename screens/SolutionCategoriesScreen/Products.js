@@ -36,7 +36,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Faq = ( { dataSourceProducts, onPressSelectProduct } ) => {
+const Product = ( { dataSourceProducts, onPressSelectProduct } ) => {
   const renderProducts = ( { id, name, urls } ) => {
     return (
       <View style={styles.productContainer}>
@@ -72,9 +72,9 @@ const Faq = ( { dataSourceProducts, onPressSelectProduct } ) => {
     : <View />
 }
 
-Faq.propTypes = {
+Product.propTypes = {
   // dataSourceProducts: PropTypes.object,
   onPressSelectProduct: PropTypes.func.isRequired,
 }
 
-export default Faq
+export default Product

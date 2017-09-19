@@ -2,6 +2,7 @@ import { compose, onlyUpdateForKeys, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ga } from 'services'
+import { withPreloader } from 'hocs'
 
 import { actions as faqsAction } from 'modules/Faqs'
 import { actions as productsActions } from 'modules/Products'
@@ -59,5 +60,6 @@ export default compose(
     onPressContactUs: ( { navigation } ) => () => navigation.navigate( 'contactUs' ),
   } ),
   onlyUpdateForKeys( [ 'isFetching' ] ),
+  withPreloader,
   pure
 )( Solution )

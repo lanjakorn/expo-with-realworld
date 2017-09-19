@@ -2,6 +2,7 @@ import { compose, lifecycle, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ga } from 'services'
+import { withPreloader } from 'hocs'
 
 import {
   actions as serviceActions,
@@ -46,5 +47,6 @@ export default compose(
       this.props.actions.initServicesScreen()
     },
   } ),
+  withPreloader,
   pure
 )( Services )

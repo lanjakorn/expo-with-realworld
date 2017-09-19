@@ -27,12 +27,12 @@ const styles = StyleSheet.create( {
   },
   imageContainer: {
     alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 20,
   },
   image: {
-    height: 120,
-    width: 300,
-    //flex: 1,
-
+    height: 89,
+    width: 254,
     resizeMode: 'contain',
   },
   textTitle: {
@@ -150,7 +150,7 @@ class LoginForm extends Component {
         <View style={imageContainer}>
           <Image
             style={image}
-            source={require( '../../assets/images/ricoh-logo-white.png' )}
+            source={require( '../../assets/images/ricoh-logo-welcome.png' )}
           />
         </View>
         <Text style={textTitle}>

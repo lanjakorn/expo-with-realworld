@@ -2,6 +2,7 @@ import { compose, onlyUpdateForKeys, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ga } from 'services'
+import { withPreloader } from 'hocs'
 
 import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
 import { actions as solutionsActions } from 'modules/Solutions'
@@ -46,5 +47,6 @@ export default compose(
     },
   } ),
   onlyUpdateForKeys( [ 'isFetching' ] ),
+  withPreloader,
   pure
 )( HouseCategories )

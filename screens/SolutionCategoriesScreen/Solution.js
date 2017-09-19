@@ -1,6 +1,5 @@
 import React from 'react'
 import { View } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
 
 import {
@@ -20,7 +19,6 @@ import styles from './SolutionStyle'
 const Solution = ( {
   faqs,
   faqOnChange,
-  isFetching,
   onPressContactUs,
   onPressFaq,
   onPressSelectProduct,
@@ -28,63 +26,58 @@ const Solution = ( {
   solutionCategory: { description, title, urls, price: { max, min } },
   words: { maxPrice, minPrice },
 } ) =>
-  !isFetching
-    ? <View style={styles.container}>
-      <HeaderTitle
-        buttonOnPress={onPressContactUs}
-        buttonTitle={'Contact Us'}
-        containerStyle={styles.title}
-        textTitle={title}
-      />
-      <View style={styles.thumbnailView}>
-        {<Slider urls={urls} hasVideo />}
-      </View>
-      <TextDescriptionCard
-        containerstyle={styles.detailsView}
-        title={description}
-      />
-      <View style={styles.more}>
-        <ButtonRadiusOutlined
-          onPress={onPressContactUs}
-          style={{ marginRight: 5 }}
-          title={'Contact'}
-        />
-        <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
-      </View>
-      <HeaderSection
-        containerstyle={styles.products}
-        textTitle={'Products'}
-      />
-      <View>
-        <Products
-          products={products}
-          onPressSelectProduct={onPressSelectProduct}
-        />
-      </View>
-      <HeaderSection containerstyle={styles.price} textTitle={'Price'} />
-      <View
-        style={{
-          padding: 30,
-        }}
-      >
-        <Price
-          maxPrice={max}
-          maxPriceLable={maxPrice}
-          minPrice={min}
-          minPriceLable={minPrice}
-        />
-      </View>
-      <HeaderButtonSection
-        buttonOnPress={onPressFaq}
-        buttontitle={'Faq'}
-        containerstyle={styles.faq}
-        textTitle={'FAQ'}
-      />
-      <View style={styles.questions}>
-        <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
-      </View>
+  <View style={styles.container}>
+    <HeaderTitle
+      buttonOnPress={onPressContactUs}
+      buttonTitle={'Contact Us'}
+      containerStyle={styles.title}
+      textTitle={title}
+    />
+    <View style={styles.thumbnailView}>
+      {<Slider urls={urls} hasVideo />}
     </View>
-    : <Spinner visible={true} />
+    <TextDescriptionCard
+      containerstyle={styles.detailsView}
+      title={description}
+    />
+    <View style={styles.more}>
+      <ButtonRadiusOutlined
+        onPress={onPressContactUs}
+        style={{ marginRight: 5 }}
+        title={'Contact'}
+      />
+      <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
+    </View>
+    <HeaderSection containerstyle={styles.products} textTitle={'Products'} />
+    <View>
+      <Products
+        products={products}
+        onPressSelectProduct={onPressSelectProduct}
+      />
+    </View>
+    <HeaderSection containerstyle={styles.price} textTitle={'Price'} />
+    <View
+      style={{
+        padding: 30,
+      }}
+    >
+      <Price
+        maxPrice={max}
+        maxPriceLable={maxPrice}
+        minPrice={min}
+        minPriceLable={minPrice}
+      />
+    </View>
+    <HeaderButtonSection
+      buttonOnPress={onPressFaq}
+      buttontitle={'Faq'}
+      containerstyle={styles.faq}
+      textTitle={'FAQ'}
+    />
+    <View style={styles.questions}>
+      <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
+    </View>
+  </View>
 
 Solution.propTypes = {
   solutionCategory: PropTypes.shape( {
@@ -102,7 +95,6 @@ Solution.propTypes = {
   } ),
   faqOnChange: PropTypes.func.isRequired,
   faqs: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
   onPressContactUs: PropTypes.func.isRequired,
   onPressFaq: PropTypes.func.isRequired,
   onPressSelectProduct: PropTypes.func.isRequired,

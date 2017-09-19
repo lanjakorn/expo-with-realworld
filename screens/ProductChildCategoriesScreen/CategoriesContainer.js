@@ -8,11 +8,15 @@ import {
   selectors,
 } from 'modules/ProductCategories'
 import Categories from './Categories'
+import { actions as faqsAction, selectors as faqsSelectors } from 'modules/Faqs'
 
 const { selectChildCategory } = CategoriesAction
+const { getFaqsByProductCategory } = faqsAction
+
 const mapDispatchToProps = dispatch => ( {
   actions: bindActionCreators(
     {
+      getFaqsByProductCategory,
       selectChildCategory,
     },
     dispatch
@@ -33,6 +37,7 @@ export default compose(
         eventLabel: childCategory,
       } )
       actions.selectChildCategory( childCategory, navigation )
+      actions.getFaqsByProductCategory( childCategory )
     },
   } ),
   pure

@@ -41,11 +41,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Homes = ( { navigation } ) => {
-  const onPressMenuSelect = ( { navigate, title } ) => {
-    navigation.navigate( navigate, { category: title } )
-  }
-
+const Homes = ( { onPressMenuSelect } ) => {
   const renderVerticalMenu = () =>
     Object.keys( verticalMenu ).map( e =>
       <TouchableOpacity
@@ -77,7 +73,7 @@ const Homes = ( { navigation } ) => {
 }
 
 Homes.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  onPressMenuSelect: PropTypes.func.isRequired,
 }
 
 export default Homes

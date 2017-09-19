@@ -2,18 +2,24 @@ import { compose, onlyUpdateForKeys, pure, withHandlers } from 'recompose'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ga } from 'services'
+import { withPreloader } from 'hocs'
 
+import { selectors as productsSelectors } from 'modules/Products'
 import {
-  actions as categoriesAction,
-  selectors as categoriesSelectors,
+  actions as productCategoriesAction,
+  selectors as productCategoriesSelectors,
 } from 'modules/ProductCategories'
+import { actions as faqsAction, selectors as faqsSelectors } from 'modules/Faqs'
 
-import Categories from './Categories'
+import CategoriesWithFaqs from './CategoriesWithFaqs'
 
-const { setCurrentCategories } = categoriesAction
+const { setCurrentCategories } = productCategoriesAction
+const { getFaqsByProductCategory } = faqsAction
+
 const mapDispatchToProps = dispatch => ( {
   actions: bindActionCreators(
     {
+      getFaqsByProductCategory,
       setCurrentCategories,
     },
     dispatch
@@ -21,7 +27,9 @@ const mapDispatchToProps = dispatch => ( {
 } )
 
 const mapStateToProps = state => ( {
-  categories: categoriesSelectors.subChildCategoriesNameSelector( state ),
+  isFetching: faqsSelectors.isFetchingSelector( state ),
+  categories: productCategoriesSelectors.subChildCategoriesNameSelector( state ),
+  faqs: productsSelectors.faqOfProductCategorySelector( state ),
 } )
 
 export default compose(
@@ -38,7 +46,20 @@ export default compose(
         childCategory: subChildCategory,
       } )
     },
+    onPressFaq: ( { navigation } ) => () =>
+      navigation.navigate( 'faq', {
+        module: 'ProductCategoris',
+        prevScreen: 'ProductCategorisScreen',
+      } ),
+    faqOnChange: () => question => {
+      ga.trackEvent( {
+        eventCategory: 'faqs',
+        eventAction: 'select faq of product category (MPF)',
+        eventLabel: question,
+      } )
+    },
   } ),
-  onlyUpdateForKeys( [ 'isFetching' ] ),
+  onlyUpdateForKeys( [ 'isFetching', 'faqs' ] ),
+  withPreloader,
   pure
-)( Categories )
+)( CategoriesWithFaqs )

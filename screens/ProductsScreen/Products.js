@@ -1,6 +1,5 @@
 import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay'
 import PropTypes from 'prop-types'
 import { object } from 'utilities'
 
@@ -12,7 +11,7 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Products = ( { isFetching, onPressSelectProduct, products } ) => {
+const Products = ( { onPressSelectProduct, products } ) => {
   const renderProducts = () =>
     Object.keys( products ).map( ( e, k ) =>
       <TouchableOpacity
@@ -32,19 +31,14 @@ const Products = ( { isFetching, onPressSelectProduct, products } ) => {
 
   return (
     <ScrollView>
-      {!isFetching
-        ? <View style={styles.container}>
-          {renderProducts()}
-        </View>
-        : <View style={{ flex: 1 }}>
-          <Spinner visible={true} />
-        </View>}
+      <View style={styles.container}>
+        {renderProducts()}
+      </View>
     </ScrollView>
   )
 }
 
 Products.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
   navigation: PropTypes.object.isRequired,
   onPressSelectProduct: PropTypes.func.isRequired,
   products: PropTypes.object.isRequired,

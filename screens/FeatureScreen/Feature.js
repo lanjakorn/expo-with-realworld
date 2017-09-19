@@ -6,21 +6,7 @@ import { TextDescriptionCard } from '@components'
 import styles from './FeatureStyle'
 
 // TODO: move instructions prop to firebase
-const FeatureScreen = ( { navigation, words, product: { features } } ) => {
-  const instructions = [
-    'Accusamus quam quis qui.',
-    'Harum nesciunt minus est placeat.',
-    'Cumque voluptate veritatis aperiam debitis.',
-    'Ut sit voluptatem expedita consectetur.',
-  ]
-
-  const renderInstruction = () =>
-    instructions.map( ( instruction, i ) =>
-      <Text key={i} style={{ fontSize: 14 }}>
-        {`${ i + 1 }.  ${ instruction }`}
-      </Text>
-    )
-
+const FeatureScreen = ( { navigation, product: { features } } ) => {
   const { title, imgUrl, description } = features[
     nav.getNavigationParam( navigation, 'index' )
   ]
@@ -44,12 +30,6 @@ const FeatureScreen = ( { navigation, words, product: { features } } ) => {
           textStyle={{ fontWeight: '500' }}
           title={description}
         />
-        <Text style={styles.featureInstructionTitle}>
-          {words.HowToUse}
-        </Text>
-        <View style={styles.featureInstructionContainer}>
-          {renderInstruction()}
-        </View>
       </View>
     </ScrollView>
   )
@@ -58,7 +38,6 @@ const FeatureScreen = ( { navigation, words, product: { features } } ) => {
 FeatureScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
   product: PropTypes.object.isRequired,
-  words: PropTypes.object.isRequired,
 }
 
 export default FeatureScreen
