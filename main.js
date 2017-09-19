@@ -1,22 +1,52 @@
-import './ReactotronConfig' // build android must comment
+// import './ReactotronConfig' // build android must comment
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
 import { cacheAssetsAsync } from 'utilities'
-import store from 'store' // build android must comment and turn off comment below
-// import store from 'store/configureStore.prod'
+// import store from 'store' // build android must comment and turn off comment below
+import store from 'store/configureStore.prod'
 
-import { StatusBar, View } from 'react-native'
+import { LayoutAnimation, StatusBar, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { MainNavigator } from 'navigation'
 import { getDefaultTab } from '@screens/SettingsScreen'
+import WelcomeScreen from '@screens/WelcomeScreen'
 import { firebase } from 'services'
+import { Colors } from 'constants'
 
 class AppContainer extends React.Component {
   constructor( props ) {
     super( props )
     this.state = {
       appIsReady: false,
+      isWelcome: true,
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(
+      () =>
+        this.setState( state => ( {
+          isWelcome: !state.isWelcome,
+        } ) ),
+      2000
+    )
+  }
+
+  componentWillUpdate() {
+    if ( this.state.appIsReady ) {
+      LayoutAnimation.configureNext( {
+        duration: 400,
+        create: {
+          type: LayoutAnimation.Types.linear,
+          property: LayoutAnimation.Properties.opacity,
+          springDamping: 0.7,
+        },
+        update: {
+          type: LayoutAnimation.Types.spring,
+          springDamping: 0.7,
+        },
+      } )
     }
   }
 
@@ -29,15 +59,16 @@ class AppContainer extends React.Component {
     try {
       await cacheAssetsAsync( {
         images: [
-          require( './assets/images/expo-wordmark.png' ),
           require( './assets/images/business-item-1.png' ),
           require( './assets/images/business-item-2.png' ),
-          require( './assets/images/vertical-menu-item.png' ),
+          require( './assets/images/expo-wordmark.png' ),
           require( './assets/images/house-menu-item.png' ),
-          require( './assets/images/ricoh-logo.png' ),
+          require( './assets/images/ricoh-logo-red.jpg' ),
+          require( './assets/images/ricoh-logo-welcome.png' ),
           require( './assets/images/ricoh-logo-white.png' ),
           require( './assets/images/ricoh-logo.png' ),
-          require( './assets/images/ricoh-logo-red.jpg' ),
+          require( './assets/images/ricoh-logo.png' ),
+          require( './assets/images/vertical-menu-item.png' ),
         ],
         fonts: [
           FontAwesome.font,
@@ -58,10 +89,25 @@ class AppContainer extends React.Component {
   render() {
     if ( this.state.appIsReady ) {
       return (
-        <View style={{ flex: 1 }}>
+        <View
+          style={
+            this.state.isWelcome
+              ? {
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: Colors.tintColor,
+              }
+              : {
+                flex: 1,
+              }
+          }
+        >
           <StatusBar barStyle="light-content" />
           <Provider store={store}>
-            <MainAppNavigator screenProps={'expo-with-realworld'} />
+            {this.state.isWelcome
+              ? <WelcomeScreen />
+              : <MainAppNavigator screenProps={'expo-with-realworld'} />}
           </Provider>
         </View>
       )
