@@ -13,6 +13,7 @@ import HeaderRootNavigation from './HeaderRootNavigation'
 import HeaderSection from './HeaderSection'
 import HeaderTitle from './HeaderTitle'
 import NoItemComponent from './NoItemComponent'
+import PreLoader from './PreLoader'
 import Search from './SearchContainer'
 import SearchHighlight from './SearchHighlight'
 import SearchSpinner from './SearchSpinner'
@@ -37,6 +38,7 @@ export {
   HeaderSection,
   HeaderTitle,
   NoItemComponent,
+  PreLoader,
   Search,
   SearchHighlight,
   SearchSpinner,

@@ -31,7 +31,6 @@ class SearchContainer extends Component {
   }
 
   onSearchActive = () => {
-    console.log( 'onSearchActive' )
     this.props.searching( true )
     this.props.navigation.navigate( 'mores' )
     this.setState( { isTouchableDisabled: true } )
