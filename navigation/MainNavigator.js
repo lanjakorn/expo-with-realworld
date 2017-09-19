@@ -100,6 +100,10 @@ const ServiceTab = StackNavigator( {
     screen: ServiceDetailScreen,
     path: '/:service',
   },
+  search: {
+    screen: SearchScreen,
+    path: '/',
+  },
 } )
 
 const MoresTab = StackNavigator( {
@@ -137,6 +141,10 @@ const MoresTab = StackNavigator( {
   },
   contactUs: {
     screen: ContactUsScreen,
+    path: '/',
+  },
+  search: {
+    screen: SearchScreen,
     path: '/',
   },
 } )
@@ -288,7 +296,7 @@ const navTracker = () => {
       onNavigationStateChange={( prevState, currentState ) => {
         const currentScreen = nav.getCurrentRouteName( currentState )
         const prevScreen = nav.getCurrentRouteName( prevState )
-        console.log( currentScreen, prevScreen )
+        // console.log( currentScreen, prevScreen )
         if ( prevScreen !== currentScreen ) {
           tracker.trackScreenView( currentScreen )
         }
