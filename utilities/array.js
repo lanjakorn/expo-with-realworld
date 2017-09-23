@@ -60,4 +60,26 @@ const getFirst = array => array.slice( 0, 1 )
    */
 const getLast = array => array.slice( -1 )
 
-export { deleteByIndex, findAndReplace, getFirst, getLast, pop, shift, splice }
+/**
+   * @param  {[array]}        array           | ['USD', 'JPY', 'GBP'] |
+   * @return {[array]}        array           | ['JPY', 'USD', 'GBP'] | shuffle array and return new array
+   */
+const shuffle = array => array.sort( () => Math.random() - 0.5 )
+
+/**
+   * @param  {[array]}        array           | ['USD', 'JPY', 'GBP'] |
+   * @return {[array]}        array           | ['JPY'] | suffer array and return only one element
+   */
+const random = array => array[ Math.floor( Math.random() * array.length ) ]
+
+export {
+  deleteByIndex,
+  findAndReplace,
+  getFirst,
+  getLast,
+  pop,
+  random,
+  shift,
+  shuffle,
+  splice,
+}
