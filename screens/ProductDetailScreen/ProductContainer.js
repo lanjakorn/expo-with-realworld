@@ -10,10 +10,10 @@ import { selectors as settingsSelectors } from 'modules/Settings'
 import Product from './Product'
 
 const mapStateToProps = state => ( {
-  faqsOfProductFromProductCategory: productsSelectors.faqOfProductFromProductCategorySelector(
+  faqsOfProductFromProductCategory: faqsSelectors.faqOfProductFromProductCategorySelector(
     state
   ),
-  faqsOfProductFromSolutionCategory: productsSelectors.faqOfProductFromSolutionCategorySelector(
+  faqsOfProductFromSolutionCategory: faqsSelectors.faqOfProductFromSolutionCategorySelector(
     state
   ),
   isFetchingFaqs: faqsSelectors.isFetchingSelector( state ),

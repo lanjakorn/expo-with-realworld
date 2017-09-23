@@ -13,7 +13,7 @@ const SearchScreen = ( { navigation } ) =>
   </View>
 
 SearchScreen.navigationOptions = ( { navigation } ) => ( {
-  header: null,
+  header: <View style={{ backgroundColor: Colors.tintColor }} />,
 } )
 
 SearchScreen.propTypes = {

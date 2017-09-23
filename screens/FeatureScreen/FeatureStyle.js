@@ -6,14 +6,7 @@ export default StyleSheet.create( {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20,
-    marginBottom: 10,
-  },
-  featureDescription1: {
-    marginTop: 10,
-  },
-  featureDescription2: {
-    marginTop: 10,
-    textAlign: 'justify',
+    marginBottom: 20,
   },
   featureImage: {
     height: 200,
@@ -25,17 +18,6 @@ export default StyleSheet.create( {
     marginBottom: 20,
     marginTop: 20,
     padding: 10,
-  },
-  featureInstruction: {
-    marginTop: 10,
-  },
-  featureInstructionContainer: {
-    paddingBottom: 15,
-    paddingTop: 15,
-  },
-  featureInstructionTitle: {
-    fontSize: 14,
-    marginTop: 15,
   },
   featureTitle: {
     fontSize: 16,

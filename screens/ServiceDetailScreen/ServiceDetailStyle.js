@@ -1,17 +1,6 @@
 import { StyleSheet } from 'react-native'
-import { Colors } from 'constants'
 
 export default StyleSheet.create( {
-  caseStudy: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 30,
-    backgroundColor: Colors.backgroundSection,
-  },
   container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
@@ -22,17 +11,6 @@ export default StyleSheet.create( {
     marginTop: 35,
     paddingLeft: 20,
     paddingRight: 20,
-  },
-  solution: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 25,
-    paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 30,
-    backgroundColor: Colors.backgroundSection,
   },
   thumbnailView: {
     alignItems: 'center',

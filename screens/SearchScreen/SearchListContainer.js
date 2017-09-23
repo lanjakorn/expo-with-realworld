@@ -8,7 +8,6 @@ import {
   TextInput,
   Image,
   StatusBar,
-  Button,
   Platform,
   Keyboard,
   Dimensions,
@@ -27,7 +26,7 @@ import {
 import { Colors } from 'constants'
 
 import { SearchHighlight, SearchSpinner } from '@components'
-import { Icon, SearchBar } from 'react-native-elements'
+import { Button, Icon, SearchBar } from 'react-native-elements'
 
 import StarRating from 'react-native-star-rating'
 import { Dropdown } from 'react-native-material-dropdown'
@@ -85,6 +84,7 @@ const styles = StyleSheet.create( {
     paddingLeft: 12,
     paddingRight: 12,
     borderColor: Colors.tintColor,
+    width: Dimensions.get( 'window' ).width - 25,
     // flexGrow: 1,
 
     // ...Platform.select( {
@@ -121,8 +121,9 @@ const styles = StyleSheet.create( {
   searchBar: {
     // marginLeft: 4,
     // marginRight: 4,
-    alignItems: 'center',
 
+    width: Dimensions.get( 'window' ).width,
+    alignItems: 'center',
     marginTop: 0,
     marginBottom: 0,
     padding: 0,
@@ -146,6 +147,22 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.darkTintColor,
     borderColor: Colors.darkTintColor,
     fontSize: 15,
+  },
+  buttonCancel: {
+    padding: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  insideTouchableView: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    width: Dimensions.get( 'window' ).width - 40,
+  },
+  altTouchableView: {
+    width: Dimensions.get( 'window' ).width * 0.8 - 20,
+    //justifyContent: 'flex-start',
   },
 } )
 class Home extends Component {
@@ -217,6 +234,15 @@ class SearchBox extends Component {
           containerViewStyle={{
             marginLeft: 12,
             marginRight: 12,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+          }}
+          textStyle={{
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
           title="Cancel"
           fontSize={14}
@@ -229,32 +255,31 @@ class SearchBox extends Component {
 
   pressCancelButton = () => {
     Keyboard.dismiss()
-    console.log( this.props )
     this.props.navigation.goBack( null )
     //this.props.changeSearchText( '' )
-    this.setState( { searching: false } )
-    this.setState( { isTouchableDisabled: false } )
+    this.setState( { isTouchableDisabled: false, searching: false } )
   }
 
   onSearchActive = () => {
-    console.log( 'qqq' )
-    this.setState( { searching: true } )
-    this.setState( { isTouchableDisabled: true } )
+    this.setState( { isTouchableDisabled: true, searching: true } )
   }
 
   componentDidMount() {
-    console.log( this.refs )
-    this.refs.search_textinput_component.props.onFocus()
+    //this.refs.search_textinput_component.props.focus()
   }
 
   render() {
     return (
-      <View>
+      <View style={{ flexDirection: 'row', backgroundColor: Colors.tintColor }}>
         <SearchSpinner left={60} />
         <SearchBar
           lightTheme
-          ref="search_textinput_component"
-          style={styles.searchBox}
+          // ref="search_textinput_component"
+          autoFocus={true}
+          style={[
+            styles.searchBox,
+            this.state.searching && styles.altTouchableView,
+          ]}
           onChangeText={text => this.props.refine( text )}
           value={this.props.currentRefinement}
           placeholder={'Search'}
@@ -264,13 +289,46 @@ class SearchBox extends Component {
           autoCapitalize={'none'}
           keyboardType={'web-search'}
           textAlign="center"
-          containerStyle={styles.searchBar}
+          containerStyle={[
+            styles.searchBar,
+            this.state.searching && styles.altTouchableView,
+          ]}
           inputStyle={styles.insideSearchBar}
           icon={{ style: { marginTop: 20 } }}
           onFocus={this.onSearchActive}
           underlineColorAndroid={Colors.darkTintColor}
         />
-        {this.showCancelButton()}
+        <Button
+          buttonStyle={{
+            padding: 0,
+            margin: 0,
+          }}
+          style={{
+            padding: 0,
+            margin: 0,
+          }}
+          // containerViewStyle={{
+          //   marginLeft: 12,
+          //   marginRight: 12,
+          //   width: 70,
+          //   flexDirection: 'row',
+          // }}
+          containerViewStyle={{
+            marginTop: 25,
+            marginRight: 0,
+            marginLeft: 10,
+            padding: 10,
+
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          title="Cancel"
+          fontSize={14}
+          backgroundColor={Colors.tintColor}
+          underlayColor={Colors.tintColor}
+          onPress={() => this.pressCancelButton()}
+        />
       </View>
     )
   }

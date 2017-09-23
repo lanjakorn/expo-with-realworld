@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { ga } from 'services'
 import { withPreloader } from 'hocs'
 
-import { selectors as productsSelectors } from 'modules/Products'
 import {
   actions as productCategoriesAction,
   selectors as productCategoriesSelectors,
@@ -29,7 +28,7 @@ const mapDispatchToProps = dispatch => ( {
 const mapStateToProps = state => ( {
   isFetching: faqsSelectors.isFetchingSelector( state ),
   categories: productCategoriesSelectors.subChildCategoriesNameSelector( state ),
-  faqs: productsSelectors.faqOfProductCategorySelector( state ),
+  faqs: faqsSelectors.faqOfProductCategorySelector( state ),
 } )
 
 export default compose(
@@ -48,8 +47,8 @@ export default compose(
     },
     onPressFaq: ( { navigation } ) => () =>
       navigation.navigate( 'faq', {
-        module: 'ProductCategoris',
-        prevScreen: 'ProductCategorisScreen',
+        module: 'productCategories',
+        prevScreen: 'productCategorisScreen',
       } ),
     faqOnChange: () => question => {
       ga.trackEvent( {

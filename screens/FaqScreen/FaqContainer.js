@@ -8,6 +8,9 @@ import {
   selectors as faqsSelectors,
   validate,
 } from 'modules/Faqs'
+
+import { selectors as authSelector } from 'modules/Auth'
+import { selectors as productCategoriesSelectors } from 'modules/ProductCategories'
 import { selectors as productsSelectors } from 'modules/Products'
 import { selectors as settingsSelectors } from 'modules/Settings'
 import { selectors as solutionCategoriesSelector } from 'modules/SolutionCategories'
@@ -15,7 +18,17 @@ import { selectors as solutionCategoriesSelector } from 'modules/SolutionCategor
 import strategyNav from './strategyNav'
 import Faq from './Faq'
 
+const { profileSelector } = authSelector
 const { addFaq } = faqsActions
+const { isAddFetchingSelector } = faqsSelectors
+const { currentChildCategorieQuerySelector } = productCategoriesSelectors
+const {
+  currentProductOfProductCategorySelector,
+  currentProductOfSolutionCategorySelector,
+} = productsSelectors
+const { getWordsByLangSelector } = settingsSelectors
+const { currentSolutionCategorySelector } = solutionCategoriesSelector
+
 const mapDispatchToProps = dispatch => ( {
   actions: bindActionCreators(
     {
@@ -26,17 +39,13 @@ const mapDispatchToProps = dispatch => ( {
 } )
 
 const mapStateToProps = state => ( {
-  isAddFetching: faqsSelectors.isAddFetchingSelector( state ),
-  productIdOfProductCategory: productsSelectors.currentProductOfProductCategorySelector(
-    state
-  ),
-  productIdOfSolutionCategory: productsSelectors.currentProductOfSolutionCategorySelector(
-    state
-  ),
-  solutionCategoryId: solutionCategoriesSelector.currentSolutionCategorySelector(
-    state
-  ),
-  words: settingsSelectors.getWordsByLangSelector( state ),
+  isAddFetching: isAddFetchingSelector( state ),
+  productCategories: currentChildCategorieQuerySelector( state ),
+  productIdOfProductCategory: currentProductOfProductCategorySelector( state ),
+  productIdOfSolutionCategory: currentProductOfSolutionCategorySelector( state ),
+  profile: profileSelector( state ),
+  solutionCategoryId: currentSolutionCategorySelector( state ),
+  words: getWordsByLangSelector( state ),
 } )
 
 export default compose(
@@ -63,25 +72,28 @@ export default compose(
     ],
     onPressAddFaq: ( {
       actions,
+      productCategories,
       productId,
       question,
       setEnableButton,
       setSubmissionError,
       solutionCategoryId,
       titleQuestion,
+      profile,
     } ) => () => {
       const faqModle = {
+        productCategories,
         productId,
-        solutionCategoryId,
         question,
+        solutionCategoryId,
         titleQuestion,
+        userId: profile.id,
         answer: '',
         syncApp: false,
       }
 
       const validated = validateForm.validate( faqModle, validate )
       setSubmissionError( { ...validated, visit: true } )
-
       if ( validated.pass ) {
         actions.addFaq( faqModle )
         setEnableButton( false )

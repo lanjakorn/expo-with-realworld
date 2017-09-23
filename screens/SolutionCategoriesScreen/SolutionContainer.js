@@ -5,14 +5,15 @@ import { ga } from 'services'
 import { withPreloader } from 'hocs'
 
 import { actions as productsAction } from 'modules/Products'
+import { selectors as caseStudiesSelectors } from 'modules/CaseStudies'
+import { selectors as faqsSelectors } from 'modules/Faqs'
+import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
+import { selectors as productsSelectors } from 'modules/Products'
+import { selectors as settingsSelectors } from 'modules/Settings'
 import {
   actions as solutionsActions,
   selectors as solutionsSelectors,
 } from 'modules/Solutions'
-import { selectors as caseStudiesSelectors } from 'modules/CaseStudies'
-import { selectors as houseCategoriesSelectors } from 'modules/HouseCategories'
-import { selectors as productsSelectors } from 'modules/Products'
-import { selectors as settingsSelectors } from 'modules/Settings'
 import { selectors as solutionCategoriesSelectors } from 'modules/SolutionCategories'
 
 import Solution from './Solution'
@@ -34,7 +35,7 @@ const mapStateToProps = state => ( {
   currentSolutionCategory: houseCategoriesSelectors.currentHouseCategorySelector(
     state
   ),
-  faqs: productsSelectors.faqOfSolutionCategorySelector( state ),
+  faqs: faqsSelectors.faqOfSolutionCategorySelector( state ),
   isFetching: solutionCategoriesSelectors.isFetchingProductsAndFaqsSelector(
     state
   ),
