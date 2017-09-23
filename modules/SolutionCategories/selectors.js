@@ -1,8 +1,4 @@
 import { createSelector } from 'reselect'
-import {
-  faqsByIdSelector,
-  isFetchingSelector as isFetchingFaqsSelector,
-} from 'modules/Faqs/selectors'
 
 const currentSolutionCategorySelector = state =>
   state.solutionCategories.solutionCategory
@@ -21,6 +17,8 @@ const faqIdsOfSolutionCategorySelector = createSelector(
   item => item.faqs
 )
 
+const faqsByIdSelector = state => state.faqs.faqsById
+
 const faqOfSolutionCategorySelector = createSelector(
   faqIdsOfSolutionCategorySelector,
   faqsByIdSelector,
@@ -37,8 +35,8 @@ const faqOfSolutionCategorySelector = createSelector(
       : {}
 )
 
-// TODO: move selector to correct module
 const isFetchingProductsSelector = state => state.products.isFetching
+const isFetchingFaqsSelector = state => state.faqs.isFetching
 
 const isFetchingProductsAndFaqsSelector = createSelector(
   isFetchingProductsSelector,

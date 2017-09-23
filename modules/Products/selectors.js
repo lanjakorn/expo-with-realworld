@@ -1,10 +1,6 @@
 import { createSelector } from 'reselect'
-import { faqsByIdSelector } from 'modules/Faqs/selectors'
 import { contactsByIdSelector } from 'modules/Contacts/selectors'
-import {
-  currentCategorieQuerySelector,
-  currentChildCategorieQuerySelector,
-} from 'modules/ProductCategories/selectors'
+import { currentCategorieQuerySelector } from 'modules/ProductCategories/selectors'
 import { currentSolutionCategorySelector } from 'modules/SolutionCategories/selectors'
 
 const currentProductOfProductCategorySelector = state =>
@@ -81,65 +77,6 @@ const faqIdsOfProductFromSolutionCategorySelector = createSelector(
   item => ( item ? item.faqs : [] )
 )
 
-const faqOfProductFromProductCategorySelector = createSelector(
-  currentProductOfProductCategorySelector,
-  faqsByIdSelector,
-  ( currentProduct, faqsMaster ) => {
-    return currentProduct
-      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
-        return faqsMaster[ c ].productId === currentProduct
-          ? { ...p, [ c ]: faqsMaster[ c ] }
-          : p
-      }, {} )
-      : {}
-  }
-)
-
-const faqOfProductFromSolutionCategorySelector = createSelector(
-  currentProductOfSolutionCategorySelector,
-  faqsByIdSelector,
-  ( currentSolutionCategory, faqsMaster ) => {
-    return currentSolutionCategory
-      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
-        return faqsMaster[ c ].productId === currentSolutionCategory
-          ? { ...p, [ c ]: faqsMaster[ c ] }
-          : p
-      }, {} )
-      : {}
-  }
-)
-
-// TODO: move to correct module
-const faqOfSolutionCategorySelector = createSelector(
-  currentSolutionCategorySelector,
-  faqsByIdSelector,
-  ( currentSolutionCategory, faqsMaster ) => {
-    return currentSolutionCategory
-      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
-        return faqsMaster[ c ].solutionCategoryId === currentSolutionCategory
-          ? { ...p, [ c ]: faqsMaster[ c ] }
-          : p
-      }, {} )
-      : {}
-  }
-)
-
-// TODO: move to correct module
-const faqOfProductCategorySelector = createSelector(
-  currentChildCategorieQuerySelector,
-  faqsByIdSelector,
-  ( currentChildCategorieProduct, faqsMaster ) => {
-    return currentChildCategorieProduct
-      ? Object.keys( faqsMaster ).reduce( ( p, c ) => {
-        return faqsMaster[ c ].productCategories ===
-          currentChildCategorieProduct
-          ? { ...p, [ c ]: faqsMaster[ c ] }
-          : p
-      }, {} )
-      : {}
-  }
-)
-
 const contactOfProductFromProductCategorySelector = createSelector(
   contactIdsOfProductFromProductCategorySelector,
   contactsByIdSelector,
@@ -194,10 +131,6 @@ export {
   currentProductOfSolutionCategorySelector,
   faqIdsOfProductFromProductCategorySelector,
   faqIdsOfProductFromSolutionCategorySelector,
-  faqOfProductCategorySelector,
-  faqOfProductFromProductCategorySelector,
-  faqOfProductFromSolutionCategorySelector,
-  faqOfSolutionCategorySelector,
   getFirstContactOfProductFromProductCategorySelector,
   getFirstContactOfProductFromSolutionCategorySelector,
   isFetchingSelector,
