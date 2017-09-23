@@ -1,198 +1,19 @@
 import React from 'react'
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import { Colors } from 'constants'
-import config from 'config'
-import { nav } from 'utilities'
-import { ga } from 'services'
-
+import { addNavigationHelpers, TabNavigator } from 'react-navigation'
 import { Icon } from 'react-native-elements'
+import { Colors } from 'constants'
 
-import CompanyProfileScreen from '@screens/CompanyProfileScreen'
-import ContactScreen from '@screens/ContactScreen'
-import ContactUsScreen from '@screens/ContactUsScreen'
-import FaqScreen from '@screens/FaqScreen'
-import FeatureScreen from '@screens/FeatureScreen'
-import HomeScreen from '@screens/HomeScreen'
-import HouseCategoriesScreen from '@screens/HouseCategoriesScreen'
-import HouseScreen from '@screens/HouseScreen'
-import LoginScreen from '@screens/LoginScreen'
-import MoresScreen from '@screens/MoresScreen'
-import PostsScreen from '@screens/PostsScreen'
-import ProductCategoriesScreen from '@screens/ProductCategoriesScreen'
-import ProductChildCategoriesScreen from '@screens/ProductChildCategoriesScreen'
-import ProductDetailScreen from '@screens/ProductDetailScreen'
-import ProductsScreen from '@screens/ProductsScreen'
-import ProductSubChildCategoriesScreen from '@screens/ProductSubChildCategoriesScreen'
-import SearchScreen from '@screens/SearchScreen'
-import ServiceDetailScreen from '@screens/ServiceDetailScreen'
-import ServicesScreen from '@screens/ServicesScreen'
-import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
-import SolutionScreen from '@screens/SolutionScreen'
+import {
+  HomeTab,
+  HouseTab,
+  MoresTab,
+  ProductsTab,
+  ServiceTab,
+} from './TabNavigator'
 
-const HomeTab = StackNavigator( {
-  homes: {
-    screen: HomeScreen,
-    path: '/',
-  },
-  promotions: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  companyProfiles: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
+import TabBar from './TabBar'
 
-const HouseTab = StackNavigator( {
-  houses: {
-    screen: HouseScreen,
-    path: '/',
-  },
-  houseCategories: {
-    screen: HouseCategoriesScreen,
-    path: '/:category',
-  },
-  solution: {
-    screen: SolutionScreen,
-    path: '/:solution',
-  },
-  solutionCategories: {
-    screen: SolutionCategoriesScreen,
-    path: '/:category',
-  },
-  contactUs: {
-    screen: ContactUsScreen,
-    path: '/',
-  },
-  productDetail: {
-    screen: ProductDetailScreen,
-    path: '/productdetail/:id:module',
-  },
-  feature: {
-    screen: FeatureScreen,
-    path: '/:index:module',
-  },
-  contact: {
-    screen: ContactScreen,
-    path: '/',
-  },
-  faq: {
-    screen: FaqScreen,
-    path: '/:module',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
-
-const ServiceTab = StackNavigator( {
-  services: {
-    screen: ServicesScreen,
-    path: '/',
-  },
-  serviceDetail: {
-    screen: ServiceDetailScreen,
-    path: '/:service',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
-
-const MoresTab = StackNavigator( {
-  mores: {
-    screen: MoresScreen,
-    path: '/:module',
-  },
-  login: {
-    screen: LoginScreen,
-    path: '/',
-  },
-  promotions: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  companyProfiles: {
-    screen: CompanyProfileScreen,
-    path: '/',
-  },
-  caseStudies: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  newsLetters: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  apps: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  touchs: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  contactUs: {
-    screen: ContactUsScreen,
-    path: '/',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
-
-const ProductsTab = StackNavigator( {
-  productCategories: {
-    screen: ProductCategoriesScreen,
-    path: '/',
-  },
-  productChildCategories: {
-    screen: ProductChildCategoriesScreen,
-    path: '/:category',
-  },
-  productSubChildCategories: {
-    screen: ProductSubChildCategoriesScreen,
-    path: '/:childCategory',
-  },
-  products: {
-    screen: ProductsScreen,
-    path: '/:childCategory',
-  },
-  productDetail: {
-    screen: ProductDetailScreen,
-    path: '/productdetail/:name',
-  },
-  feature: {
-    screen: FeatureScreen,
-    path: '/:index:module',
-  },
-  contactUs: {
-    screen: ContactUsScreen,
-    path: '/',
-  },
-  faq: {
-    screen: FaqScreen,
-    path: '/:module',
-  },
-  contact: {
-    screen: ContactScreen,
-    path: '/',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
-
-const TabNav = TabNavigator(
+const Nav = TabNavigator(
   {
     homes: {
       screen: HomeTab,
@@ -218,7 +39,7 @@ const TabNav = TabNavigator(
           />,
       },
     },
-    products: {
+    productCategories: {
       screen: ProductsTab,
       navigationOptions: {
         tabBarLabel: 'Products',
@@ -260,6 +81,8 @@ const TabNav = TabNavigator(
     },
   },
   {
+    tabBarComponent: ( { jumpToIndex, ...props } ) =>
+      <TabBar jumpToIndex={jumpToIndex} {...props} />,
     tabBarOptions: {
       activeTintColor: Colors.tintColor,
       showLabel: false,
@@ -289,20 +112,7 @@ const TabNav = TabNavigator(
   }
 )
 
-const navTracker = () => {
-  const tracker = new ga.Tracker( config.ga, config.app.name, config.app.version )
-  return (
-    <TabNav
-      onNavigationStateChange={( prevState, currentState ) => {
-        const currentScreen = nav.getCurrentRouteName( currentState )
-        const prevScreen = nav.getCurrentRouteName( prevState )
-        // console.log( currentScreen, prevScreen )
-        if ( prevScreen !== currentScreen ) {
-          tracker.trackScreenView( currentScreen )
-        }
-      }}
-    />
-  )
-}
+const NavTracker = ( { dispatch, nav } ) =>
+  <Nav navigation={addNavigationHelpers( { dispatch, state: nav } )} />
 
-export default navTracker
+export { Nav, NavTracker }

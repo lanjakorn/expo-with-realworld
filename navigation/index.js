@@ -1,4 +1,3 @@
-import MainNavigator from './MainNavigator'
-import TabNavigator from './TabNavigator'
+import * as MainNavigator from './MainNavigator'
 
-export { MainNavigator, TabNavigator }
+export { MainNavigator }

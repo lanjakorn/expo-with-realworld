@@ -1,194 +1,205 @@
-import React from 'react'
-import { Platform } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation'
-import Colors from 'constants/Colors'
+import { StackNavigator } from 'react-navigation'
+import { nav } from 'utilities'
 
-import { Icon } from 'react-native-elements'
-
+import CompanyProfileScreen from '@screens/CompanyProfileScreen'
+import ContactScreen from '@screens/ContactScreen'
+import ContactUsScreen from '@screens/ContactUsScreen'
+import FaqScreen from '@screens/FaqScreen'
+import FeatureScreen from '@screens/FeatureScreen'
+import HomeScreen from '@screens/HomeScreen'
+import HouseCategoriesScreen from '@screens/HouseCategoriesScreen'
+import HouseScreen from '@screens/HouseScreen'
+import LoginScreen from '@screens/LoginScreen'
+import MoresScreen from '@screens/MoresScreen'
+import PostsScreen from '@screens/PostsScreen'
 import ProductCategoriesScreen from '@screens/ProductCategoriesScreen'
 import ProductChildCategoriesScreen from '@screens/ProductChildCategoriesScreen'
-import HomeScreen from '@screens/HomeScreen'
+import ProductDetailScreen from '@screens/ProductDetailScreen'
+import ProductsScreen from '@screens/ProductsScreen'
+import ProductSubChildCategoriesScreen from '@screens/ProductSubChildCategoriesScreen'
 import SearchScreen from '@screens/SearchScreen'
-import SettingsScreen from '@screens/SettingsScreen'
+import ServiceDetailScreen from '@screens/ServiceDetailScreen'
+import ServicesScreen from '@screens/ServicesScreen'
+import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
+import SolutionScreen from '@screens/SolutionScreen'
 
 const HomeTab = StackNavigator( {
-  home: {
+  homes: {
     screen: HomeScreen,
     path: '/',
   },
-} )
-
-const CategoriesTab = StackNavigator( {
-  categories: {
-    screen: ProductCategoriesScreen,
-    path: '/',
+  promotions: {
+    screen: PostsScreen,
+    path: '/:category',
   },
-  childCategories: {
-    screen: ProductChildCategoriesScreen,
-    path: '/childcategories/name',
+  companyProfiles: {
+    screen: PostsScreen,
+    path: '/:category',
   },
-} )
-
-const ProductsTab = StackNavigator( {
-  productc: {
-    screen: ProductCategoriesScreen,
-    path: '/',
-  },
-} )
-
-const SearchTab = StackNavigator( {
   search: {
     screen: SearchScreen,
     path: '/',
   },
 } )
 
-const SettingsTab = StackNavigator( {
-  settings: {
-    screen: SettingsScreen.SettingsScreen,
+const HouseTab = StackNavigator( {
+  houses: {
+    screen: HouseScreen,
     path: '/',
   },
-  defaultTabSetting: {
-    screen: SettingsScreen.DefaultTabSetting,
+  houseCategories: {
+    screen: HouseCategoriesScreen,
+    path: '/:category',
   },
-  readabilitySetting: {
-    screen: SettingsScreen.ReadabilitySetting,
+  solution: {
+    screen: SolutionScreen,
+    path: '/:solution',
   },
-  regionSetting: {
-    screen: SettingsScreen.RegionSetting,
+  solutionCategories: {
+    screen: SolutionCategoriesScreen,
+    path: '/:category',
   },
-  sourcesSetting: {
-    screen: SettingsScreen.SourcesSetting,
+  contactUs: {
+    screen: ContactUsScreen,
+    path: '/',
+  },
+  productDetail: {
+    screen: ProductDetailScreen,
+    path: '/productdetail/:id:module',
+  },
+  feature: {
+    screen: FeatureScreen,
+    path: '/:index:module',
+  },
+  contact: {
+    screen: ContactScreen,
+    path: '/',
+  },
+  faq: {
+    screen: FaqScreen,
+    path: '/:module',
+  },
+  search: {
+    screen: SearchScreen,
+    path: '/',
   },
 } )
 
-const TabNav = TabNavigator(
-  {
-    home: {
-      screen: HomeTab,
-      navigationOptions: {
-        tabBarLabel: 'Home',
-        tabBarIcon: ( { tintColor, focused } ) =>
-          <Icon
-            name={'home'}
-            size={28}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
-      },
-    },
-    house: {
-      screen: CategoriesTab,
-      path: '/',
-      navigationOptions: {
-        tabBarLabel: 'Ricoh House',
-        tabBarIcon: ( { tintColor, focused } ) =>
-          <Icon
-            name={'dashboard'}
-            size={25}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
-      },
-    },
-    products: {
-      screen: ProductsTab,
-      navigationOptions: {
-        tabBarLabel: 'Products',
-        tabBarIcon: ( { tintColor, focused } ) =>
-          <Icon
-            name={'md-cube'}
-            size={24}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-            type={'ionicon'}
-          />,
-      },
-    },
-    search: {
-      screen: SearchTab,
-      navigationOptions: {
-        tabBarLabel: 'Services',
-        tabBarIcon: ( { tintColor, focused } ) =>
-          <Icon
-            name={'tools'}
-            size={22}
-            type={'entypo'}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
-      },
-    },
-    more: {
-      screen: SettingsTab,
-      navigationOptions: {
-        tabBarLabel: 'More',
-        tabBarIcon: ( { tintColor, focused } ) =>
-          <Icon
-            name={'ios-more'}
-            size={35}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-            type={'ionicon'}
-            iconStyle={{ paddingTop: 4 }}
-          />,
-      },
-    },
+const ServiceTab = StackNavigator( {
+  services: {
+    screen: ServicesScreen,
+    path: '/',
   },
-  {
-    tabBarOptions: {
-      activeTintColor: Colors.tintColor,
-      showLabel: false,
-      showIcon: true,
-      indicatorStyle: {
-        backgroundColor: 'transparent',
-      },
-      labelStyle: {
-        fontSize: 12,
-      },
-      iconStyle: {
-        width: 24,
-        height: 24,
-      },
-      style: {
-        backgroundColor: 'white',
-        justifyContent: 'center',
-      },
-      tabBarIcon: ( { tintColor } ) => {
-        Colors.darkTintColor
-      },
-    },
-    lazy: true,
-    animationEnabled: true,
-    tabBarPosition: 'bottom',
-    initialRouteName: 'home',
-  }
+  serviceDetail: {
+    screen: ServiceDetailScreen,
+    path: '/:service',
+  },
+  search: {
+    screen: SearchScreen,
+    path: '/',
+  },
+} )
+
+const MoresTab = StackNavigator( {
+  mores: {
+    screen: MoresScreen,
+    path: '/:module',
+  },
+  login: {
+    screen: LoginScreen,
+    path: '/',
+  },
+  promotions: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  companyProfiles: {
+    screen: CompanyProfileScreen,
+    path: '/',
+  },
+  caseStudies: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  newsLetters: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  apps: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  touchs: {
+    screen: PostsScreen,
+    path: '/:category',
+  },
+  contactUs: {
+    screen: ContactUsScreen,
+    path: '/',
+  },
+  search: {
+    screen: SearchScreen,
+    path: '/',
+  },
+} )
+
+const ProductsTab = StackNavigator( {
+  productCategories: {
+    screen: ProductCategoriesScreen,
+    path: '/',
+  },
+  productChildCategories: {
+    screen: ProductChildCategoriesScreen,
+    path: '/:category',
+  },
+  productSubChildCategories: {
+    screen: ProductSubChildCategoriesScreen,
+    path: '/:childCategory',
+  },
+  products: {
+    screen: ProductsScreen,
+    path: '/:childCategory',
+  },
+  productDetail: {
+    screen: ProductDetailScreen,
+    path: '/productdetail/:name',
+  },
+  feature: {
+    screen: FeatureScreen,
+    path: '/:index:module',
+  },
+  contactUs: {
+    screen: ContactUsScreen,
+    path: '/',
+  },
+  faq: {
+    screen: FaqScreen,
+    path: '/:module',
+  },
+  contact: {
+    screen: ContactScreen,
+    path: '/',
+  },
+  search: {
+    screen: SearchScreen,
+    path: '/',
+  },
+} )
+
+HomeTab.router.getStateForAction = nav.navigateOnce(
+  HomeTab.router.getStateForAction
+)
+HouseTab.router.getStateForAction = nav.navigateOnce(
+  HouseTab.router.getStateForAction
+)
+MoresTab.router.getStateForAction = nav.navigateOnce(
+  MoresTab.router.getStateForAction
+)
+ProductsTab.router.getStateForAction = nav.navigateOnce(
+  ProductsTab.router.getStateForAction
+)
+ServiceTab.router.getStateForAction = nav.navigateOnce(
+  ServiceTab.router.getStateForAction
 )
 
-const MainNav = StackNavigator(
-  {
-    main: {
-      screen: TabNav,
-    },
-    defaultTabSetting: {
-      screen: SettingsScreen.DefaultTabSetting,
-    },
-    readabilitySetting: {
-      screen: SettingsScreen.ReadabilitySetting,
-    },
-    regionSetting: {
-      screen: SettingsScreen.RegionSetting,
-    },
-    sourcesSetting: {
-      screen: SettingsScreen.SourcesSetting,
-    },
-  },
-  {
-    navigationOptions: {
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: '#008CCA',
-      },
-      lazy: true,
-      tabBarVisible: false,
-    },
-    headerMode: 'screen',
-  }
-)
-
-export default TabNav
+export { HomeTab, HouseTab, MoresTab, ProductsTab, ServiceTab }
