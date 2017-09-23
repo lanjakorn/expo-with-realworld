@@ -1,10 +1,10 @@
-// import './ReactotronConfig' // build android must comment
+import './ReactotronConfig' // build android must comment
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
 import { cacheAssetsAsync } from 'utilities'
-// import store from 'store' // build android must comment and turn off comment below
-import store from 'store/configureStore.prod'
+import store from 'store' // build android must comment and turn off comment below
+// import store from 'store/configureStore.prod'
 
 import { LayoutAnimation, StatusBar, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
@@ -29,7 +29,7 @@ class AppContainer extends React.Component {
         this.setState( state => ( {
           isWelcome: !state.isWelcome,
         } ) ),
-      2000
+      1000
     )
   }
 
@@ -119,9 +119,12 @@ class AppContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     default_tab: state.settings.default_tab,
+    nav: state.nav,
   }
 }
 
-const MainAppNavigator = connect( mapStateToProps, getDefaultTab )( MainNavigator )
+const MainAppNavigator = connect( mapStateToProps, getDefaultTab )(
+  MainNavigator.NavTracker
+)
 
 Expo.registerRootComponent( AppContainer )
