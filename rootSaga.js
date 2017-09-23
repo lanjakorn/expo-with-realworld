@@ -1,4 +1,6 @@
 import { all } from 'redux-saga/effects'
+
+import { sagas as authSagas } from 'modules/Auth'
 import { sagas as categoriesSagas } from 'modules/ProductCategories'
 import { sagas as faqsSagas } from 'modules/Faqs'
 import { sagas as homeSagas } from 'modules/Home'
@@ -8,9 +10,10 @@ import { sagas as settingsSagas } from 'modules/Settings'
 
 export default function* rootSagas() {
   yield all( [
-    ...homeSagas,
+    ...authSagas,
     ...categoriesSagas,
     ...faqsSagas,
+    ...homeSagas,
     ...productsSagas,
     ...searchSagas,
     ...settingsSagas,

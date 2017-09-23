@@ -1,5 +1,10 @@
+import config from 'config'
+
+import { MainNavigator } from 'navigation'
+
 import { combineReducers } from 'redux'
 
+import { reducers as authReducer } from 'modules/Auth'
 import { reducers as caseStudiesReducer } from 'modules/CaseStudies'
 import { reducers as companyProfileReducer } from 'modules/CompanyProfile'
 import { reducers as contactsReducer } from 'modules/Contacts'
@@ -15,7 +20,30 @@ import { reducers as settingsReducer } from 'modules/Settings'
 import { reducers as solutionCategoriesReducer } from 'modules/SolutionCategories'
 import { reducers as solutionsReducer } from 'modules/Solutions'
 
+import { nav } from 'utilities'
+import { ga } from 'services'
+
+const tracker = new ga.Tracker( config.ga, config.app.name, config.app.version )
+
+const initialState = MainNavigator.Nav.router.getStateForAction(
+  MainNavigator.Nav.router.getActionForPathAndParams( 'homes' )
+)
+
+const navReducer = ( state = initialState, action ) => {
+  const nextState = MainNavigator.Nav.router.getStateForAction( action, state )
+
+  const currentScreen = nav.getCurrentRouteName( nextState )
+  const prevScreen = nav.getCurrentRouteName( state )
+
+  if ( prevScreen !== currentScreen ) {
+    tracker.trackScreenView( currentScreen )
+  }
+
+  return nextState || state
+}
+
 const rootReducer = combineReducers( {
+  ...authReducer,
   ...caseStudiesReducer,
   ...companyProfileReducer,
   ...contactsReducer,
@@ -30,6 +58,7 @@ const rootReducer = combineReducers( {
   ...settingsReducer,
   ...solutionCategoriesReducer,
   ...solutionsReducer,
+  nav: navReducer,
 } )
 
 export default rootReducer
