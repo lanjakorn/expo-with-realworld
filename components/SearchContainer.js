@@ -67,25 +67,26 @@ class SearchContainer extends Component {
 
   componentWillUpdate() {
     //LayoutAnimation.linear()
-    LayoutAnimation.configureNext( {
-      duration: 400,
-      create: {
-        type: LayoutAnimation.Types.linear,
-        property: LayoutAnimation.Properties.opacity,
-        springDamping: 0.7,
-      },
-      update: {
-        type: LayoutAnimation.Types.spring,
-        springDamping: 0.7,
-      },
-    } )
+    // LayoutAnimation.configureNext( {
+    //   duration: 400,
+    //   create: {
+    //     type: LayoutAnimation.Types.linear,
+    //     property: LayoutAnimation.Properties.opacity,
+    //     springDamping: 0.7,
+    //   },
+    //   update: {
+    //     type: LayoutAnimation.Types.spring,
+    //     springDamping: 0.7,
+    //   },
+    // } )
   }
 
   onSearchActive = () => {
     // this.props.searching( true )
+    Keyboard.dismiss()
     this.props.navigation.navigate( 'search' )
-    this.setState( { isTouchableDisabled: true } )
-    this.refs.search_textinput_component.focus()
+    // this.setState( { isTouchableDisabled: true } )
+    // this.refs.search_textinput_component.focus()
   }
 
   // componentDidMount() {
@@ -96,46 +97,46 @@ class SearchContainer extends Component {
   // }
   shouldComponentUpdate( nextProps ) {
     // console.log( nextProps )
-    return true
+    return false
   }
-  componentDidUpdate() {
-    console.log( 'isFocused', this.refs.search_textinput_component.isFocused() )
-    if ( !this.props.is_searching ) {
-      // console.log( this.props.is_searching )
-      //this.refs.search_textinput_component.focus()
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log( 'isFocused', this.refs.search_textinput_component.isFocused() )
+  //   if ( !this.props.is_searching ) {
+  //     // console.log( this.props.is_searching )
+  //     //this.refs.search_textinput_component.focus()
+  //   }
+  // }
 
-  pressCancelButton = () => {
-    this.props.searching( false )
-    Keyboard.dismiss()
-    // console.log(this.props.navigation)
-    this.props.navigation.goBack()
-    this.props.changeSearchText( '' )
-    this.setState( { isTouchableDisabled: false } )
-  }
+  // pressCancelButton = () => {
+  //   this.props.searching( false )
+  //   Keyboard.dismiss()
+  //   // console.log(this.props.navigation)
+  //   this.props.navigation.goBack()
+  //   this.props.changeSearchText( '' )
+  //   this.setState( { isTouchableDisabled: false } )
+  // }
 
-  showCancelButton = () => {
-    if ( this.props.is_searching ) {
-      return (
-        <Button
-          buttonStyle={styles.buttonCancel}
-          containerViewStyle={{
-            marginLeft: 12,
-            marginRight: 12,
-          }}
-          title="Cancel"
-          fontSize={14}
-          backgroundColor={Colors.tintColor}
-          onPress={() => this.pressCancelButton()}
-        />
-      )
-    }
-  }
+  // showCancelButton = () => {
+  //   if ( this.props.is_searching ) {
+  //     return (
+  //       <Button
+  //         buttonStyle={styles.buttonCancel}
+  //         containerViewStyle={{
+  //           marginLeft: 12,
+  //           marginRight: 12,
+  //         }}
+  //         title="Cancel"
+  //         fontSize={14}
+  //         backgroundColor={Colors.tintColor}
+  //         onPress={() => this.pressCancelButton()}
+  //       />
+  //     )
+  //   }
+  // }
 
-  onPriorityIconPress = () => {
-    this.props.changeSearchText( this.props.search_text + '!' )
-  }
+  // onPriorityIconPress = () => {
+  //   this.props.changeSearchText( this.props.search_text + '!' )
+  // }
 
   renderSearchIcon = () => {
     return (
@@ -145,17 +146,17 @@ class SearchContainer extends Component {
     )
   }
 
-  onSubmitEditingSearch = () => {
-    //this.props.searched( ( searchQuery = this.props.search_text ) )
-    this.props.searched( this.props.search_text )
-    this.props.changeSearchText( '' )
-    this.props.navigation.navigate( 'products' )
-    this.pressCancelButton()
-  }
+  // onSubmitEditingSearch = () => {
+  //   //this.props.searched( ( searchQuery = this.props.search_text ) )
+  //   this.props.searched( this.props.search_text )
+  //   this.props.changeSearchText( '' )
+  //   this.props.navigation.navigate( 'products' )
+  //   this.pressCancelButton()
+  // }
 
-  onSearchTextChange = text => {
-    this.props.changeSearchText( text )
-  }
+  // onSearchTextChange = text => {
+  //   this.props.changeSearchText( text )
+  // }
 
   render() {
     return (
@@ -166,21 +167,16 @@ class SearchContainer extends Component {
           onPress={this.onSearchActive}
         >
           <View ref="touchable_search" style={styles.touchableSearch}>
-            <View
-              style={[
-                styles.insideTouchableView,
-                this.props.is_searching && styles.altTouchableView,
-              ]}
-            >
+            <View style={[ styles.insideTouchableView ]}>
               {this.renderSearchIcon()}
 
               <TextInput
                 ref="search_textinput_component"
                 autoCorrect={false}
                 placeholderTextColor={Colors.placeHolderText}
-                value={this.props.search_text}
+                //value={this.props.search_text}
                 onChangeText={text => this.onSearchTextChange( text )}
-                onSubmitEditing={this.onSubmitEditingSearch}
+                //onSubmitEditing={this.onSubmitEditingSearch}
                 keyboardType={'web-search'}
                 onFocus={this.onSearchActive}
                 placeholder="Search"
@@ -190,7 +186,6 @@ class SearchContainer extends Component {
             </View>
           </View>
         </TouchableOpacity>
-        {this.showCancelButton()}
       </View>
     )
   }

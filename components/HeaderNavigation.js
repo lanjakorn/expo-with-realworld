@@ -47,17 +47,18 @@ const HeaderNavigation = ( { navigation, title } ) => {
       <View style={styles.container}>
         <View style={styles.leftSection}>
           <Icon
+            size={32}
             color={'white'}
+            name={'ios-arrow-back'}
+            type={'ionicon'}
+            underlayColor={Colors.tintColor}
+            onPress={() => {
+              navigation.goBack( null )
+            }}
             iconStyle={{
               backgroundColor: Colors.tintColor,
               textAlign: 'left',
               width: 50,
-            }}
-            name={'ios-arrow-back'}
-            size={32}
-            type={'ionicon'}
-            onPress={() => {
-              navigation.goBack( null )
             }}
           />
         </View>
@@ -68,17 +69,18 @@ const HeaderNavigation = ( { navigation, title } ) => {
         </View>
         <View style={styles.rightSection}>
           <Icon
+            size={28}
             color={'white'}
+            name={'ios-search'}
+            type={'ionicon'}
+            underlayColor={Colors.tintColor}
+            onPress={() => {
+              navigation.navigate( 'search', { module: 'search' } )
+            }}
             iconStyle={{
               backgroundColor: Colors.tintColor,
               textAlign: 'right',
               width: 50,
-            }}
-            name={'ios-search'}
-            size={28}
-            type={'ionicon'}
-            onPress={() => {
-              navigation.navigate( 'mores', { module: 'mores' } )
             }}
           />
         </View>

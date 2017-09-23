@@ -78,7 +78,7 @@ class Slider extends Component {
 
     return `https://www.youtube.com/embed/${ string.getYoutubeId(
       video
-    ) }?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0`
+    ) }?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0&`
   }
 
   render() {
@@ -119,6 +119,12 @@ class Slider extends Component {
                 source={{
                   uri: this.embedVideoLink(),
                 }}
+                //ref="player"
+                // html={`<iframe width="420" height="345" src="http://www.youtube.com/embed/wakvwe2Zyus?autoplay=1" frameborder="0" allowfullscreen></iframe>
+                // `}
+                //injectedJavaScript={'alert(document);'}
+                // javaScriptEnabled={true}
+                // javaScriptEnabledAndroid={true}
                 style={{
                   alignItems: 'center',
                   backgroundColor: 'black',
