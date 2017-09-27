@@ -1,8 +1,22 @@
 import { Image } from 'react-native'
 import { Asset, Font } from 'expo'
 
-export default function cacheAssetsAsync( { images = [], fonts = [] } ) {
-  return Promise.all( [ ...cacheImages( images ), ...cacheFonts( fonts ) ] )
+export default function cacheAssetsAsync( {
+  images = [],
+  fonts = [],
+  files = [],
+} ) {
+  return Promise.all( [
+    ...cacheImages( images ),
+    ...cacheFonts( fonts ),
+    ...cacheFiles( files ),
+  ] )
+}
+
+function cacheFiles( files ) {
+  return files.map( file => {
+    return Asset.fromModule( file ).downloadAsync()
+  } )
 }
 
 function cacheImages( images ) {
