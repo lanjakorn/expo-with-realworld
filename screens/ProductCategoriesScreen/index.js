@@ -21,7 +21,7 @@ CategoriesScreen.navigationOptions = ( { navigation } ) => ( {
   header: (
     <View style={{ backgroundColor: Colors.tintColor }}>
       <View style={{ marginTop: 24, height: 40 }}>
-        <Search navigation={navigation} navOnCancel={'house'} />
+        <Search navigation={navigation} navOnCancel={'products'} />
       </View>
     </View>
   ),

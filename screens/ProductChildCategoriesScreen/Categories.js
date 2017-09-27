@@ -7,7 +7,7 @@ import Category from './Category'
 
 const styles = StyleSheet.create( {
   container: {
-    marginTop: 10,
+    marginTop: 0,
   },
   textStyle: {
     fontSize: 20,

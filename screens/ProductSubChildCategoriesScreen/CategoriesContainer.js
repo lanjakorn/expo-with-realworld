@@ -53,7 +53,7 @@ export default compose(
     faqOnChange: () => question => {
       ga.trackEvent( {
         eventCategory: 'faqs',
-        eventAction: 'select faq of product category (MPF)',
+        eventAction: 'select faq of product category (MFP)',
         eventLabel: question,
       } )
     },

@@ -6,14 +6,12 @@ import PropTypes from 'prop-types'
 import {
   ButtonRadiusOutlined,
   CollapsibleFaqs,
-  HeaderButtonSection,
   HeaderTitle,
   Slider,
   TextDescriptionCard,
 } from '@components'
 
 import Feature from './Feature'
-import PriceText from './PriceText'
 import Pro from './Pro'
 import Tag from './Tag'
 import styles from './ProductStyle'
@@ -54,7 +52,6 @@ const renderFeatures = ( features, onPressFeature ) =>
     <View />
   </View>
 
-//TODO: strategy render component check by has MFP
 const ProductCard = props => {
   const {
     faqOnChange,
@@ -62,10 +59,9 @@ const ProductCard = props => {
     isFetchingFaqs,
     onPressContact,
     onPressContactUs,
-    onPressFaq,
     onPressFeature,
     words,
-    product: { name, description, features, isMFP, offer, pros, tags, urls },
+    product: { name, description, features, pros, tags, urls },
   } = props
 
   return (
@@ -83,18 +79,9 @@ const ProductCard = props => {
         containerstyle={styles.detailsView}
         title={description}
       />
-      {!isMFP
-        ? <View style={styles.price}>
-          <PriceText
-            price={offer.price}
-            style={styles.priceText}
-            words={words}
-          />
-        </View>
-        : <View />}
       {renderTags( tags )}
       {renderPros( pros, words )}
-      {!isMFP ? <View /> : features && renderFeatures( features, onPressFeature )}
+      {renderFeatures( features, onPressFeature )}
       <View style={styles.more}>
         <ButtonRadiusOutlined
           onPress={onPressContact}
@@ -103,18 +90,10 @@ const ProductCard = props => {
         />
         <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
       </View>
-      {!isMFP
-        ? <HeaderButtonSection
-          buttonOnPress={onPressFaq}
-          buttontitle={'Faq'}
-          containerstyle={styles.faq}
-          textTitle={'FAQ'}
-        />
-        : <View style={styles.questions}>
-          {isFetchingFaqs
-            ? <Spinner visible={true} />
-            : <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />}
-        </View>}
+      {<View style={styles.questions} />}
+      {isFetchingFaqs
+        ? <Spinner visible={true} />
+        : <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />}
     </View>
   )
 }
@@ -136,7 +115,6 @@ ProductCard.propTypes = {
   navigation: PropTypes.object.isRequired,
   onPressContact: PropTypes.func.isRequired,
   onPressContactUs: PropTypes.func.isRequired,
-  onPressFaq: PropTypes.func.isRequired,
   onPressFeature: PropTypes.func.isRequired,
   words: PropTypes.object.isRequired,
 }

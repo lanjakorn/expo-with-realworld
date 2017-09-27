@@ -17,7 +17,6 @@ export default StyleSheet.create( {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 25,
     paddingBottom: 30,
     paddingLeft: 20,
     paddingRight: 20,
@@ -27,6 +26,7 @@ export default StyleSheet.create( {
   more: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginBottom: 25,
     marginTop: 25,
     paddingLeft: 20,
     paddingRight: 20,

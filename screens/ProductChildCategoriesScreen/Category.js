@@ -18,7 +18,10 @@ const styles = StyleSheet.create( {
   thumbnailContainerStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 20,
+    paddingTop: 10,
   },
   thumbnailStyle: {
     height: 100,

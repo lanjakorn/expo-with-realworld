@@ -8,7 +8,7 @@ import {
   selectors,
 } from 'modules/ProductCategories'
 import Categories from './Categories'
-import { actions as faqsAction, selectors as faqsSelectors } from 'modules/Faqs'
+import { actions as faqsAction } from 'modules/Faqs'
 
 const { selectChildCategory } = CategoriesAction
 const { getFaqsByProductCategory } = faqsAction
