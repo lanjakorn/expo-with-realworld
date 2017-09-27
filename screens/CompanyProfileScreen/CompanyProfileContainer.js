@@ -1,4 +1,4 @@
-import { compose, pure } from 'recompose'
+import { compose, pure, withHandlers, withState } from 'recompose'
 import { connect } from 'react-redux'
 import { withPreloader } from 'hocs'
 
@@ -10,6 +10,12 @@ const mapStateToProps = state => ( {
   isFetching: companyProfileSelector.isFetchingSelector( state ),
 } )
 
-export default compose( connect( mapStateToProps ), withPreloader, pure )(
-  CompanyProfile
-)
+export default compose(
+  connect( mapStateToProps ),
+  withState( 'ready', 'setReady', false ),
+  withHandlers( {
+    setAlready: ( { setReady } ) => () => setReady( true ),
+  } ),
+  withPreloader,
+  pure
+)( CompanyProfile )
