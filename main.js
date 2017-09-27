@@ -1,10 +1,10 @@
-import './ReactotronConfig' // build android must comment
+// import './ReactotronConfig' // build android must comment
 import Expo, { AppLoading } from 'expo'
 import React from 'react'
 import { Provider, connect } from 'react-redux'
 import { cacheAssetsAsync } from 'utilities'
-import store from 'store' // build android must comment and turn off comment below
-// import store from 'store/configureStore.prod'
+// import store from 'store' // build android must comment and turn off comment below
+import store from 'store/configureStore.prod'
 
 import { LayoutAnimation, StatusBar, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
@@ -29,7 +29,7 @@ class AppContainer extends React.Component {
         this.setState( state => ( {
           isWelcome: !state.isWelcome,
         } ) ),
-      1000
+      2500
     )
   }
 
@@ -58,6 +58,7 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync( {
+        files: [ require( './assets/htmls/youtube.html' ) ],
         images: [
           require( './assets/images/business-item-1.png' ),
           require( './assets/images/business-item-2.png' ),
