@@ -10,11 +10,11 @@ const normalizedSubChildCategories = ( data = {} ) => {
           ...p.subChildCategoriesById,
           [ c.mainCategories ]: {
             ...mocks.subChildCategories(
-              data.hasOwnProperty( 'hasMPF' )
+              data.hasOwnProperty( 'isMFP' )
                 ? {
                   name: c.mainCategories,
                   childCategory: data.mainCategories,
-                  hasMPF: data.hasMPF,
+                  isMFP: data.isMFP,
                 }
                 : {
                   name: c.mainCategories,
