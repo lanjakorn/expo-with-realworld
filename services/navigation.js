@@ -8,7 +8,9 @@ import { MainNavigator } from 'navigation'
 const tracker = new Tracker( config.ga, config.app.name, config.app.version )
 
 const initialState = MainNavigator.Nav.router.getStateForAction(
-  MainNavigator.TabNav.router.getActionForPathAndParams( 'homes' )
+  MainNavigator.TabNav.router.getActionForPathAndParams(
+    config.app.initialRouteName
+  )
 )
 
 const navReducer = ( state = initialState, action ) => {
