@@ -58,7 +58,7 @@ class AppContainer extends React.Component {
   async _loadAssetsAsync() {
     try {
       await cacheAssetsAsync( {
-        files: [ require( './assets/htmls/youtube.html' ) ],
+        files: [ require( './assets/htmls/companyProfile.html' ) ],
         images: [
           require( './assets/images/business-item-1.png' ),
           require( './assets/images/business-item-2.png' ),
@@ -106,9 +106,11 @@ class AppContainer extends React.Component {
         >
           <StatusBar barStyle="light-content" />
           <Provider store={store}>
-            {this.state.isWelcome
-              ? <WelcomeScreen />
-              : <MainAppNavigator screenProps={'expo-with-realworld'} />}
+            {this.state.isWelcome ? (
+              <WelcomeScreen />
+            ) : (
+              <MainAppNavigator screenProps={'expo-with-realworld'} />
+            )}
           </Provider>
         </View>
       )
