@@ -1,17 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 import PropTypes from 'prop-types'
 
 import Colors from 'constants/Colors'
-
+const isIos = Platform.OS === 'ios'
+const isIphoneX = isIos && Dimensions.get( 'window' ).height === 812
 const styles = StyleSheet.create( {
   container: {
     flexDirection: 'row',
     height: 40,
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 24,
+    marginTop: isIphoneX ? 22 + 14 : 22,
   },
   leftSection: {
     alignItems: 'center',

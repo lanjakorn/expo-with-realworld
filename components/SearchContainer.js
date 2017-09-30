@@ -7,6 +7,7 @@ import {
   Dimensions,
   Keyboard,
   LayoutAnimation,
+  Platform,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -16,6 +17,8 @@ import { Button, Icon } from 'react-native-elements'
 import { actions as settingsActions } from 'modules/Settings'
 import { actions as searchScreenActions } from 'modules/Search'
 
+const isIos = Platform.OS === 'ios'
+const isIphoneX = isIos && Dimensions.get( 'window' ).height === 812
 const styles = StyleSheet.create( {
   SearchContainer: {
     alignItems: 'center',
@@ -160,32 +163,39 @@ class SearchContainer extends Component {
 
   render() {
     return (
-      <View style={styles.SearchContainer}>
-        <TouchableOpacity
-          style={{ elevation: 4 }}
-          // disabled={this.state.isTouchableDisabled}
-          onPress={this.onSearchActive}
-        >
-          <View ref="touchable_search" style={styles.touchableSearch}>
-            <View style={[ styles.insideTouchableView ]}>
-              {this.renderSearchIcon()}
+      <View
+        style={{
+          marginTop: isIphoneX ? 22 + 14 : 22,
+          height: 40,
+        }}
+      >
+        <View style={styles.SearchContainer}>
+          <TouchableOpacity
+            style={{ elevation: 4 }}
+            // disabled={this.state.isTouchableDisabled}
+            onPress={this.onSearchActive}
+          >
+            <View ref="touchable_search" style={styles.touchableSearch}>
+              <View style={[ styles.insideTouchableView ]}>
+                {this.renderSearchIcon()}
 
-              <TextInput
-                ref="search_textinput_component"
-                autoCorrect={false}
-                placeholderTextColor={Colors.placeHolderText}
-                //value={this.props.search_text}
-                onChangeText={text => this.onSearchTextChange( text )}
-                //onSubmitEditing={this.onSubmitEditingSearch}
-                keyboardType={'web-search'}
-                onFocus={this.onSearchActive}
-                placeholder="Search"
-                underlineColorAndroid={Colors.darkTintColor}
-                style={[ styles.customSearchTextInputStyle ]}
-              />
+                <TextInput
+                  ref="search_textinput_component"
+                  autoCorrect={false}
+                  placeholderTextColor={Colors.placeHolderText}
+                  //value={this.props.search_text}
+                  onChangeText={text => this.onSearchTextChange( text )}
+                  //onSubmitEditing={this.onSubmitEditingSearch}
+                  keyboardType={'web-search'}
+                  onFocus={this.onSearchActive}
+                  placeholder="Search"
+                  underlineColorAndroid={Colors.darkTintColor}
+                  style={[ styles.customSearchTextInputStyle ]}
+                />
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

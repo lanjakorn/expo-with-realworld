@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import { Colors } from 'constants'
-import { object, string } from 'utilities'
-
-import Swiper from 'react-native-swiper'
 import {
   Dimensions,
   Image,
@@ -12,6 +8,9 @@ import {
   View,
   WebView,
 } from 'react-native'
+import Swiper from 'react-native-swiper'
+import { object, url } from 'utilities'
+import { Colors } from 'constants'
 
 const { width } = Dimensions.get( 'window' )
 
@@ -70,16 +69,13 @@ const styles = {
 }
 
 class Slider extends Component {
-  embedVideoLink() {
-    const video = object.getFirstByKey( {
-      item: this.props.urls,
-      key: 'videos',
-    } )
-
-    return `https://www.youtube.com/embed/${ string.getYoutubeId(
-      video
-    ) }?version=3&enablejsapi=1&rel=0&autoplay=1&showinfo=0&controls=1&modestbranding=0`
-  }
+  videoLink = () =>
+    url.youtubeVideoUrl(
+      object.getFirstByKey( {
+        item: this.props.urls,
+        key: 'videos',
+      } )
+    )
 
   render() {
     {
@@ -117,7 +113,7 @@ class Slider extends Component {
             ? <View style={styles.slideVideo}>
               <WebView
                 source={{
-                  uri: this.embedVideoLink(),
+                  uri: this.videoLink(),
                 }}
                 style={{
                   alignItems: 'center',
