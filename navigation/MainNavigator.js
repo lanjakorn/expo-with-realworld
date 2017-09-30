@@ -1,3 +1,5 @@
+import config from 'config'
+
 import React from 'react'
 import { addNavigationHelpers, TabNavigator } from 'react-navigation'
 import { Icon } from 'react-native-elements'
@@ -108,7 +110,7 @@ const Nav = TabNavigator(
     lazy: true,
     animationEnabled: false,
     tabBarPosition: 'bottom',
-    initialRouteName: 'homes',
+    initialRouteName: config.app.initialRouteName,
   }
 )
 
