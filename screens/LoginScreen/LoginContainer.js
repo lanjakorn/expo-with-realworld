@@ -5,9 +5,12 @@ import {
   Text,
   TouchableOpacity,
   View,
+  LayoutAnimation,
   Dimensions,
 } from 'react-native'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements'
 // import { Actions } from 'react-native-router-flux'
 // import {
@@ -17,6 +20,8 @@ import { Button, FormInput, FormValidationMessage } from 'react-native-elements'
 //   passwordChanged,
 // } from '@actions/AuthActions'
 import { ButtonSpinner } from '@components'
+import { actions as authActions } from 'modules/Auth'
+
 const { width } = Dimensions.get( 'window' )
 
 const styles = StyleSheet.create( {
@@ -82,8 +87,9 @@ const styles = StyleSheet.create( {
 class LoginForm extends Component {
   state = {
     titleText: 'Sales Log In',
-    email: '',
+    email: 'mark@sellsuki.com',
     password: '',
+    passCode: '',
     error: '',
   }
 
@@ -98,12 +104,17 @@ class LoginForm extends Component {
   // }
 
   onButtonPress = () => {
-    // const { email, password } = this.state
-    // this.props.loginUser( { email, password } )
+    const { email } = this.state
+    this.props.actions.otpRequest( email )
   }
 
-  renderButton = () => {
-    const { loading } = this.props
+  onButtonPassCodePress = () => {
+    const { passCode } = this.state
+    this.props.actions.otpVerify( this.props.profile.email, passCode )
+  }
+
+  renderButton = word => {
+    const { isFetching, profile: { isValidEmail } } = this.props
     return (
       <View>
         <Button
@@ -118,18 +129,20 @@ class LoginForm extends Component {
             fontWeight: 'bold',
             textAlign: 'center',
           }}
-          title={'LOGIN'}
-          onPress={this.onButtonPress}
-          disabled={loading}
+          title={isFetching ? ' ' : word}
+          onPress={
+            isValidEmail ? this.onButtonPassCodePress : this.onButtonPress
+          }
+          disabled={isFetching}
         />
-        {loading &&
+        {isFetching &&
           <ButtonSpinner size="large" containerStyle={{ marginTop: -38 }} />}
       </View>
     )
   }
 
   render() {
-    const { email, password, titleText, error } = this.state
+    const { email, password, titleText, error, passCode } = this.state
     const {
       forgotPassContainer,
       forgotPassText,
@@ -139,6 +152,7 @@ class LoginForm extends Component {
       imageContainer,
       textTitle,
     } = styles
+    const { isValidEmail } = this.props.profile
     return (
       <View style={styles.screenContainer}>
         {
@@ -157,46 +171,35 @@ class LoginForm extends Component {
           {titleText}
         </Text>
         <View style={{ marginBottom: 15 }}>
-          <FormInput
-            inputStyle={{
-              width: width * 1 - 45,
-              color: 'white',
-            }}
-            autoCapitalize="none"
-            // color="white"
-            onChangeText={emailInput => this.setState( { email: emailInput } )}
-            value={email}
-            placeholder="Email Address"
-            placeholderTextColor="white"
-            underlineColorAndroid={'white'}
-          />
-        </View>
-        <View style={formInputContainer}>
-          <FormInput
-            //color="white"
-            inputStyle={{
-              width: width * 1 - 45,
-              color: 'white',
-            }}
-            autoCapitalize="none"
-            onChangeText={passwordInput =>
-              this.setState( { password: passwordInput } )}
-            value={password}
-            placeholder="Password"
-            placeholderTextColor="white"
-            secureTextEntry={true}
-            underlineColorAndroid={'white'}
-          />
-        </View>
-        <View style={forgotPassContainer}>
-          <TouchableOpacity>
-            <Text style={forgotPassText}>Forgot Password ?</Text>
-          </TouchableOpacity>
+          {isValidEmail
+            ? <FormInput
+              autoCapitalize="none"
+              onChangeText={value => this.setState( { passCode: value } )}
+              value={passCode}
+              placeholder="Enter Code"
+              placeholderTextColor="#bdc3c7"
+            />
+            : <FormInput
+              inputStyle={{
+                width: width * 1 - 45,
+                color: 'white',
+              }}
+              autoCapitalize="none"
+              // color="white"
+              onChangeText={emailInput =>
+                this.setState( { email: emailInput } )}
+              value={email}
+              placeholder="Email Address"
+              placeholderTextColor="white"
+              underlineColorAndroid={'white'}
+            />}
         </View>
         <FormValidationMessage labelStyle={formMessage}>
           {error}
         </FormValidationMessage>
-        {this.renderButton()}
+        {isValidEmail
+          ? this.renderButton( 'LOGIN' )
+          : this.renderButton( 'GET CODE' )}
         {
           // </ImageBackground>
         }
@@ -204,9 +207,26 @@ class LoginForm extends Component {
     )
   }
 }
+const { otpRequest, otpVerify } = authActions
 
-const mapStateToProps = state => {
-  return state
+const mapDispatchToProps = dispatch => ( {
+  actions: bindActionCreators(
+    {
+      otpRequest,
+      otpVerify,
+    },
+    dispatch
+  ),
+} )
+
+const mapStateToProps = ( { auth } ) => {
+  const { profile, errorMessage, isFetching } = auth
+
+  return {
+    profile,
+    errorMessage,
+    isFetching,
+  }
 }
 
-export default connect( mapStateToProps )( LoginForm )
+export default connect( mapStateToProps, mapDispatchToProps )( LoginForm )
