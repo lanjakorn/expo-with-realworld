@@ -12,7 +12,7 @@ import {
   getProductsBySolutionCategory,
 } from './api'
 
-function* watchGetProducts() {
+const watchGetProducts = function* watchGetProducts() {
   while ( true ) {
     const { products } = yield take( GET_PRODUCTS )
     const normalized = yield call( normalizedProducts, products )
@@ -20,7 +20,7 @@ function* watchGetProducts() {
   }
 }
 
-function* watchInitProductsScreen() {
+const watchInitProductsScreen = function* watchInitProductsScreen() {
   while ( yield take( INIT_PRODUCTS_SCREEN ) ) {
     const query = yield select( selectors.currentCategorieQuerySelector )
     yield put( productsAction.request() )
@@ -30,7 +30,7 @@ function* watchInitProductsScreen() {
   }
 }
 
-function* watchGetProductsBySolutionCategory() {
+const watchGetProductsBySolutionCategory = function* watchGetProductsBySolutionCategory() {
   while ( true ) {
     const { solutionCategory } = yield take( GET_PRODUCTS_BY_SOLUTION_CATEGORY )
     yield put( productsAction.request() )

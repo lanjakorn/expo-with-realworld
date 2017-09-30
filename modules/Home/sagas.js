@@ -42,7 +42,7 @@ import {
   actions as solutionsAction,
 } from 'modules/Solutions'
 
-function* getCaseStudies() {
+const getCaseStudies = function* getCaseStudies() {
   yield put( caseStudiesAction.caseStudies.request() )
   const caseStudies = yield call( getFireBaseByRef, 'caseStudies' )
   const normalizedCaseStudies = yield call(
@@ -52,7 +52,7 @@ function* getCaseStudies() {
   yield put( caseStudiesAction.caseStudies.success( normalizedCaseStudies ) )
 }
 
-function* getCategories() {
+const getCategories = function* getCategories() {
   yield put( categoriesAction.categories.request() )
   const categories = yield call( getFireBaseByRef, 'categories' )
   const normalizedCategories = yield call(
@@ -62,7 +62,7 @@ function* getCategories() {
   yield put( categoriesAction.categories.success( normalizedCategories ) )
 }
 
-function* getContacts() {
+const getContacts = function* getContacts() {
   yield put( contactsAction.contacts.request() )
   const contacts = yield call( getFireBaseByRef, 'contacts' )
   const normalizedContacts = yield call(
@@ -72,13 +72,13 @@ function* getContacts() {
   yield put( contactsAction.contacts.success( normalizedContacts ) )
 }
 
-function* getContactUs() {
+const getContactUs = function* getContactUs() {
   yield put( contactsAction.contacts.request() )
   const contactUs = yield call( getFireBaseByRef, 'contactUs' )
   yield put( contactUsAction.contactUs.success( { contactUs: contactUs } ) )
 }
 
-function* getCompanyProfile() {
+const getCompanyProfile = function* getCompanyProfile() {
   yield put( companyProfileAction.companyProfile.request() )
   const companyProfile = yield call( getFireBaseByRef, 'companyProfile' )
 
@@ -89,7 +89,7 @@ function* getCompanyProfile() {
   )
 }
 
-function* getHouseCategories() {
+const getHouseCategories = function* getHouseCategories() {
   yield put( houseCategoriesAction.houseCategories.request() )
   const houseCategories = yield call( getFireBaseByRef, 'houseCategories' )
   const normalizedHouseCategories = yield call(
@@ -101,7 +101,7 @@ function* getHouseCategories() {
   )
 }
 
-function* getServices() {
+const getServices = function* getServices() {
   yield put( servicesAction.services.request() )
   const services = yield call( getFireBaseByRef, 'services' )
   const normalizedServices = yield call(
@@ -111,7 +111,7 @@ function* getServices() {
   yield put( servicesAction.services.success( normalizedServices ) )
 }
 
-function* getSolutionCategories() {
+const getSolutionCategories = function* getSolutionCategories() {
   yield put( solutionCategoriesAction.solutionCategories.request() )
   const solutionCategories = yield call( getFireBaseByRef, 'solutionCategories' )
   const normalizedSolutionCategories = yield call(
@@ -125,7 +125,7 @@ function* getSolutionCategories() {
   )
 }
 
-function* getSolutions() {
+const getSolutions = function* getSolutions() {
   yield put( solutionsAction.solutions.request() )
   const solutions = yield call( getFireBaseByRef, 'solutions' )
   const normalizedSolutions = yield call(
@@ -135,7 +135,7 @@ function* getSolutions() {
   yield put( solutionsAction.solutions.success( normalizedSolutions ) )
 }
 
-function* allTask() {
+const allTask = function* allTask() {
   yield all( [
     yield fork( getCaseStudies ),
     yield fork( getCategories ),
@@ -149,7 +149,7 @@ function* allTask() {
   ] )
 }
 
-function* watchInitHomeScreen() {
+const watchInitHomeScreen = function* watchInitHomeScreen() {
   while ( yield take( INIT_HOME_SCREEN ) ) {
     yield put( homeAction.request() )
 

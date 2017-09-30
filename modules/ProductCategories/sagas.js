@@ -8,7 +8,7 @@ import {
   subChildCategoriesNameSelector,
 } from './selectors'
 
-function* watchSelectChildCategory() {
+const watchSelectChildCategory = function* watchSelectChildCategory() {
   while ( true ) {
     const { childCategory, navigation } = yield take( SELECT_CHILD_CATEGORY )
     yield put( setCurrentCategories( childCategory, 1 ) )

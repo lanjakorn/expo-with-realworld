@@ -26,7 +26,7 @@ const filterSyncApp = faqs =>
     )
     : faqs
 
-function* watchGetFaqsByProduct() {
+const watchGetFaqsByProduct = function* watchGetFaqsByProduct() {
   while ( true ) {
     const { productId } = yield take( GET_FAQS_BY_PRODUCT )
     yield put( faqsAction.faqs.request() )
@@ -39,7 +39,7 @@ function* watchGetFaqsByProduct() {
   }
 }
 
-function* watchGetFaqsByProductCategory() {
+const watchGetFaqsByProductCategory = function* watchGetFaqsByProductCategory() {
   while ( true ) {
     const { productCategoryId } = yield take( GET_FAQS_BY_PRODUCT_CATEGORY )
     const query = yield select(
@@ -55,7 +55,7 @@ function* watchGetFaqsByProductCategory() {
   }
 }
 
-function* watchGetFaqsBySolutionCategory() {
+const watchGetFaqsBySolutionCategory = function* watchGetFaqsBySolutionCategory() {
   while ( true ) {
     const { solutionCategoryId } = yield take( GET_FAQS_BY_SOLUTION_CATEGORY )
     yield put( faqsAction.faqs.request() )
@@ -68,7 +68,7 @@ function* watchGetFaqsBySolutionCategory() {
   }
 }
 
-function* watchAddFaq() {
+const watchAddFaq = function* watchAddFaq() {
   while ( true ) {
     const { faq } = yield take( ADD_FAQ )
     yield put( faqsAction.addFaqApi.request() )

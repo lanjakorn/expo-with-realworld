@@ -6,7 +6,7 @@ import { storage } from 'services'
 
 const { setSearchHistory } = actions
 
-function* watchGetSearchHistoryFormStorage() {
+const watchGetSearchHistoryFormStorage = function* watchGetSearchHistoryFormStorage() {
   while ( yield take( GET_SEARCH_HISTORY ) ) {
     const search_history_items = yield call(
       storage.loadAsyncStorage,
@@ -31,7 +31,7 @@ function* watchGetSearchHistoryFormStorage() {
   }
 }
 
-function* watchSearched() {
+const watchSearched = function* watchSearched() {
   while ( true ) {
     const { text } = yield take( SEARCHED )
 

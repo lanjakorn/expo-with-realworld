@@ -4,7 +4,7 @@ import { services as servicesAction } from './actions'
 import { normalizedServices } from './normalize'
 import { getServices } from './api'
 
-function* watchGetServices() {
+const watchGetServices = function* watchGetServices() {
   while ( true ) {
     const { services } = yield take( GET_SERVICES )
     const normalized = yield call( normalizedServices, services )
@@ -12,7 +12,7 @@ function* watchGetServices() {
   }
 }
 
-function* watchInitServicesScreen() {
+const watchInitServicesScreen = function* watchInitServicesScreen() {
   while ( yield take( INIT_SERVICES_SCREEN ) ) {
     yield put( servicesAction.request() )
     const services = yield call( getServices )

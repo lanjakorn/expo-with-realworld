@@ -20,7 +20,7 @@ const {
   setSaveRecent,
 } = actions
 
-function* watchGetDefaultTab() {
+const watchGetDefaultTab = function* watchGetDefaultTab() {
   while ( yield take( GET_DEFAULT_TAB ) ) {
     const defaulttab_value = yield call(
       storage.loadAsyncStorage,
@@ -38,7 +38,7 @@ function* watchGetDefaultTab() {
   }
 }
 
-function* watchChangeDefaultTab() {
+const watchChangeDefaultTab = function* watchChangeDefaultTab() {
   while ( true ) {
     const { tab } = yield take( CHANGE_DEFAULT_TAB )
     yield call( storage.saveAsyncStorage, 'default_tab_value', tab )
@@ -46,7 +46,7 @@ function* watchChangeDefaultTab() {
   }
 }
 
-function* watchGetAutoComplete() {
+const watchGetAutoComplete = function* watchGetAutoComplete() {
   while ( yield take( GET_AUTOCOMPLETE ) ) {
     const autocomplete_value = yield call(
       storage.loadAsyncStorage,
@@ -64,7 +64,7 @@ function* watchGetAutoComplete() {
   }
 }
 
-function* watchChangeAutoComplete() {
+const watchChangeAutoComplete = function* watchChangeAutoComplete() {
   while ( true ) {
     const { autocomplete } = yield take( CHANGE_AUTOCOMPLETE )
     yield call( storage.saveAsyncStorage, 'autocomplete_value', autocomplete )
@@ -72,7 +72,7 @@ function* watchChangeAutoComplete() {
   }
 }
 
-function* watchGetSaveRecent() {
+const watchGetSaveRecent = function* watchGetSaveRecent() {
   while ( yield take( GET_SAVE_RECENT ) ) {
     const save_recent_value = yield call(
       storage.loadAsyncStorage,
@@ -90,7 +90,7 @@ function* watchGetSaveRecent() {
   }
 }
 
-function* watchChangeSaveRecent() {
+const watchChangeSaveRecent = function* watchChangeSaveRecent() {
   while ( true ) {
     const { recent } = yield take( CHANGE_SAVE_RECENT )
     yield call( storage.saveAsyncStorage, 'save_recent_value', recent )
