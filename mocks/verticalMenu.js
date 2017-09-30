@@ -7,9 +7,9 @@ export default {
     title: 'Ricoh House',
     navigate: 'houses',
   },
-  products: {
+  productCategories: {
     title: 'Products',
-    navigate: 'products',
+    navigate: 'productCategories',
   },
   services: {
     title: 'Services',
