@@ -6,18 +6,17 @@ import { Colors } from 'constants'
 import { Search } from '@components'
 import Home from './HomesContainer'
 
-const HomesScreen = ( { navigation } ) =>
+const HomesScreen = ( { navigation } ) => (
   <View>
     <Home navigation={navigation} />
   </View>
+)
 
 HomesScreen.navigationOptions = ( { navigation } ) => {
   return {
     header: (
       <View style={{ backgroundColor: Colors.tintColor }}>
-        <View style={{ marginTop: 24, height: 40 }}>
-          <Search navigation={navigation} navOnCancel={'home'} />
-        </View>
+        <Search navigation={navigation} navOnCancel={'home'} />
       </View>
     ),
   }

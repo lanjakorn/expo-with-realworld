@@ -12,17 +12,16 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const ServicesScreen = ( { navigation } ) =>
+const ServicesScreen = ( { navigation } ) => (
   <View style={styles.container}>
     <Services navigation={navigation} />
   </View>
+)
 
 ServicesScreen.navigationOptions = ( { navigation } ) => ( {
   header: (
     <View style={{ backgroundColor: Colors.tintColor }}>
-      <View style={{ marginTop: 24, height: 40 }}>
-        <Search navigation={navigation} navOnCancel={'serviceห'} />
-      </View>
+      <Search navigation={navigation} navOnCancel={'serviceห'} />
     </View>
   ),
 } )

@@ -12,17 +12,16 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const HouseScreen = ( { navigation } ) =>
+const HouseScreen = ( { navigation } ) => (
   <View style={styles.container}>
     <House navigation={navigation} />
   </View>
+)
 
 HouseScreen.navigationOptions = ( { navigation } ) => ( {
   header: (
     <View style={{ backgroundColor: Colors.tintColor }}>
-      <View style={{ marginTop: 24, height: 40 }}>
-        <Search navigation={navigation} navOnCancel={'home'} />
-      </View>
+      <Search navigation={navigation} navOnCancel={'home'} />
     </View>
   ),
 } )

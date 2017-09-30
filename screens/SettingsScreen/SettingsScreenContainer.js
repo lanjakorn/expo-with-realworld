@@ -25,17 +25,16 @@ class SettingsScreen extends Component {
   static navigationOptions = ( { navigation } ) => {
     return {
       tabBarLabel: 'Settings',
-      tabBarIcon: ( { tintColor, focused } ) =>
+      tabBarIcon: ( { tintColor, focused } ) => (
         <Icon
           name={'settings'}
           size={24}
           color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-        />,
+        />
+      ),
       header: (
         <View style={{ backgroundColor: Colors.tintColor }}>
-          <View style={{ marginTop: 24, height: 40 }}>
-            <Search navigation={navigation} />
-          </View>
+          <Search navigation={navigation} />
         </View>
       ),
     }
@@ -151,11 +150,7 @@ class SettingsScreen extends Component {
 
 class InfoText extends Component {
   render() {
-    return (
-      <Text style={styles.infoTextStyle}>
-        {this.props.text}
-      </Text>
-    )
+    return <Text style={styles.infoTextStyle}>{this.props.text}</Text>
   }
 }
 

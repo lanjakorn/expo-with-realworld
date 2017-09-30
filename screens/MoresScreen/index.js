@@ -6,17 +6,16 @@ import { Colors } from 'constants'
 import Mores from './MoresContainer'
 import { Search } from '@components'
 
-const MoresScreen = ( { navigation } ) =>
+const MoresScreen = ( { navigation } ) => (
   <ScrollView>
     <Mores navigation={navigation} />
   </ScrollView>
+)
 
 MoresScreen.navigationOptions = ( { navigation } ) => ( {
   header: (
     <View style={{ backgroundColor: Colors.tintColor }}>
-      <View style={{ marginTop: 24, height: 40 }}>
-        <Search navigation={navigation} navOnCancel={'mores'} />
-      </View>
+      <Search navigation={navigation} navOnCancel={'mores'} />
     </View>
   ),
 } )

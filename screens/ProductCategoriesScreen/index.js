@@ -7,22 +7,22 @@ import Colors from 'constants/Colors'
 import Categories from './CategoriesContainer'
 import Search from '@components/SearchContainer'
 
-const CategoriesScreen = ( { navigation } ) =>
+const CategoriesScreen = ( { navigation } ) => (
   <Categories navigation={navigation} />
+)
 
 CategoriesScreen.navigationOptions = ( { navigation } ) => ( {
   tabBarLabel: 'Categories',
-  tabBarIcon: ( { focused } ) =>
+  tabBarIcon: ( { focused } ) => (
     <FontAwesome
       name={'newspaper-o'}
       size={24}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-    />,
+    />
+  ),
   header: (
     <View style={{ backgroundColor: Colors.tintColor }}>
-      <View style={{ marginTop: 24, height: 40 }}>
-        <Search navigation={navigation} navOnCancel={'products'} />
-      </View>
+      <Search navigation={navigation} navOnCancel={'products'} />
     </View>
   ),
 } )
