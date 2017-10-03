@@ -10,10 +10,10 @@ export default createConnector( {
     return {
       loading: results.searching || results.searchingForFacetValues,
       left: props.left ? props.left : 0,
-      bottom: props.bottom ? props.bottom : height - 20,
+      bottom: props.bottom ? props.bottom : height - 10,
     }
   },
-} )( ( { loading, left, bottom } ) =>
+} )( ( { loading, left, bottom } ) => (
   <View
     style={{
       position: 'absolute',
@@ -24,4 +24,4 @@ export default createConnector( {
   >
     <ActivityIndicator animating={loading} />
   </View>
-)
+) )

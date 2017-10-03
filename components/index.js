@@ -21,6 +21,7 @@ import Slider from './Slider'
 import StyledText from './StyledText'
 import TextDescriptionCard from './TextDescriptionCard'
 import TextError from './TextError'
+import Video from './Video'
 
 export {
   ButtonRadius,
@@ -46,4 +47,5 @@ export {
   StyledText,
   TextDescriptionCard,
   TextError,
+  Video,
 }

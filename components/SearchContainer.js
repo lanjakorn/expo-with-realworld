@@ -16,9 +16,8 @@ import {
 import { Button, Icon } from 'react-native-elements'
 import { actions as settingsActions } from 'modules/Settings'
 import { actions as searchScreenActions } from 'modules/Search'
+import { resolution } from 'utilities'
 
-const isIos = Platform.OS === 'ios'
-const isIphoneX = isIos && Dimensions.get( 'window' ).height === 812
 const styles = StyleSheet.create( {
   SearchContainer: {
     alignItems: 'center',
@@ -165,7 +164,7 @@ class SearchContainer extends Component {
     return (
       <View
         style={{
-          marginTop: isIphoneX ? 22 + 14 : 22,
+          marginTop: resolution.baseNavMarginTop(),
           height: 40,
         }}
       >

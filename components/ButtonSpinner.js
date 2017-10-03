@@ -19,7 +19,7 @@ const ButtonSpinner = ( { containerStyle, size } ) => {
 }
 
 ButtonSpinner.propTypes = {
-  containerStyle: PropTypes.number.isRequired,
+  containerStyle: PropTypes.object.isRequired,
   size: PropTypes.string.isRequired,
 }
 
