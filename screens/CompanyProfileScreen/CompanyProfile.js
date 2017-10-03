@@ -1,32 +1,18 @@
 import React from 'react'
-import {
-  Text,
-  Dimensions,
-  StyleSheet,
-  View,
-  WebView,
-  Platform,
-} from 'react-native'
-import { Video } from 'expo'
-import VideoPlayer from './Video'
+import { StyleSheet, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
-import { object, string, url } from 'utilities'
 import { Colors } from 'constants'
+import { object } from 'utilities'
 
-const { width, height } = Dimensions.get( 'window' )
+import { Video } from '@components'
 
 const styles = StyleSheet.create( {
-  companyProfileSection: {
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-  },
   container: {
     backgroundColor: '#fff',
     flexDirection: 'column',
     padding: 0,
-    // width: width,
   },
-  containerStyle: {
+  sectionCompanyProfile: {
     backgroundColor: 'transparent',
     flexDirection: 'column',
     minWidth: 12,
@@ -35,21 +21,14 @@ const styles = StyleSheet.create( {
     paddingRight: 20,
     paddingTop: 30,
   },
-  slideVideo: {
-    // alignItems: 'center',
-    backgroundColor: 'black',
-    flex: 1,
-    justifyContent: 'flex-start',
-    width: width * 1,
-  },
   rowDescription: {
     flexDirection: 'row',
   },
   descriptionText: {
+    color: Colors.textDescription,
     fontSize: 13,
     lineHeight: 20,
     textAlign: 'justify',
-    color: Colors.textDescription,
   },
   rowTitle: {
     flexDirection: 'row',
@@ -61,32 +40,26 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const CompanyProfileScreen = ( {
-  companyProfile: { description, urls, title },
-} ) => {
-  const videoId = () => {
-    const video = object.getFirstByKey( {
-      item: urls,
-      key: 'videos',
-    } )
-    return url.getYoutubeId( video )
-  }
-
-  return (
-    <View style={styles.container}>
-      <VideoPlayer />
-      <View style={styles.containerStyle}>
-        <View style={styles.rowTitle}>
-          <Text style={styles.titleText}>{title}</Text>
-        </View>
-        <View style={styles.rowDescription}>
-          <Text style={styles.descriptionText}>{description}</Text>
-        </View>
+const CompanyProfile = ( { companyProfile: { description, urls, title } } ) => (
+  <View style={styles.container}>
+    <Video
+      uri={object.getFirstByKey( {
+        item: urls,
+        key: 'videos',
+      } )}
+    />
+    <View style={styles.sectionCompanyProfile}>
+      <View style={styles.rowTitle}>
+        <Text style={styles.titleText}>{title}</Text>
+      </View>
+      <View style={styles.rowDescription}>
+        <Text style={styles.descriptionText}>{description}</Text>
       </View>
     </View>
-  )
-}
-CompanyProfileScreen.propTypes = {
+  </View>
+)
+
+CompanyProfile.propTypes = {
   companyProfile: PropTypes.shape( {
     description: PropTypes.string.isRequired,
     imgUrl: PropTypes.string,
@@ -94,4 +67,4 @@ CompanyProfileScreen.propTypes = {
   } ),
 }
 
-export default CompanyProfileScreen
+export default CompanyProfile

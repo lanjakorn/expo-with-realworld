@@ -87,7 +87,7 @@ const styles = StyleSheet.create( {
 class LoginForm extends Component {
   state = {
     titleText: 'Sales Log In',
-    email: 'mark@sellsuki.com',
+    email: '',
     password: '',
     passCode: '',
     error: '',
@@ -109,11 +109,26 @@ class LoginForm extends Component {
   }
 
   onButtonPassCodePress = () => {
+    console.log( this.props.actions )
+    console.log( this.props.profile )
     const { passCode } = this.state
-    this.props.actions.otpVerify( this.props.profile.email, passCode )
+    console.log( 'passCode: ', passCode )
+
+    this.props.actions.otpVerify(
+      this.props.profile.email,
+      passCode,
+      this.props.navigation
+    )
   }
 
+  // shouldComponentUpdate( nextProps, nextState ) {
+  //   console.log( nextProps, nextState )
+  //   return true
+  // }
+
   renderButton = word => {
+    console.log( 'click' )
+
     const { isFetching, profile: { isValidEmail } } = this.props
     return (
       <View>
@@ -130,13 +145,41 @@ class LoginForm extends Component {
             textAlign: 'center',
           }}
           title={isFetching ? ' ' : word}
-          onPress={
-            isValidEmail ? this.onButtonPassCodePress : this.onButtonPress
-          }
+          onPress={this.onButtonPress}
           disabled={isFetching}
         />
-        {isFetching &&
-          <ButtonSpinner size="large" containerStyle={{ marginTop: -38 }} />}
+        {isFetching && (
+          <ButtonSpinner size="large" containerStyle={{ marginTop: -38 }} />
+        )}
+      </View>
+    )
+  }
+
+  renderPassCodeButton = word => {
+    console.log( 'click' )
+
+    const { isFetching, profile: { isValidEmail } } = this.props
+    return (
+      <View>
+        <Button
+          buttonStyle={{
+            backgroundColor: '#FFF',
+            borderColor: '#eee',
+            borderRadius: 5,
+            borderWidth: 1,
+          }}
+          textStyle={{
+            color: '#CE1D45',
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}
+          title={isFetching ? ' ' : word}
+          onPress={this.onButtonPassCodePress}
+          disabled={isFetching}
+        />
+        {isFetching && (
+          <ButtonSpinner size="large" containerStyle={{ marginTop: -38 }} />
+        )}
       </View>
     )
   }
@@ -152,57 +195,58 @@ class LoginForm extends Component {
       imageContainer,
       textTitle,
     } = styles
-    const { isValidEmail } = this.props.profile
-    return (
+    const { isValidEmail, uid, email: emailProfile } = this.props.profile
+    console.log( 'isValidEmail', isValidEmail )
+    return uid !== '' ? (
+      <View style={imageContainer}>
+        <Text>Welcome back {emailProfile}</Text>
+      </View>
+    ) : (
       <View style={styles.screenContainer}>
-        {
-          // <ImageBackground
-          //   imageStyle={{flex: 1, width: null, height: null, resizeMode: 'stretch'}}
-          //   source={require('./login-background.jpg')}
-          // >
-        }
         <View style={imageContainer}>
           <Image
             style={image}
             source={require( '../../assets/images/ricoh-logo-welcome.png' )}
           />
         </View>
-        <Text style={textTitle}>
-          {titleText}
-        </Text>
+        <Text style={textTitle}>{titleText}</Text>
         <View style={{ marginBottom: 15 }}>
-          {isValidEmail
-            ? <FormInput
+          {isValidEmail ? (
+            <FormInput
               autoCapitalize="none"
               onChangeText={value => this.setState( { passCode: value } )}
               value={passCode}
               placeholder="Enter Code"
-              placeholderTextColor="#bdc3c7"
+              placeholderTextColor="white"
+              underlineColorAndroid={'white'}
             />
-            : <FormInput
+          ) : (
+            <FormInput
               inputStyle={{
                 width: width * 1 - 45,
                 color: 'white',
               }}
               autoCapitalize="none"
               // color="white"
-              onChangeText={emailInput =>
-                this.setState( { email: emailInput } )}
+              onChangeText={emailInput => this.setState( { email: emailInput } )}
               value={email}
               placeholder="Email Address"
               placeholderTextColor="white"
               underlineColorAndroid={'white'}
-            />}
+            />
+          )}
         </View>
-        <FormValidationMessage labelStyle={formMessage}>
-          {error}
-        </FormValidationMessage>
+        {this.props.errorMessage !== '' && (
+          <FormValidationMessage
+            labelStyle={formMessage}
+            containerStyle={{ marginBottom: 15 }}
+          >
+            {this.props.errorMessage}
+          </FormValidationMessage>
+        )}
         {isValidEmail
-          ? this.renderButton( 'LOGIN' )
+          ? this.renderPassCodeButton( 'LOGIN' )
           : this.renderButton( 'GET CODE' )}
-        {
-          // </ImageBackground>
-        }
       </View>
     )
   }
