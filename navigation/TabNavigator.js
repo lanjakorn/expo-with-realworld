@@ -22,6 +22,7 @@ import ServiceDetailScreen from '@screens/ServiceDetailScreen'
 import ServicesScreen from '@screens/ServicesScreen'
 import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SolutionScreen from '@screens/SolutionScreen'
+import EShopScreen from '@screens/EShopScreen'
 // import PassCodeScreen from '@screens/LoginScreen/PassCode'
 
 const HomeTab = StackNavigator( {
@@ -114,9 +115,9 @@ const MoresTab = StackNavigator( {
   //   screen: PassCodeScreen,
   //   path: '/',
   // },
-  promotions: {
-    screen: PostsScreen,
-    path: '/:category',
+  eshops: {
+    screen: EShopScreen,
+    path: '/',
   },
   companyProfiles: {
     screen: CompanyProfileScreen,
