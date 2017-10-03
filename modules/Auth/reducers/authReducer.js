@@ -11,7 +11,11 @@ export default ( state = INITIAL_STATE, action ) => {
   case LOGIN_REQUEST:
     return { ...state, isFetching: true }
   case LOGIN_SUCCESS:
-    return { ...state, profile: { ...action.profile }, isFetching: false }
+    return {
+      ...state,
+      profile: { ...state.profile, ...action.profile },
+      isFetching: false,
+    }
   case LOGIN_FAILURE:
     return { ...state, isFetching: false, errorMessage: action.error }
   default:

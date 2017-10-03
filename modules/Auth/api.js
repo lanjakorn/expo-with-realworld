@@ -14,13 +14,11 @@ const otpRequest = async email => {
 }
 
 const otpVerify = async ( email, passCode ) => {
-  console.log( 'otpVerify', email, passCode )
   const res = await axios.post( `${ cf }/verifyOneTimePassword`, {
     email,
     code: passCode,
   } )
 
-  console.log( 'res', res )
   if ( res.status === 200 ) {
     return res.data.token
   }
@@ -28,7 +26,6 @@ const otpVerify = async ( email, passCode ) => {
 }
 
 const getAuthToken = async token => {
-  console.log( 'sss', token )
   const { uid } = await firebaseAuth.signInWithCustomToken( token )
   return uid
 }

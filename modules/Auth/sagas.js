@@ -12,26 +12,23 @@ const watchOTPRequest = function* watchOTPRequest() {
       const isValidEmail = yield call( otpRequest, email )
       yield put( AuthAction.Login.success( { isValidEmail, email } ) )
     } catch ( err ) {
-      yield put( AuthAction.Login.failure( err ) )
+      yield put( AuthAction.Login.failure( err.response.data.error ) )
     }
   }
 }
 
 const watchOTPVerify = function* watchOTPVerify() {
-  while ( yield take( OTP_VERIFY ) ) {
+  while ( true ) {
     try {
-      const { email, passCode } = yield take( OTP_VERIFY )
-      console.log( email, passCode )
+      const { email, passCode, navigation } = yield take( OTP_VERIFY )
       yield put( AuthAction.Login.request() )
       const token = yield call( otpVerify, email, passCode )
-      console.log( 'token', token )
-
       const uid = yield call( getAuthToken, token )
-      console.log( 'uid: ', uid )
 
-      yield put( AuthAction.Login.success( { uid, token } ) )
+      yield put( AuthAction.Login.success( { passCode, uid, token } ) )
+      navigation.navigate( 'homes' )
     } catch ( err ) {
-      yield put( AuthAction.Login.failure( err ) )
+      yield put( AuthAction.Login.failure( err.response.data.error ) )
     }
   }
 }

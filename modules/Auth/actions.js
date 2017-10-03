@@ -8,7 +8,8 @@ import {
 } from './types'
 
 const otpRequest = email => action( OTP_REQUEST, { email } )
-const otpVerify = ( email, passCode ) => action( OTP_VERIFY, { email, passCode } )
+const otpVerify = ( email, passCode, navigation ) =>
+  action( OTP_VERIFY, { email, passCode, navigation } )
 
 const Login = {
   request: () => action( LOGIN_REQUEST ),
