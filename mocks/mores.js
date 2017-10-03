@@ -1,7 +1,7 @@
 export default {
-  promotions: {
-    title: 'Promotion / Hot Seals',
-    navigate: 'promotions',
+  eshops: {
+    title: 'Ricoh eShop',
+    navigate: 'eshops',
   },
   companyProfiles: {
     title: 'Company Profile',
