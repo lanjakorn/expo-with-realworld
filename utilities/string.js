@@ -1,11 +1,7 @@
 import { compose, curry, prop } from 'ramda'
 
-const getYoutubeId = url => {
-  const [ , code ] = url.match( /v=([^&#]{5,})/ )
-  return typeof code == 'string' ? code : url
-}
-
 const capitalize = str => {
+  console.log( str )
   return str[ 0 ].toUpperCase() + str.substring( 1 )
 }
 
@@ -46,7 +42,6 @@ const formatMoney = ( {
 export {
   capitalize,
   formatMoney,
-  getYoutubeId,
   hasCapitalLetter,
   isLengthGreaterThan,
   isNotEmpty,

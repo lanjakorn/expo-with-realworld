@@ -11,7 +11,7 @@ import range from 'lodash/range'
    * @param  {[func]}       apiFn          | function() | fetch api function
    * @return {[func]}       action         | request(), success() or failure()  | watch callback action then return action
    */
-function* fetchEntity( entity, apiFn ) {
+const fetchEntity = function* fetchEntity( entity, apiFn ) {
   yield put( entity.request() )
   const { response, error } = yield call( apiFn )
   if ( response ) {
