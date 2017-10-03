@@ -1,9 +1,10 @@
 {
   "name": "expo-with-realworld",
-  "description": "expo-with-realworld for large scale app build in React-Native using expo sdk",
+  "description":
+    "expo-with-realworld for large scale app build in React-Native using expo sdk",
   "slug": "expo-with-realworld",
   "privacy": "public",
-  "sdkVersion": "17.0.0",
+  "sdkVersion": "20.0.0",
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
