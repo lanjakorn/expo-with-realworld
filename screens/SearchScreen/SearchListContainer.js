@@ -5,6 +5,7 @@ import { InstantSearch } from 'react-instantsearch/native'
 import {
   connectSearchBox,
   connectInfiniteHits,
+  connectHits,
   connectRefinementList,
   connectStats,
   connectMenu,
@@ -41,13 +42,12 @@ class Home extends Component {
         <InstantSearch
           appId="UUZSU5G9ZQ"
           apiKey="a06d5a0c3748c4d5ffbec09b99668826"
-          indexName="monkung"
+          indexName="monkungreal"
           searchState={this.state.searchState}
           onSearchStateChange={this.onSearchStateChange}
         >
           <StatusBar backgroundColor="blue" barStyle="light-content" />
           <ConnectedSearchBox navigation={this.props.navigation} />
-
           <View style={styles.options}>
             <ConnectedStats />
           </View>
@@ -80,7 +80,6 @@ class SearchBox extends Component {
   pressCancelButton = () => {
     Keyboard.dismiss()
     this.props.navigation.goBack( null )
-    //this.props.changeSearchText( '' )
     this.setState( { isTouchableDisabled: false, searching: false } )
   }
 
@@ -93,7 +92,6 @@ class SearchBox extends Component {
       <View style={{ flexDirection: 'row', backgroundColor: Colors.tintColor }}>
         <SearchBar
           lightTheme
-          // ref="search_textinput_component"
           autoFocus={true}
           style={[ styles.searchBox, styles.altTouchableView ]}
           onChangeText={text => this.props.refine( text )}
@@ -104,32 +102,22 @@ class SearchBox extends Component {
           autoCorrect={false}
           autoCapitalize={'none'}
           keyboardType={'web-search'}
-          // textAlign="left"
           containerStyle={[ styles.searchBar, styles.altTouchableView ]}
-          // inputStyle={styles.insideSearchBar}
-          icon={{ style: { marginTop: 20 } }}
+          icon={{ style: styles.icon }}
           onFocus={this.onSearchActive}
           underlineColorAndroid={Colors.darkTintColor}
         />
         <Button
           buttonStyle={{
-            padding: 10,
+            paddingLeft: 10,
+            paddingRight: 10,
             margin: 0,
           }}
           style={{
             padding: 0,
             margin: 0,
           }}
-          containerViewStyle={{
-            marginTop: 25,
-            marginRight: 0,
-            marginLeft: 0,
-            // padding: 10,
-
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          containerViewStyle={styles.buttonContainerCancel}
           title="Cancel"
           fontSize={14}
           backgroundColor={Colors.tintColor}
@@ -147,7 +135,7 @@ SearchBox.propTypes = {
 }
 
 const ConnectedSearchBox = connectSearchBox( SearchBox )
-const ConnectedHits = connectInfiniteHits( Hits )
+const ConnectedHits = connectHits( Hits )
 const ConnectedStats = connectStats( ( { nbHits } ) => (
   <Text style={{ paddingLeft: 10 }}>{nbHits} found</Text>
 ) )

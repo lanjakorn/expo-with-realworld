@@ -1,23 +1,25 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
-import { Avatar } from 'react-native-elements'
-import { Colors } from 'constants'
+import { Dimensions, Image, Text, View } from 'react-native'
 import { string } from 'utilities'
 
-import { SearchHighlight } from '@components'
+import SearchHighlight from './SearchHighlight'
+import SearchHighlightArray from './SearchHighlightArray'
+
 import styles from './SearchStyle'
 
+const { hasCapitalize, hasSpaceCapitalize } = string
+
 const Hit = ( hit, sectionId, rowId ) => {
-  const header = hit.header && (
+  const header = hit.isFirst && (
     <Text
       style={{
         marginLeft: 10,
         marginTop: 5,
         fontWeight: '600',
-        color: Colors.tintColor,
+        color: 'black',
       }}
     >
-      {hit.headerName}
+      {hasCapitalize( hasSpaceCapitalize( hit.refKey ) )}
     </Text>
   )
   switch ( hit.refKey ) {
@@ -30,7 +32,11 @@ const Hit = ( hit, sectionId, rowId ) => {
         <View style={styles.item} key={rowId}>
           <View style={{ margin: 10 }}>
             <Image
-              style={{ height: 75, width: 75 }}
+              style={{
+                height: 60,
+                width: 60,
+                // borderRadius: 30,
+              }}
               source={{ uri: hit.urls.imgs[ 0 ] }}
             />
           </View>
@@ -41,10 +47,11 @@ const Hit = ( hit, sectionId, rowId ) => {
               hit={hit}
               highlightProperty="_highlightResult"
             />
-            <SearchHighlight
+            <SearchHighlightArray
               attributeName="description"
               hit={hit}
               highlightProperty="_highlightResult"
+              textStyle={{ width: Dimensions.get( 'window' ).width * 0.7 - 10 }}
             />
             <SearchHighlight
               attributeName="categories"
@@ -82,34 +89,6 @@ const Hit = ( hit, sectionId, rowId ) => {
             />
             <SearchHighlight
               attributeName="titleQuestion"
-              hit={hit}
-              highlightProperty="_highlightResult"
-            />
-          </View>
-        </View>
-      </View>
-    )
-
-  case 'caseStudies':
-  case 'houseCategories':
-  case 'services':
-  case 'solutions':
-  case 'solutionCategories':
-    return (
-      <View>
-        <View style={styles.item} key={`header-${ rowId }`}>
-          {header}
-        </View>
-        <View style={styles.item} key={rowId}>
-          <View style={styles.itemContent}>
-            <SearchHighlight
-              attributeName="title"
-              core={true}
-              hit={hit}
-              highlightProperty="_highlightResult"
-            />
-            <SearchHighlight
-              attributeName="description"
               hit={hit}
               highlightProperty="_highlightResult"
             />
@@ -160,6 +139,34 @@ const Hit = ( hit, sectionId, rowId ) => {
             />
             <SearchHighlight
               attributeName="tel"
+              hit={hit}
+              highlightProperty="_highlightResult"
+            />
+          </View>
+        </View>
+      </View>
+    )
+
+  case 'caseStudies':
+  case 'houseCategories':
+  case 'services':
+  case 'solutions':
+  case 'solutionCategories':
+    return (
+      <View>
+        <View style={styles.item} key={`header-${ rowId }`}>
+          {header}
+        </View>
+        <View style={styles.item} key={rowId}>
+          <View style={styles.itemContent}>
+            <SearchHighlight
+              attributeName="title"
+              core={true}
+              hit={hit}
+              highlightProperty="_highlightResult"
+            />
+            <SearchHighlight
+              attributeName="description"
               hit={hit}
               highlightProperty="_highlightResult"
             />
