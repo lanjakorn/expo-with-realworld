@@ -70,9 +70,68 @@ const shuffle = array => array.sort( () => Math.random() - 0.5 )
    */
 const random = array => array[ Math.floor( Math.random() * array.length ) ]
 
+/**
+   * @param  {[array]}        array           | 
+   *                                            [ 
+   *                                              { group: 1 }, 
+   *                                              { group: 2 },
+   *                                              { group: 2 }
+   *                                            ] 
+   *                                          |
+   * @param  {[key]}          string          | 'group' |
+   * @return {[array]}        array           | [1, 2] | return new array by removing the duplicates
+   */
+const uniq = ( array, key ) =>
+  key
+    ? array.reduce(
+      ( p, c ) => ( p.every( e => e !== c[ key ] ) ? [ ...p, c[ key ] ] : p ),
+      []
+    )
+    : array.reduce( ( p, c ) => ( p.every( e => e !== c ) ? [ ...p, c ] : p ), [] )
+
+const trackFirstElementByKey = ( array, key ) =>
+  array.reduce(
+    ( p, c ) => {
+      return p.stack.every( e => e !== c[ key ] )
+        ? {
+          stack: [ ...p.stack, c[ key ] ],
+          newArray: [ ...p.newArray, { ...c, isFirst: true } ],
+        }
+        : {
+          stack: p.stack,
+          newArray: [ ...p.newArray, c ],
+        }
+    },
+    { stack: [], newArray: [] }
+  ).newArray
+
+const sortByKey = ( array, key ) => {
+  const sortBy = ( key, reverse ) => {
+    const moveSmaller = reverse ? 1 : -1
+    const moveLarger = reverse ? -1 : 1
+
+    /**
+       * @param  {*} a
+       * @param  {*} b
+       * @return {Number}
+       */
+    return ( a, b ) => {
+      if ( a[ key ] < b[ key ] ) {
+        return moveSmaller
+      }
+      if ( a[ key ] > b[ key ] ) {
+        return moveLarger
+      }
+      return 0
+    }
+  }
+  return array.sort( sortBy( key ) )
+}
+
 export {
   deleteByIndex,
   findAndReplace,
+  trackFirstElementByKey,
   getFirst,
   getLast,
   pop,
@@ -80,4 +139,6 @@ export {
   shift,
   shuffle,
   splice,
+  uniq,
+  sortByKey,
 }

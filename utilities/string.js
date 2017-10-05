@@ -1,13 +1,16 @@
 import { compose, curry, prop } from 'ramda'
 
-const capitalize = str => {
-  console.log( str )
-  return str[ 0 ].toUpperCase() + str.substring( 1 )
-}
-
 const isNotEmpty = a => a.trim().length > 0
 
 const hasCapitalLetter = a => /[A-Z]/.test( a )
+
+const hasCapitalize = str => str[ 0 ].toUpperCase() + str.substring( 1 )
+
+const hasSpaceCapitalize = str =>
+  str
+    .split( '' )
+    .map( e => ( hasCapitalLetter( e ) ? ` ${ e }` : e ) )
+    .join( '' )
 
 const isGreaterThan = curry( ( len, a ) => a > len )
 
@@ -40,9 +43,10 @@ const formatMoney = ( {
 }
 
 export {
-  capitalize,
   formatMoney,
+  hasCapitalize,
   hasCapitalLetter,
+  hasSpaceCapitalize,
   isLengthGreaterThan,
   isNotEmpty,
 }
