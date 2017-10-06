@@ -128,6 +128,12 @@ const sortByKey = ( array, key ) => {
   return array.sort( sortBy( key ) )
 }
 
+const countByKey = ( array, key ) =>
+  array.reduce( ( p, c ) => {
+    const first = p[ c[ key ] ] || []
+    return { ...p, [ c[ key ] ]: [ ...first, c ] }
+  }, {} )
+
 export {
   deleteByIndex,
   findAndReplace,
@@ -141,4 +147,5 @@ export {
   splice,
   uniq,
   sortByKey,
+  countByKey,
 }
