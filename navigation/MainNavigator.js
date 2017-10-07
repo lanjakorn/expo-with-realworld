@@ -4,6 +4,7 @@ import React from 'react'
 import { addNavigationHelpers, TabNavigator } from 'react-navigation'
 import { Icon } from 'react-native-elements'
 import { Colors } from 'constants'
+import { resolution } from 'utilities'
 
 import {
   HomeTab,
@@ -21,70 +22,76 @@ const Nav = TabNavigator(
       screen: HomeTab,
       navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ( { focused } ) =>
+        tabBarIcon: ( { focused } ) => (
           <Icon
             name={'home'}
             size={28}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
+          />
+        ),
       },
     },
     houses: {
       screen: HouseTab,
       navigationOptions: {
         tabBarLabel: 'Ricoh House',
-        tabBarIcon: ( { focused } ) =>
+        tabBarIcon: ( { focused } ) => (
           <Icon
             name={'dashboard'}
             size={25}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
+          />
+        ),
       },
     },
     productCategories: {
       screen: ProductsTab,
       navigationOptions: {
         tabBarLabel: 'Products',
-        tabBarIcon: ( { focused } ) =>
+        tabBarIcon: ( { focused } ) => (
           <Icon
             name={'md-cube'}
             size={24}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
             type={'ionicon'}
-          />,
+          />
+        ),
       },
     },
     services: {
       screen: ServiceTab,
       navigationOptions: {
         tabBarLabel: 'Services',
-        tabBarIcon: ( { focused } ) =>
+        tabBarIcon: ( { focused } ) => (
           <Icon
             name={'tools'}
             size={22}
             type={'entypo'}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-          />,
+          />
+        ),
       },
     },
     mores: {
       screen: MoresTab,
       navigationOptions: {
         tabBarLabel: 'More',
-        tabBarIcon: ( { focused } ) =>
+        tabBarIcon: ( { focused } ) => (
           <Icon
             name={'ios-more'}
             size={35}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
             type={'ionicon'}
             iconStyle={{ paddingTop: 4 }}
-          />,
+          />
+        ),
       },
     },
   },
   {
-    tabBarComponent: ( { jumpToIndex, ...props } ) =>
-      <TabBar jumpToIndex={jumpToIndex} {...props} />,
+    tabBarComponent: ( { jumpToIndex, ...props } ) => (
+      <TabBar jumpToIndex={jumpToIndex} {...props} />
+    ),
     tabBarOptions: {
       activeTintColor: Colors.tintColor,
       showLabel: false,
@@ -102,6 +109,7 @@ const Nav = TabNavigator(
       style: {
         backgroundColor: 'white',
         justifyContent: 'center',
+        marginBottom: resolution.isIphoneX ? 24 : 0,
       },
       tabBarIcon: () => {
         Colors.darkTintColor
@@ -114,7 +122,8 @@ const Nav = TabNavigator(
   }
 )
 
-const NavTracker = ( { dispatch, nav } ) =>
+const NavTracker = ( { dispatch, nav } ) => (
   <Nav navigation={addNavigationHelpers( { dispatch, state: nav } )} />
+)
 
 export { Nav, NavTracker }
