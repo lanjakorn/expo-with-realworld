@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dimensions, Image, Text, View } from 'react-native'
+import { Badge } from 'react-native-elements'
 import { string } from 'utilities'
 
 import SearchHighlight from './SearchHighlight'
@@ -11,16 +12,36 @@ const { hasCapitalize, hasSpaceCapitalize } = string
 
 const Hit = ( hit, sectionId, rowId ) => {
   const header = hit.isFirst && (
-    <Text
+    <View
       style={{
-        marginLeft: 10,
-        marginTop: 5,
-        fontWeight: '600',
-        color: 'black',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      {hasCapitalize( hasSpaceCapitalize( hit.refKey ) )}
-    </Text>
+      <Text
+        style={{
+          marginLeft: 10,
+          marginRight: 5,
+          marginTop: 5,
+          marginBottom: 5,
+          fontWeight: '600',
+          color: 'black',
+        }}
+      >
+        {hasCapitalize( hasSpaceCapitalize( hit.refKey ) )}
+      </Text>
+      <Badge
+        value={hit.count}
+        textStyle={{ fontSize: 10 }}
+        containerStyle={{
+          paddingLeft: 12,
+          paddingRight: 12,
+          paddingBottom: 3,
+          paddingTop: 3,
+        }}
+      />
+    </View>
   )
   switch ( hit.refKey ) {
   case 'products':
@@ -33,9 +54,8 @@ const Hit = ( hit, sectionId, rowId ) => {
           <View style={{ margin: 10 }}>
             <Image
               style={{
-                height: 60,
-                width: 60,
-                // borderRadius: 30,
+                height: 80,
+                width: 80,
               }}
               source={{ uri: hit.urls.imgs[ 0 ] }}
             />
@@ -51,12 +71,7 @@ const Hit = ( hit, sectionId, rowId ) => {
               attributeName="description"
               hit={hit}
               highlightProperty="_highlightResult"
-              textStyle={{ width: Dimensions.get( 'window' ).width * 0.7 - 10 }}
-            />
-            <SearchHighlight
-              attributeName="categories"
-              hit={hit}
-              highlightProperty="_highlightResult"
+              textStyle={{ width: Dimensions.get( 'window' ).width * 0.7 - 15 }}
             />
           </View>
         </View>

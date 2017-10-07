@@ -31,7 +31,6 @@ class Hits extends Component {
     const ds = new ListView.DataSource( {
       rowHasChanged: ( r1, r2 ) => r1 !== r2,
     } )
-    console.log( customHit )
     const hits =
       customHit.length > 0 ? (
         <View style={styles.items}>

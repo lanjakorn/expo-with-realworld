@@ -9,10 +9,12 @@ import styles from './SearchStyle'
 
 class Hits extends Component {
   render() {
-    const customHit = array.trackFirstElementByKey( this.props.hits, 'refKey' )
-    const sort = array.sortByKey( customHit, 'refKey' )
-
-    console.log( customHit )
+    const track = array.trackFirstElementByKey( this.props.hits, 'refKey' )
+    const sort = array.sortByKey( track, 'refKey' )
+    const count = array.countByKey( sort, 'refKey' )
+    const computedHit = Object.keys( count ).reduce( ( p, c ) => {
+      return [ ...p, ...count[ c ].map( e => ( { ...e, count: count[ c ].length } ) ) ]
+    }, [] )
 
     const ds = new ListView.DataSource( {
       rowHasChanged: ( r1, r2 ) => r1 !== r2,
@@ -22,7 +24,7 @@ class Hits extends Component {
       sort.length > 0 ? (
         <View style={styles.items}>
           <ListView
-            dataSource={ds.cloneWithRows( sort )}
+            dataSource={ds.cloneWithRows( computedHit )}
             renderRow={renderRow}
             renderSeparator={renderSeparator}
           />

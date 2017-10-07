@@ -1,9 +1,17 @@
 import { StyleSheet, Platform, Dimensions } from 'react-native'
 import { Colors } from 'constants'
+import { resolution } from 'utilities'
 
 export default StyleSheet.create( {
+  container: {
+    flexDirection: 'row',
+    // backgroundColor: Colors.tintColor,
+    // marginTop: 20,
+
+    // height: resolution.isIphoneX ? 76 : 0,
+  },
   items: {
-    height: Dimensions.get( 'window' ).height * 0.8,
+    height: Dimensions.get( 'window' ).height * 0.8 - 20,
     backgroundColor: 'white',
   },
   item: {
@@ -16,25 +24,28 @@ export default StyleSheet.create( {
       ios: {
         backgroundColor: 'white',
         borderBottomColor: 'gray',
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        minHeight: 20,
+        alignItems: 'center',
+
+        minHeight: 28,
       },
       android: {
         backgroundColor: 'white',
         borderBottomColor: 'gray',
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
         flex: 1,
-        justifyContent: 'space-between',
-        minHeight: 20,
+        justifyContent: 'flex-start',
+        marginTop: 8,
+        minHeight: 28,
       },
     } ),
   },
   icon: {
     ...Platform.select( {
       ios: {
-        marginTop: 20,
+        marginTop: resolution.isIphoneX ? 34 : 20,
       },
       android: {
         marginTop: 15,
@@ -75,7 +86,7 @@ export default StyleSheet.create( {
   },
   searchBar: {
     width: Dimensions.get( 'window' ).width * 0.9,
-    backgroundColor: Colors.tintColor,
+    backgroundColor: 'transparent',
     borderColor: Colors.tintColor,
     alignItems: 'center',
     borderBottomWidth: 0,
@@ -96,14 +107,14 @@ export default StyleSheet.create( {
     } ),
     borderColor: Colors.tintColor,
     width: Dimensions.get( 'window' ).width * 0.9,
+    height: 28,
     backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 1,
     fontSize: 15,
-    height: 28,
     marginLeft: 12,
     marginRight: 12,
-    marginTop: 28,
+    marginTop: resolution.isIphoneX ? 42 : 28,
     paddingLeft: 35,
     paddingRight: 12,
   },
@@ -123,7 +134,7 @@ export default StyleSheet.create( {
   buttonContainerCancel: {
     ...Platform.select( {
       ios: {
-        marginTop: 22,
+        marginTop: resolution.isIphoneX ? 36 : 22,
       },
       android: {
         marginTop: 20,

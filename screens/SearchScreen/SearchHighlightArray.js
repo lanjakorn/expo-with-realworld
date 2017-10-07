@@ -33,33 +33,33 @@ export default connectHighlight(
                   key={`item-highlighted-${ e }-${ idx }-${ k }`}
                   style={{
                     color: Colors.tintColor,
-                    fontWeight: '500',
+                    fontWeight: '700',
                   }}
                 >
                   {e.replace( /__highlighted__/g, '' )}
                 </Text>
               )
             } else {
-              return (
-                <Text
-                  key={`item-${ e }-${ idx }-${ k }`}
-                  style={[
-                    {
-                      fontSize: core ? 14.5 : 12.5,
-                      fontWeight: core ? '300' : '200',
-                      lineHeight: 22,
-                      textAlign: 'justify',
-                      width: Dimensions.get( 'window' ).width * 0.9 + 8,
-                    },
-                    textStyle,
-                  ]}
-                >
-                  {e}
-                </Text>
-              )
+              return <Text key={`item-${ e }-${ idx }-${ k }`}>{e}</Text>
             }
           } )
-          return <Text key={`items-${ attributeName }-${ idx }`}>{loop}</Text>
+          return (
+            <Text
+              key={`items-${ attributeName }-${ idx }`}
+              style={[
+                {
+                  fontSize: core ? 14.5 : 12.5,
+                  fontWeight: core ? '300' : '200',
+                  lineHeight: 22,
+                  textAlign: 'justify',
+                  width: Dimensions.get( 'window' ).width * 0.9 + 8,
+                },
+                textStyle,
+              ]}
+            >
+              {loop}
+            </Text>
+          )
         }
 
         return (

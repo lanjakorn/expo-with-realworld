@@ -27,7 +27,8 @@ export default connectHighlight(
               key={idx}
               style={{
                 color: Colors.tintColor,
-                fontWeight: '500',
+                fontWeight: '700',
+                lineHeight: 22,
               }}
             >
               {part.value}
@@ -36,19 +37,21 @@ export default connectHighlight(
         return part.value
       } )
       return (
-        <Text
-          style={[
-            {
-              fontSize: core ? 14.5 : 12.5,
-              fontWeight: core ? '300' : '200',
-              lineHeight: 22,
-              textAlign: 'justify',
-              width: Dimensions.get( 'window' ).width * 0.9 + 8,
-            },
-            textStyle,
-          ]}
-        >
-          <Text>{highligtedHit}</Text>
+        <Text>
+          <Text
+            style={[
+              {
+                fontSize: core ? 14.5 : 12.5,
+                fontWeight: core ? '300' : '200',
+                lineHeight: 22,
+                textAlign: 'justify',
+                width: Dimensions.get( 'window' ).width * 0.9 + 8,
+              },
+              textStyle,
+            ]}
+          >
+            {highligtedHit}
+          </Text>
         </Text>
       )
     }

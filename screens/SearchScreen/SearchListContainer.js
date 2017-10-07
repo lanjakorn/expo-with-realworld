@@ -11,7 +11,7 @@ import {
   connectMenu,
   connectRange,
 } from 'react-instantsearch/connectors'
-
+import { LinearGradient } from 'expo'
 import PropTypes from 'prop-types'
 
 import { Colors } from 'constants'
@@ -48,14 +48,8 @@ class Home extends Component {
         >
           <StatusBar backgroundColor="blue" barStyle="light-content" />
           <ConnectedSearchBox navigation={this.props.navigation} />
-          <View style={styles.options}>
-            <ConnectedStats />
-          </View>
+          <ConnectedStats />
           <ConnectedHits />
-          <VirtualRefinementList attributeName="type" />
-          <VirtualRange attributeName="price" />
-          <VirtualMenu attributeName="category" />
-          <VirtualRange attributeName="rating" />
         </InstantSearch>
       </View>
     )
@@ -89,7 +83,12 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <View style={{ flexDirection: 'row', backgroundColor: Colors.tintColor }}>
+      <LinearGradient
+        colors={[ '#CE1D45', '#E0244F', '#E33B61' ]}
+        start={{ x: 0.0, y: 0.25 }}
+        end={{ x: 1.0, y: 1.0 }}
+        style={styles.container}
+      >
         <SearchBar
           lightTheme
           autoFocus={true}
@@ -105,7 +104,7 @@ class SearchBox extends Component {
           containerStyle={[ styles.searchBar, styles.altTouchableView ]}
           icon={{ style: styles.icon }}
           onFocus={this.onSearchActive}
-          underlineColorAndroid={Colors.darkTintColor}
+          // underlineColorAndroid={Colors.darkTintColor}
         />
         <Button
           buttonStyle={{
@@ -120,11 +119,11 @@ class SearchBox extends Component {
           containerViewStyle={styles.buttonContainerCancel}
           title="Cancel"
           fontSize={14}
-          backgroundColor={Colors.tintColor}
-          underlayColor={Colors.tintColor}
+          backgroundColor="transparent"
+          underlayColor="transparent"
           onPress={() => this.pressCancelButton()}
         />
-      </View>
+      </LinearGradient>
     )
   }
 }
@@ -136,10 +135,19 @@ SearchBox.propTypes = {
 
 const ConnectedSearchBox = connectSearchBox( SearchBox )
 const ConnectedHits = connectHits( Hits )
-const ConnectedStats = connectStats( ( { nbHits } ) => (
-  <Text style={{ paddingLeft: 10 }}>{nbHits} found</Text>
-) )
-
-const VirtualRange = connectRange( () => null )
-const VirtualRefinementList = connectRefinementList( () => null )
-const VirtualMenu = connectMenu( () => null )
+const ConnectedStats = connectSearchBox(
+  ( { currentRefinement } ) =>
+    currentRefinement ? (
+      <View style={styles.options}>
+        <Text style={{ paddingLeft: 10, letterSpacing: 1 }}>
+          <Text>{'Search for "'}</Text>
+          <Text style={{ color: Colors.tintColor, fontWeight: '700' }}>
+            {currentRefinement}
+          </Text>
+          <Text>{'"'}</Text>
+        </Text>
+      </View>
+    ) : (
+      <Text style={{ backgroundColor: 'white' }} />
+    )
+)
