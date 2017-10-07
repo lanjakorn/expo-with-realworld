@@ -81,6 +81,10 @@ class Slider extends Component {
     {
       return (
         <Swiper
+          containerStyle={{
+            backgroundColor: 'black',
+            width: Dimensions.get( 'window' ).width,
+          }}
           activeDotColor={Colors.tintColor}
           buttonWrapperStyle={styles.buttonWrappe}
           height={calHeight.height}
@@ -109,8 +113,8 @@ class Slider extends Component {
               }}
             />
           </View>
-          {this.props.hasVideo
-            ? <View style={styles.slideVideo}>
+          {this.props.hasVideo ? (
+            <View style={styles.slideVideo}>
               <WebView
                 source={{
                   uri: this.videoLink(),
@@ -124,7 +128,8 @@ class Slider extends Component {
                 }}
               />
             </View>
-            : <View style={styles.slideImage}>
+          ) : (
+            <View style={styles.slideImage}>
               <Image
                 resizeMode="cover"
                 source={{
@@ -138,7 +143,8 @@ class Slider extends Component {
                   width: width,
                 }}
               />
-            </View>}
+            </View>
+          )}
         </Swiper>
       )
     }
