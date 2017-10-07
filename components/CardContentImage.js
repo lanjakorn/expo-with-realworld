@@ -14,7 +14,7 @@ const styles = StyleSheet.create( {
     paddingBottom: 30,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 30,
+    // paddingTop: 30,
   },
   rowTitle: {
     flexDirection: 'row',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create( {
   },
   image: {
     height: height * 0.3,
-    width: width * 0.9 + 10,
+    width: Dimensions.get( 'window' ).width,
   },
 } )
 
@@ -63,18 +63,16 @@ const CardContentImage = ( { description, title, url, limitLine } ) => {
         <Image resizeMode="cover" source={{ uri: url }} style={image} />
       </View>
       <View style={rowTitle}>
-        <Text style={titleText}>
-          {title}
-        </Text>
+        <Text style={titleText}>{title}</Text>
       </View>
       <View style={rowDescription}>
-        {limitLine
-          ? <Text style={descriptionText} numberOfLines={2}>
+        {limitLine ? (
+          <Text style={descriptionText} numberOfLines={2}>
             {description}
           </Text>
-          : <Text style={descriptionText}>
-            {description}
-          </Text>}
+        ) : (
+          <Text style={descriptionText}>{description}</Text>
+        )}
       </View>
     </View>
   )
