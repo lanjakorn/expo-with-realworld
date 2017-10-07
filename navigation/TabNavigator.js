@@ -25,24 +25,30 @@ import SolutionScreen from '@screens/SolutionScreen'
 import EShopScreen from '@screens/EShopScreen'
 // import PassCodeScreen from '@screens/LoginScreen/PassCode'
 
-const HomeTab = StackNavigator( {
-  homes: {
-    screen: HomeScreen,
-    path: '/',
+const HomeTab = StackNavigator(
+  {
+    homes: {
+      screen: HomeScreen,
+      path: '/',
+    },
+    promotions: {
+      screen: PostsScreen,
+      path: '/:category',
+    },
+    companyProfiles: {
+      screen: CompanyProfileScreen,
+      path: '/',
+    },
+    search: {
+      screen: SearchScreen,
+      path: '/',
+    },
   },
-  promotions: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  companyProfiles: {
-    screen: PostsScreen,
-    path: '/:category',
-  },
-  search: {
-    screen: SearchScreen,
-    path: '/',
-  },
-} )
+  {
+    mode: 'card',
+    cardStyle: { backgroundColor: 'white' },
+  }
+)
 
 const HouseTab = StackNavigator( {
   houses: {
