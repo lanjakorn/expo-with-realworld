@@ -57,10 +57,10 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Services = ( { onPressServiceSelect, services } ) =>
+const Services = ( { onPressServiceSelect, services } ) => (
   <ScrollView>
     <View>
-      {Object.keys( services ).map( e =>
+      {Object.keys( services ).map( e => (
         <TouchableOpacity
           key={e}
           onPress={() => onPressServiceSelect( e, services[ e ].title )}
@@ -86,9 +86,10 @@ const Services = ( { onPressServiceSelect, services } ) =>
             </View>
           </Card>
         </TouchableOpacity>
-      )}
+      ) )}
     </View>
   </ScrollView>
+)
 
 Services.propTypes = {
   onPressServiceSelect: PropTypes.func.isRequired,

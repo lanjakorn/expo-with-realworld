@@ -6,10 +6,11 @@ import { nav } from 'utilities'
 import HouseCategories from './HouseCategoriesContainer'
 import { HeaderNavigation } from '@components'
 
-const HouseCategoriesScreen = ( { navigation } ) =>
-  <ScrollView>
+const HouseCategoriesScreen = ( { navigation } ) => (
+  <ScrollView removeClippedSubviews={false}>
     <HouseCategories navigation={navigation} />
   </ScrollView>
+)
 
 HouseCategoriesScreen.navigationOptions = ( { navigation } ) => ( {
   header: (

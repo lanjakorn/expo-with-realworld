@@ -6,10 +6,11 @@ import { nav } from 'utilities'
 import { HeaderNavigation } from '@components'
 import SolutionContainer from './SolutionContainer'
 
-const SolutionCategoriesScreen = ( { navigation } ) =>
-  <ScrollView>
+const SolutionCategoriesScreen = ( { navigation } ) => (
+  <ScrollView removeClippedSubviews={false}>
     <SolutionContainer navigation={navigation} />
   </ScrollView>
+)
 
 SolutionCategoriesScreen.navigationOptions = ( { navigation } ) => ( {
   header: (

@@ -5,10 +5,11 @@ import PropTypes from 'prop-types'
 import Product from './ProductContainer'
 import { HeaderNavigation } from '@components'
 
-const ProductDetailScreen = ( { navigation } ) =>
-  <ScrollView>
+const ProductDetailScreen = ( { navigation } ) => (
+  <ScrollView removeClippedSubviews={false}>
     <Product navigation={navigation} />
   </ScrollView>
+)
 
 ProductDetailScreen.navigationOptions = ( { navigation } ) => ( {
   header: <HeaderNavigation navigation={navigation} title={'Products'} />,

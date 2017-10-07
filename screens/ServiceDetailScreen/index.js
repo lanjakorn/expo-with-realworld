@@ -6,10 +6,11 @@ import { nav } from 'utilities'
 import ServiceDetail from './ServiceDetailContainer'
 import { HeaderNavigation } from '@components'
 
-const ServiceDetailScreen = ( { navigation } ) =>
-  <ScrollView>
+const ServiceDetailScreen = ( { navigation } ) => (
+  <ScrollView removeClippedSubviews={false}>
     <ServiceDetail navigation={navigation} />
   </ScrollView>
+)
 
 ServiceDetailScreen.navigationOptions = ( { navigation } ) => ( {
   header: (

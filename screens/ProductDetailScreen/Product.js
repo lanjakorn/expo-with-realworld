@@ -18,30 +18,30 @@ import Pro from './Pro'
 import Tag from './Tag'
 import styles from './ProductStyle'
 
-const renderTags = tags =>
+const renderTags = tags => (
   <View style={styles.tags}>
-    {tags.map( ( e, k ) =>
+    {tags.map( ( e, k ) => (
       <Tag key={`tags-${ k }`} name={e} style={styles.rating} />
-    )}
+    ) )}
   </View>
+)
 
-const renderPros = ( pros, words ) =>
+const renderPros = ( pros, words ) => (
   <View style={styles.pros}>
     <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
       {words.productPros}
     </Text>
-    <View>
-      {pros.map( ( e, k ) => <Pro key={`pros-${ k }`} name={e} /> )}
-    </View>
+    <View>{pros.map( ( e, k ) => <Pro key={`pros-${ k }`} name={e} /> )}</View>
   </View>
+)
 
-const renderFeatures = ( features, onPressFeature ) =>
+const renderFeatures = ( features, onPressFeature ) => (
   <View style={styles.pros}>
     <Text style={{ marginBottom: 15, fontSize: 16, fontWeight: '600' }}>
       {'Feature'}
     </Text>
     <View>
-      {features.map( ( { title, description }, k ) =>
+      {features.map( ( { title, description }, k ) => (
         <Feature
           description={description}
           key={`feature-${ k }-${ title }`}
@@ -49,10 +49,11 @@ const renderFeatures = ( features, onPressFeature ) =>
           onPressFeature={onPressFeature}
           title={title}
         />
-      )}
+      ) )}
     </View>
     <View />
   </View>
+)
 
 //TODO: strategy render component check by has MFP
 const ProductCard = props => {
@@ -83,17 +84,19 @@ const ProductCard = props => {
         containerstyle={styles.detailsView}
         title={description}
       />
-      {!isMFP
-        ? <View style={styles.price}>
+      {!isMFP ? (
+        <View style={styles.price}>
           <PriceText
             price={offer.price}
             style={styles.priceText}
             words={words}
           />
         </View>
-        : <View />}
-      {renderTags( tags )}
-      {renderPros( pros, words )}
+      ) : (
+        <View />
+      )}
+      {tags && renderTags( tags )}
+      {pros && renderPros( pros, words )}
       {!isMFP ? <View /> : features && renderFeatures( features, onPressFeature )}
       <View style={styles.more}>
         <ButtonRadiusOutlined
@@ -103,18 +106,22 @@ const ProductCard = props => {
         />
         <ButtonRadiusOutlined onPress={onPressContactUs} title={'Share'} />
       </View>
-      {!isMFP
-        ? <HeaderButtonSection
+      {!isMFP ? (
+        <HeaderButtonSection
           buttonOnPress={onPressFaq}
           buttontitle={'Faq'}
           containerstyle={styles.faq}
           textTitle={'FAQ'}
         />
-        : <View style={styles.questions}>
-          {isFetchingFaqs
-            ? <Spinner visible={true} />
-            : <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />}
-        </View>}
+      ) : (
+        <View style={styles.questions}>
+          {isFetchingFaqs ? (
+            <Spinner visible={true} />
+          ) : (
+            <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
+          )}
+        </View>
+      )}
     </View>
   )
 }

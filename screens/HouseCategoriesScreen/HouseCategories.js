@@ -19,7 +19,7 @@ const HouseCategories = ( {
   onPressContactUs,
   onPressSolutionSelect,
   houseCategory: { description, title, urls },
-} ) =>
+} ) => (
   <View style={styles.container}>
     <HeaderTitle
       buttonOnPress={onPressContactUs}
@@ -27,9 +27,7 @@ const HouseCategories = ( {
       containerStyle={styles.title}
       textTitle={title}
     />
-    <View style={styles.thumbnailView}>
-      {<Slider urls={urls} hasVideo />}
-    </View>
+    <View style={styles.thumbnailView}>{<Slider urls={urls} hasVideo />}</View>
     <TextDescriptionCard
       containerstyle={styles.detailsView}
       title={description}
@@ -42,6 +40,7 @@ const HouseCategories = ( {
     <HeaderSection containerstyle={styles.caseStudy} textTitle={'Case Study'} />
     <CaseStudies caseStudies={caseStudies} />
   </View>
+)
 
 HouseCategories.propTypes = {
   houseCategory: PropTypes.shape( {
