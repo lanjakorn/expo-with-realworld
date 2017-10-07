@@ -8,7 +8,7 @@ import Services from './ServicesContainer'
 
 const styles = StyleSheet.create( {
   container: {
-    marginTop: 15,
+    // marginTop: 15,
   },
 } )
 
