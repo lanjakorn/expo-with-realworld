@@ -54,7 +54,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
         <View style={styles.container}>
           <View style={styles.leftSection}>
             <Icon
-              size={28}
+              size={32}
               color={'white'}
               name={'ios-arrow-back'}
               type={'ionicon'}
@@ -77,7 +77,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
           </View>
           <View style={styles.rightSection}>
             <Icon
-              size={35}
+              size={3}
               color={'white'}
               name={'ios-search'}
               type={'ionicon'}
