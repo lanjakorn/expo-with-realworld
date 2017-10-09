@@ -77,7 +77,7 @@ const HeaderNavigation = ( { navigation, title } ) => {
           </View>
           <View style={styles.rightSection}>
             <Icon
-              size={3}
+              size={34}
               color={'white'}
               name={'ios-search'}
               type={'ionicon'}
