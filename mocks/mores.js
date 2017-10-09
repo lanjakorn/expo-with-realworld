@@ -1,34 +1,34 @@
 export default {
-  eshops: {
+  eShop: {
     title: 'Ricoh eShop',
-    navigate: 'eshops',
+    navigate: 'eshop',
   },
-  companyProfiles: {
+  companyProfile: {
     title: 'Company Profile',
-    navigate: 'companyProfiles',
+    navigate: 'companyProfile',
   },
-  caseStudies: {
+  caseStudy: {
     title: 'Case Study',
-    navigate: 'caseStudies',
+    navigate: 'caseStudy',
   },
-  newsLetters: {
+  newsLetter: {
     title: 'Newsletter',
-    navigate: 'newsLetters',
+    navigate: 'newsLetter',
   },
   contactUs: {
     title: 'Contact Us',
     navigate: 'contactUs',
   },
-  apps: {
+  app: {
     title: 'App',
-    navigate: 'apps',
+    navigate: 'app',
   },
   login: {
     title: 'Sales Log In',
     navigate: 'login',
   },
-  touchs: {
+  touch: {
     title: 'RICOH Touch',
-    navigate: 'touchs',
+    navigate: 'touch',
   },
 }

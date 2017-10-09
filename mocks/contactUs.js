@@ -1,19 +1,23 @@
 const info = ( { officeAddress, callCenter, hotLine } ) => {
+  const [ firstOfficeAddress, ...restOfficeAddress ] = officeAddress
+  const [ firstCallCenter, ...restCallCenter ] = callCenter
+  const [ firstHotLine, ...restHotLine ] = hotLine
+
   return [
     {
       icon: { type: 'material', name: 'location-on' },
-      title: 'Head Office สำนักงานใหญ่ (อ่อนนุช)',
-      description: officeAddress,
+      title: firstOfficeAddress,
+      descriptions: restOfficeAddress,
     },
     {
       icon: { type: 'material', name: 'phone-in-talk' },
-      title: 'ศูนย์บริการแจ้งซ่อม (Call Center)',
-      description: callCenter,
+      title: firstCallCenter,
+      descriptions: restCallCenter,
     },
     {
       icon: { type: 'material', name: 'phone-in-talk' },
-      title: 'ศูนย์รับร้องเรียน',
-      description: hotLine,
+      title: firstHotLine,
+      descriptions: restHotLine,
     },
   ]
 }
