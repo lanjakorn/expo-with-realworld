@@ -38,9 +38,7 @@ const Pro = ( { name } ) => {
         </Text>
       </View>
       <View style={styles.title}>
-        <Text style={styles.text}>
-          {name}
-        </Text>
+        <Text style={styles.text}>{name}</Text>
       </View>
     </View>
   )

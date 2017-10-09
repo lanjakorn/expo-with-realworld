@@ -13,7 +13,6 @@ export default compose(
   connect( mapStateToProps ),
   mapProps( props => {
     const { contactUs } = props
-
     return {
       ...props,
       info: info( contactUs ),

@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import mores from 'mocks/mores'
 import { Colors } from 'constants'
 
 import { Card } from '@components'
@@ -38,10 +37,13 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const Mores = ( { onPressMenuSelect } ) =>
+const Mores = ( { mores } ) => (
   <View>
-    {Object.keys( mores ).map( e =>
-      <TouchableOpacity key={e} onPress={() => onPressMenuSelect( mores[ e ] )}>
+    {Object.keys( mores ).map( e => (
+      <TouchableOpacity
+        key={e}
+        onPress={() => mores[ e ].onPressMenuSelect( mores[ e ] )}
+      >
         <View style={styles.searchSection}>
           <Card margin={0} backgroundColor={Colors.tintColor}>
             <View style={styles.searchListItemStyle}>
@@ -52,11 +54,12 @@ const Mores = ( { onPressMenuSelect } ) =>
           </Card>
         </View>
       </TouchableOpacity>
-    )}
+    ) )}
   </View>
+)
 
 Mores.propTypes = {
-  onPressMenuSelect: PropTypes.func.isRequired,
+  mores: PropTypes.object.isRequired,
 }
 
 export default Mores

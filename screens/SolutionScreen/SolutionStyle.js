@@ -3,6 +3,7 @@ import { Colors } from 'constants'
 
 export default StyleSheet.create( {
   caseStudy: {
+    backgroundColor: Colors.backgroundSection,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -10,7 +11,6 @@ export default StyleSheet.create( {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 30,
-    backgroundColor: Colors.backgroundSection,
   },
   container: {
     backgroundColor: '#fff',
@@ -23,6 +23,7 @@ export default StyleSheet.create( {
     paddingRight: 20,
   },
   solution: {
+    backgroundColor: Colors.backgroundSection,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -31,7 +32,6 @@ export default StyleSheet.create( {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 30,
-    backgroundColor: Colors.backgroundSection,
   },
   thumbnailView: {
     alignItems: 'center',

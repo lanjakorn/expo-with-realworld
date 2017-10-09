@@ -20,7 +20,8 @@ export default StyleSheet.create( {
     paddingTop: 30,
   },
   infoContentBox: {
-    flex: 1,
+    // flexWrap: 'wrap',
+    // flexDirection: 'column',
   },
   infoContentTitle: {
     fontWeight: 'bold',
