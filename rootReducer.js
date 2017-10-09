@@ -4,6 +4,7 @@ import { MainNavigator } from 'navigation'
 
 import { combineReducers } from 'redux'
 
+import { reducers as appConfigsReducer } from 'modules/AppConfigs'
 import { reducers as authReducer } from 'modules/Auth'
 import { reducers as caseStudiesReducer } from 'modules/CaseStudies'
 import { reducers as companyProfileReducer } from 'modules/CompanyProfile'
@@ -45,6 +46,7 @@ const navReducer = ( state = initialState, action ) => {
 }
 
 const rootReducer = combineReducers( {
+  ...appConfigsReducer,
   ...authReducer,
   ...caseStudiesReducer,
   ...companyProfileReducer,
