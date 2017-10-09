@@ -3,6 +3,8 @@ import { INIT_HOME_SCREEN } from './types'
 import { home as homeAction } from './actions'
 import { getFireBaseByRef } from './api'
 
+import { actions as appConfigsAction } from 'modules/AppConfigs'
+
 import {
   normalize as caseStudiesNormalized,
   actions as caseStudiesAction,
@@ -41,6 +43,12 @@ import {
   normalize as solutionsNormalized,
   actions as solutionsAction,
 } from 'modules/Solutions'
+
+const getAppConfigs = function* getAppConfigs() {
+  yield put( appConfigsAction.appConfigs.request() )
+  const appConfigs = yield call( getFireBaseByRef, 'appConfigs' )
+  yield put( appConfigsAction.appConfigs.success( appConfigs ) )
+}
 
 const getCaseStudies = function* getCaseStudies() {
   yield put( caseStudiesAction.caseStudies.request() )
@@ -137,6 +145,7 @@ const getSolutions = function* getSolutions() {
 
 const allTask = function* allTask() {
   yield all( [
+    yield fork( getAppConfigs ),
     yield fork( getCaseStudies ),
     yield fork( getCategories ),
     yield fork( getContacts ),
