@@ -6,7 +6,7 @@ import {
 } from '../types'
 
 export const INITIAL_STATE = {
-  companyProfile: '',
+  companyProfile: {},
   isFetching: false,
   errorMessage: '',
 }
