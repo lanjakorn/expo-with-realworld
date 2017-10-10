@@ -23,7 +23,7 @@ const ContactUs = ( {
           width: width * 0.8 - 15,
         }}
       >
-        <Text>{e}</Text>
+        <Text style={{ fontSize: 13 }}>{e}</Text>
       </View>
     ) )
 

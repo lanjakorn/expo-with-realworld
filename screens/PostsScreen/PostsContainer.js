@@ -36,7 +36,7 @@ class ContactUsScreen extends Component {
     const { container } = styles
     return (
       <View style={container}>
-        {posts.map( e =>
+        {posts.map( e => (
           <View
             key={`container-case-${ e.title }`}
             style={{
@@ -48,10 +48,10 @@ class ContactUsScreen extends Component {
               description={e.description}
               key={e.title}
               title={e.title}
-              url={'https://www.ricoh.com/environment/img/sp-img-03.jpg'}
+              url={'https://darkpatterns.org/resources/images/404.png'}
             />
           </View>
-        )}
+        ) )}
       </View>
     )
   }
