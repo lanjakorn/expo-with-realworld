@@ -15,6 +15,7 @@ import { reducers as HomeReducer } from 'modules/Home'
 import { reducers as houseCategoriesReducer } from 'modules/HouseCategories'
 import { reducers as productCategoriesReducer } from 'modules/ProductCategories'
 import { reducers as productsReducer } from 'modules/Products'
+import { reducers as ricohTouchesReducer } from 'modules/RicohTouches'
 import { reducers as searchReducers } from 'modules/Search'
 import { reducers as servicesReducer } from 'modules/Services'
 import { reducers as settingsReducer } from 'modules/Settings'
@@ -57,6 +58,7 @@ const rootReducer = combineReducers( {
   ...houseCategoriesReducer,
   ...productCategoriesReducer,
   ...productsReducer,
+  ...ricohTouchesReducer,
   ...searchReducers,
   ...servicesReducer,
   ...settingsReducer,
