@@ -24,7 +24,8 @@ import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SolutionScreen from '@screens/SolutionScreen'
 import EShopScreen from '@screens/EShopScreen'
 import NewsLetterDetailScreen from '@screens/NewsLetterDetailScreen'
-
+import RicohTouchesScreen from '@screens/RicohTouchesScreen'
+import RicohTouchDetailScreen from '@screens/RicohTouchDetailScreen'
 // import PassCodeScreen from '@screens/LoginScreen/PassCode'
 
 const HomeTab = StackNavigator(
@@ -131,9 +132,13 @@ const MoresTab = StackNavigator( {
     screen: NewsLetterDetailScreen,
     path: '/',
   },
-  touch: {
-    screen: PostsScreen,
+  ricohTouch: {
+    screen: RicohTouchesScreen,
     path: '/:category',
+  },
+  ricohTouchDetail: {
+    screen: RicohTouchDetailScreen,
+    path: '/:title:url',
   },
   contactUs: {
     screen: ContactUsScreen,
