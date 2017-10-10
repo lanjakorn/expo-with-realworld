@@ -6,6 +6,11 @@ import { getFireBaseByRef } from './api'
 import { actions as appConfigsAction } from 'modules/AppConfigs'
 
 import {
+  normalize as ricohTouchesNormalized,
+  actions as ricohTouchesAction,
+} from 'modules/RicohTouches'
+
+import {
   normalize as caseStudiesNormalized,
   actions as caseStudiesAction,
 } from 'modules/CaseStudies'
@@ -48,6 +53,16 @@ const getAppConfigs = function* getAppConfigs() {
   yield put( appConfigsAction.appConfigs.request() )
   const appConfigs = yield call( getFireBaseByRef, 'appConfigs' )
   yield put( appConfigsAction.appConfigs.success( appConfigs ) )
+}
+
+const getRicohTouches = function* getRicohTouches() {
+  yield put( ricohTouchesAction.ricohTouches.request() )
+  const ricohTouches = yield call( getFireBaseByRef, 'ricohTouches' )
+  const normalizedCategories = yield call(
+    ricohTouchesNormalized.normalizedRicohTouches,
+    ricohTouches
+  )
+  yield put( ricohTouchesAction.ricohTouches.success( normalizedCategories ) )
 }
 
 const getCaseStudies = function* getCaseStudies() {
@@ -148,10 +163,11 @@ const allTask = function* allTask() {
     yield fork( getAppConfigs ),
     yield fork( getCaseStudies ),
     yield fork( getCategories ),
-    yield fork( getContacts ),
     yield fork( getCompanyProfile ),
+    yield fork( getContacts ),
     yield fork( getContactUs ),
     yield fork( getHouseCategories ),
+    yield fork( getRicohTouches ),
     yield fork( getServices ),
     yield fork( getSolutionCategories ),
     yield fork( getSolutions ),
