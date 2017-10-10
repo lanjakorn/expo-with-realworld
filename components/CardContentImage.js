@@ -12,13 +12,15 @@ const styles = StyleSheet.create( {
     flexDirection: 'column',
     minWidth: 12,
     paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
     // paddingTop: 30,
   },
   rowTitle: {
     flexDirection: 'row',
     marginBottom: 14,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   titleText: {
     fontSize: 14,
@@ -26,6 +28,8 @@ const styles = StyleSheet.create( {
   },
   rowDescription: {
     flexDirection: 'row',
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   descriptionText: {
     fontSize: 13,
@@ -34,9 +38,10 @@ const styles = StyleSheet.create( {
     color: Colors.textDescription,
   },
   rowImage: {
+    width: Dimensions.get( 'window' ).width,
     marginBottom: 24,
     alignItems: 'center',
-    backgroundColor: '#9DD6EB',
+    backgroundColor: 'rgba(0, 0, 0, 0.075)',
     flex: 1,
     justifyContent: 'center',
   },
