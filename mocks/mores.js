@@ -27,8 +27,8 @@ export default {
     title: 'Sales Log In',
     navigate: 'login',
   },
-  touch: {
+  ricohTouch: {
     title: 'RICOH Touch',
-    navigate: 'touch',
+    navigate: 'ricohTouch',
   },
 }
