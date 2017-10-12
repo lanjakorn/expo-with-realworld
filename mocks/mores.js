@@ -13,7 +13,7 @@ export default {
   },
   newsLetter: {
     title: 'Newsletter',
-    navigate: 'newsLetter',
+    navigate: 'newsletters',
   },
   contactUs: {
     title: 'Contact Us',
