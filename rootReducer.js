@@ -13,6 +13,7 @@ import { reducers as contactUsReducer } from 'modules/ContactUs'
 import { reducers as faqsReducer } from 'modules/Faqs'
 import { reducers as HomeReducer } from 'modules/Home'
 import { reducers as houseCategoriesReducer } from 'modules/HouseCategories'
+import { reducers as newslettersReducer } from 'modules/Newsletters'
 import { reducers as productCategoriesReducer } from 'modules/ProductCategories'
 import { reducers as productsReducer } from 'modules/Products'
 import { reducers as ricohTouchesReducer } from 'modules/RicohTouches'
@@ -56,6 +57,7 @@ const rootReducer = combineReducers( {
   ...faqsReducer,
   ...HomeReducer,
   ...houseCategoriesReducer,
+  ...newslettersReducer,
   ...productCategoriesReducer,
   ...productsReducer,
   ...ricohTouchesReducer,
