@@ -20,15 +20,11 @@ const Faq = ( {
   typingTitleQuestion,
   words,
   submissionError: { errors, pass },
-} ) =>
+} ) => (
   <View style={styles.screenContainer}>
-    <Text style={styles.screenTitle}>
-      {words.question}
-    </Text>
+    <Text style={styles.screenTitle}>{words.question}</Text>
     <View style={styles.boxContainer}>
-      <Text style={styles.boxTitle}>
-        {words.title}
-      </Text>
+      <Text style={styles.boxTitle}>{words.title}</Text>
       <TextInput
         onChangeText={text => typingTitleQuestion( text )}
         style={selectStyleTextInput( styles.textInputStyle, 'titleQuestion' )}
@@ -36,13 +32,10 @@ const Faq = ( {
         value={titleQuestion}
       />
       {Object.keys( submissionError ).length !== 0 &&
-        !pass &&
-        <TextError errors={errors} prop={'titleQuestion'} />}
+        !pass && <TextError errors={errors} prop={'titleQuestion'} />}
     </View>
     <View style={styles.boxContainer}>
-      <Text style={styles.boxTitle}>
-        {words.message}
-      </Text>
+      <Text style={styles.boxTitle}>{words.message}</Text>
       <TextInput
         style={selectStyleTextInput( styles.textAreaStyle, 'question' )}
         multiline={true}
@@ -52,13 +45,13 @@ const Faq = ( {
         value={question}
       />
       {Object.keys( submissionError ).length !== 0 &&
-        !pass &&
-        <TextError errors={errors} prop={'question'} />}
+        !pass && <TextError errors={errors} prop={'question'} />}
     </View>
-    {isAddFetching &&
+    {isAddFetching && (
       <View style={{ flex: 1 }}>
         <Spinner visible={true} />
-      </View>}
+      </View>
+    )}
     <Button
       buttonStyle={styles.buttonStyle}
       disabled={!enableButton}
@@ -67,6 +60,7 @@ const Faq = ( {
       onPress={() => onPressAddFaq()}
     />
   </View>
+)
 
 Faq.propTypes = {
   enableButton: PropTypes.bool.isRequired,

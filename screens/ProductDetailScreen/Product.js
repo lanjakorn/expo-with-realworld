@@ -69,7 +69,7 @@ const ProductCard = props => {
     product: { name, description, features, isMFP, offer, pros, tags, urls },
   } = props
 
-  return (
+  return !isFetchingFaqs ? (
     <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
@@ -115,14 +115,12 @@ const ProductCard = props => {
         />
       ) : (
         <View style={styles.questions}>
-          {isFetchingFaqs ? (
-            <Spinner visible={true} />
-          ) : (
-            <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
-          )}
+          <CollapsibleFaqs faqs={faqs} onChange={faqOnChange} />
         </View>
       )}
     </View>
+  ) : (
+    <View />
   )
 }
 
