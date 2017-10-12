@@ -24,7 +24,7 @@ const Solution = ( {
   solution: { description, title, urls },
 } ) => {
   const renderSolutionCategories = () =>
-    Object.keys( solutionCategories ).map( e =>
+    Object.keys( solutionCategories ).map( e => (
       <View
         key={`container-solution-${ e }`}
         style={{
@@ -44,10 +44,10 @@ const Solution = ( {
           />
         </TouchableOpacity>
       </View>
-    )
+    ) )
 
   const renderCaseStudies = () =>
-    Object.keys( caseStudies ).map( e =>
+    Object.keys( caseStudies ).map( e => (
       <View
         key={`container-case-${ e }`}
         style={{
@@ -65,10 +65,10 @@ const Solution = ( {
           } )}
         />
       </View>
-    )
+    ) )
 
-  return !isFetching
-    ? <View style={styles.container}>
+  return (
+    <View style={styles.container}>
       <HeaderTitle
         buttonOnPress={onPressContactUs}
         buttonTitle={'Contact Us'}
@@ -90,7 +90,7 @@ const Solution = ( {
       />
       {renderCaseStudies()}
     </View>
-    : <Spinner visible={true} />
+  )
 }
 
 Solution.propTypes = {

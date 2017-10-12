@@ -11,6 +11,11 @@ import {
 } from 'modules/RicohTouches'
 
 import {
+  normalize as newslettersNormalized,
+  actions as newslettersAction,
+} from 'modules/Newsletters'
+
+import {
   normalize as caseStudiesNormalized,
   actions as caseStudiesAction,
 } from 'modules/CaseStudies'
@@ -53,6 +58,16 @@ const getAppConfigs = function* getAppConfigs() {
   yield put( appConfigsAction.appConfigs.request() )
   const appConfigs = yield call( getFireBaseByRef, 'appConfigs' )
   yield put( appConfigsAction.appConfigs.success( appConfigs ) )
+}
+
+const getNewsletters = function* getNewsletters() {
+  yield put( newslettersAction.newsletters.request() )
+  const newsletters = yield call( getFireBaseByRef, 'newsletters' )
+  const normalizedCategories = yield call(
+    newslettersNormalized.newslettersState,
+    newsletters
+  )
+  yield put( newslettersAction.newsletters.success( normalizedCategories ) )
 }
 
 const getRicohTouches = function* getRicohTouches() {
@@ -167,6 +182,7 @@ const allTask = function* allTask() {
     yield fork( getContacts ),
     yield fork( getContactUs ),
     yield fork( getHouseCategories ),
+    yield fork( getNewsletters ),
     yield fork( getRicohTouches ),
     yield fork( getServices ),
     yield fork( getSolutionCategories ),

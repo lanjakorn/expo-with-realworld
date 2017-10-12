@@ -23,11 +23,14 @@ const watchOTPVerify = function* watchOTPVerify() {
       const { email, passCode, navigation } = yield take( OTP_VERIFY )
       yield put( AuthAction.Login.request() )
       const token = yield call( otpVerify, email, passCode )
+      console.log( 'token: ', token )
       const uid = yield call( getAuthToken, token )
+      console.log( 'uid: ', uid )
 
       yield put( AuthAction.Login.success( { passCode, uid, token } ) )
       navigation.navigate( 'homes' )
     } catch ( err ) {
+      console.log( 'err: ', err )
       yield put( AuthAction.Login.failure( err.response.data.error ) )
     }
   }

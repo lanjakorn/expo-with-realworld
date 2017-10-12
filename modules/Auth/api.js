@@ -20,14 +20,16 @@ const otpVerify = async ( email, passCode ) => {
   } )
 
   if ( res.status === 200 ) {
+    console.log( res.data.token )
     return res.data.token
   }
   return res.data.error
 }
 
 const getAuthToken = async token => {
-  const { uid } = await firebaseAuth.signInWithCustomToken( token )
-  return uid
+  const res = await firebaseAuth.signInWithCustomToken( token )
+  console.log( 'res: ', res )
+  return res.uid
 }
 
 export { otpRequest, otpVerify, getAuthToken }
