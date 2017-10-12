@@ -23,7 +23,8 @@ import ServicesScreen from '@screens/ServicesScreen'
 import SolutionCategoriesScreen from '@screens/SolutionCategoriesScreen'
 import SolutionScreen from '@screens/SolutionScreen'
 import EShopScreen from '@screens/EShopScreen'
-import NewsLetterDetailScreen from '@screens/NewsLetterDetailScreen'
+import NewslettersScreen from '@screens/NewslettersScreen'
+import NewsletterDetailScreen from '@screens/NewsletterDetailScreen'
 import RicohTouchesScreen from '@screens/RicohTouchesScreen'
 import RicohTouchDetailScreen from '@screens/RicohTouchDetailScreen'
 // import PassCodeScreen from '@screens/LoginScreen/PassCode'
@@ -128,9 +129,13 @@ const MoresTab = StackNavigator( {
     screen: PostsScreen,
     path: '/:category',
   },
-  newsLetter: {
-    screen: NewsLetterDetailScreen,
+  newsletters: {
+    screen: NewslettersScreen,
     path: '/',
+  },
+  newsletterDetail: {
+    screen: NewsletterDetailScreen,
+    path: '/:key',
   },
   ricohTouch: {
     screen: RicohTouchesScreen,
