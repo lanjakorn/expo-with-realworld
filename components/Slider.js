@@ -77,9 +77,84 @@ class Slider extends Component {
       } )
     )
 
+  all = () => {
+    const { imgs, videos } = this.props.urls
+    const imgsComponent = imgs.map( ( e, k ) => (
+      <Image
+        key={`img-${ e }-${ k }`}
+        resizeMode="cover"
+        source={{
+          uri: object.getFirstByKey( {
+            item: this.props.urls,
+            key: 'imgs',
+          } ),
+        }}
+        style={{
+          backgroundColor: 'transparent',
+          height: calHeight.height,
+          width: width,
+        }}
+      />
+    ) )
+
+    const videosComponent =
+      videos &&
+      videos.map( ( e, k ) => (
+        <View key={`video-${ e }-${ k }`} style={styles.slideVideo}>
+          <WebView
+            source={{
+              uri: this.videoLink(),
+            }}
+            style={{
+              alignItems: 'center',
+              backgroundColor: 'black',
+              height: 240,
+              justifyContent: 'center',
+              width: width,
+            }}
+          />
+        </View>
+      ) )
+
+    return { ...imgsComponent, ...videosComponent }
+  }
+
   render() {
     {
-      return (
+      return this.props.all ? (
+        <Swiper
+          containerStyle={{
+            backgroundColor: 'black',
+            width: Dimensions.get( 'window' ).width,
+          }}
+          activeDotColor={Colors.tintColor}
+          buttonWrapperStyle={styles.buttonWrappe}
+          height={calHeight.height}
+          loop={false}
+          nextButton={<Text style={styles.nextButton}>›</Text>}
+          paginationStyle={styles.pagination}
+          prevButton={<Text style={styles.prevButton}>‹</Text>}
+          showsButtons={Platform.OS === 'android' ? true : false}
+          loadMinimal={true}
+          loadMinimalSize={1}
+          removeClippedSubviews={false}
+        >
+          {this.props.urls.imgs.map( ( e, k ) => (
+            <Image
+              key={`img-${ e }-${ k }`}
+              resizeMode="cover"
+              source={{
+                uri: e,
+              }}
+              style={{
+                backgroundColor: 'transparent',
+                height: calHeight.height,
+                width: width,
+              }}
+            />
+          ) )}
+        </Swiper>
+      ) : (
         <Swiper
           containerStyle={{
             backgroundColor: 'black',
