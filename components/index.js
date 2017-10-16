@@ -22,6 +22,7 @@ import StyledText from './StyledText'
 import TextDescriptionCard from './TextDescriptionCard'
 import TextError from './TextError'
 import Video from './Video'
+import ImageFullScreen from './ImageFullScreen'
 
 export {
   ButtonRadius,
@@ -48,4 +49,5 @@ export {
   TextDescriptionCard,
   TextError,
   Video,
+  ImageFullScreen,
 }

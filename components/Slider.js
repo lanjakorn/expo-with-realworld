@@ -12,6 +12,8 @@ import Swiper from 'react-native-swiper'
 import { object, url } from 'utilities'
 import { Colors } from 'constants'
 
+import ImageFullScreen from './ImageFullScreen'
+
 const { width } = Dimensions.get( 'window' )
 
 const calHeight = {
@@ -121,107 +123,121 @@ class Slider extends Component {
 
   render() {
     {
-      return this.props.all ? (
-        <Swiper
-          containerStyle={{
-            backgroundColor: 'black',
-            width: Dimensions.get( 'window' ).width,
-          }}
-          activeDotColor={Colors.tintColor}
-          buttonWrapperStyle={styles.buttonWrappe}
-          height={calHeight.height}
-          loop={false}
-          nextButton={<Text style={styles.nextButton}>›</Text>}
-          paginationStyle={styles.pagination}
-          prevButton={<Text style={styles.prevButton}>‹</Text>}
-          showsButtons={Platform.OS === 'android' ? true : false}
-          loadMinimal={true}
-          loadMinimalSize={1}
-          removeClippedSubviews={false}
-        >
-          {this.props.urls.imgs.map( ( e, k ) => (
-            <Image
-              key={`img-${ e }-${ k }`}
-              resizeMode="cover"
-              source={{
-                uri: e,
-              }}
-              style={{
-                backgroundColor: 'transparent',
-                height: calHeight.height,
-                width: width,
-              }}
-            />
-          ) )}
-        </Swiper>
-      ) : (
-        <Swiper
-          containerStyle={{
-            backgroundColor: 'black',
-            width: Dimensions.get( 'window' ).width,
-          }}
-          activeDotColor={Colors.tintColor}
-          buttonWrapperStyle={styles.buttonWrappe}
-          height={calHeight.height}
-          loop={false}
-          nextButton={<Text style={styles.nextButton}>›</Text>}
-          paginationStyle={styles.pagination}
-          prevButton={<Text style={styles.prevButton}>‹</Text>}
-          showsButtons={Platform.OS === 'android' ? true : false}
-          loadMinimal={true}
-          loadMinimalSize={1}
-          removeClippedSubviews={false}
-        >
-          <View style={styles.slideImage}>
-            <Image
-              resizeMode="cover"
-              source={{
-                uri: object.getFirstByKey( {
-                  item: this.props.urls,
-                  key: 'imgs',
-                } ),
-              }}
-              style={{
-                backgroundColor: 'transparent',
-                height: calHeight.height,
-                width: width,
-              }}
-            />
-          </View>
-          {this.props.hasVideo ? (
-            <View style={styles.slideVideo}>
-              <WebView
+      if (
+        object.isDeepEmpty( this.props.urls, 'imgs', 'imgsName' ) &&
+        this.props.urls.imgs.length <= 1
+      ) {
+        return (
+          <ImageFullScreen
+            url={object.getFirstByKey( {
+              item: this.props.urls,
+              key: 'imgs',
+            } )}
+          />
+        )
+      } else {
+        return this.props.all ? (
+          <Swiper
+            containerStyle={{
+              backgroundColor: 'black',
+              width: Dimensions.get( 'window' ).width,
+            }}
+            activeDotColor={Colors.tintColor}
+            buttonWrapperStyle={styles.buttonWrappe}
+            height={calHeight.height}
+            loop={false}
+            nextButton={<Text style={styles.nextButton}>›</Text>}
+            paginationStyle={styles.pagination}
+            prevButton={<Text style={styles.prevButton}>‹</Text>}
+            showsButtons={Platform.OS === 'android' ? true : false}
+            loadMinimal={true}
+            loadMinimalSize={1}
+            removeClippedSubviews={false}
+          >
+            {this.props.urls.imgs.map( ( e, k ) => (
+              <Image
+                key={`img-${ e }-${ k }`}
+                resizeMode="cover"
                 source={{
-                  uri: this.videoLink(),
+                  uri: e,
                 }}
                 style={{
-                  alignItems: 'center',
-                  backgroundColor: 'black',
-                  height: 240,
-                  justifyContent: 'center',
+                  backgroundColor: 'transparent',
+                  height: calHeight.height,
                   width: width,
                 }}
               />
-            </View>
-          ) : (
+            ) )}
+          </Swiper>
+        ) : (
+          <Swiper
+            containerStyle={{
+              backgroundColor: 'black',
+              width: Dimensions.get( 'window' ).width,
+            }}
+            activeDotColor={Colors.tintColor}
+            buttonWrapperStyle={styles.buttonWrappe}
+            height={calHeight.height}
+            loop={false}
+            nextButton={<Text style={styles.nextButton}>›</Text>}
+            paginationStyle={styles.pagination}
+            prevButton={<Text style={styles.prevButton}>‹</Text>}
+            showsButtons={Platform.OS === 'android' ? true : false}
+            loadMinimal={true}
+            loadMinimalSize={1}
+            removeClippedSubviews={false}
+          >
             <View style={styles.slideImage}>
               <Image
                 resizeMode="cover"
                 source={{
-                  uri: object.getLastByKey( {
+                  uri: object.getFirstByKey( {
                     item: this.props.urls,
                     key: 'imgs',
                   } ),
                 }}
                 style={{
+                  backgroundColor: 'transparent',
                   height: calHeight.height,
                   width: width,
                 }}
               />
             </View>
-          )}
-        </Swiper>
-      )
+            {this.props.hasVideo ? (
+              <View style={styles.slideVideo}>
+                <WebView
+                  source={{
+                    uri: this.videoLink(),
+                  }}
+                  style={{
+                    alignItems: 'center',
+                    backgroundColor: 'black',
+                    height: 240,
+                    justifyContent: 'center',
+                    width: width,
+                  }}
+                />
+              </View>
+            ) : (
+              <View style={styles.slideImage}>
+                <Image
+                  resizeMode="cover"
+                  source={{
+                    uri: object.getLastByKey( {
+                      item: this.props.urls,
+                      key: 'imgs',
+                    } ),
+                  }}
+                  style={{
+                    height: calHeight.height,
+                    width: width,
+                  }}
+                />
+              </View>
+            )}
+          </Swiper>
+        )
+      }
     }
   }
 }
