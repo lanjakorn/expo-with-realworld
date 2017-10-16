@@ -9,6 +9,7 @@ import {
   HeaderButtonSection,
   HeaderTitle,
   Slider,
+  ImageFullScreen,
   TextDescriptionCard,
 } from '@components'
 
@@ -78,7 +79,7 @@ const ProductCard = props => {
         textTitle={name}
       />
       <View style={styles.thumbnailView}>
-        <Slider urls={urls} hasVideo />
+        <Slider urls={urls} all />
       </View>
       <TextDescriptionCard
         containerstyle={styles.detailsView}

@@ -43,14 +43,14 @@ const styles = StyleSheet.create( {
   },
 } )
 
-const NewsLetter = ( { newsletters, onPressSelectNewsletter } ) => {
+const NewsLetter = ( { newsletters, onPressNewsletterSelect } ) => {
   return (
     <View>
       {Object.keys( newsletters ).map( ( e, k ) => {
         return (
           <TouchableOpacity
             key={`newsletters-${ newsletters[ e ].title }`}
-            onPress={() => onPressSelectNewsletter( e )}
+            onPress={() => onPressNewsletterSelect( e )}
           >
             <Card
               containerStyle={{

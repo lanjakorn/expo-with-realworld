@@ -29,7 +29,7 @@ const mapStateToProps = state => ( {
 export default compose(
   connect( mapStateToProps, mapDispatchToProps ),
   withHandlers( {
-    onPressSelectNewsletter: ( { actions, navigation } ) => key => {
+    onPressNewsletterSelect: ( { actions, navigation } ) => key => {
       // ga.trackEvent( {
       //   eventCategory: 'products',
       //   eventAction: 'select category of products',

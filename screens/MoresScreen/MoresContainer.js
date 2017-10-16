@@ -24,16 +24,16 @@ export default compose(
     } = props
     const injectFunc = Object.keys( mores ).map( e => {
       switch ( e ) {
-      case 'app':
-        return {
-          onPressMenuSelect: () =>
-            appLink.openInStore(
-              ricohSmartDeviceConnectorApp.appStoreId,
-              ricohSmartDeviceConnectorApp.appStoreLocale,
-              ricohSmartDeviceConnectorApp.playStoreId
-            ),
-          ...mores[ e ],
-        }
+      // case 'app':
+      //   return {
+      //     onPressMenuSelect: () =>
+      //       appLink.openInStore(
+      //         ricohSmartDeviceConnectorApp.appStoreId,
+      //         ricohSmartDeviceConnectorApp.appStoreLocale,
+      //         ricohSmartDeviceConnectorApp.playStoreId
+      //       ),
+      //     ...mores[ e ],
+      //   }
       case 'eShop':
         return {
           onPressMenuSelect: () => appLink.openUrl( eShop.pageUrl ),
