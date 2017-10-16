@@ -27,6 +27,7 @@ import NewslettersScreen from '@screens/NewslettersScreen'
 import NewsletterDetailScreen from '@screens/NewsletterDetailScreen'
 import RicohTouchesScreen from '@screens/RicohTouchesScreen'
 import RicohTouchDetailScreen from '@screens/RicohTouchDetailScreen'
+import AppPortalScreen from '@screens/AppPortalScreen'
 // import PassCodeScreen from '@screens/LoginScreen/PassCode'
 
 const HomeTab = StackNavigator(
@@ -119,6 +120,10 @@ const MoresTab = StackNavigator( {
   },
   login: {
     screen: LoginScreen,
+    path: '/',
+  },
+  app: {
+    screen: AppPortalScreen,
     path: '/',
   },
   companyProfile: {
