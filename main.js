@@ -29,7 +29,7 @@ class AppContainer extends React.Component {
         this.setState( state => ( {
           isWelcome: !state.isWelcome,
         } ) ),
-      2500
+      2000
     )
   }
 
@@ -70,6 +70,11 @@ class AppContainer extends React.Component {
           require( './assets/images/ricoh-logo.png' ),
           require( './assets/images/ricoh-logo.png' ),
           require( './assets/images/vertical-menu-item.png' ),
+          require( './assets/images/vertical-menu/company-profile-2x.jpg' ),
+          require( './assets/images/vertical-menu/products-2x.jpg' ),
+          require( './assets/images/vertical-menu/ricoh-eshop-2x.jpg' ),
+          require( './assets/images/vertical-menu/ricoh-house-2x.jpg' ),
+          require( './assets/images/vertical-menu/services-2x.jpg' ),
         ],
         fonts: [
           FontAwesome.font,
