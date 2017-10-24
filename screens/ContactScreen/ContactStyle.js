@@ -10,7 +10,7 @@ export default StyleSheet.create( {
     padding: 0,
     margin: 0,
     borderWidth: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F8F8',
   },
   cardHeaderContainer: {
     backgroundColor: '#2d3e50',
@@ -23,23 +23,43 @@ export default StyleSheet.create( {
   },
   contactBodyContainer: {
     justifyContent: 'center',
-    paddingTop: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginTop: 10,
   },
   contactBodyItem: {
+    backgroundColor: '#fff',
+    // borderColor: Colors.tintColor,
+    // borderLeftWidth: 2,
     flexDirection: 'row',
-    justifyContent: 'center',
     marginBottom: 10,
   },
-  contactBodyText: {
-    flex: 4,
-    textAlign: 'left',
-    width: 110,
+  contactBodyTitleContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   contactBodyTitle: {
-    flex: 4,
+    flex: 1,
+    fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'right',
     color: Colors.tintColor,
+  },
+  contactBodyTextContainer: {
+    backgroundColor: '#F5F5F5',
+    flex: 2,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  contactBodyText: {
+    color: '#2d3e50',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   contactHeaderName: {
     fontSize: 22,
@@ -64,11 +84,6 @@ export default StyleSheet.create( {
     fontSize: 16,
     textAlign: 'center',
     color: '#fff',
-  },
-  contactBodyContainer: {
-    backgroundColor: '#fff',
-    flex: 1,
-    paddingTop: 30,
   },
   image: {
     borderColor: Colors.tintColor,

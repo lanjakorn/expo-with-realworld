@@ -7,7 +7,10 @@ const { omit } = object
 
 import styles from './ContactStyle'
 
-const Contact = ( { contact, contact: { imgUrl, name, department } } ) => {
+const Contact = ( {
+  contact,
+  contact: { imgUrl, name, department, tel, email },
+} ) => {
   const renderContactHeader = () => (
     <View style={styles.cardHeaderContainer}>
       <View style={styles.imageContainer}>
@@ -23,36 +26,40 @@ const Contact = ( { contact, contact: { imgUrl, name, department } } ) => {
           <Icon
             iconStyle={styles.contactHeaderIcon}
             name="phone-in-talk"
-            onPress={handleTel}
+            onPress={() => handleTel( tel )}
             underlayColor="transparent"
           />
           <Icon
             iconStyle={styles.contactHeaderIcon}
             name="email"
-            onPress={handleEmailTo}
+            onPress={() => handleEmailTo( email )}
             underlayColor="transparent"
           />
         </View>
       </View>
     </View>
   )
-  const handleTel = () => {
-    Linking.openURL( 'tel:1242' ).catch( err => console.log( 'Error:', err ) )
+  const handleTel = tel => {
+    const telCleaned = tel.replace( / /g, '' )
+    Linking.openURL( `tel:${ telCleaned }` ).catch( err =>
+      console.log( 'Error:', err )
+    )
   }
 
-  const handleEmailTo = () => {
-    Linking.openURL(
-      'mailto:somethingemail@gmail.com?subject=abcdefg&body=body'
-    ).catch( err => console.log( 'Error:', err ) )
+  const handleEmailTo = email => {
+    Linking.openURL( `mailto:${ email }` ).catch( err => console.log( 'Error:', err ) )
   }
 
   const renderContactInfo = () => (
     <View style={styles.contactBodyContainer}>
       {Object.keys( omit( 'imgUrl', contact ) ).map( ( Objkey, i ) => (
         <View style={styles.contactBodyItem} key={i}>
-          <Text style={styles.contactBodyTitle}>{Objkey}</Text>
-          <Text style={styles.contactBodyColon}>:</Text>
-          <Text style={styles.contactBodyText}>{contact[ Objkey ]}</Text>
+          <View style={styles.contactBodyTitleContainer}>
+            <Text style={styles.contactBodyTitle}>{Objkey.toUpperCase()}</Text>
+          </View>
+          <View style={styles.contactBodyTextContainer}>
+            <Text style={styles.contactBodyText}>{contact[ Objkey ]}</Text>
+          </View>
         </View>
       ) )}
     </View>
